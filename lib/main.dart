@@ -12,7 +12,8 @@ class test_app extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
         return MaterialApp(
-      debugShowCheckedModeBanner: false,
+          title: 'Aya',
+      debugShowCheckedModeBanner: true,
       home:Splashscreen() ,
     );
   }
