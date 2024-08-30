@@ -258,7 +258,7 @@ class _Specifictest extends State<Specifictest> {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 60),
+                        SizedBox(height: 40),
                         Container(
                           // margin: EdgeInsets.all(20),
                           decoration: BoxDecoration(
@@ -276,7 +276,7 @@ class _Specifictest extends State<Specifictest> {
                           width: 271,
                           child: ElevatedButton(
                             onPressed: () {
-                              _selectAnswer("YES");
+                              _selectAnswer("Seldom");
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xFFB7B597),
@@ -288,7 +288,7 @@ class _Specifictest extends State<Specifictest> {
                             ),
                             child: Center(
                               child: Text(
-                                "YES",
+                                "Seldom",
                                 style: TextStyle(
                                     color: Color(0xFF3E1904),
                                     fontFamily: 'Inter',
@@ -298,7 +298,7 @@ class _Specifictest extends State<Specifictest> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 40),
+                        SizedBox(height: 20),
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
@@ -315,7 +315,7 @@ class _Specifictest extends State<Specifictest> {
                           width: 271,
                           child: ElevatedButton(
                             onPressed: () {
-                              _selectAnswer("NO");
+                              _selectAnswer("Sometimes");
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xFFB7B597),
@@ -327,7 +327,87 @@ class _Specifictest extends State<Specifictest> {
                             ),
                             child: Center(
                               child: Text(
-                                "NO",
+                                "Sometimes",
+                                style: TextStyle(
+                                    color: Color(0xFF3E1904),
+                                    fontFamily: 'Inter',
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20,),
+                        Container(
+                          // margin: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(.25),
+                                spreadRadius: 0,
+                                blurRadius: 4,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          height: 55,
+                          width: 271,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _selectAnswer("Usually");
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFFB7B597),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 40),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Usually",
+                                style: TextStyle(
+                                    color: Color(0xFF3E1904),
+                                    fontFamily: 'Inter',
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                         SizedBox(height: 20,),
+                        Container(
+                          // margin: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(.25),
+                                spreadRadius: 0,
+                                blurRadius: 4,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          height: 55,
+                          width: 271,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _selectAnswer("Most-often");
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFFB7B597),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 40),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Most-often",
                                 style: TextStyle(
                                     color: Color(0xFF3E1904),
                                     fontFamily: 'Inter',
@@ -340,6 +420,7 @@ class _Specifictest extends State<Specifictest> {
                       ],
                     ),
                   ),
+                  
                 ),
               ],
             ),
