@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/home.dart';
-import 'package:splash_onboarding_test/views/gentestlastpage.dart';
+import 'package:splash_onboarding_test/views/deporbitestpage2.dart';
+//import 'package:splash_onboarding_test/views/gentestlastpage.dart';
 
 class Specifictest extends StatefulWidget {
+
   @override
+  
   _Specifictest createState() => _Specifictest();
 }
 
@@ -21,19 +24,19 @@ class _Specifictest extends State<Specifictest> {
     // Add more questions here...
   ];
 
-  List<String?> _answers = [];
+  List<String?> _answers1 = [];
 
   @override
   void initState() {
     super.initState();
-    _answers = List<String?>.filled(_questions.length, null);
+    _answers1 = List<String?>.filled(_questions.length, null);
   }
 
   void _selectAnswer(String answer) {
     setState(() {
-      _answers[_currentQuestionIndex] = answer;
+      _answers1[_currentQuestionIndex] = answer;
       _answerSelected = true;
-      print('Current Answers List: $_answers');
+      print('Current Answers List: $_answers1');
     });
   }
 
@@ -42,14 +45,14 @@ class _Specifictest extends State<Specifictest> {
       if (_currentQuestionIndex < _questions.length - 1) {
         setState(() {
           _currentQuestionIndex++;
-          _answerSelected = _answers[_currentQuestionIndex] != null;
+          _answerSelected = _answers1[_currentQuestionIndex] != null;
         });
       } else {
         // Navigate to the SubmitPage if this is the last question
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SubmitPage(answers: _answers),
+            builder: (context) => specifictestpage2(),
           ),
         );
       }
@@ -62,9 +65,16 @@ class _Specifictest extends State<Specifictest> {
     if (_currentQuestionIndex > 0) {
       setState(() {
         _currentQuestionIndex--;
-        _answerSelected = _answers[_currentQuestionIndex] != null;
+        _answerSelected = _answers1[_currentQuestionIndex] != null;
       });
     }
+  }
+  void _nextPage() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => specifictestpage2(),
+      ),
+    );
   }
 
   void _showAnswerAlert() {
