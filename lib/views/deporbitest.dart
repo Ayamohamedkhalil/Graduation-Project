@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/gentestlastpage.dart';
 
-class Generaltest extends StatefulWidget {
+class Specifictest extends StatefulWidget {
   @override
-  _Generaltest createState() => _Generaltest();
+  _Specifictest createState() => _Specifictest();
 }
 
-class _Generaltest extends State<Generaltest> {
+class _Specifictest extends State<Specifictest> {
   int _currentQuestionIndex = 0;
   bool _answerSelected = false;
 
