@@ -86,24 +86,23 @@ class DeporbiTest extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
-            height: 13,
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => Specifictest(),
-                ),
-              );
-            },
-            child: Text(
-              "Let's get started >",
-              style: TextStyle(
-                  color: Color(0xff537F5C),
-                  fontSize: 32,
-                  //fontWeight: FontWeight.bold,
-                  fontFamily: 'InriaSans'),
+          Expanded(
+            child: TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Specifictest(),
+                  ),
+                );
+              },
+              child: Text(
+                "Let's get started >",
+                style: TextStyle(
+                    color: Color(0xff537F5C),
+                    fontSize: 32,
+                    //fontWeight: FontWeight.bold,
+                    fontFamily: 'InriaSans'),
+              ),
             ),
           ),
         ],
