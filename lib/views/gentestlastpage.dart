@@ -13,58 +13,97 @@ class SubmitPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Submit Your Answers',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Handle the submission logic here
-                print('Submitted Answers: $answers');
-                Navigator.pop(context); // Go back to the previous page after submission
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff618969),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-              ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 100),
               child: Text(
-                'Submit',
+                'Submit your answers',
                 style: TextStyle(
-                  color: Color(0xffD9D9D9),
-                  fontSize: 23,
+                  color: Colors.white,
+                  fontSize: 30,
+                 // fontWeight: FontWeight.bold,
+                 
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context); // Go back to the test without submitting
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff5B8864),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+           // SizedBox(height: 20),
+            Container(
+              height: 50,
+              width: 230,
+              decoration: BoxDecoration(
+                border: Border.all(width: 1, color: Colors.white),
+                borderRadius: BorderRadius.circular(20),
               ),
-              child: Text(
-                'Go Back',
-                style: TextStyle(
-                  color: Color(0xffD9D9D9),
-                  fontSize: 23,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xff618969),
+                    shadowColor: const Color(0xff537F5C),
+                    alignment: Alignment.center,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      
+                    ),
+                  ),
+                  onPressed: () {
+                     // Show the quit confirmation dialog
+                  },
+                  child: Text(
+                    'Submit', // Button text
+                    style: TextStyle(
+                      color: Color(0xffD9D9D9), // Text color
+                      fontSize: 23, // Text size
+                      shadows: [
+                        Shadow(
+              color: Colors.black.withOpacity(0.5), // Shadow color
+              offset: Offset(2, 2), // Shadow offset
+              blurRadius: 4, // Shadow blur radius
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
             ),
-          ],
-        ),
+          
+
+            SizedBox(height: 40),
+            Container(
+              height: 50,
+              width: 230,
+              decoration: BoxDecoration(
+                border: Border.all(width: 1, color: Colors.white),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xff618969),
+                    shadowColor: const Color(0xff537F5C),
+                    alignment: Alignment.center,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      
+                    ),
+                  ),
+                  onPressed: () {
+                      Navigator.of(context).pop(); 
+                  },
+                  child: Text(
+                    'Go Back', // Button text
+                    style: TextStyle(
+                      color: Color(0xffD9D9D9), // Text color
+                      fontSize: 23, // Text size
+                      shadows: [
+                        Shadow(
+              color: Colors.black.withOpacity(0.5), // Shadow color
+              offset: Offset(2, 2), // Shadow offset
+              blurRadius: 4, // Shadow blur radius
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+            ),
+          
+      
+        ]),
       ),
     );
   }
