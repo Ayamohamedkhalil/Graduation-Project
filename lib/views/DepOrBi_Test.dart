@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/views/deporbitest.dart';
 
 class DeporbiTest extends StatelessWidget {
   const DeporbiTest({super.key});
@@ -90,7 +91,11 @@ class DeporbiTest extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              // Add your action here
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => Specifictest(),
+                ),
+              );
             },
             child: Text(
               "Let's get started >",
