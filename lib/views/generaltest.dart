@@ -95,69 +95,99 @@ class _Generaltest extends State<Generaltest> {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
+        
         shape: RoundedRectangleBorder(
+          side: BorderSide(color: Color(0xffD9D9D9).withOpacity(.69), width: 2), 
           borderRadius: BorderRadius.circular(20),
         ),
-        backgroundColor: Color(0xFF537F5C), // Match the background color
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              "Are you sure you want to Quit the test?",
-              style: TextStyle(
-                color: Colors.white, // White text color
-                fontSize: 20, // Similar font size
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 20), // Add space between text and buttons
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-                // Add your logic to quit the test here
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red, // Red color for "Quit"
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15), // Rounded button
-                ),
-                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 40),
-              ),
-              child: Text(
-                "Quit",
+        backgroundColor: Color(0xff537F5C).withOpacity(.88), // Match the background color
+        content: Container(
+          height: 350,  // Set the height of the dialog
+          width: 320,  
+           // Set the width of the dialog
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(height: 60,),
+              Text(
+                "Are you sure\n you want to Quit the \ntest?",
                 style: TextStyle(
                   color: Colors.white, // White text color
-                  fontSize: 18, // Adjust the font size
+                  fontSize: 22, // Similar font size
+                  //fontWeight: FontWeight.bold,
+                  fontFamily: 'InriaSans-Regular'
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 20), // Add space between text and buttons
+              Container(
+                width: 200,
+                 decoration: BoxDecoration(
+                    
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(.25),
+                        spreadRadius: 0,
+                        blurRadius: 4,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the dialog
+                    // Add your logic to quit the test here
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xffA71C1C).withOpacity(.88), // Red color for "Quit"
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10), // Rounded button
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                  ),
+                  child: Text(
+                    "Quit",
+                    style: TextStyle(
+                      color: Colors.white, // White text color
+                      fontSize: 22, // Adjust the font size
+                      fontFamily: 'InriaSans-Bold'
+                    ),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 10), // Add space between buttons
-            OutlinedButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-              style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Colors.white, width: 2), // White border
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15), // Rounded button
+              SizedBox(height: 20), // Add space between buttons
+              SizedBox(
+                width: 200, // Set the width of the "Cancel" button
+                child: OutlinedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the dialog
+                  },
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: Colors.white, width: 2), // White border
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10), // Rounded button
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                  ),
+                  child: Text(
+                    "Cancel",
+                    style: TextStyle(
+                      color: Colors.white, // White text color
+                      fontSize: 22, // Adjust the font size
+                      fontFamily: 'InriaSans-Regular',
+                    ),
+                  ),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 40),
               ),
-              child: Text(
-                "Cancel",
-                style: TextStyle(
-                  color: Colors.white, // White text color
-                  fontSize: 18, // Adjust the font size
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     },
   );
 }
+
+
 
 
 
