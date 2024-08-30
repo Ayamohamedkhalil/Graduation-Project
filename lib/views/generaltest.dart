@@ -136,7 +136,7 @@ class _Generaltest extends State<Generaltest> {
                   ),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const homescreen()),
