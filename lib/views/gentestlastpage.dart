@@ -44,7 +44,7 @@ class SubmitPage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                     // Show the quit confirmation dialog
+                     print('Submitted Answers: $answers');
                   },
                   child: Text(
                     'Submit', // Button text

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/home.dart';
-import 'package:splash_onboarding_test/views/gentestlastpage.dart';
+import 'package:splash_onboarding_test/views/deporbitestpage2.dart';
+//import 'package:splash_onboarding_test/views/gentestlastpage.dart';
 
 class Specifictest extends StatefulWidget {
+
   @override
+  
   _Specifictest createState() => _Specifictest();
 }
 
@@ -21,19 +24,19 @@ class _Specifictest extends State<Specifictest> {
     // Add more questions here...
   ];
 
-  List<String?> _answers = [];
+  List<String?> _answers1 = [];
 
   @override
   void initState() {
     super.initState();
-    _answers = List<String?>.filled(_questions.length, null);
+    _answers1 = List<String?>.filled(_questions.length, null);
   }
 
   void _selectAnswer(String answer) {
     setState(() {
-      _answers[_currentQuestionIndex] = answer;
+      _answers1[_currentQuestionIndex] = answer;
       _answerSelected = true;
-      print('Current Answers List: $_answers');
+      print('Current Answers List: $_answers1');
     });
   }
 
@@ -42,14 +45,14 @@ class _Specifictest extends State<Specifictest> {
       if (_currentQuestionIndex < _questions.length - 1) {
         setState(() {
           _currentQuestionIndex++;
-          _answerSelected = _answers[_currentQuestionIndex] != null;
+          _answerSelected = _answers1[_currentQuestionIndex] != null;
         });
       } else {
         // Navigate to the SubmitPage if this is the last question
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SubmitPage(answers: _answers),
+            builder: (context) => specifictestpage2(),
           ),
         );
       }
@@ -62,9 +65,16 @@ class _Specifictest extends State<Specifictest> {
     if (_currentQuestionIndex > 0) {
       setState(() {
         _currentQuestionIndex--;
-        _answerSelected = _answers[_currentQuestionIndex] != null;
+        _answerSelected = _answers1[_currentQuestionIndex] != null;
       });
     }
+  }
+  void _nextPage() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => specifictestpage2(),
+      ),
+    );
   }
 
   void _showAnswerAlert() {
@@ -258,7 +268,7 @@ class _Specifictest extends State<Specifictest> {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 60),
+                        SizedBox(height: 40),
                         Container(
                           // margin: EdgeInsets.all(20),
                           decoration: BoxDecoration(
@@ -276,7 +286,7 @@ class _Specifictest extends State<Specifictest> {
                           width: 271,
                           child: ElevatedButton(
                             onPressed: () {
-                              _selectAnswer("YES");
+                              _selectAnswer("Seldom");
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xFFB7B597),
@@ -288,7 +298,7 @@ class _Specifictest extends State<Specifictest> {
                             ),
                             child: Center(
                               child: Text(
-                                "YES",
+                                "Seldom",
                                 style: TextStyle(
                                     color: Color(0xFF3E1904),
                                     fontFamily: 'Inter',
@@ -298,7 +308,7 @@ class _Specifictest extends State<Specifictest> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 40),
+                        SizedBox(height: 20),
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
@@ -315,7 +325,7 @@ class _Specifictest extends State<Specifictest> {
                           width: 271,
                           child: ElevatedButton(
                             onPressed: () {
-                              _selectAnswer("NO");
+                              _selectAnswer("Sometimes");
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xFFB7B597),
@@ -327,7 +337,87 @@ class _Specifictest extends State<Specifictest> {
                             ),
                             child: Center(
                               child: Text(
-                                "NO",
+                                "Sometimes",
+                                style: TextStyle(
+                                    color: Color(0xFF3E1904),
+                                    fontFamily: 'Inter',
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20,),
+                        Container(
+                          // margin: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(.25),
+                                spreadRadius: 0,
+                                blurRadius: 4,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          height: 55,
+                          width: 271,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _selectAnswer("Usually");
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFFB7B597),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 40),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Usually",
+                                style: TextStyle(
+                                    color: Color(0xFF3E1904),
+                                    fontFamily: 'Inter',
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                         SizedBox(height: 20,),
+                        Container(
+                          // margin: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(.25),
+                                spreadRadius: 0,
+                                blurRadius: 4,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          height: 55,
+                          width: 271,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _selectAnswer("Most-often");
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFFB7B597),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 40),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Most-often",
                                 style: TextStyle(
                                     color: Color(0xFF3E1904),
                                     fontFamily: 'Inter',
@@ -340,6 +430,7 @@ class _Specifictest extends State<Specifictest> {
                       ],
                     ),
                   ),
+                  
                 ),
               ],
             ),
