@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/gentestlastpage.dart';
 
 class Generaltest extends StatefulWidget {
@@ -135,7 +136,11 @@ class _Generaltest extends State<Generaltest> {
                   ),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pop(); // Close the dialog
+                    Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const homescreen()),
+                          ); // Close the dialog
                     // Add your logic to quit the test here
                   },
                   style: ElevatedButton.styleFrom(
