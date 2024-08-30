@@ -1,39 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/home.dart';
-//import 'package:splash_onboarding_test/views/gentestlastpage.dart';
+import 'package:splash_onboarding_test/views/gentestlastpage.dart';
 
-class Generaltest extends StatefulWidget {
+class specifictestpage2 extends StatefulWidget {
   @override
-  _Generaltest createState() => _Generaltest();
+ 
+
+  _specifictestpage2 createState() => _specifictestpage2();
 }
 
-class _Generaltest extends State<Generaltest> {
+class _specifictestpage2 extends State<specifictestpage2> {
   int _currentQuestionIndex = 0;
   bool _answerSelected = false;
 
   final List<String> _questions = [
-    "I felt nervous",
-    "I felt cheerful",
-    "I felt nervous",
-    "I felt cheerful",
-    "I felt nervous",
+    "I felt jfldfkld",
+    "I felt cAya",
+    "I felt medo",
+    "I felt reko",
+    "I felt zozo",
 
     // Add more questions here...
   ];
 
-  List<String?> _answers = [];
+  List<String?> _answers2 = [];
 
   @override
   void initState() {
     super.initState();
-    _answers = List<String?>.filled(_questions.length, null);
+    _answers2 = List<String?>.filled(_questions.length, null);
   }
 
   void _selectAnswer(String answer) {
     setState(() {
-      _answers[_currentQuestionIndex] = answer;
+      _answers2[_currentQuestionIndex] = answer;
       _answerSelected = true;
-      print('Current Answers List: $_answers');
+      print('Current Answers List: $_answers2');
     });
   }
 
@@ -42,16 +44,16 @@ class _Generaltest extends State<Generaltest> {
       if (_currentQuestionIndex < _questions.length - 1) {
         setState(() {
           _currentQuestionIndex++;
-          _answerSelected = _answers[_currentQuestionIndex] != null;
+          _answerSelected = _answers2[_currentQuestionIndex] != null;
         });
       } else {
         // Navigate to the SubmitPage if this is the last question
-      /*  Navigator.push(
+        Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SubmitPage(answers: _answers),
+            builder: (context) => SubmitPage(answers: _answers2),
           ),
-        );*/
+        );
       }
     } else {
       _showAnswerAlert();
@@ -62,7 +64,7 @@ class _Generaltest extends State<Generaltest> {
     if (_currentQuestionIndex > 0) {
       setState(() {
         _currentQuestionIndex--;
-        _answerSelected = _answers[_currentQuestionIndex] != null;
+        _answerSelected = _answers2[_currentQuestionIndex] != null;
       });
     }
   }
