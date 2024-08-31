@@ -11,8 +11,8 @@ class card extends StatelessWidget {
       children: [
         GestureDetector(
             child: Container(
-              height: 320,
-              width: 220,
+              height: 340,
+              width: 240,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/image.png'),
@@ -30,7 +30,8 @@ class card extends StatelessWidget {
                       // width: 60,
                       // padding: EdgeInsets.all(.0),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(.20),
+                        border: Border.all(width: 2, color: Colors.black.withOpacity(.35)),
+                        color: Colors.black.withOpacity(.35),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Center(
@@ -38,10 +39,17 @@ class card extends StatelessWidget {
                           'Depression\nOr\nBipolar',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: Color(0xffC8E3CE),
+                              color: Colors.white.withOpacity(.80),
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
-                              fontFamily: 'InriaSans'),
+                              fontFamily: 'InriaSans',
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(3.0, 3.0),
+                                  blurRadius: 5.0,
+                                  color: Colors.black,
+                                ),
+                              ]),
                         ),
                       ),
                     ),
@@ -55,8 +63,8 @@ class card extends StatelessWidget {
             }),
         GestureDetector(
             child: Container(
-              height: 320,
-              width: 220,
+              height: 340,
+              width: 240,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/Generaltestupdate.png'),
@@ -70,11 +78,14 @@ class card extends StatelessWidget {
                     left: 25,
                     right: 25,
                     child: Container(
+                      
                       height: 100,
                       // width: 60,
                       // padding: EdgeInsets.all(.0),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(.20),
+                        border: Border.all(width: 2, color: Colors.black.withOpacity(.35)),
+                        color: Colors.black.withOpacity(.35),
+                        //color: Colors.white.withOpacity(.20),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Center(
@@ -82,10 +93,16 @@ class card extends StatelessWidget {
                           'General\nTest',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: Color(0xffC8E3CE),
+                              color: Colors.white.withOpacity(.80),
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
-                              fontFamily: 'InriaSans'),
+                              fontFamily: 'InriaSans',shadows: [
+                                Shadow(
+                                  offset: Offset(3.0, 3.0),
+                                  blurRadius: 5.0,
+                                  color: Colors.black,
+                                ),
+                              ]),
                         ),
                       ),
                     ),
