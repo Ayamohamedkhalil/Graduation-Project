@@ -105,8 +105,8 @@ class _LoginState extends State<Login> {
             width: 35.0, // Adjust the width of the circle
             height: 35.0, // Adjust the height of the circle
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(.80)
-                  , // Background color (light green)
+              color: Colors.white
+                  .withOpacity(.80), // Background color (light green)
               shape: BoxShape.circle, // Circular shape
               boxShadow: [
                 BoxShadow(
@@ -131,7 +131,6 @@ class _LoginState extends State<Login> {
               tooltip: "Next",
             ),
           ),
-          
         ],
       ),
       body: SingleChildScrollView(
@@ -141,7 +140,7 @@ class _LoginState extends State<Login> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 95),
+              const SizedBox(height: 105),
               const Center(
                 child: Text(
                   'Welcome back',
@@ -164,10 +163,9 @@ class _LoginState extends State<Login> {
                   validator: _validateEmail,
                   cursorColor: Colors.white,
                   decoration: const InputDecoration(
-                  
                     hoverColor: Colors.white,
                     prefix: SizedBox(width: 1),
-                   // labelText: 'Email',
+                    // labelText: 'Email',
                     hintText: 'Email',
                     hintStyle: TextStyle(
                       color: Colors.white70,
@@ -184,7 +182,9 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(height: 40,),
+              SizedBox(
+                height: 30,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: TextFormField(
@@ -197,7 +197,7 @@ class _LoginState extends State<Login> {
                   cursorColor: Colors.white,
                   decoration: const InputDecoration(
                     hoverColor: Colors.white,
-                    prefix: SizedBox(width:1),
+                    prefix: SizedBox(width: 1),
                     hintText: 'Password',
                     hintStyle: TextStyle(
                       color: Colors.white70,
@@ -214,7 +214,9 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 15,
+              ),
               GestureDetector(
                 child: Container(
                   margin: const EdgeInsets.only(left: 172),
@@ -239,10 +241,10 @@ class _LoginState extends State<Login> {
                   );
                 },
               ),
-              const SizedBox(height: 75),
+              const SizedBox(height: 65),
               Container(
                 width: 270,
-            height: 44,
+                height: 44,
                 decoration: BoxDecoration(
                   border: Border.all(width: 1, color: Colors.white),
                   borderRadius: BorderRadius.circular(20),

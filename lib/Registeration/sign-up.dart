@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'dart:convert';
 import 'package:splash_onboarding_test/home.dart';
 
@@ -84,9 +85,40 @@ class _SignupState extends State<Signup> {
       backgroundColor: Color(0xFF537F5C),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
         iconTheme: IconThemeData(color: Colors.white),
         actions: [
-          Image.asset('assets/logoupdate.png')
+          Container(
+            margin: EdgeInsets.only(right: 320),
+            width: 35.0, // Adjust the width of the circle
+            height: 35.0, // Adjust the height of the circle
+            decoration: BoxDecoration(
+              color: Colors.white
+                  .withOpacity(.80), // Background color (light green)
+              shape: BoxShape.circle, // Circular shape
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.15), // Shadow color
+                  spreadRadius: 2, // How much the shadow should spread
+                  blurRadius: 5, // The blur radius of the shadow
+                  offset: Offset(0, 2), // Offset the shadow vertically
+                ),
+              ],
+            ),
+            child: IconButton(
+              icon: Icon(Icons.arrow_back),
+              color: Color(0xFF537F5C), // Set the color of the arrow icon
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Registeration(),
+                ));
+              },
+              iconSize: 30.0, // Adjust the size of the icon
+              padding: EdgeInsets.all(3.0), // Adjust padding around the icon
+              splashRadius: 25.0, // Adjust the splash radius on click
+              tooltip: "Next",
+            ),
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -94,37 +126,38 @@ class _SignupState extends State<Signup> {
           key: formKey,
           child: Column(
             children: [
-              SizedBox(height: 40),
+              SizedBox(height: 80),
               Center(
                 child: Text(
                   'Welcome',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 40,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w800,
                     fontFamily: 'Inter',
                   ),
                 ),
               ),
               SizedBox(height: 40),
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: TextFormField(
                   controller: nameController,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: _validateName,
                   cursorColor: Colors.white,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
+                  
                     hoverColor: Colors.white,
-                    prefix: SizedBox(width: 3),
+                    prefix: SizedBox(width: 1),
+                   // labelText: 'Email',
                     hintText: 'Name',
-                    
                     hintStyle: TextStyle(
                       color: Colors.white70,
                       fontSize: 16,
                       fontFamily: 'InriaSans-Regular',
                     ),
-                     enabledBorder:UnderlineInputBorder(
+                    enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                           color: Color(0xffD9D9D9)), // Normal border color
                     ),
@@ -134,25 +167,29 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: TextFormField(
                   controller: emailController,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: _validateEmail,
                   cursorColor: Colors.white,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hoverColor: Colors.white,
-                    prefix: SizedBox(width: 3),
+                    prefix: SizedBox(width: 1),
+                    // labelText: 'Email',
                     hintText: 'Email',
                     hintStyle: TextStyle(
                       color: Colors.white70,
                       fontSize: 16,
                       fontFamily: 'InriaSans-Regular',
                     ),
-                    enabledBorder:UnderlineInputBorder(
+                    enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                          color:Color(0xffD9D9D9)), // Normal border color
+                          color: Color(0xffD9D9D9)), // Normal border color
                     ),
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -160,24 +197,29 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: TextFormField(
                   controller: passwordController,
                   obscureText: true, // Hides password input
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: _validatePassword,
                   cursorColor: Colors.white,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
+                  
                     hoverColor: Colors.white,
-                    prefix: SizedBox(width: 3),
+                    prefix: SizedBox(width: 1),
+                   // labelText: 'Email',
                     hintText: 'Password',
                     hintStyle: TextStyle(
                       color: Colors.white70,
                       fontSize: 16,
                       fontFamily: 'InriaSans-Regular',
                     ),
-                     enabledBorder:UnderlineInputBorder(
+                    enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                           color: Color(0xffD9D9D9)), // Normal border color
                     ),
@@ -187,24 +229,29 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: TextFormField(
                   controller: confirmPasswordController,
                   obscureText: true, // Hides password input
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: _validateConfirmPassword,
                   cursorColor: Colors.white,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
+                  
                     hoverColor: Colors.white,
-                    prefix: SizedBox(width: 3),
+                    prefix: SizedBox(width: 1),
+                   // labelText: 'Email',
                     hintText: 'Confirm Password',
                     hintStyle: TextStyle(
                       color: Colors.white70,
                       fontSize: 16,
                       fontFamily: 'InriaSans-Regular',
                     ),
-                     enabledBorder:UnderlineInputBorder(
+                    enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                           color: Color(0xffD9D9D9)), // Normal border color
                     ),
@@ -214,9 +261,9 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 60),
               Container(
-                width: 305,
+                width: 270,
                 height: 44,
                 decoration: BoxDecoration(
                   border: Border.all(width: 1, color: Colors.white),

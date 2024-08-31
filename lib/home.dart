@@ -1,5 +1,5 @@
 //import 'dart:math';
-
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/components/card.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
@@ -11,34 +11,37 @@ class homescreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Padding(
+          padding: const EdgeInsets.only(left: 5),
+          child: Text(
+            'MALAZ',
+            style: TextStyle(
+              decoration: TextDecoration.underline,
+              decorationColor: Color(0xff849A8A),
+              color: Color(0xff849A8A),
+              fontSize: 30,
+              fontFamily: 'Ledger',
+            ),
+          ),
+        ),
+
         automaticallyImplyLeading: false,
         //to remove icon from appbar
         backgroundColor: Colors.transparent,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 3),
+            child: Container(
+                margin: EdgeInsets.only(right: 23),
+                height: 40,
+                width: 40,
+                child: Image.asset('assets/contact.png')),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: Text(
-                    'MALAZ',
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      decorationColor: Color(0xff849A8A),
-                      color: Color(0xff849A8A),
-                      fontSize: 30,
-                      fontFamily: 'Ledger',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 170),
-                  child: Image.asset('assets/contact.png'),
-                )
-              ],
-            ),
             SizedBox(
               height: 20,
             ),
@@ -55,23 +58,62 @@ class homescreen extends StatelessWidget {
                   Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          '  "Getting help is a ',
-                          style: TextStyle(fontSize: 27, color: Colors.white),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text(
+                            '  "Getting help is a ',
+                            style: TextStyle(
+                                fontSize: 23,
+                                color: Colors.white.withOpacity(.80),
+                                fontWeight: FontWeight.w500,
+                                shadows: [
+                                  Shadow(
+                                    offset: Offset(3.0, 3.0),
+                                    blurRadius: 5.0,
+                                    color: Colors.black.withOpacity(.50),
+                                  ),
+                                ]),
+                          ),
                         ),
-                        Text(
-                          ' sign of wisdom,',
-                          style: TextStyle(fontSize: 27, color: Colors.white),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text(
+                            ' sign of wisdom,',
+                            style: TextStyle(
+                                fontSize: 23,
+                                color: Colors.white.withOpacity(.80),
+                                fontWeight: FontWeight.w500,
+                                shadows: [
+                                  Shadow(
+                                    offset: Offset(3.0, 3.0),
+                                    blurRadius: 5.0,
+                                    color: Colors.black.withOpacity(.50),
+                                  ),
+                                ]),
+                          ),
                         ),
-                        Text(
-                          ' not weakness."',
-                          style: TextStyle(fontSize: 27, color: Colors.white),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text(
+                            ' not weakness."',
+                            style: TextStyle(
+                                fontSize: 23,
+                                color: Colors.white.withOpacity(.80),
+                                fontWeight: FontWeight.w500,
+                                shadows: [
+                                  Shadow(
+                                    offset: Offset(3.0, 3.0),
+                                    blurRadius: 5.0,
+                                    color: Colors.black.withOpacity(.50),
+                                  ),
+                                ]),
+                          ),
                         )
                       ]),
                   Image.asset(
                     'assets/logo.png',
-                    height: 160,
-                    width: 130,
+                    height: 170,
+                    width: 165,
                   )
                 ],
               ),
@@ -80,11 +122,11 @@ class homescreen extends StatelessWidget {
               height: 14,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 15),
               child: Container(
                 //margin: EdgeInsets.only(top: 10),
                 height: 40,
-                width: 450,
+                width: 400,
                 child: TextFormField(
                   cursorColor: Colors.white,
                   decoration: InputDecoration(
@@ -99,33 +141,33 @@ class homescreen extends StatelessWidget {
                     hintText: 'Search for test',
                     hintStyle: TextStyle(
                         color: Color(0xFF537F5C),
-                        fontFamily: 'Ledger-Regular',
+                        fontFamily: 'Ledger',
                         fontSize: 18), // Text color similar to the image
-                    contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+                    contentPadding: EdgeInsets.symmetric(vertical: 2.0),
                     // Padding to align text centrally
                     border: OutlineInputBorder(
                       borderRadius:
-                          BorderRadius.circular(20.0), // Rounded corners
+                          BorderRadius.circular(25.0), // Rounded corners
                       borderSide: BorderSide(
                         color: Color(
                             0xFF52734D), // Border color similar to the image
-                        width: 1.4,
+                        width: 1.2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16.0),
+                      borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(
                         color:
                             Color(0xFF537F5C), // Border color for enabled state
-                        width: 1.4,
+                        width: 1.2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16.0),
+                      borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(
                         color:
                             Color(0xFF537F5C), // Border color for focused state
-                        width: 1.4,
+                        width: 1.2,
                       ),
                     ),
                   ),
@@ -133,7 +175,7 @@ class homescreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 350,
+              height: 370,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: 1,
@@ -143,58 +185,72 @@ class homescreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 13,
+              height: 30,
             ),
             Container(
+              
+              // margin: EdgeInsets.symmetric(horizontal: 50),
               height: 58,
-              width: 320,
+              width: 300,
               decoration: BoxDecoration(
-                  color: Color(0xff537F5C).withOpacity(.34),
-                  borderRadius: BorderRadius.circular(16)),
-              child: SizedBox(
-                height: 58,
-                width: 350,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      color: const Color(0xff3B5D44),
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.edit,
-                        size: 35,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 35,
-                    ),
-                    IconButton(
-                      color: const Color(0xff3B5D44),
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.home,
-                        size: 35,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 35,
-                    ),
-                    IconButton(
-                      color: const Color(0xff3B5D44),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UserProfile()));
-                      },
-                      icon: const Icon(
-                        Icons.person,
-                        size: 35,
-                      ),
-                    ),
-                  ],
-                ),
+                border: Border.all(width: 2, color: Color(0xff537F5C)),
+                color: Color(0xff537F5C).withOpacity(.34),
+                borderRadius: BorderRadius.circular(20),
+                /*boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(.),
+                    spreadRadius: 0,
+                    blurRadius: 4,
+                    offset: Offset(0, 4),
+                  )
+                ]*/
               ),
+              child: SizedBox(
+  height: 58,
+  width: 350,
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      IconButton(
+        color: const Color(0xff3B5D44),
+        onPressed: () {},
+        icon: const Icon(
+          Icons.edit,
+          size: 37,
+        ),
+      ),
+      const SizedBox(
+        width: 20, // Closer spacing to the home icon
+      ),
+     // FaIcon(FontAwesomeIcons.pen),
+      IconButton(
+        color: const Color(0xff3B5D44),
+        onPressed: () {},
+        icon: const Icon(
+          Icons.home,
+          size: 37,
+        ),
+      ),
+      const SizedBox(
+        width: 20, // Closer spacing to the person icon
+      ),
+      IconButton(
+        color: const Color(0xff3B5D44),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => UserProfile()),
+          );
+        },
+        icon: const Icon(
+          Icons.person,
+          size: 37,
+        ),
+      ),
+    ],
+  ),
+),
+
             ),
           ],
         ),

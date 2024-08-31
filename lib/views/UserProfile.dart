@@ -36,7 +36,7 @@ class UserProfile extends StatelessWidget {
               const SizedBox(width: 20),
               const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text("John Doe"), Text("john.doe@example.com")],
+                children: [Text("John Doe",style: TextStyle(color: Colors.white),), Text("john.doe@example.com",style: TextStyle(color: Colors.white))],
               ),
               Image.asset(
                 "assets/logoupdate.png",
