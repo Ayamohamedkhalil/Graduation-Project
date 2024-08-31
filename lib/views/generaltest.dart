@@ -13,12 +13,33 @@ class _Generaltest extends State<Generaltest> {
   bool _answerSelected = false;
 
   final List<String> _questions = [
-    "I felt nervous",
-    "I felt cheerful",
-    "I felt nervous",
-    "I felt cheerful",
-    "I felt nervous",
-
+    "Do you often feel nervous or on edge without a clear reason?",
+    "Have you ever felt sudden, intense fear or panic without any warning?",
+    "Do you find yourself breathing quickly, especially when others might not be?",
+    "Do you sweat a lot, even when it’s s not hot or physically challenging?",
+    "Trouble in Concentration: Do you have difficulty focusing on tasks, even if they’re re usually easy for you?",
+    "Do you often struggle to fall asleep, stay asleep, or wake up too early?",
+    "Has your work or school performance dropped because of problems with focus, motivation, or energy",
+    " Do you often feel like things will never get better?",
+    "Do you get angry easily or have trouble controlling your temper?",
+    "Do you often react too strongly to situations that others might handle calmly?",
+    "Have your eating habits changed a lot, like eating much more or much less than usual?",
+    "Have you thought about ending your life or harming yourself?",
+    "Do you often feel tired, even if you’ve had enough sleep?",
+    "Do you lack a close friend or someone to share your thoughts and feelings with?",
+    "Do you spend so much time on social media that it interferes with your daily life?",
+    "Have you recently gained weight for no clear reason?",
+    "Do you usually prefer being alone or with small groups rather than in large gatherings?",
+    "Do upsetting memories or flashbacks suddenly come to mind?",
+    "Do you often have nightmares or disturbing dreams?",
+    "Do you avoid certain people, places, or activities because they make you anxious or uncomfortable?",
+    "Do you often feel negative about yourself or your life?",
+    "Do you have a hard time focusing, even when you try to?",
+     "Do you often blame yourself when things go wrong, even if it is not your fault?",
+      "Have you seen, heard, or felt things that others don't?",
+       "Do you do certain things over and over again, feeling like you have to?",
+       "Does your mood or energy level change a lot with the seasons?",
+       "Have you experienced times when you have much more energy or activity than usual?"
     // Add more questions here...
   ];
 
@@ -255,7 +276,7 @@ class _Generaltest extends State<Generaltest> {
                           _questions[_currentQuestionIndex],
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 30,
+                            fontSize: 20,
                           ),
                           textAlign: TextAlign.center,
                         ),
