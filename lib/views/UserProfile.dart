@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
+import 'package:splash_onboarding_test/home.dart';
 
 class UserProfile extends StatelessWidget {
   UserProfile({super.key});
-  String UserImage = "";
+  final String UserImage = "";
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +51,13 @@ class UserProfile extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
+                    
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: BackgroundColor,
+                      color: Color(0xffD9D9D9),
+                      
                     ),
                     child: Column(
                       children: [
@@ -133,13 +136,13 @@ class UserProfile extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 25),
                   Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: BackgroundColor,
+                    color: Color(0xffD9D9D9),
                     ),
                     child: Column(
                       children: [
@@ -217,13 +220,13 @@ class UserProfile extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 25),
                   Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: BackgroundColor,
+                      color: Color(0xffD9D9D9),
                     ),
                     child: Column(
                       children: [
@@ -299,52 +302,64 @@ class UserProfile extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            height: 58,
-            width: 350,
-            decoration: BoxDecoration(
-              color: BackgroundColor,
-              borderRadius: BorderRadius.circular(16),
+        Container(
+              height: 58,
+              width: 320,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 196, 211, 199),
+                  borderRadius: BorderRadius.circular(16)),
+              child: SizedBox(
+                height: 58,
+                width: 350,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      color: const Color(0xff3B5D44),
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.edit,
+                        size: 35,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 35,
+                    ),
+                    IconButton(
+                      color: const Color(0xff3B5D44),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => homescreen()));
+                      },
+                      icon: const Icon(
+                        Icons.home,
+                        size: 35,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 35,
+                    ),
+                    IconButton(
+                      color: const Color(0xff3B5D44),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UserProfile()));
+                      },
+                      icon: const Icon(
+                        Icons.person,
+                        size: 35,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  color: const Color(0xff3B5D44),
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.edit,
-                    size: 35,
-                  ),
-                ),
-                const SizedBox(width: 35),
-                IconButton(
-                  color: const Color(0xff3B5D44),
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.home,
-                    size: 35,
-                  ),
-                ),
-                const SizedBox(
-                  width: 35,
-                ),
-                IconButton(
-                  color: const Color(0xff3B5D44),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => UserProfile()));
-                  },
-                  icon: const Icon(
-                    Icons.person,
-                    size: 35,
-                  ),
-                ),
-              ],
-            ),
-          ),
           const SizedBox(
-            height: 5,
+            height: 20,
           )
         ],
       ),
