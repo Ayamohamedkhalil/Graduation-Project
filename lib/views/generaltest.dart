@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/home.dart';
+import 'package:splash_onboarding_test/views/gentestlastpage.dart';
 //import 'package:splash_onboarding_test/views/gentestlastpage.dart';
 
 class Generaltest extends StatefulWidget {
@@ -46,12 +47,12 @@ class _Generaltest extends State<Generaltest> {
         });
       } else {
         // Navigate to the SubmitPage if this is the last question
-      /*  Navigator.push(
+        Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => SubmitPage(answers: _answers),
           ),
-        );*/
+        );
       }
     } else {
       _showAnswerAlert();

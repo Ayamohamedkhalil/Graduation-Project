@@ -1,4 +1,4 @@
-import 'dart:math';
+//import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/components/card.dart';
@@ -147,7 +147,7 @@ class homescreen extends StatelessWidget {
             ),
             Container(
               height: 58,
-              width: 350,
+              width: 320,
               decoration: BoxDecoration(
                   color: Color(0xff537F5C).withOpacity(.34),
                   borderRadius: BorderRadius.circular(16)),
