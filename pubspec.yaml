@@ -89,6 +89,9 @@ flutter:
     - family: Inter
       fonts:
         - asset: fonts/Inter-VariableFont_opsz,wght.ttf    
+    - family: InriaSerif
+      fonts:
+        - asset: fonts/InriaSerif-Bold.ttf     
         
   #         weight: 700
   #
