@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/constant/answers.dart';
 import 'package:splash_onboarding_test/views/result1.dart';
 
 class SubmitPage extends StatelessWidget {
@@ -48,6 +49,8 @@ class SubmitPage extends StatelessWidget {
                   ),
                 );
                 print('Submitted Answers: $answers');
+                allanswers = answers1 + answers2;
+                print('Submitted Answers: $allanswers');
               },
               child: Text(
                 'Submit', // Button text
