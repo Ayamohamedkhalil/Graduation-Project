@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/constant/answers.dart';
 import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/gentestlastpage.dart';
 
@@ -23,19 +24,19 @@ class _specifictestpage2 extends State<specifictestpage2> {
     // Add more questions here...
   ];
 
-  List<String?> _answers2 = [];
+
 
   @override
   void initState() {
     super.initState();
-    _answers2 = List<String?>.filled(_questions.length, null);
+    answers2 = List<String?>.filled(_questions.length, null);
   }
 
   void _selectAnswer(String answer) {
     setState(() {
-      _answers2[_currentQuestionIndex] = answer;
+      answers2[_currentQuestionIndex] = answer;
       _answerSelected = true;
-      print('Current Answers List: $_answers2');
+      print('Current Answers List: $answers2');
     });
   }
 
@@ -44,14 +45,14 @@ class _specifictestpage2 extends State<specifictestpage2> {
       if (_currentQuestionIndex < _questions.length - 1) {
         setState(() {
           _currentQuestionIndex++;
-          _answerSelected = _answers2[_currentQuestionIndex] != null;
+          _answerSelected = answers2[_currentQuestionIndex] != null;
         });
       } else {
         // Navigate to the SubmitPage if this is the last question
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SubmitPage(answers: _answers2),
+            builder: (context) => SubmitPage(answers: answers2),
           ),
         );
       }
@@ -64,7 +65,7 @@ class _specifictestpage2 extends State<specifictestpage2> {
     if (_currentQuestionIndex > 0) {
       setState(() {
         _currentQuestionIndex--;
-        _answerSelected = _answers2[_currentQuestionIndex] != null;
+        _answerSelected = answers2[_currentQuestionIndex] != null;
       });
     }
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/constant/answers.dart';
 import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/deporbitestpage2.dart';
 //import 'package:splash_onboarding_test/views/gentestlastpage.dart';
@@ -24,19 +25,19 @@ class _Specifictest extends State<Specifictest> {
     // Add more questions here...
   ];
 
-  List<String?> _answers1 = [];
+
 
   @override
   void initState() {
     super.initState();
-    _answers1 = List<String?>.filled(_questions.length, null);
+    answers1 = List<String?>.filled(_questions.length, null);
   }
 
   void _selectAnswer(String answer) {
     setState(() {
-      _answers1[_currentQuestionIndex] = answer;
+      answers1[_currentQuestionIndex] = answer;
       _answerSelected = true;
-      print('Current Answers List: $_answers1');
+      print('Current Answers List: $answers1');
     });
   }
 
@@ -45,7 +46,7 @@ class _Specifictest extends State<Specifictest> {
       if (_currentQuestionIndex < _questions.length - 1) {
         setState(() {
           _currentQuestionIndex++;
-          _answerSelected = _answers1[_currentQuestionIndex] != null;
+          _answerSelected = answers1[_currentQuestionIndex] != null;
         });
       } else {
         // Navigate to the SubmitPage if this is the last question
@@ -65,7 +66,7 @@ class _Specifictest extends State<Specifictest> {
     if (_currentQuestionIndex > 0) {
       setState(() {
         _currentQuestionIndex--;
-        _answerSelected = _answers1[_currentQuestionIndex] != null;
+        _answerSelected = answers1[_currentQuestionIndex] != null;
       });
     }
   }
