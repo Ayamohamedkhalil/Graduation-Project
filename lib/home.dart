@@ -188,7 +188,6 @@ class homescreen extends StatelessWidget {
               height: 30,
             ),
             Container(
-              
               // margin: EdgeInsets.symmetric(horizontal: 50),
               height: 58,
               width: 300,
@@ -206,51 +205,51 @@ class homescreen extends StatelessWidget {
                 ]*/
               ),
               child: SizedBox(
-  height: 58,
-  width: 350,
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      IconButton(
-        color: const Color(0xff3B5D44),
-        onPressed: () {},
-        icon: const Icon(
-          Icons.edit,
-          size: 37,
-        ),
-      ),
-      const SizedBox(
-        width: 20, // Closer spacing to the home icon
-      ),
-     // FaIcon(FontAwesomeIcons.pen),
-      IconButton(
-        color: const Color(0xff3B5D44),
-        onPressed: () {},
-        icon: const Icon(
-          Icons.home,
-          size: 37,
-        ),
-      ),
-      const SizedBox(
-        width: 20, // Closer spacing to the person icon
-      ),
-      IconButton(
-        color: const Color(0xff3B5D44),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => UserProfile()),
-          );
-        },
-        icon: const Icon(
-          Icons.person,
-          size: 37,
-        ),
-      ),
-    ],
-  ),
-),
-
+                height: 58,
+                width: 350,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      color: const Color(0xff3B5D44),
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.edit,
+                        size: 37,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20, // Closer spacing to the home icon
+                    ),
+                    // FaIcon(FontAwesomeIcons.pen),
+                    IconButton(
+                      color: const Color(0xff3B5D44),
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.home,
+                        size: 37,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20, // Closer spacing to the person icon
+                    ),
+                    IconButton(
+                      color: const Color(0xff3B5D44),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UserProfile()),
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.person,
+                        size: 37,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
