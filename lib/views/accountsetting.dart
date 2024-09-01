@@ -11,7 +11,222 @@ class Accountsetting extends StatefulWidget {
 
 class _AccountsettingState extends State<Accountsetting> {
   final String UserImage = "";
-  @override
+
+  void _Deleteaccount() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            side:
+                BorderSide(color: Color(0xffD9D9D9).withOpacity(.69), width: 2),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          backgroundColor:
+              Color(0xff537F5C).withOpacity(.88), // Match the background color
+          content: Container(
+            height: 350, // Set the height of the dialog
+            width: 320,
+            // Set the width of the dialog
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: 60,
+                ),
+                Text(
+                  "Are you sure\n you want to Quit the \ntest?",
+                  style: TextStyle(
+                      color: Colors.white, // White text color
+                      fontSize: 22, // Similar font size
+                      //fontWeight: FontWeight.bold,
+                      fontFamily: 'InriaSans-Regular'),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20), // Add space between text and buttons
+                Container(
+                  width: 200,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(.25),
+                        spreadRadius: 0,
+                        blurRadius: 4,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const homescreen()),
+                      ); // Close the dialog
+                      // Add your logic to quit the test here
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xffA71C1C)
+                          .withOpacity(.88), // Red color for "Quit"
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(10), // Rounded button
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                    ),
+                    child: Text(
+                      "Quit",
+                      style: TextStyle(
+                          color: Colors.white, // White text color
+                          fontSize: 22, // Adjust the font size
+                          fontFamily: 'InriaSans-Bold'),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20), // Add space between buttons
+                SizedBox(
+                  width: 200, // Set the width of the "Cancel" button
+                  child: OutlinedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(); // Close the dialog
+                    },
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(
+                          color: Colors.white, width: 2), // White border
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(10), // Rounded button
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                    ),
+                    child: Text(
+                      "Cancel",
+                      style: TextStyle(
+                        color: Colors.white, // White text color
+                        fontSize: 22, // Adjust the font size
+                        fontFamily: 'InriaSans-Regular',
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _logout() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          backgroundColor: Color(0xff537F5C).withOpacity(.88),
+          elevation: 20, // Add elevation for the shadow
+          shadowColor: Colors.black.withOpacity(0.25), // Customize shadow color
+          content: Container(
+            height: 320,
+            width: 320,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(height: 60),
+                Text(
+                  "Are you sure you want to logout?",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontFamily: 'InriaSans-Regular',
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20),
+                Container(
+                  width: 240,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(.25),
+                        spreadRadius: 0,
+                        blurRadius: 4,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const homescreen()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xff841B1B),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                    ),
+                    child: Text(
+                      "LOG OUT",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontFamily: 'InriaSans-Bold',
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  width: 240,
+                  decoration: BoxDecoration(
+                   /* boxShadow: [
+                      BoxShadow(
+                        color: Colors.black
+                            .withOpacity(0.25), // Shadow color with opacity
+                        spreadRadius: 2, // How much the shadow spreads
+                        blurRadius: 4, // How blurry the shadow is
+                        offset: Offset(2, 4), // Offset the shadow
+                      ),
+                    ],*/
+                  ),
+                  child: OutlinedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    style: OutlinedButton.styleFrom(
+                      //elevation: 1,
+                      side: BorderSide(color: Colors.white, width: 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                    ),
+                    child: Text(
+                      "Cancel",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontFamily: 'InriaSans-Regular',
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF537F5C),
@@ -101,7 +316,7 @@ class _AccountsettingState extends State<Accountsetting> {
                   title: Text('Edit profile',
                       style: TextStyle(
                           color: Colors.white,
-                          fontFamily: 'InriaSans-Regular')),
+                          fontFamily: 'InriaSans-Bold')),
                   trailing: Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
                     // Add your onTap code here
@@ -115,7 +330,7 @@ class _AccountsettingState extends State<Accountsetting> {
                   title: Text('Change Password',
                       style: TextStyle(
                           color: Colors.white,
-                          fontFamily: 'InriaSans-Regular')),
+                          fontFamily: 'InriaSans-Bold')),
                   trailing: Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
                     // Add your onTap code here
@@ -126,29 +341,33 @@ class _AccountsettingState extends State<Accountsetting> {
                   title: Text('Logout',
                       style: TextStyle(
                           color: Colors.white,
-                          fontFamily: 'InriaSans-Regular')),
+                          fontFamily: 'InriaSans-Bold')),
                   trailing: Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
-                    // Add your onTap code here
+                    _logout();
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.delete, color: Color(0xffA71C1C)),
+                  leading: Icon(Icons.delete, color: Color(0xff841B1B)),
                   title: Text('Delete Account',
                       style: TextStyle(
                           color: Color(
-                            0xffA71C1C,
+                            0xff841B1B,
+                            
                           ),
-                          fontFamily: 'InriaSans-Regular')),
-                  trailing: Icon(Icons.arrow_forward, color: Color(0xffA71C1C)),
+                         // fontSize: 20,
+                          fontFamily: 'InriaSans-Bold')),
+                  trailing: Icon(Icons.arrow_forward, color: Color(0xff841B1B)),
                   onTap: () {
-                    // Add your onTap code here
+                    _Deleteaccount();
                   },
                 ),
               ],
             ),
           ),
-          SizedBox(height: 80,),
+          SizedBox(
+            height: 80,
+          ),
           Container(
             // margin: EdgeInsets.symmetric(horizontal: 50),
             height: 58,
