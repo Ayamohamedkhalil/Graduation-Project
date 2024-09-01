@@ -36,7 +36,14 @@ class UserProfile extends StatelessWidget {
               const SizedBox(width: 20),
               const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text("John Doe",style: TextStyle(color: Colors.white),), Text("john.doe@example.com",style: TextStyle(color: Colors.white))],
+                children: [
+                  Text(
+                    "John Doe",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text("john.doe@example.com",
+                      style: TextStyle(color: Colors.white))
+                ],
               ),
               Image.asset(
                 "assets/logoupdate.png",
@@ -51,13 +58,11 @@ class UserProfile extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Color(0xffD9D9D9),
-                      
                     ),
                     child: Column(
                       children: [
@@ -142,7 +147,7 @@ class UserProfile extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                    color: Color(0xffD9D9D9),
+                      color: Color(0xffD9D9D9),
                     ),
                     child: Column(
                       children: [
@@ -302,62 +307,75 @@ class UserProfile extends StatelessWidget {
               ),
             ),
           ),
-        Container(
+          Container(
+            // margin: EdgeInsets.symmetric(horizontal: 50),
+            height: 58,
+            width: 300,
+            decoration: BoxDecoration(
+              border: Border.all(
+                  width: 2, color: Color(0xff3B5D44).withOpacity(.90)),
+              color: Color.fromARGB(255, 196, 211, 199),
+              borderRadius: BorderRadius.circular(20),
+              /*boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(.),
+                    spreadRadius: 0,
+                    blurRadius: 4,
+                    offset: Offset(0, 4),
+                  )
+                ]*/
+            ),
+            child: SizedBox(
               height: 58,
-              width: 320,
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 196, 211, 199),
-                  borderRadius: BorderRadius.circular(16)),
-              child: SizedBox(
-                height: 58,
-                width: 350,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      color: const Color(0xff3B5D44),
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.edit,
-                        size: 35,
-                      ),
+              width: 350,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    color: const Color(0xff3B5D44),
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.edit,
+                      size: 37,
                     ),
-                    const SizedBox(
-                      width: 35,
+                  ),
+                  const SizedBox(
+                    width: 20, // Closer spacing to the home icon
+                  ),
+                  // FaIcon(FontAwesomeIcons.pen),
+                  IconButton(
+                    color: const Color(0xff3B5D44),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => homescreen()),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.home,
+                      size: 37,
                     ),
-                    IconButton(
-                      color: const Color(0xff3B5D44),
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => homescreen()));
-                      },
-                      icon: const Icon(
-                        Icons.home,
-                        size: 35,
-                      ),
+                  ),
+                  const SizedBox(
+                    width: 20, // Closer spacing to the person icon
+                  ),
+                  IconButton(
+                    color: const Color(0xff3B5D44),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => UserProfile()),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.person,
+                      size: 37,
                     ),
-                    const SizedBox(
-                      width: 35,
-                    ),
-                    IconButton(
-                      color: const Color(0xff3B5D44),
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UserProfile()));
-                      },
-                      icon: const Icon(
-                        Icons.person,
-                        size: 35,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
+          ),
           const SizedBox(
             height: 20,
           )
