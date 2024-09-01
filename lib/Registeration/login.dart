@@ -118,15 +118,15 @@ class _LoginState extends State<Login> {
               ],
             ),
             child: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: Icon(Icons.arrow_back_ios),
               color: Color(0xFF537F5C), // Set the color of the arrow icon
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => Registeration(),
                 ));
               },
-              iconSize: 30.0, // Adjust the size of the icon
-              padding: EdgeInsets.all(3.0), // Adjust padding around the icon
+              iconSize: 25.0, // Adjust the size of the icon
+              padding: EdgeInsets.symmetric(vertical:3 ,horizontal:9 ), // Adjust padding around the icon
               splashRadius: 25.0, // Adjust the splash radius on click
               tooltip: "Next",
             ),

@@ -251,7 +251,7 @@ class _Specifictest extends State<Specifictest> {
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.white10,
+                         color: Colors.white10,
                           spreadRadius: 2,
                           blurRadius: 10,
                           offset: Offset(0, 3), // Shadow position
