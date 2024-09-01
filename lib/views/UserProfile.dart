@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/home.dart';
+import 'package:splash_onboarding_test/views/accountsetting.dart';
 
 class UserProfile extends StatelessWidget {
   UserProfile({super.key});
@@ -62,7 +63,7 @@ class UserProfile extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color(0xffD9D9D9),
+                      color: BackgroundColor,
                     ),
                     child: Column(
                       children: [
@@ -147,7 +148,7 @@ class UserProfile extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color(0xffD9D9D9),
+                       color: BackgroundColor,
                     ),
                     child: Column(
                       children: [
@@ -169,7 +170,12 @@ class UserProfile extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 5.0, vertical: 3),
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => Accountsetting()),
+                      );
+                            },
                             child: const Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -231,7 +237,7 @@ class UserProfile extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color(0xffD9D9D9),
+                      color: BackgroundColor,
                     ),
                     child: Column(
                       children: [
