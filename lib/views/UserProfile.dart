@@ -5,13 +5,13 @@ import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
 
 class UserProfile extends StatelessWidget {
-  UserProfile({super.key});
+  const UserProfile({super.key});
   final String UserImage = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+      body: Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       color: const Color(0xFF537F5C),
       child: Column(
@@ -119,8 +119,8 @@ class UserProfile extends StatelessWidget {
                               Text(
                                 "Depression Assessment",
                                 style: TextStyle(
-                                    color: Color.fromARGB(255, 41, 50, 66),
-                                    ),
+                                  color: Color.fromARGB(255, 41, 50, 66),
+                                ),
                               ),
                               Text(
                                 "01/01/2023",
@@ -138,8 +138,8 @@ class UserProfile extends StatelessWidget {
                             children: [
                               Text("Anxiety Assessment",
                                   style: TextStyle(
-                                      color: Color.fromARGB(255, 41, 50, 66),
-                                      )),
+                                    color: Color.fromARGB(255, 41, 50, 66),
+                                  )),
                               Text(
                                 "15/02/2023",
                                 style: TextStyle(
@@ -156,8 +156,8 @@ class UserProfile extends StatelessWidget {
                             children: [
                               Text("Stress Level Assessment",
                                   style: TextStyle(
-                                      color: Color.fromARGB(255, 41, 50, 66),
-                                      )),
+                                    color: Color.fromARGB(255, 41, 50, 66),
+                                  )),
                               Text(
                                 "20/03/2023",
                                 style: TextStyle(
@@ -214,9 +214,10 @@ class UserProfile extends StatelessWidget {
                                   size: 13,
                                 ),
                                 SizedBox(width: 10),
-                                Text("Account Settings",style: TextStyle(
+                                Text("Account Settings",
+                                    style: TextStyle(
                                       color: Color.fromARGB(255, 41, 50, 66),
-                                      )),
+                                    )),
                               ],
                             ),
                           ),
@@ -235,9 +236,10 @@ class UserProfile extends StatelessWidget {
                                   size: 13,
                                 ),
                                 SizedBox(width: 10),
-                                Text("Notification Settings",style: TextStyle(
+                                Text("Notification Settings",
+                                    style: TextStyle(
                                       color: Color.fromARGB(255, 41, 50, 66),
-                                      )),
+                                    )),
                               ],
                             ),
                           ),
@@ -256,9 +258,10 @@ class UserProfile extends StatelessWidget {
                                   size: 13,
                                 ),
                                 SizedBox(width: 10),
-                                Text("Privacy Settings",style: TextStyle(
+                                Text("Privacy Settings",
+                                    style: TextStyle(
                                       color: Color.fromARGB(255, 41, 50, 66),
-                                      )),
+                                    )),
                               ],
                             ),
                           ),
@@ -305,9 +308,10 @@ class UserProfile extends StatelessWidget {
                                   size: 13,
                                 ),
                                 SizedBox(width: 10),
-                                Text("FAQ",style: TextStyle(
+                                Text("FAQ",
+                                    style: TextStyle(
                                       color: Color.fromARGB(255, 41, 50, 66),
-                                      )),
+                                    )),
                               ],
                             ),
                           ),
@@ -323,9 +327,10 @@ class UserProfile extends StatelessWidget {
                                 Icon(FontAwesomeIcons.solidEnvelope,
                                     color: Color(0xff6B7280), size: 13),
                                 SizedBox(width: 10),
-                                Text("Contact us",style: TextStyle(
+                                Text("Contact us",
+                                    style: TextStyle(
                                       color: Color.fromARGB(255, 41, 50, 66),
-                                      )),
+                                    )),
                               ],
                             ),
                           ),
@@ -333,21 +338,20 @@ class UserProfile extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 7),
                           child: GestureDetector(
-                            
                             onTap: () {},
                             child: const Row(
-                              
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(left:5),
+                                  padding: EdgeInsets.only(left: 5),
                                   child: Icon(FontAwesomeIcons.handshakeAngle,
                                       color: Color(0xff6B7280), size: 12),
                                 ),
                                 SizedBox(width: 7),
-                                Text(" Get in Touch",style: TextStyle(
+                                Text(" Get in Touch",
+                                    style: TextStyle(
                                       color: Color.fromARGB(255, 41, 50, 66),
-                                      )),
+                                    )),
                               ],
                             ),
                           ),
@@ -360,7 +364,6 @@ class UserProfile extends StatelessWidget {
             ),
           ),
           Container(
-            // margin: EdgeInsets.symmetric(horizontal: 50),
             height: 58,
             width: 300,
             decoration: BoxDecoration(
@@ -368,14 +371,6 @@ class UserProfile extends StatelessWidget {
                   width: 2, color: Color(0xff3B5D44).withOpacity(.90)),
               color: Color.fromARGB(255, 196, 211, 199),
               borderRadius: BorderRadius.circular(20),
-              /*boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.),
-                    spreadRadius: 0,
-                    blurRadius: 4,
-                    offset: Offset(0, 4),
-                  )
-                ]*/
             ),
             child: SizedBox(
               height: 58,
