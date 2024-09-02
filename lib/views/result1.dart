@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/views/resultPage2.dart';
 
 class Result1 extends StatelessWidget {
   Result1({super.key});
@@ -74,7 +75,6 @@ class Result1 extends StatelessWidget {
                 Positioned(
                   right: 62,
                   bottom: 29,
-              
                   child: Center(
                     child: TextButton(
                       child: Text(
@@ -88,8 +88,12 @@ class Result1 extends StatelessWidget {
                           // Adjust letter spacing to match the design
                         ),
                       ),
-                      onPressed: (){
-
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Resultpage2()),
+                        );
                       },
                     ),
                   ),
