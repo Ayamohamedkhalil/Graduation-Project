@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/components/card.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
-import 'package:splash_onboarding_test/views/resultPage2.dart';
+//import 'package:splash_onboarding_test/views/resultPage2.dart';
 
 class homescreen extends StatelessWidget {
   const homescreen({super.key});
