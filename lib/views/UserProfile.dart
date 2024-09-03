@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/home.dart';
+import 'package:splash_onboarding_test/views/FAQPage.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
 
 class UserProfile extends StatelessWidget {
@@ -11,7 +12,7 @@ class UserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+        body: Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       color: const Color(0xFF537F5C),
       child: Column(
@@ -298,7 +299,13 @@ class UserProfile extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 5.0, vertical: 3),
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const FAQPage()),
+                              );
+                            },
                             child: const Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
