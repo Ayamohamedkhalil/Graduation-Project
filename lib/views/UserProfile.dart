@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
-import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/FAQPage.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({super.key});
-  final String UserImage = "";
+  final String userImage = "";
 
   @override
   Widget build(BuildContext context) {
@@ -18,57 +17,62 @@ class UserProfile extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 65),
+          //
+          //Image + name + Email
+          //
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 8),
+                padding: const EdgeInsets.only(left: 10, right: 15),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(80),
-                  child: UserImage == ""
+                  child: userImage == ""
                       ? Container(
                           color: Colors.grey,
                           width: 80,
                           height: 80,
                         )
                       : Image.asset(
-                          UserImage,
+                          userImage,
                           width: 80,
                           height: 80,
                         ),
                 ),
               ),
               //const SizedBox(width: 10),
-              Padding(
-                padding: const EdgeInsets.only(right: 90),
-                child: Column(
-                  //crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 100),
-                      child: Text(
-                        "John Doe",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
+              const Column(
+                //crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 100),
+                    child: Text(
+                      "John Doe",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
                     ),
-                    Text("john.doe@example.com",
-                        style: TextStyle(
-                          color: Colors.white,
-                        ))
-                  ],
-                ),
+                  ),
+                  Text("john.doe@example.com",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ))
+                ],
               ),
             ],
           ),
+          //
+          //
+          //
           const SizedBox(height: 50),
-          // Using Expanded to make the SingleChildScrollView take available space
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  //
+                  //Previous Tests
+                  //
                   Container(
-                    width: 350,
+                    width: MediaQuery.of(context).size.width,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
@@ -170,9 +174,15 @@ class UserProfile extends StatelessWidget {
                       ],
                     ),
                   ),
+                  //
+                  //
+                  //
                   const SizedBox(height: 25),
+                  //
+                  //Settings
+                  //
                   Container(
-                    width: 350,
+                    width: MediaQuery.of(context).size.width,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
@@ -198,28 +208,30 @@ class UserProfile extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 5.0, vertical: 3),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Accountsetting()),
-                              );
-                            },
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Icon(
-                                  FontAwesomeIcons.userGear,
-                                  color: Color(0xff6B7280),
-                                  size: 13,
-                                ),
-                                SizedBox(width: 10),
-                                Text("Account Settings",
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 41, 50, 66),
-                                    )),
-                              ],
+                          child: Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Accountsetting()),
+                                );
+                              },
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    FontAwesomeIcons.userGear,
+                                    color: Color(0xff6B7280),
+                                    size: 13,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text("Account Settings",
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255, 41, 50, 66),
+                                      )),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -270,9 +282,15 @@ class UserProfile extends StatelessWidget {
                       ],
                     ),
                   ),
+                  //
+                  //
+                  //
                   const SizedBox(height: 25),
+                  //
+                  //Help and support
+                  //
                   Container(
-                    width: 350,
+                    width: MediaQuery.of(context).size.width,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                     decoration: BoxDecoration(
@@ -366,17 +384,22 @@ class UserProfile extends StatelessWidget {
                       ],
                     ),
                   ),
+                  //
+                  //
+                  //
                 ],
               ),
             ),
           ),
+          //
+          //ButtonBar
+          //
           Container(
             height: 58,
-            width: 300,
+            width: MediaQuery.of(context).size.width * 0.7,
             decoration: BoxDecoration(
-              border: Border.all(
-                  width: 2, color: Color(0xff3B5D44).withOpacity(.90)),
-              color: Color.fromARGB(255, 196, 211, 199),
+              border: Border.all(width: 2, color: ThirdColor),
+              color: const Color(0xffC4D3C7).withOpacity(1),
               borderRadius: BorderRadius.circular(20),
             ),
             child: SizedBox(
@@ -385,46 +408,48 @@ class UserProfile extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                    color: const Color(0xff3B5D44),
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.edit,
-                      size: 37,
-                    ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.1,
                   ),
-                  const SizedBox(
-                    width: 20, // Closer spacing to the home icon
+                  Expanded(
+                    child: IconButton(
+                      color: const Color(0xff3B5D44),
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.edit,
+                        size: 37,
+                      ),
+                    ),
                   ),
                   // FaIcon(FontAwesomeIcons.pen),
-                  IconButton(
-                    color: const Color(0xff3B5D44),
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => homescreen()),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.home,
-                      size: 37,
+                  Expanded(
+                    child: IconButton(
+                      color: const Color(0xff3B5D44),
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.home,
+                        size: 37,
+                      ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 20, // Closer spacing to the person icon
-                  ),
-                  IconButton(
-                    color: const Color(0xff3B5D44),
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => UserProfile()),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.person,
-                      size: 37,
+                  Expanded(
+                    child: IconButton(
+                      color: const Color(0xff3B5D44),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const UserProfile()),
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.person,
+                        size: 37,
+                      ),
                     ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.1,
                   ),
                 ],
               ),

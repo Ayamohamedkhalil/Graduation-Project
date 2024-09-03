@@ -21,12 +21,12 @@ class EllipsesInResultpage extends StatelessWidget {
                   border: Border.all(color: Colors.white, width: 1),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 4,
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             width: 2,
           ),
           Column(
@@ -43,7 +43,7 @@ class EllipsesInResultpage extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             width: 2,
           ),
           Column(
@@ -60,13 +60,13 @@ class EllipsesInResultpage extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             width: 2,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 4,
               ),
               //Ellipse
