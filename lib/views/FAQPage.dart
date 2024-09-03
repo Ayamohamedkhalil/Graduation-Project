@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/components/FAQCard.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/home.dart';
@@ -289,7 +289,7 @@ class FAQPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                       SizedBox(
                           width: MediaQuery.of(context).size.width * 0.1,
                         ),
                       ],
