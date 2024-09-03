@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:splash_onboarding_test/Registeration/registeration.dart';
+//import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
 
 
@@ -129,33 +129,32 @@ class _Edituserprofile extends State<Edituserprofile> {
               SizedBox(
                 height: 20,
               ),
-              Row(
-                children: [
-                  TextFormField(
-                    controller: emailController,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: _validateEmail,
-                    cursorColor: Colors.white,
-                    decoration: const InputDecoration(
-                      hoverColor: Colors.white,
-                      prefix: SizedBox(width: 1),
-                      // labelText: 'Email',
-                      hintText: 'Email',
-                      hintStyle: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 16,
-                        fontFamily: 'InriaSans-Regular',
-                      ),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color(0xffD9D9D9)), // Normal border color
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
+              Padding(
+               padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: TextFormField(
+                  controller: emailController,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: _validateEmail,
+                  cursorColor: Colors.white,
+                  decoration: const InputDecoration(
+                    hoverColor: Colors.white,
+                    prefix: SizedBox(width: 1),
+                    // labelText: 'Email',
+                    hintText: 'Email',
+                    hintStyle: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 16,
+                      fontFamily: 'InriaSans-Regular',
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color(0xffD9D9D9)), // Normal border color
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
                     ),
                   ),
-                ],
+                ),
               ),
              
               SizedBox(height: 60),
