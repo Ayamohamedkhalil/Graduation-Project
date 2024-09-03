@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/components/FAQCard.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
+import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
 
 List<Map<String, String>> FAQ = [
@@ -43,17 +44,17 @@ class FAQPage extends StatelessWidget {
             //backIcon + Image + Text("How can we help you")
             //
             SizedBox(
-              height: 350,
+              height: 230,
               child: Column(
                 children: [
                   Container(
-                    height: 320,
+                    height: 208,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                         color: PriamryColor,
                         borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(20),
-                            bottomRight: Radius.circular(20))),
+                            bottomLeft: Radius.circular(23),
+                            bottomRight: Radius.circular(23))),
                     child: Stack(
                       children: [
                         //
@@ -90,7 +91,7 @@ class FAQPage extends StatelessWidget {
                               ),
                               Image.asset(
                                 "assets/New Project-2-svg 1.png",
-                                width: 200,
+                                width: 110,
                               ),
                               const Expanded(
                                 child: Text(
@@ -99,7 +100,7 @@ class FAQPage extends StatelessWidget {
                                   softWrap: true,
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 30,
+                                      fontSize: 24,
                                       fontFamily: "Ledger"),
                                 ),
                               ),
@@ -234,7 +235,13 @@ class FAQPage extends StatelessWidget {
                         Expanded(
                           child: IconButton(
                             color: const Color(0xff3B5D44),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const homescreen()),
+                              );
+                            },
                             icon: const Icon(
                               Icons.home,
                               size: 37,
@@ -245,7 +252,7 @@ class FAQPage extends StatelessWidget {
                           child: IconButton(
                             color: const Color(0xff3B5D44),
                             onPressed: () {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const UserProfile()),

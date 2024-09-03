@@ -24,7 +24,7 @@ class FAQCard extends StatelessWidget {
           Text(
             Q,
             style: const TextStyle(
-                color: Colors.white, fontSize: 22, fontWeight: FontWeight.w500),
+                color: Colors.white, fontSize: 17, fontWeight: FontWeight.w500),
           ),
           const SizedBox(
             height: 5,
@@ -32,7 +32,7 @@ class FAQCard extends StatelessWidget {
           Text(
             A,
             style: const TextStyle(
-                color: Colors.white, fontSize: 20, fontFamily: "Ledger"),
+                color: Colors.white, fontSize: 15, fontFamily: "Ledger"),
           )
         ],
       ),
