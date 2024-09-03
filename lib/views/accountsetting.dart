@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
+import 'package:splash_onboarding_test/views/edituserprofile.dart';
 import 'package:splash_onboarding_test/views/reasonfordeleteaccount.dart';
 
 class Accountsetting extends StatefulWidget {
@@ -329,7 +330,11 @@ class _AccountsettingState extends State<Accountsetting> {
                           fontFamily: 'InriaSans-Bold')),
                   trailing: Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
-                    // Add your onTap code here
+                     Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>  Edituserprofile()),
+                      );
                   },
                 ),
                 ListTile(
