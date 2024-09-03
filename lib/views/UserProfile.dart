@@ -208,30 +208,29 @@ class UserProfile extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 5.0, vertical: 3),
-                          child: Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Accountsetting()),
-                                );
-                              },
-                              child: const Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    FontAwesomeIcons.userGear,
-                                    color: Color(0xff6B7280),
-                                    size: 13,
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text("Account Settings",
-                                      style: TextStyle(
-                                        color: Color.fromARGB(255, 41, 50, 66),
-                                      )),
-                                ],
-                              ),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const Accountsetting()),
+                              );
+                            },
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  FontAwesomeIcons.userGear,
+                                  color: Color(0xff6B7280),
+                                  size: 13,
+                                ),
+                                SizedBox(width: 10),
+                                Text("Account Settings",
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 41, 50, 66),
+                                    )),
+                              ],
                             ),
                           ),
                         ),
@@ -436,7 +435,7 @@ class UserProfile extends StatelessWidget {
                     child: IconButton(
                       color: const Color(0xff3B5D44),
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const UserProfile()),
