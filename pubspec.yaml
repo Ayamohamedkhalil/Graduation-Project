@@ -84,9 +84,12 @@ flutter:
       fonts:
         - asset: fonts/Ledger-Regular.ttf 
         
-    - family: InriaSans
+    - family: InriaSans-Bold
       fonts:
         - asset: fonts/InriaSans-Bold.ttf
+    - family: InriaSans-Light
+      fonts:
+        - asset: fonts/InriaSans-Light.ttf    
     - family: Inter
       fonts:
         - asset: fonts/Inter-VariableFont_opsz,wght.ttf    

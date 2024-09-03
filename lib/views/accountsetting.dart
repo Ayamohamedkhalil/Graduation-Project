@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
+import 'package:splash_onboarding_test/views/reasonfordeleteaccount.dart';
 
 class Accountsetting extends StatefulWidget {
   const Accountsetting({super.key});
@@ -12,41 +13,41 @@ class Accountsetting extends StatefulWidget {
 class _AccountsettingState extends State<Accountsetting> {
   final String UserImage = "";
 
-  void _Deleteaccount() {
+ void _Deleteaccount() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
-            side:
-                BorderSide(color: Color(0xffD9D9D9).withOpacity(.69), width: 2),
             borderRadius: BorderRadius.circular(20),
           ),
-          backgroundColor:
-              Color(0xff537F5C).withOpacity(.88), // Match the background color
+          backgroundColor: Color(0xff537F5C).withOpacity(.88),
+          elevation: 20, // Add elevation for the shadow
+          shadowColor: Colors.black.withOpacity(0.25), // Customize shadow color
           content: Container(
-            height: 350, // Set the height of the dialog
+            height: 420,
             width: 320,
-            // Set the width of the dialog
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(
-                  height: 60,
-                ),
+                SizedBox(height: 20,),
+               // SizedBox(height: 60),
+               Image.asset('assets/deleteimage.png'),
+               SizedBox(height: 20,),
                 Text(
-                  "Are you sure\n you want to Quit the \ntest?",
+                  "Are you sure you want to delete your account?",
                   style: TextStyle(
-                      color: Colors.white, // White text color
-                      fontSize: 22, // Similar font size
-                      //fontWeight: FontWeight.bold,
-                      fontFamily: 'InriaSans-Regular'),
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontFamily: 'InriaSans-Regular',
+                  ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 20), // Add space between text and buttons
+                SizedBox(height: 20),
                 Container(
-                  width: 200,
+                  width: 240,
                   decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(.25),
@@ -61,49 +62,57 @@ class _AccountsettingState extends State<Accountsetting> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const homescreen()),
-                      ); // Close the dialog
-                      // Add your logic to quit the test here
+                            builder: (context) =>  DeleteAccountScreen()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffA71C1C)
-                          .withOpacity(.88), // Red color for "Quit"
+                      backgroundColor: Color(0xff841B1B),
                       shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(10), // Rounded button
+                        borderRadius: BorderRadius.circular(15),
                       ),
                       padding: EdgeInsets.symmetric(vertical: 12),
                     ),
                     child: Text(
-                      "Quit",
+                      "Confirm",
                       style: TextStyle(
-                          color: Colors.white, // White text color
-                          fontSize: 22, // Adjust the font size
-                          fontFamily: 'InriaSans-Bold'),
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontFamily: 'InriaSans-Bold',
+                      ),
                     ),
                   ),
                 ),
-                SizedBox(height: 20), // Add space between buttons
-                SizedBox(
-                  width: 200, // Set the width of the "Cancel" button
+                SizedBox(height: 20),
+                Container(
+                  width: 240,
+                  decoration: BoxDecoration(
+                   /* boxShadow: [
+                      BoxShadow(
+                        color: Colors.black
+                            .withOpacity(0.25), // Shadow color with opacity
+                        spreadRadius: 2, // How much the shadow spreads
+                        blurRadius: 4, // How blurry the shadow is
+                        offset: Offset(2, 4), // Offset the shadow
+                      ),
+                    ],*/
+                  ),
                   child: OutlinedButton(
                     onPressed: () {
-                      Navigator.of(context).pop(); // Close the dialog
+                      Navigator.of(context).pop();
                     },
                     style: OutlinedButton.styleFrom(
-                      side: BorderSide(
-                          color: Colors.white, width: 2), // White border
+                      //elevation: 1,
+                      side: BorderSide(color: Colors.white, width: 1),
                       shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(10), // Rounded button
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       padding: EdgeInsets.symmetric(vertical: 12),
                     ),
                     child: Text(
                       "Cancel",
                       style: TextStyle(
-                        color: Colors.white, // White text color
-                        fontSize: 22, // Adjust the font size
+                        color: Colors.white,
+                        fontSize: 22,
                         fontFamily: 'InriaSans-Regular',
                       ),
                     ),
@@ -116,6 +125,7 @@ class _AccountsettingState extends State<Accountsetting> {
       },
     );
   }
+
 
   void _logout() {
     showDialog(
