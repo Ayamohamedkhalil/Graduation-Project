@@ -64,19 +64,44 @@ class FAQPage extends StatelessWidget {
                           top: 25,
                           left: 25,
                           child: Container(
+                            margin: const EdgeInsets.only(right: 320),
+                            width: 35.0, // Adjust the width of the circle
+                            height: 35.0, // Adjust the height of the circle
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: Colors.white),
+                              color: Colors.white.withOpacity(
+                                  .80), // Background color (light green)
+                              shape: BoxShape.circle, // Circular shape
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black
+                                      .withOpacity(0.15), // Shadow color
+                                  spreadRadius:
+                                      2, // How much the shadow should spread
+                                  blurRadius:
+                                      5, // The blur radius of the shadow
+                                  offset: const Offset(
+                                      0, 2), // Offset the shadow vertically
+                                ),
+                              ],
+                            ),
                             child: IconButton(
-                                onPressed: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const UserProfile()),
-                                  );
-                                },
-                                icon: const Icon(FontAwesomeIcons.chevronLeft)),
+                              icon: const Icon(Icons.arrow_back_ios),
+                              color: const Color(
+                                  0xFF537F5C), // Set the color of the arrow icon
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => UserProfile(),
+                                ));
+                              },
+                              iconSize: 25.0, // Adjust the size of the icon
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 3,
+                                  horizontal:
+                                      9), // Adjust padding around the icon
+                              splashRadius:
+                                  25.0, // Adjust the splash radius on click
+                              tooltip: "Next",
+                            ),
                           ),
                         ),
                         //
