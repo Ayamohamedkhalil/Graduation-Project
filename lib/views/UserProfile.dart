@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
+import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/FAQPage.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
 
@@ -425,7 +426,13 @@ class UserProfile extends StatelessWidget {
                   Expanded(
                     child: IconButton(
                       color: const Color(0xff3B5D44),
-                      onPressed: () {},
+                      onPressed: () {
+                         Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const homescreen()),
+                        );
+                      },
                       icon: const Icon(
                         Icons.home,
                         size: 37,
