@@ -14,7 +14,7 @@ class Accountsetting extends StatefulWidget {
 class _AccountsettingState extends State<Accountsetting> {
   final String UserImage = "";
 
- void _Deleteaccount() {
+  void _Deleteaccount() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -31,10 +31,14 @@ class _AccountsettingState extends State<Accountsetting> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(height: 20,),
-               // SizedBox(height: 60),
-               Image.asset('assets/deleteimage.png'),
-               SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
+                // SizedBox(height: 60),
+                Image.asset('assets/deleteimage.png'),
+                SizedBox(
+                  height: 20,
+                ),
                 Text(
                   "Are you sure you want to delete your account?",
                   style: TextStyle(
@@ -63,7 +67,7 @@ class _AccountsettingState extends State<Accountsetting> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>  DeleteAccountScreen()),
+                            builder: (context) => DeleteAccountScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -87,7 +91,7 @@ class _AccountsettingState extends State<Accountsetting> {
                 Container(
                   width: 240,
                   decoration: BoxDecoration(
-                   /* boxShadow: [
+                      /* boxShadow: [
                       BoxShadow(
                         color: Colors.black
                             .withOpacity(0.25), // Shadow color with opacity
@@ -96,7 +100,7 @@ class _AccountsettingState extends State<Accountsetting> {
                         offset: Offset(2, 4), // Offset the shadow
                       ),
                     ],*/
-                  ),
+                      ),
                   child: OutlinedButton(
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -126,7 +130,6 @@ class _AccountsettingState extends State<Accountsetting> {
       },
     );
   }
-
 
   void _logout() {
     showDialog(
@@ -198,7 +201,7 @@ class _AccountsettingState extends State<Accountsetting> {
                 Container(
                   width: 240,
                   decoration: BoxDecoration(
-                   /* boxShadow: [
+                      /* boxShadow: [
                       BoxShadow(
                         color: Colors.black
                             .withOpacity(0.25), // Shadow color with opacity
@@ -207,7 +210,7 @@ class _AccountsettingState extends State<Accountsetting> {
                         offset: Offset(2, 4), // Offset the shadow
                       ),
                     ],*/
-                  ),
+                      ),
                   child: OutlinedButton(
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -326,15 +329,14 @@ class _AccountsettingState extends State<Accountsetting> {
                   leading: Icon(Icons.edit, color: Colors.white),
                   title: Text('Edit profile',
                       style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'InriaSans-Bold')),
+                          color: Colors.white, fontFamily: 'InriaSans-Bold')),
                   trailing: Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
-                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>  Edituserprofile()),
-                      );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Edituserprofile()),
+                    );
                   },
                 ),
                 ListTile(
@@ -344,8 +346,7 @@ class _AccountsettingState extends State<Accountsetting> {
                   ),
                   title: Text('Change Password',
                       style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'InriaSans-Bold')),
+                          color: Colors.white, fontFamily: 'InriaSans-Bold')),
                   trailing: Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
                     // Add your onTap code here
@@ -355,8 +356,7 @@ class _AccountsettingState extends State<Accountsetting> {
                   leading: Icon(Icons.logout, color: Colors.white),
                   title: Text('Logout',
                       style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'InriaSans-Bold')),
+                          color: Colors.white, fontFamily: 'InriaSans-Bold')),
                   trailing: Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
                     _logout();
@@ -368,9 +368,8 @@ class _AccountsettingState extends State<Accountsetting> {
                       style: TextStyle(
                           color: Color(
                             0xff841B1B,
-                            
                           ),
-                         // fontSize: 20,
+                          // fontSize: 20,
                           fontFamily: 'InriaSans-Bold')),
                   trailing: Icon(Icons.arrow_forward, color: Color(0xff841B1B)),
                   onTap: () {
@@ -386,7 +385,7 @@ class _AccountsettingState extends State<Accountsetting> {
           Container(
             // margin: EdgeInsets.symmetric(horizontal: 50),
             height: 58,
-            width: 300,
+            width: 280,
             decoration: BoxDecoration(
               border: Border.all(
                   width: 2, color: Color(0xff3B5D44).withOpacity(.90)),

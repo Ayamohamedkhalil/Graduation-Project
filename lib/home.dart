@@ -191,7 +191,7 @@ class homescreen extends StatelessWidget {
             Container(
               // margin: EdgeInsets.symmetric(horizontal: 50),
               height: 58,
-              width: 300,
+              width: 280,
               decoration: BoxDecoration(
                 border: Border.all(width: 2, color: Color(0xff537F5C)),
                 color: Color(0xff537F5C).withOpacity(.34),
