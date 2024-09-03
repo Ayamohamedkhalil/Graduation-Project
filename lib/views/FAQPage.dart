@@ -233,7 +233,7 @@ class FAQPage extends StatelessWidget {
                   height: 58,
                   width: MediaQuery.of(context).size.width * 0.7,
                   decoration: BoxDecoration(
-                    border: Border.all(width: 2, color: ThirdColor),
+                    border: Border.all(width: 2, color:  Color(0xff537F5C)),
                     color: const Color(0xffC4D3C7).withOpacity(1),
                     borderRadius: BorderRadius.circular(20),
                   ),
