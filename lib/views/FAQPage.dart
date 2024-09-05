@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/components/ButtonBar.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/components/FAQCard.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
@@ -90,7 +91,7 @@ class FAQPage extends StatelessWidget {
                                   0xFF537F5C), // Set the color of the arrow icon
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => UserProfile(),
+                                  builder: (context) => const UserProfile(),
                                 ));
                               },
                               iconSize: 25.0, // Adjust the size of the icon
@@ -150,8 +151,7 @@ class FAQPage extends StatelessWidget {
             Positioned(
               bottom: 10,
               left: MediaQuery.of(context).size.width * 0.1,
-              child: Container(
-                //margin: EdgeInsets.only(top: 10),
+              child: SizedBox(
                 height: 40,
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: TextFormField(
@@ -159,23 +159,23 @@ class FAQPage extends StatelessWidget {
                   decoration: InputDecoration(
                     //hoverColor: Colors.white,
                     filled: true,
-                    fillColor: Color(
+                    fillColor: const Color(
                         0xffC4D3C7), // Background color similar to the image
-                    prefixIcon: Icon(Icons.search,
+                    prefixIcon: const Icon(Icons.search,
                         color: Color(0xFF537F5C)), // Left icon
-                    suffixIcon: Icon(Icons.mic_none,
+                    suffixIcon: const Icon(Icons.mic_none,
                         color: Color(0xFF537F5C)), // Right icon
                     hintText: 'Search for test',
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                         color: Color(0xFF537F5C),
                         fontFamily: 'Ledger',
                         fontSize: 18), // Text color similar to the image
-                    contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                     // Padding to align text centrally
                     border: OutlineInputBorder(
                       borderRadius:
                           BorderRadius.circular(25.0), // Rounded corners
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Color(
                             0xFF52734D), // Border color similar to the image
                         width: 1.2,
@@ -183,7 +183,7 @@ class FAQPage extends StatelessWidget {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color:
                             Color(0xFF537F5C), // Border color for enabled state
                         width: 1.2,
@@ -191,7 +191,7 @@ class FAQPage extends StatelessWidget {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color:
                             Color(0xFF537F5C), // Border color for focused state
                         width: 1.2,
@@ -227,76 +227,9 @@ class FAQPage extends StatelessWidget {
               //ButtonBar
               //
               Positioned(
-                bottom: 5,
-                left: MediaQuery.of(context).size.width * 0.15,
-                child: Container(
-                  height: 58,
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 2, color:  Color(0xff537F5C)),
-                    color: const Color(0xffC4D3C7).withOpacity(1),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: SizedBox(
-                    height: 58,
-                    width: 350,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.1,
-                        ),
-                        Expanded(
-                          child: IconButton(
-                            color: const Color(0xff3B5D44),
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.edit,
-                              size: 37,
-                            ),
-                          ),
-                        ),
-                        // FaIcon(FontAwesomeIcons.pen),
-                        Expanded(
-                          child: IconButton(
-                            color: const Color(0xff3B5D44),
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const homescreen()),
-                              );
-                            },
-                            icon: const Icon(
-                              Icons.home,
-                              size: 37,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: IconButton(
-                            color: const Color(0xff3B5D44),
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const UserProfile()),
-                              );
-                            },
-                            icon: const Icon(
-                              Icons.person,
-                              size: 37,
-                            ),
-                          ),
-                        ),
-                       SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.1,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+                  bottom: 5,
+                  left: MediaQuery.of(context).size.width * 0.15,
+                  child: const BarButton()),
             ]),
           ),
         ],

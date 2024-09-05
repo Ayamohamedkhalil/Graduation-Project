@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/components/Ellipses.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/home.dart';
@@ -245,69 +246,7 @@ class Resultpage2 extends StatelessWidget {
                   const SizedBox(
                     height: 15,
                   ),
-                  Container(
-                    height: 58,
-                    width: 300,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 2,
-                          color: const Color(0xff3B5D44).withOpacity(.90)),
-                      color: const Color.fromARGB(255, 196, 211, 199),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: SizedBox(
-                      height: 58,
-                      width: 350,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            color: const Color(0xff3B5D44),
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.edit,
-                              size: 37,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 20, // Closer spacing to the home icon
-                          ),
-                          // FaIcon(FontAwesomeIcons.pen),
-                          IconButton(
-                            color: const Color(0xff3B5D44),
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const homescreen()),
-                              );
-                            },
-                            icon: const Icon(
-                              Icons.home,
-                              size: 37,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 20, // Closer spacing to the person icon
-                          ),
-                          IconButton(
-                            color: const Color(0xff3B5D44),
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const UserProfile()),
-                              );
-                            },
-                            icon: const Icon(
-                              Icons.person,
-                              size: 37,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  BarButton(),
                   const SizedBox(
                     height: 10,
                   ),
