@@ -6,7 +6,6 @@ import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/components/Ellipses.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 
-
 class Resultpage2 extends StatelessWidget {
   const Resultpage2({super.key});
 
@@ -133,10 +132,10 @@ class Resultpage2 extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            Expanded(
+                            const Expanded(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
-                                children: const [EllipsesInResultpage()],
+                                children: [EllipsesInResultpage()],
                               ),
                             ),
                             Expanded(
@@ -168,68 +167,6 @@ class Resultpage2 extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      //
-                      //Button
-                      //
-                      Container(
-                        width: 200,
-                        height: 44,
-                        decoration: BoxDecoration(
-                          border: Border.all(width: 1, color: Colors.white),
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(.25),
-                              spreadRadius: 0,
-                              blurRadius: 4,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xff618969),
-                            shadowColor: const Color(0xff537F5C),
-                            alignment: Alignment.center,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Guidelines', // Button text
-                                style: TextStyle(
-                                  color: const Color(0xffD9D9D9), // Text color
-                                  fontSize: 23, // Text size
-                                  shadows: [
-                                    Shadow(
-                                      color: Colors.black
-                                          .withOpacity(0.5), // Shadow color
-                                      offset:
-                                          const Offset(2, 2), // Shadow offset
-                                      blurRadius: 4, // Shadow blur radius
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const Icon(
-                                FontAwesomeIcons.arrowRight,
-                                color: Colors.white,
-                                size: 20,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      )
                     ],
                   ),
                 ),
@@ -245,7 +182,65 @@ class Resultpage2 extends StatelessWidget {
                   const SizedBox(
                     height: 15,
                   ),
-                  BarButton(),
+                  //
+                  //Guidlines Button
+                  //
+                  Container(
+                    width: 200,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.white),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(.25),
+                          spreadRadius: 0,
+                          blurRadius: 4,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xff618969),
+                        shadowColor: const Color(0xff537F5C),
+                        alignment: Alignment.center,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Guidelines', // Button text
+                            style: TextStyle(
+                              color: const Color(0xffD9D9D9), // Text color
+                              fontSize: 23, // Text size
+                              shadows: [
+                                Shadow(
+                                  color: Colors.black
+                                      .withOpacity(0.5), // Shadow color
+                                  offset: const Offset(2, 2), // Shadow offset
+                                  blurRadius: 4, // Shadow blur radius
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Icon(
+                            FontAwesomeIcons.arrowRight,
+                            color: Colors.white,
+                            size: 20,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  const BarButton(),
                   const SizedBox(
                     height: 10,
                   ),
