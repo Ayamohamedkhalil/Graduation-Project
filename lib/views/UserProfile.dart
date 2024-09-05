@@ -6,6 +6,7 @@ import 'package:splash_onboarding_test/views/ConatctUspage/contactUsPage.dart';
 
 import 'package:splash_onboarding_test/views/FAQPage.dart';
 import 'package:splash_onboarding_test/views/PreviosTestPage/PreviousTestPage.dart';
+import 'package:splash_onboarding_test/views/PrivacySettingPage/PrivacySettingPage.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
 
 class UserProfile extends StatelessWidget {
@@ -271,7 +272,14 @@ class UserProfile extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 5.0, vertical: 3),
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const PrivacySettingPage()),
+                              );
+                            },
                             child: const Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
