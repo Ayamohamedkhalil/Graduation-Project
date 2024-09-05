@@ -5,8 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/components/Ellipses.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
-import 'package:splash_onboarding_test/home.dart';
-import 'package:splash_onboarding_test/views/UserProfile.dart';
+
 
 class Resultpage2 extends StatelessWidget {
   const Resultpage2({super.key});
