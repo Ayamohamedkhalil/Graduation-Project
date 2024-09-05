@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 //import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
 
-
 class Edituserprofile extends StatefulWidget {
   @override
   _Edituserprofile createState() => _Edituserprofile();
@@ -14,7 +13,6 @@ class _Edituserprofile extends State<Edituserprofile> {
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
- 
 
   @override
   void dispose() {
@@ -97,8 +95,6 @@ class _Edituserprofile extends State<Edituserprofile> {
           key: formKey,
           child: Column(
             children: [
-              
-             
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: TextFormField(
@@ -130,7 +126,7 @@ class _Edituserprofile extends State<Edituserprofile> {
                 height: 20,
               ),
               Padding(
-               padding: const EdgeInsets.symmetric(horizontal: 32),
+                padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: TextFormField(
                   controller: emailController,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -156,7 +152,6 @@ class _Edituserprofile extends State<Edituserprofile> {
                   ),
                 ),
               ),
-             
               SizedBox(height: 60),
               Container(
                 width: 270,
@@ -185,7 +180,6 @@ class _Edituserprofile extends State<Edituserprofile> {
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
                       // Gather form data
-                     
                     }
                   },
                   child: Text(

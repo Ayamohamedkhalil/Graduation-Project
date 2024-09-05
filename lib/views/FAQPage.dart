@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
-//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/components/FAQCard.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
-import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
 
 List<Map<String, String>> FAQ = [
@@ -35,6 +33,7 @@ class FAQPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           //
@@ -216,7 +215,7 @@ class FAQPage extends StatelessWidget {
                 thickness: 14,
                 thumbVisibility: true,
                 child: ListView.builder(
-                  padding: EdgeInsets.zero,
+                  padding: const EdgeInsets.all(0),
                   itemCount: FAQ.length,
                   itemBuilder: (context, index) {
                     return FAQCard(Q: FAQ[index]["Q"]!, A: FAQ[index]["A"]!);
