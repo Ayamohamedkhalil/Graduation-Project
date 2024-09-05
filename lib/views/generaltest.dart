@@ -35,11 +35,11 @@ class _Generaltest extends State<Generaltest> {
     "Do you avoid certain people, places, or activities because they make you anxious or uncomfortable?",
     "Do you often feel negative about yourself or your life?",
     "Do you have a hard time focusing, even when you try to?",
-     "Do you often blame yourself when things go wrong, even if it is not your fault?",
-      "Have you seen, heard, or felt things that others don't?",
-       "Do you do certain things over and over again, feeling like you have to?",
-       "Does your mood or energy level change a lot with the seasons?",
-       "Have you experienced times when you have much more energy or activity than usual?"
+    "Do you often blame yourself when things go wrong, even if it is not your fault?",
+    "Have you seen, heard, or felt things that others don't?",
+    "Do you do certain things over and over again, feeling like you have to?",
+    "Does your mood or energy level change a lot with the seasons?",
+    "Have you experienced times when you have much more energy or activity than usual?"
     // Add more questions here...
   ];
 
