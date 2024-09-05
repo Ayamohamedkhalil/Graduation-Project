@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
-import 'package:splash_onboarding_test/home.dart';
+
 import 'package:splash_onboarding_test/views/FAQPage.dart';
 import 'package:splash_onboarding_test/views/PreviosTestPage/PreviousTestPage.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
