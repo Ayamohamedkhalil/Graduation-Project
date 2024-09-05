@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/FAQPage.dart';
+import 'package:splash_onboarding_test/views/PreviosTestPage/PreviousTestPage.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
 
 class UserProfile extends StatelessWidget {
@@ -94,7 +96,14 @@ class UserProfile extends StatelessWidget {
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const Previoustestpage()),
+                                  );
+                                },
                                 child: Row(
                                   children: [
                                     Text(
@@ -394,73 +403,7 @@ class UserProfile extends StatelessWidget {
           //
           //ButtonBar
           //
-          Container(
-            height: 58,
-            width: MediaQuery.of(context).size.width * 0.7,
-            decoration: BoxDecoration(
-              border: Border.all(width: 2, color: ThirdColor),
-              color: const Color(0xffC4D3C7).withOpacity(1),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: SizedBox(
-              height: 58,
-              width: 350,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  Expanded(
-                    child: IconButton(
-                      color: const Color(0xff3B5D44),
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.edit,
-                        size: 37,
-                      ),
-                    ),
-                  ),
-                  // FaIcon(FontAwesomeIcons.pen),
-                  Expanded(
-                    child: IconButton(
-                      color: const Color(0xff3B5D44),
-                      onPressed: () {
-                         Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const homescreen()),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.home,
-                        size: 37,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: IconButton(
-                      color: const Color(0xff3B5D44),
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const UserProfile()),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.person,
-                        size: 37,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                ],
-              ),
-            ),
-          ),
+          const BarButton(),
           const SizedBox(
             height: 20,
           )
