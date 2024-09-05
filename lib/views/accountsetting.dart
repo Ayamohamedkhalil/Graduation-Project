@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/home.dart';
-import 'package:splash_onboarding_test/views/UserProfile.dart';
+
 import 'package:splash_onboarding_test/views/edituserprofile.dart';
 import 'package:splash_onboarding_test/views/reasonfordeleteaccount.dart';
 

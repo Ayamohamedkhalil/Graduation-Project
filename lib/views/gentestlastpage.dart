@@ -49,7 +49,7 @@ class SubmitPage extends StatelessWidget {
                   ),
                 );
                 print('Submitted Answers: $answers');
-                allanswers = answers1 + answers2;
+                allanswers = answers1 + answers2+answers3;
                 print('Submitted Answers: $allanswers');
               },
               child: Text(

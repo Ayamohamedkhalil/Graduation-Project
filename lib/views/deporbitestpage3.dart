@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/constant/answers.dart';
 import 'package:splash_onboarding_test/home.dart';
-import 'package:splash_onboarding_test/views/deporbitestpage3.dart';
-//import 'package:splash_onboarding_test/views/gentestlastpage.dart';
+import 'package:splash_onboarding_test/views/gentestlastpage.dart';
 
-class specifictestpage2 extends StatefulWidget {
+class specifictestpage3 extends StatefulWidget {
   @override
- 
-
-  _specifictestpage2 createState() => _specifictestpage2();
+  _specifictestpage3 createState() => _specifictestpage3();
 }
 
-class _specifictestpage2 extends State<specifictestpage2> {
+class _specifictestpage3 extends State<specifictestpage3> {
   int _currentQuestionIndex = 0;
   bool _answerSelected = false;
 
@@ -21,23 +18,25 @@ class _specifictestpage2 extends State<specifictestpage2> {
     "I felt medo",
     "I felt reko",
     "I felt zozo",
-
+    "I felt jfldfkld",
+    "I felt cAya",
+    "I felt medo",
+    "I felt reko",
+    "I felt zozo",
     // Add more questions here...
   ];
-
-
 
   @override
   void initState() {
     super.initState();
-    answers2 = List<String?>.filled(_questions.length, null);
+    answers3 = List<String?>.filled(_questions.length, null);
   }
 
   void _selectAnswer(String answer) {
     setState(() {
-      answers2[_currentQuestionIndex] = answer;
+      answers3[_currentQuestionIndex] = answer;
       _answerSelected = true;
-      print('Current Answers List: $answers2');
+      print('Current Answers List: $answers3');
     });
   }
 
@@ -46,14 +45,14 @@ class _specifictestpage2 extends State<specifictestpage2> {
       if (_currentQuestionIndex < _questions.length - 1) {
         setState(() {
           _currentQuestionIndex++;
-          _answerSelected = answers2[_currentQuestionIndex] != null;
+          _answerSelected = answers3[_currentQuestionIndex] != null;
         });
       } else {
         // Navigate to the SubmitPage if this is the last question
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>specifictestpage3(),
+            builder: (context) => SubmitPage(answers: answers3),
           ),
         );
       }
@@ -255,91 +254,61 @@ class _specifictestpage2 extends State<specifictestpage2> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          _questions[_currentQuestionIndex],
+                          _questions[_currentQuestionIndex] ,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 30,
+                            fontSize: 22, // Adjust font size accordingly
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 60),
-                        Container(
-                          // margin: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(.25),
-                                spreadRadius: 0,
-                                blurRadius: 4,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          height: 55,
-                          width: 271,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              _selectAnswer("YES");
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFFB7B597),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 40),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "YES",
-                                style: TextStyle(
-                                    color: Color(0xFF3E1904),
-                                    fontFamily: 'Inter',
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ),
-                        ),
                         SizedBox(height: 40),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(.25),
-                                spreadRadius: 0,
-                                blurRadius: 4,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
+                        // This is the grid of 1-10 answer options
+                        GridView.builder(
+                          shrinkWrap: true,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 5,
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 10,
                           ),
-                          height: 55,
-                          width: 271,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              _selectAnswer("NO");
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFFB7B597),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
+                          itemCount: 10,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                _selectAnswer((index + 1).toString());
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: answers3[_currentQuestionIndex] ==
+                                          (index + 1).toString()
+                                      ? Color(0xFFB7B597)
+                                      : Colors.white.withOpacity(0.8),
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(.25),
+                                      spreadRadius: 0,
+                                      blurRadius: 4,
+                                      offset: Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    (index + 1).toString(),
+                                    style: TextStyle(
+                                      color: answers3[_currentQuestionIndex] ==
+                                              (index + 1).toString()
+                                          ? Color(0xFF3E1904)
+                                          : Color(0xFF537F5C),
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
                               ),
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 40),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "NO",
-                                style: TextStyle(
-                                    color: Color(0xFF3E1904),
-                                    fontFamily: 'Inter',
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ),
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -347,71 +316,32 @@ class _specifictestpage2 extends State<specifictestpage2> {
                 ),
               ],
             ),
-            //SizedBox(height: 20),
+            // Navigation buttons
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: 35.0, // Adjust the width of the circle
-                  height: 35.0, // Adjust the height of the circle
-                  decoration: BoxDecoration(
-                    color: Colors.white
-                        .withOpacity(.70), // Background color (light green)
-                    shape: BoxShape.circle, // Circular shape
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.15), // Shadow color
-                        spreadRadius: 2, // How much the shadow should spread
-                        blurRadius: 5, // The blur radius of the shadow
-                        offset: Offset(0, 2), // Offset the shadow vertically
-                      ),
-                    ],
-                  ),
-                  child: IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    color: Color(0xFF537F5C), // Set the color of the arrow icon
-                    onPressed: _previousQuestion,
-                    iconSize: 30.0, // Adjust the size of the icon
-                    padding:
-                        EdgeInsets.all(3.0), // Adjust padding around the icon
-                    splashRadius: 25.0, // Adjust the splash radius on click
-                    tooltip: "Next",
-                  ),
+                IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  color: Color.fromARGB(255, 244, 246, 244),
+                  onPressed: _previousQuestion,
+                  iconSize: 30.0,
+                  padding: EdgeInsets.all(3.0),
+                  splashRadius: 25.0,
                 ),
-                SizedBox(
-                  width: 110,
-                ),
-                Container(
-                  width: 35.0, // Adjust the width of the circle
-                  height: 35.0, // Adjust the height of the circle
-                  decoration: BoxDecoration(
-                    color: Colors.white
-                        .withOpacity(.70), // Background color (light green)
-                    shape: BoxShape.circle, // Circular shape
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.15), // Shadow color
-                        spreadRadius: 2, // How much the shadow should spread
-                        blurRadius: 5, // The blur radius of the shadow
-                        offset: Offset(0, 2), // Offset the shadow vertically
-                      ),
-                    ],
-                  ),
-                  child: IconButton(
-                    icon: Icon(Icons.arrow_forward),
-                    color: Color(0xFF537F5C), // Set the color of the arrow icon
-                    onPressed: _nextQuestion,
-                    iconSize: 30.0, // Adjust the size of the icon
-                    padding:
-                        EdgeInsets.all(3.0), // Adjust padding around the icon
-                    splashRadius: 25.0, // Adjust the splash radius on click
-                    tooltip: "Next",
-                  ),
+                SizedBox(width: 110),
+                IconButton(
+                  icon: Icon(Icons.arrow_forward),
+                  color: Color.fromARGB(255, 253, 254, 254),
+                  onPressed: _nextQuestion,
+                  iconSize: 30.0,
+                  padding: EdgeInsets.all(3.0),
+                  splashRadius: 25.0,
                 ),
               ],
             ),
             SizedBox(height: 40),
+            // Quit button
             Container(
               width: 200,
               height: 44,
@@ -437,18 +367,18 @@ class _specifictestpage2 extends State<specifictestpage2> {
                   ),
                 ),
                 onPressed: () {
-                  _showQuitConfirmationDialog(); // Show the quit confirmation dialog
+                  _showQuitConfirmationDialog();
                 },
                 child: Text(
-                  'Quit test', // Button text
+                  'Quit test',
                   style: TextStyle(
-                    color: Color(0xffD9D9D9), // Text color
-                    fontSize: 23, // Text size
+                    color: Color(0xffD9D9D9),
+                    fontSize: 23,
                     shadows: [
                       Shadow(
-                        color: Colors.black.withOpacity(0.5), // Shadow color
-                        offset: Offset(2, 2), // Shadow offset
-                        blurRadius: 4, // Shadow blur radius
+                        color: Colors.black.withOpacity(0.5),
+                        offset: Offset(2, 2),
+                        blurRadius: 4,
                       ),
                     ],
                   ),

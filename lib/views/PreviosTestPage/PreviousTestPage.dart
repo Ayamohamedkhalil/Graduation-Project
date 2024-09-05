@@ -1,9 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
-import 'package:splash_onboarding_test/home.dart';
+
 import 'package:splash_onboarding_test/views/PreviosTestPage/component/ResultCard.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
 
@@ -12,6 +10,40 @@ class Previoustestpage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Define a list of test data (diseases, results, and dates)
+    final List<Map<String, String>> testData = [
+      {
+        "testName": "Depression Assessment",
+        "testResult": "Depressed",
+        "testDate": "01/01/2023",
+      },
+      {
+        "testName": "Anxiety Test",
+        "testResult": "Moderate Anxiety",
+        "testDate": "05/02/2023",
+      },
+      {
+        "testName": "Bipolar Disorder Test",
+        "testResult": "Bipolar Disorder",
+        "testDate": "12/03/2023",
+      },
+      {
+        "testName": "Stress Level Test",
+        "testResult": "High Stress",
+        "testDate": "20/03/2023",
+      },
+      {
+        "testName": "PTSD Assessment",
+        "testResult": "PTSD Detected",
+        "testDate": "18/04/2023",
+      },
+      {
+        "testName": "ADHD Test",
+        "testResult": "Possible ADHD",
+        "testDate": "22/05/2023",
+      },
+    ];
+
     return Scaffold(
       body: Container(
         color: PriamryColor,
@@ -19,7 +51,7 @@ class Previoustestpage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             //
-            //Appbar
+            // Appbar
             //
             Row(
               children: [
@@ -85,7 +117,7 @@ class Previoustestpage extends StatelessWidget {
               ],
             ),
             //
-            //result content
+            // Result content
             //
             Expanded(
               child: Container(
@@ -106,12 +138,14 @@ class Previoustestpage extends StatelessWidget {
                   child: ListView.builder(
                     primary: true,
                     padding: EdgeInsets.zero,
-                    itemCount: 10,
+                    itemCount: testData.length, // Use the length of the test data list
                     itemBuilder: (context, index) {
-                      return const ResultCard(
-                        testName: "Depression Assessment",
-                        testResult: "Depressed",
-                        testDate: "01/01/2023",
+                      // Get data for the current test
+                      final test = testData[index];
+                      return ResultCard(
+                        testName: test["testName"]!,
+                        testResult: test["testResult"]!,
+                        testDate: test["testDate"]!,
                       );
                     },
                   ),
@@ -119,7 +153,7 @@ class Previoustestpage extends StatelessWidget {
               ),
             ),
             //
-            //ButtonBar
+            // ButtonBar
             //
             const BarButton(),
             const SizedBox(
