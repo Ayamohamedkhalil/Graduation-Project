@@ -7,7 +7,7 @@ class General_test extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(158, 158, 158, 41),
+      backgroundColor: Colors.white.withOpacity(.80),
       body: Column(
         children: [
           Stack(

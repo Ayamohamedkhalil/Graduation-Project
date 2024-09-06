@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:splash_onboarding_test/constant/answers.dart';
+import 'package:splash_onboarding_test/constant/answers.dart';      
 import 'package:splash_onboarding_test/views/result1.dart';
 
 class SubmitPage extends StatelessWidget {
@@ -13,21 +13,24 @@ class SubmitPage extends StatelessWidget {
       backgroundColor: Color(0xff537F5C),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 100),
+          Center(
             child: Text(
-              'Submit your answers',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 30,
-                // fontWeight: FontWeight.bold,
-              ),
+              "     You've answered all the\n questions! Are you sure you\n         want to submit your\n                  answers?",
+              style:
+                  TextStyle(color: Colors.white.withOpacity(.80), fontSize: 20, fontFamily: 'Poppins'
+                      , fontWeight: FontWeight.bold,
+                      ),
             ),
           ),
-          // SizedBox(height: 20),
+          Image.asset(
+            'assets/submitpage.png',
+            height: 300,
+            width: 320,
+          ),
+           SizedBox(height: 20),
           Container(
-            height: 50,
-            width: 230,
+            width: 180,
+            height: 40,
             decoration: BoxDecoration(
               border: Border.all(width: 1, color: Colors.white),
               borderRadius: BorderRadius.circular(20),
@@ -54,25 +57,20 @@ class SubmitPage extends StatelessWidget {
               },
               child: Text(
                 'Submit', // Button text
-                style: TextStyle(
-                  color: Color(0xffD9D9D9), // Text color
-                  fontSize: 23, // Text size
-                  shadows: [
-                    Shadow(
-                      color: Colors.black.withOpacity(0.5), // Shadow color
-                      offset: Offset(2, 2), // Shadow offset
-                      blurRadius: 4, // Shadow blur radius
-                    ),
-                  ],
-                ),
+                style:TextStyle(
+            color: Color(0xffD9D9D9),
+            fontSize: 20,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w700,
+          ),
               ),
             ),
           ),
 
-          SizedBox(height: 40),
+          SizedBox(height: 15),
           Container(
-            height: 50,
-            width: 230,
+            width: 180,
+            height: 40,
             decoration: BoxDecoration(
               border: Border.all(width: 1, color: Colors.white),
               borderRadius: BorderRadius.circular(20),
@@ -92,16 +90,11 @@ class SubmitPage extends StatelessWidget {
               child: Text(
                 'Go Back', // Button text
                 style: TextStyle(
-                  color: Color(0xffD9D9D9), // Text color
-                  fontSize: 23, // Text size
-                  shadows: [
-                    Shadow(
-                      color: Colors.black.withOpacity(0.5), // Shadow color
-                      offset: Offset(2, 2), // Shadow offset
-                      blurRadius: 4, // Shadow blur radius
-                    ),
-                  ],
-                ),
+            color: Color(0xffD9D9D9),
+            fontSize: 20,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w700,
+          ),
               ),
             ),
           ),
