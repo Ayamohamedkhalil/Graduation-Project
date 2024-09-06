@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
+import 'package:splash_onboarding_test/views/DeleteAccountPage/DeleteDataPage.dart';
 import 'package:splash_onboarding_test/views/LoginActivityPage/LoginActivityPage.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
 import 'package:splash_onboarding_test/views/requestdata/requestdata.dart';
@@ -153,7 +154,11 @@ class PrivacySettingPage extends StatelessWidget {
                             height: 25,
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const DeleteDataPage(),
+                              ));
+                            },
                             child: Container(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 18),
