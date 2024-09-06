@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
+import 'package:splash_onboarding_test/views/LoginActivityPage/LoginActivityPage.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
 import 'package:splash_onboarding_test/views/requestdata/requestdata.dart';
 
@@ -116,7 +117,11 @@ class PrivacySettingPage extends StatelessWidget {
                       child: Column(
                         children: [
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const Loginactivitypage(),
+                              ));
+                            },
                             child: Container(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 12),
@@ -193,9 +198,9 @@ class PrivacySettingPage extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                               Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const RequestdataPage(),
-                          ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const RequestdataPage(),
+                              ));
                             },
                             child: Container(
                               padding: const EdgeInsets.symmetric(

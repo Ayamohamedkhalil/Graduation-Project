@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
+import 'package:splash_onboarding_test/views/PrivacySettingPage/PrivacySettingPage.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
 
 class RequestdataPage extends StatelessWidget {
@@ -50,7 +51,7 @@ class RequestdataPage extends StatelessWidget {
                             0xFF537F5C), // Set the color of the arrow icon
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const UserProfile(),
+                            builder: (context) => const PrivacySettingPage(),
                           ));
                         },
                         iconSize: 25.0, // Adjust the size of the icon
@@ -89,8 +90,8 @@ class RequestdataPage extends StatelessWidget {
                 child: Column(
                   children: [
                     const Padding(
-                      padding:  EdgeInsets.only(top: 40, bottom: 40),
-                      child:  Text(
+                      padding: EdgeInsets.only(top: 40, bottom: 40),
+                      child: Text(
                         "You will receive email from our mail to complete your reuest",
                         style: TextStyle(
                           color: Colors.white,
