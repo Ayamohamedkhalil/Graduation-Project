@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/generaltest.dart';
+ 
 
 class General_test extends StatelessWidget {
   const General_test({super.key});
@@ -13,7 +15,7 @@ class General_test extends StatelessWidget {
           Stack(
             children: [
               Container(
-                height: 690,
+                height: 710,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -22,7 +24,7 @@ class General_test extends StatelessWidget {
                   ),
                   image: DecorationImage(
                     image: AssetImage(
-                      'assets/6.png',
+                      'assets/lastupdateofgeneraltest.png',
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -33,7 +35,7 @@ class General_test extends StatelessWidget {
                   margin: EdgeInsets.symmetric(vertical: 80),
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(.20),
+                    color: Colors.black.withOpacity(.30),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: SizedBox(
@@ -49,9 +51,9 @@ class General_test extends StatelessWidget {
                           "General Test",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: Color(0xffC8E3CE),
+                              color: Colors.white,
                               fontSize: 28,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                               fontFamily: 'InriaSans'),
                         ),
                         SizedBox(
@@ -61,27 +63,51 @@ class General_test extends StatelessWidget {
                           "This test includes various symptoms for a\n"
                           "range of mental disorders, such as ADHD, OCD, PTSD, and more\n"
                           "we know, identifying these disorders is crucial\n"
-                          "for improving the quality of life for many individuals .",
+                          "for improving the quality of life for many individuals.",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 23,
                               fontFamily: 'InriaSans'),
                         ),
-                        //SizedBox(height: 80,), // This will push the button to the bottom of the container
                       ],
                     ),
                   ),
                 ),
               ),
+              // Replaced the default IconButton with the customized circular button
               Positioned(
                 top: 27,
                 left: 20,
-                child: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.white),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                child: Container(
+                  width: 35.0, // Adjust the width of the circle
+                  height: 35.0, // Adjust the height of the circle
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(.80), // Background color
+                    shape: BoxShape.circle, // Circular shape
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.15), // Shadow color
+                        spreadRadius: 2, // How much the shadow should spread
+                        blurRadius: 5, // The blur radius of the shadow
+                        offset: Offset(0, 2), // Offset the shadow vertically
+                      ),
+                    ],
+                  ),
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back_ios),
+                    color: Color(0xFF537F5C), // Set the color of the arrow icon
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => homescreen(), // Navigate to Registeration screen
+                      ));
+                    },
+                    iconSize: 25.0, // Adjust the size of the icon
+                    padding: EdgeInsets.symmetric(
+                        vertical: 3, horizontal: 9), // Adjust padding around the icon
+                    splashRadius: 25.0, // Adjust the splash radius on click
+                    tooltip: "Next",
+                  ),
                 ),
               ),
             ],
@@ -102,7 +128,6 @@ class General_test extends StatelessWidget {
               style: TextStyle(
                   color: Color(0xff537F5C),
                   fontSize: 32,
-                  //fontWeight: FontWeight.bold,
                   fontFamily: 'InriaSans'),
             ),
           ),

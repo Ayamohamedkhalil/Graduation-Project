@@ -130,15 +130,15 @@ class _Generaltest extends State<Generaltest> {
                 
                 SizedBox(height: 20), // Add space between buttons
                 SizedBox(
-                  height: 42,
-                  width: 90, // Set the width of the "Cancel" button
+                  height: 45,
+                  width: 95, // Set the width of the "Cancel" button
                   child: OutlinedButton(
                     onPressed: () {
                       Navigator.of(context).pop(); // Close the dialog
                     },
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(
-                          color: Colors.white, width: 2), // White border
+                          color: Colors.white, width: 1), // White border
                       shape: RoundedRectangleBorder(
                         borderRadius:
                             BorderRadius.circular(10), // Rounded button

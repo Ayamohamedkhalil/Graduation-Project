@@ -67,7 +67,7 @@ class card extends StatelessWidget {
               width: 240,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/Generaltestupdate.png'),
+                  image: AssetImage('assets/Generaltest.png'),
                   // fit: BoxFit.cover,
                 ),
               ),
