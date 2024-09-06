@@ -72,7 +72,8 @@ class _AccountsettingState extends State<Accountsetting> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff841B1B),
+                      backgroundColor: Color(0xffA71C1C)
+                          .withOpacity(.88),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
@@ -182,7 +183,8 @@ class _AccountsettingState extends State<Accountsetting> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff841B1B),
+                      backgroundColor: Color(0xffA71C1C)
+                          .withOpacity(.88),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
@@ -364,15 +366,15 @@ class _AccountsettingState extends State<Accountsetting> {
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.delete, color: Color(0xff841B1B)),
+                  leading: Icon(Icons.delete, color: Color(0xffA71C1C).withOpacity(.88)),
                   title: Text('Delete Account',
                       style: TextStyle(
                           color: Color(
-                            0xff841B1B,
-                          ),
+                            0xffA71C1C,
+                          ).withOpacity(.88),
                           // fontSize: 20,
                           fontFamily: 'InriaSans-Bold')),
-                  trailing: Icon(Icons.arrow_forward, color: Color(0xff841B1B)),
+                  trailing: Icon(Icons.arrow_forward, color: Color(0xffA71C1C).withOpacity(.80)),
                   onTap: () {
                     _Deleteaccount();
                   },

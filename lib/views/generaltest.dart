@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/gentestlastpage.dart';
-//import 'package:splash_onboarding_test/views/gentestlastpage.dart';
 
 class Generaltest extends StatefulWidget {
   @override
@@ -17,7 +16,7 @@ class _Generaltest extends State<Generaltest> {
     "Have you ever felt sudden, intense fear or panic without any warning?",
     "Do you find yourself breathing quickly, especially when others might not be?",
     "Do you sweat a lot, even when it’s s not hot or physically challenging?",
-    "Trouble in Concentration: Do you have difficulty focusing on tasks, even if they’re re usually easy for you?",
+    " Do you have difficulty focusing on tasks, even if they’re re usually easy for you?",
     "Do you often struggle to fall asleep, stay asleep, or wake up too early?",
     "Has your work or school performance dropped because of problems with focus, motivation, or energy",
     " Do you often feel like things will never get better?",
@@ -42,20 +41,18 @@ class _Generaltest extends State<Generaltest> {
     "Have you experienced times when you have much more energy or activity than usual?"
     // Add more questions here...
   ];
-
-  List<String?> _answers = [];
+  List<String?> generLanswers = [];
 
   @override
   void initState() {
     super.initState();
-    _answers = List<String?>.filled(_questions.length, null);
+    generLanswers = List<String?>.filled(_questions.length, null);
   }
 
   void _selectAnswer(String answer) {
     setState(() {
-      _answers[_currentQuestionIndex] = answer;
+      generLanswers[_currentQuestionIndex] = answer;
       _answerSelected = true;
-      print('Current Answers List: $_answers');
     });
   }
 
@@ -64,14 +61,13 @@ class _Generaltest extends State<Generaltest> {
       if (_currentQuestionIndex < _questions.length - 1) {
         setState(() {
           _currentQuestionIndex++;
-          _answerSelected = _answers[_currentQuestionIndex] != null;
+          _answerSelected = generLanswers[_currentQuestionIndex] != null;
         });
       } else {
-        // Navigate to the SubmitPage if this is the last question
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SubmitPage(answers: _answers),
+            builder: (context) => SubmitPage(answers: generLanswers),
           ),
         );
       }
@@ -84,7 +80,7 @@ class _Generaltest extends State<Generaltest> {
     if (_currentQuestionIndex > 0) {
       setState(() {
         _currentQuestionIndex--;
-        _answerSelected = _answers[_currentQuestionIndex] != null;
+        _answerSelected = generLanswers[_currentQuestionIndex] != null;
       });
     }
   }
@@ -94,20 +90,79 @@ class _Generaltest extends State<Generaltest> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Answer Required"),
-          content: Text("Please select an answer before proceeding."),
-          actions: [
-            TextButton(
-              child: Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+          shape: RoundedRectangleBorder(
+            // side:
+            //BorderSide(color: Color(0xffD9D9D9).withOpacity(.69), width: 2),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          backgroundColor:
+              Color(0xff537F5C).withOpacity(.88), // Match the background color
+          content: Container(
+            height: 350, // Set the height of the dialog
+            width: 320,
+            // Set the width of the dialog
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Answer Required!",
+                  style: TextStyle(
+                      color: Colors.white, // White text color
+                      fontSize: 22, // Similar font size
+                      //fontWeight: FontWeight.bold,
+                      fontFamily: 'Poppins',fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                  
+                ),
+                Image.asset('assets/Answerreqiured.png',width: 140,height: 140,),
+              Text(
+                  "Please answer the question\nbefore moving to the other\nquestions",
+                  style: TextStyle(
+                      color: Colors.white, // White text color
+                      fontSize: 18, // Similar font size
+                      //fontWeight: FontWeight.bold,
+                      fontFamily: 'InriaSans-Regular'),
+                  textAlign: TextAlign.center,
+                ),
+                
+                SizedBox(height: 20), // Add space between buttons
+                SizedBox(
+                  height: 42,
+                  width: 90, // Set the width of the "Cancel" button
+                  child: OutlinedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(); // Close the dialog
+                    },
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(
+                          color: Colors.white, width: 2), // White border
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(10), // Rounded button
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                    ),
+                    child: Text(
+                      "OK",
+                      style: TextStyle(
+                        color: Colors.white, // White text color
+                        fontSize: 16, // Adjust the font size
+                        fontFamily: 'InriaSans-Regular',
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         );
       },
     );
   }
+
 
   void _showQuitConfirmationDialog() {
     showDialog(
@@ -115,8 +170,8 @@ class _Generaltest extends State<Generaltest> {
       builder: (BuildContext context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
-            side:
-                BorderSide(color: Color(0xffD9D9D9).withOpacity(.69), width: 2),
+            // side:
+            //BorderSide(color: Color(0xffD9D9D9).withOpacity(.69), width: 2),
             borderRadius: BorderRadius.circular(20),
           ),
           backgroundColor:
@@ -217,23 +272,23 @@ class _Generaltest extends State<Generaltest> {
   Widget _buildProgressIndicator() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 100.0),
-        child: Row(
-          children: List.generate(_questions.length, (index) {
-            return Container(
-              margin: EdgeInsets.symmetric(horizontal: 2.0),
-              width: 16, // Adjusted width for oval shape
-              height: 9.0, // Height remains the same
-              decoration: BoxDecoration(
-                color: index == _currentQuestionIndex
-                    ? Colors.white
-                    : Colors.white.withOpacity(0.5),
-                borderRadius: BorderRadius.all(Radius.elliptical(16, 10)),
-              ),
-            );
-          }),
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(_questions.length, (index) {
+          return Container(
+            margin: EdgeInsets.symmetric(horizontal: 3.0),
+            width: 14,
+            height: 9.8,
+            decoration: BoxDecoration(
+              border: Border.all(
+                  color: Color(0xffD9D9D9).withOpacity(.60), width: 0.9),
+              color: index == _currentQuestionIndex
+                  ? Colors.white
+                  : Color(0xffD9D9D9).withOpacity(.20),
+              borderRadius: BorderRadius.all(Radius.elliptical(16, 10)),
+            ),
+          );
+        }),
       ),
     );
   }
@@ -244,128 +299,129 @@ class _Generaltest extends State<Generaltest> {
       backgroundColor: Color(0xff537F5C),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(height: 40), // Space from the top of the screen
             _buildProgressIndicator(),
+            // Progress indicator at the top
+            SizedBox(
+              height: 80,
+            ),
             Stack(
               alignment: Alignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: Container(
-                    height: 460,
-                    width: double.infinity,
-                    margin: EdgeInsets.symmetric(horizontal: 30),
-                    padding: EdgeInsets.all(30),
-                    decoration: BoxDecoration(
-                      color: Color(0xff5B8864),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.white10,
-                          spreadRadius: 2,
-                          blurRadius: 10,
-                          offset: Offset(0, 3), // Shadow position
+                Container(
+                  height: 430,
+                  width: double.infinity,
+                  margin: EdgeInsets.symmetric(horizontal: 30),
+                  padding: EdgeInsets.all(30),
+                  decoration: BoxDecoration(
+                    color: Color(0xff5B8864),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.white.withOpacity(.20),
+                        spreadRadius: 2,
+                        blurRadius: 10,
+                        offset: Offset(3, 3), // Shadow position
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        _questions[_currentQuestionIndex],
+                        style: TextStyle(
+                          fontSize: 23,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
                         ),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          _questions[_currentQuestionIndex],
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 60),
-                        Container(
-                          // margin: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(.25),
-                                spreadRadius: 0,
-                                blurRadius: 4,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          height: 55,
-                          width: 271,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              _selectAnswer("YES");
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFFB7B597),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 40),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 40),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(.25),
+                              spreadRadius: 0,
+                              blurRadius: 4,
+                              offset: const Offset(0, 4),
                             ),
-                            child: Center(
-                              child: Text(
-                                "YES",
-                                style: TextStyle(
-                                    color: Color(0xFF3E1904),
-                                    fontFamily: 'Inter',
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                          ],
+                        ),
+                        height: 47,
+                        width: 220,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            _selectAnswer("YES");
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xFFB7B597),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 40),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "YES",
+                              style: TextStyle(
+                                  color: Color(0xFF3E1904),
+                                  fontFamily: 'Inter',
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
-                        SizedBox(height: 40),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(.25),
-                                spreadRadius: 0,
-                                blurRadius: 4,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          height: 55,
-                          width: 271,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              _selectAnswer("NO");
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFFB7B597),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 40),
+                      ),
+                      SizedBox(height: 25),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(.25),
+                              spreadRadius: 0,
+                              blurRadius: 4,
+                              offset: const Offset(0, 4),
                             ),
-                            child: Center(
-                              child: Text(
-                                "NO",
-                                style: TextStyle(
-                                    color: Color(0xFF3E1904),
-                                    fontFamily: 'Inter',
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                          ],
+                        ),
+                        height: 47,
+                        width: 220,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            _selectAnswer("NO");
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xFFB7B597),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 40),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "NO",
+                              style: TextStyle(
+                                  color: Color(0xFF3E1904),
+                                  fontFamily: 'Inter',
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-            //SizedBox(height: 20),
+            SizedBox(height: 30),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -387,12 +443,12 @@ class _Generaltest extends State<Generaltest> {
                     ],
                   ),
                   child: IconButton(
-                    icon: Icon(Icons.arrow_back),
+                    icon: Icon(Icons.arrow_back_ios),
                     color: Color(0xFF537F5C), // Set the color of the arrow icon
                     onPressed: _previousQuestion,
-                    iconSize: 30.0, // Adjust the size of the icon
-                    padding:
-                        EdgeInsets.all(3.0), // Adjust padding around the icon
+                    iconSize: 25.0, // Adjust the size of the icon
+                    padding: EdgeInsets.only(
+                        left: 7), // Adjust padding around the icon
                     splashRadius: 25.0, // Adjust the splash radius on click
                     tooltip: "Next",
                   ),
@@ -417,10 +473,10 @@ class _Generaltest extends State<Generaltest> {
                     ],
                   ),
                   child: IconButton(
-                    icon: Icon(Icons.arrow_forward),
+                    icon: Icon(Icons.arrow_forward_ios),
                     color: Color(0xFF537F5C), // Set the color of the arrow icon
                     onPressed: _nextQuestion,
-                    iconSize: 30.0, // Adjust the size of the icon
+                    iconSize: 25.0, // Adjust the size of the icon
                     padding:
                         EdgeInsets.all(3.0), // Adjust padding around the icon
                     splashRadius: 25.0, // Adjust the splash radius on click
@@ -430,50 +486,47 @@ class _Generaltest extends State<Generaltest> {
               ],
             ),
             SizedBox(height: 40),
-            Container(
-              width: 200,
-              height: 44,
-              decoration: BoxDecoration(
-                border: Border.all(width: 1, color: Colors.white),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.25),
-                    spreadRadius: 0,
-                    blurRadius: 4,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff618969),
-                  shadowColor: const Color(0xff537F5C),
-                  alignment: Alignment.center,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                onPressed: () {
-                  _showQuitConfirmationDialog(); // Show the quit confirmation dialog
-                },
-                child: Text(
-                  'Quit test', // Button text
-                  style: TextStyle(
-                    color: Color(0xffD9D9D9), // Text color
-                    fontSize: 23, // Text size
-                    shadows: [
-                      Shadow(
-                        color: Colors.black.withOpacity(0.5), // Shadow color
-                        offset: Offset(2, 2), // Shadow offset
-                        blurRadius: 4, // Shadow blur radius
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            )
+            _buildQuitButton(),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildQuitButton() {
+    return Container(
+      width: 200,
+      height: 44,
+      decoration: BoxDecoration(
+        border: Border.all(width: 1, color: Colors.white),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.25),
+            spreadRadius: 0,
+            blurRadius: 4,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Color(0xff618969),
+          shadowColor: const Color(0xff537F5C),
+          alignment: Alignment.center,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        onPressed: _showQuitConfirmationDialog,
+        child: Text(
+          'Quit test',
+          style: TextStyle(
+            color: Color(0xffD9D9D9),
+            fontSize: 22,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
     );
