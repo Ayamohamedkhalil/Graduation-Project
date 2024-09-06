@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/deporbitest.dart';
+ // Assuming the Specifictest screen is in this path
 
 class DeporbiTest extends StatelessWidget {
   const DeporbiTest({super.key});
@@ -7,13 +9,13 @@ class DeporbiTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(158, 158, 158, 41),
+      backgroundColor: Colors.white.withOpacity(.80),
       body: Column(
         children: [
           Stack(
             children: [
               Container(
-                height: 690,
+                height: 710,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -33,7 +35,7 @@ class DeporbiTest extends StatelessWidget {
                   margin: EdgeInsets.symmetric(vertical: 80),
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(.20),
+                    color: Colors.black.withOpacity(.30),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: SizedBox(
@@ -49,9 +51,9 @@ class DeporbiTest extends StatelessWidget {
                           "Depression\nOr\nBipolar",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: Color(0xffC8E3CE),
+                              color: Colors.white,
                               fontSize: 28,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                               fontFamily: 'InriaSans'),
                         ),
                         SizedBox(
@@ -68,25 +70,48 @@ class DeporbiTest extends StatelessWidget {
                               fontSize: 25,
                               fontFamily: 'InriaSans'),
                         ),
-                        //SizedBox(height: 80,), // This will push the button to the bottom of the container
                       ],
                     ),
                   ),
                 ),
               ),
+              // Replacing the current back icon with a custom Container with IconButton
               Positioned(
                 top: 27,
                 left: 20,
-                child: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.white),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                child: Container(
+                  width: 35.0, // Adjust the width of the circle
+                  height: 35.0, // Adjust the height of the circle
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(.80), // Background color
+                    shape: BoxShape.circle, // Circular shape
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.15), // Shadow color
+                        spreadRadius: 2, // How much the shadow should spread
+                        blurRadius: 5, // The blur radius of the shadow
+                        offset: Offset(0, 2), // Offset the shadow vertically
+                      ),
+                    ],
+                  ),
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back_ios),
+                    color: Color(0xFF537F5C), // Set the color of the arrow icon
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => homescreen(), // Replace with the appropriate screen
+                      ));
+                    },
+                    iconSize: 25.0, // Adjust the size of the icon
+                    padding: EdgeInsets.symmetric(
+                        vertical: 3, horizontal: 9), // Adjust padding around the icon
+                    splashRadius: 25.0, // Adjust the splash radius on click
+                    tooltip: "Next",
+                  ),
                 ),
               ),
             ],
           ),
-
           SizedBox(
             height: 13,
           ),
@@ -94,7 +119,7 @@ class DeporbiTest extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) =>Specifictest(),
+                  builder: (context) => Specifictest(),
                 ),
               );
             },
@@ -103,7 +128,6 @@ class DeporbiTest extends StatelessWidget {
               style: TextStyle(
                   color: Color(0xff537F5C),
                   fontSize: 32,
-                  //fontWeight: FontWeight.bold,
                   fontFamily: 'InriaSans'),
             ),
           ),
