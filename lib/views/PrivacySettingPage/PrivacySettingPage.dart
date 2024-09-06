@@ -194,7 +194,7 @@ class PrivacySettingPage extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                                Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const Requestdata(),
+                            builder: (context) => const RequestdataPage(),
                           ));
                             },
                             child: Container(
