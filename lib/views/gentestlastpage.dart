@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:splash_onboarding_test/constant/answers.dart';      
+     
 import 'package:splash_onboarding_test/views/result1.dart';
 
 class SubmitPage extends StatelessWidget {
@@ -44,16 +44,19 @@ class SubmitPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
+              
               onPressed: () {
+                       print('Submitted Answers: $answers');
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) => Result1(),
+                    
                   ),
                 );
                 print('Submitted Answers: $answers');
-                allanswers = answers1 + answers2 + answers3;
-                print('Submitted Answers: $allanswers');
+               // allanswers = answers1 + answers2 + answers3;
+               // print('Submitted Answers: $allanswers');
               },
               child: Text(
                 'Submit', // Button text
