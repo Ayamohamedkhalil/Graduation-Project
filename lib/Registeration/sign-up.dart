@@ -305,7 +305,7 @@ class _SignupState extends State<Signup> {
 
                       // URL of the API
                       final url = Uri.parse(
-                          'https://gp-backend-production-54ab.up.railway.app/api/register');
+                          'https://backend-production-19d7.up.railway.app/api/register');
 
                       try {
                         // Send the POST request
