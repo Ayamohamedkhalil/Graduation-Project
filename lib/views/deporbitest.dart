@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/constant/answers.dart';
 import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/deporbitestpage2.dart';
+//import 'package:splash_onboarding_test/views/gentestlastpage.dart';
 
+class Specifictest extends StatefulWidget {
 
-class specifictestpage1 extends StatefulWidget {
   @override
-  _specifictestpage1 createState() => _specifictestpage1();
+  
+  _Specifictest createState() => _Specifictest();
 }
 
-class _specifictestpage1 extends State<specifictestpage1> {
+class _Specifictest extends State<Specifictest> {
   int _currentQuestionIndex = 0;
   bool _answerSelected = false;
 
   final List<String> _questions = [
-    "Do you often feel nervous or on edge without a clear reason?",
-    "Have you ever felt sudden, intense fear or panic without any warning?",
-    "Do you find yourself breathing quickly, especially when others might not be?",
-    
+    "I felt nervous",
+    "I felt cheerful",
+    "I felt nervous",
+    "I felt cheerful",
+    "I felt nervous",
+
+    // Add more questions here...
   ];
-  List<String?> answers1 = [];
+
+
 
   @override
   void initState() {
@@ -30,6 +37,7 @@ class _specifictestpage1 extends State<specifictestpage1> {
     setState(() {
       answers1[_currentQuestionIndex] = answer;
       _answerSelected = true;
+      print('Current Answers List: $answers1');
     });
   }
 
@@ -41,10 +49,11 @@ class _specifictestpage1 extends State<specifictestpage1> {
           _answerSelected = answers1[_currentQuestionIndex] != null;
         });
       } else {
+        // Navigate to the SubmitPage if this is the last question
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>specifictestpage2() ,
+            builder: (context) => specifictestpage2(),
           ),
         );
       }
@@ -61,85 +70,33 @@ class _specifictestpage1 extends State<specifictestpage1> {
       });
     }
   }
+  void _nextPage() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => specifictestpage2(),
+      ),
+    );
+  }
 
   void _showAnswerAlert() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(
-            // side:
-            //BorderSide(color: Color(0xffD9D9D9).withOpacity(.69), width: 2),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          backgroundColor:
-              Color(0xff537F5C).withOpacity(.88), // Match the background color
-          content: Container(
-            height: 350, // Set the height of the dialog
-            width: 320,
-            // Set the width of the dialog
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Answer Required!",
-                  style: TextStyle(
-                      color: Colors.white, // White text color
-                      fontSize: 22, // Similar font size
-                      //fontWeight: FontWeight.bold,
-                      fontFamily: 'Poppins',fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                  
-                ),
-                Image.asset('assets/Answerreqiured.png',width: 140,height: 140,),
-              Text(
-                  "Please answer the question\nbefore moving to the other\nquestions",
-                  style: TextStyle(
-                      color: Colors.white, // White text color
-                      fontSize: 18, // Similar font size
-                      //fontWeight: FontWeight.bold,
-                      fontFamily: 'InriaSans-Regular'),
-                  textAlign: TextAlign.center,
-                ),
-                
-                SizedBox(height: 20), // Add space between buttons
-                SizedBox(
-                  height: 45,
-                  width: 95, // Set the width of the "Cancel" button
-                  child: OutlinedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop(); // Close the dialog
-                    },
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(
-                          color: Colors.white, width: 1), // White border
-                      shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(10), // Rounded button
-                      ),
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                    ),
-                    child: Text(
-                      "OK",
-                      style: TextStyle(
-                        color: Colors.white, // White text color
-                        fontSize: 16, // Adjust the font size
-                        fontFamily: 'InriaSans-Regular',
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+          title: Text("Answer Required"),
+          content: Text("Please select an answer before proceeding."),
+          actions: [
+            TextButton(
+              child: Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
-          ),
+          ],
         );
       },
     );
   }
-
 
   void _showQuitConfirmationDialog() {
     showDialog(
@@ -147,8 +104,8 @@ class _specifictestpage1 extends State<specifictestpage1> {
       builder: (BuildContext context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
-            // side:
-            //BorderSide(color: Color(0xffD9D9D9).withOpacity(.69), width: 2),
+            side:
+                BorderSide(color: Color(0xffD9D9D9).withOpacity(.69), width: 2),
             borderRadius: BorderRadius.circular(20),
           ),
           backgroundColor:
@@ -249,23 +206,23 @@ class _specifictestpage1 extends State<specifictestpage1> {
   Widget _buildProgressIndicator() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(_questions.length, (index) {
-          return Container(
-            margin: EdgeInsets.symmetric(horizontal: 3.0),
-            width: 14,
-            height: 9.8,
-            decoration: BoxDecoration(
-              border: Border.all(
-                  color: Color(0xffD9D9D9).withOpacity(.60), width: 0.9),
-              color: index == _currentQuestionIndex
-                  ? Colors.white
-                  : Color(0xffD9D9D9).withOpacity(.20),
-              borderRadius: BorderRadius.all(Radius.elliptical(16, 10)),
-            ),
-          );
-        }),
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 100.0),
+        child: Row(
+          children: List.generate(_questions.length, (index) {
+            return Container(
+              margin: EdgeInsets.symmetric(horizontal: 2.0),
+              width: 16, // Adjusted width for oval shape
+              height: 9.0, // Height remains the same
+              decoration: BoxDecoration(
+                color: index == _currentQuestionIndex
+                    ? Colors.white
+                    : Colors.white.withOpacity(0.5),
+                borderRadius: BorderRadius.all(Radius.elliptical(16, 10)),
+              ),
+            );
+          }),
+        ),
       ),
     );
   }
@@ -276,207 +233,209 @@ class _specifictestpage1 extends State<specifictestpage1> {
       backgroundColor: Color(0xff537F5C),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 40), // Space from the top of the screen
             _buildProgressIndicator(),
-            // Progress indicator at the top
-            SizedBox(
-              height: 80,
-            ),
             Stack(
               alignment: Alignment.center,
               children: [
-                Container(
-                  height: 430,
-                  width: double.infinity,
-                  margin: EdgeInsets.symmetric(horizontal: 30),
-                  padding: EdgeInsets.all(30),
-                  decoration: BoxDecoration(
-                    color: Color(0xff5B8864),
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.white.withOpacity(.20),
-                        spreadRadius: 2,
-                        blurRadius: 10,
-                        offset: Offset(3, 3), // Shadow position
-                      ),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: Container(
+                    height: 460,
+                    width: double.infinity,
+                    margin: EdgeInsets.symmetric(horizontal: 30),
+                    padding: EdgeInsets.all(30),
+                    decoration: BoxDecoration(
+                      color: Color(0xff5B8864),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                         color: Colors.white10,
+                          spreadRadius: 2,
+                          blurRadius: 10,
+                          offset: Offset(0, 3), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          _questions[_currentQuestionIndex],
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 40),
+                        Container(
+                          // margin: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(.25),
+                                spreadRadius: 0,
+                                blurRadius: 4,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          height: 55,
+                          width: 271,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _selectAnswer("Seldom");
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFFB7B597),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 40),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Seldom",
+                                style: TextStyle(
+                                    color: Color(0xFF3E1904),
+                                    fontFamily: 'Inter',
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(.25),
+                                spreadRadius: 0,
+                                blurRadius: 4,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          height: 55,
+                          width: 271,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _selectAnswer("Sometimes");
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFFB7B597),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 40),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Sometimes",
+                                style: TextStyle(
+                                    color: Color(0xFF3E1904),
+                                    fontFamily: 'Inter',
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20,),
+                        Container(
+                          // margin: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(.25),
+                                spreadRadius: 0,
+                                blurRadius: 4,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          height: 55,
+                          width: 271,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _selectAnswer("Usually");
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFFB7B597),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 40),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Usually",
+                                style: TextStyle(
+                                    color: Color(0xFF3E1904),
+                                    fontFamily: 'Inter',
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                         SizedBox(height: 20,),
+                        Container(
+                          // margin: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(.25),
+                                spreadRadius: 0,
+                                blurRadius: 4,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          height: 55,
+                          width: 271,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _selectAnswer("Most-often");
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFFB7B597),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 40),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Most-often",
+                                style: TextStyle(
+                                    color: Color(0xFF3E1904),
+                                    fontFamily: 'Inter',
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        _questions[_currentQuestionIndex],
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      //SizedBox(height: 40),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(.25),
-                              spreadRadius: 0,
-                              blurRadius: 4,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        height: 47,
-                        width: 220,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _selectAnswer("Yes");
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFFB7B597),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 40),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Seldom",
-                              style: TextStyle(
-                                  color: Color(0xFF3E1904),
-                                  fontFamily: 'Inter',
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(.25),
-                              spreadRadius: 0,
-                              blurRadius: 4,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        height: 47,
-                        width: 220,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _selectAnswer("Somtimes");
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFFB7B597),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 40),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Sometimes",
-                              style: TextStyle(
-                                  color: Color(0xFF3E1904),
-                                  fontFamily: 'Inter',
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(.25),
-                              spreadRadius: 0,
-                              blurRadius: 4,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        height: 47,
-                        width: 220,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _selectAnswer("Usually");
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFFB7B597),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 40),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Usually",
-                              style: TextStyle(
-                                  color: Color(0xFF3E1904),
-                                  fontFamily: 'Inter',
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(.25),
-                              spreadRadius: 0,
-                              blurRadius: 4,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        height: 47,
-                        width: 220,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _selectAnswer("Most-Often");
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFFB7B597),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 40),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Most-often",
-                              style: TextStyle(
-                                  color: Color(0xFF3E1904),
-                                  fontFamily: 'Inter',
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  
                 ),
               ],
             ),
-            SizedBox(height: 30),
+            //SizedBox(height: 20),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -498,12 +457,12 @@ class _specifictestpage1 extends State<specifictestpage1> {
                     ],
                   ),
                   child: IconButton(
-                    icon: Icon(Icons.arrow_back_ios),
+                    icon: Icon(Icons.arrow_back),
                     color: Color(0xFF537F5C), // Set the color of the arrow icon
                     onPressed: _previousQuestion,
-                    iconSize: 25.0, // Adjust the size of the icon
-                    padding: EdgeInsets.only(
-                        left: 7), // Adjust padding around the icon
+                    iconSize: 30.0, // Adjust the size of the icon
+                    padding:
+                        EdgeInsets.all(3.0), // Adjust padding around the icon
                     splashRadius: 25.0, // Adjust the splash radius on click
                     tooltip: "Next",
                   ),
@@ -528,10 +487,10 @@ class _specifictestpage1 extends State<specifictestpage1> {
                     ],
                   ),
                   child: IconButton(
-                    icon: Icon(Icons.arrow_forward_ios),
+                    icon: Icon(Icons.arrow_forward),
                     color: Color(0xFF537F5C), // Set the color of the arrow icon
                     onPressed: _nextQuestion,
-                    iconSize: 25.0, // Adjust the size of the icon
+                    iconSize: 30.0, // Adjust the size of the icon
                     padding:
                         EdgeInsets.all(3.0), // Adjust padding around the icon
                     splashRadius: 25.0, // Adjust the splash radius on click
@@ -541,47 +500,50 @@ class _specifictestpage1 extends State<specifictestpage1> {
               ],
             ),
             SizedBox(height: 40),
-            _buildQuitButton(),
+            Container(
+              width: 200,
+              height: 44,
+              decoration: BoxDecoration(
+                border: Border.all(width: 1, color: Colors.white),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(.25),
+                    spreadRadius: 0,
+                    blurRadius: 4,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff618969),
+                  shadowColor: const Color(0xff537F5C),
+                  alignment: Alignment.center,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                onPressed: () {
+                  _showQuitConfirmationDialog(); // Show the quit confirmation dialog
+                },
+                child: Text(
+                  'Quit test', // Button text
+                  style: TextStyle(
+                    color: Color(0xffD9D9D9), // Text color
+                    fontSize: 23, // Text size
+                    shadows: [
+                      Shadow(
+                        color: Colors.black.withOpacity(0.5), // Shadow color
+                        offset: Offset(2, 2), // Shadow offset
+                        blurRadius: 4, // Shadow blur radius
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildQuitButton() {
-    return Container(
-      width: 200,
-      height: 44,
-      decoration: BoxDecoration(
-        border: Border.all(width: 1, color: Colors.white),
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(.25),
-            spreadRadius: 0,
-            blurRadius: 4,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Color(0xff618969),
-          shadowColor: const Color(0xff537F5C),
-          alignment: Alignment.center,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-        onPressed: _showQuitConfirmationDialog,
-        child: Text(
-          'Quit test',
-          style: TextStyle(
-            color: Color(0xffD9D9D9),
-            fontSize: 22,
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w700,
-          ),
         ),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/views/PrivacySettingPage/PrivacySettingPage.dart';
-
+import 'package:splash_onboarding_test/views/UserProfile.dart';
 
 class RequestdataPage extends StatelessWidget {
   const RequestdataPage({super.key});

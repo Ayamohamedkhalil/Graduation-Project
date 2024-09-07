@@ -3,7 +3,7 @@ import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/views/LoginActivityPage/component/PreviosLogInCard.dart';
 
-
+import 'package:splash_onboarding_test/views/PreviosTestPage/component/ResultCard.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
 
 class Loginactivitypage extends StatelessWidget {
