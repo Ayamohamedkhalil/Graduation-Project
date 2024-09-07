@@ -53,7 +53,7 @@ class _LoginState extends State<Login> {
   // Function to perform login
   Future<void> _login() async {
     final url = Uri.parse(
-        'https://backend-production-19d7.up.railway.app/api/login');
+        'https://gp-backend-production-54ab.up.railway.app/api/login');
     final Map<String, String> requestBody = {
       "email": email!,
       "password": password!

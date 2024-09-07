@@ -70,7 +70,6 @@ class _Generaltest extends State<Generaltest> {
             builder: (context) => SubmitPage(answers: generLanswers),
           ),
         );
-             //  print('Submitted Answers: $generLanswers');
       }
     } else {
       _showAnswerAlert();
@@ -114,16 +113,12 @@ class _Generaltest extends State<Generaltest> {
                       color: Colors.white, // White text color
                       fontSize: 22, // Similar font size
                       //fontWeight: FontWeight.bold,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.bold),
+                      fontFamily: 'Poppins',fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
+                  
                 ),
-                Image.asset(
-                  'assets/Answerreqiured.png',
-                  width: 140,
-                  height: 140,
-                ),
-                Text(
+                Image.asset('assets/Answerreqiured.png',width: 140,height: 140,),
+              Text(
                   "Please answer the question\nbefore moving to the other\nquestions",
                   style: TextStyle(
                       color: Colors.white, // White text color
@@ -132,7 +127,7 @@ class _Generaltest extends State<Generaltest> {
                       fontFamily: 'InriaSans-Regular'),
                   textAlign: TextAlign.center,
                 ),
-
+                
                 SizedBox(height: 20), // Add space between buttons
                 SizedBox(
                   height: 45,
@@ -167,6 +162,7 @@ class _Generaltest extends State<Generaltest> {
       },
     );
   }
+
 
   void _showQuitConfirmationDialog() {
     showDialog(
