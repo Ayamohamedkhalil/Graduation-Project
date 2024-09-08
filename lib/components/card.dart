@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/views/DepOrBi_Test.dart';
 import 'package:splash_onboarding_test/views/General_Test.dart';
 
@@ -11,9 +13,9 @@ class card extends StatelessWidget {
       children: [
         GestureDetector(
             child: Container(
-              height: 340,
-              width: 240,
-              decoration: BoxDecoration(
+              height: 340.h,
+              width: 240.w,
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/image.png'),
                   // fit: BoxFit.cover,
@@ -22,17 +24,15 @@ class card extends StatelessWidget {
               child: Stack(
                 children: [
                   Positioned(
-                    bottom: 25,
-                    left: 25,
-                    right: 25,
+                    bottom: 25.h,
+                    left: 30.w,
+                    right: 30.w,
                     child: Container(
-                      height: 100,
-                      // width: 60,
-                      // padding: EdgeInsets.all(.0),
                       decoration: BoxDecoration(
-                        border: Border.all(width: 2, color: Colors.black.withOpacity(.35)),
+                        border: Border.all(
+                            width: 2, color: Colors.black.withOpacity(.35)),
                         color: Colors.black.withOpacity(.35),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.r),
                       ),
                       child: Center(
                         child: Text(
@@ -40,10 +40,10 @@ class card extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.white.withOpacity(.80),
-                              fontSize: 22,
+                              fontSize: 22.sp,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'InriaSans',
-                              shadows: [
+                              shadows: const [
                                 Shadow(
                                   offset: Offset(3.0, 3.0),
                                   blurRadius: 5.0,
@@ -63,9 +63,9 @@ class card extends StatelessWidget {
             }),
         GestureDetector(
             child: Container(
-              height: 340,
-              width: 240,
-              decoration: BoxDecoration(
+              height: 340.h,
+              width: 240.w,
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/Generaltest.png'),
                   // fit: BoxFit.cover,
@@ -74,19 +74,17 @@ class card extends StatelessWidget {
               child: Stack(
                 children: [
                   Positioned(
-                    bottom: 25,
-                    left: 25,
-                    right: 25,
+                    bottom: 25.h,
+                    left: 30.w,
+                    right: 30.w,
                     child: Container(
-                      
-                      height: 100,
-                      // width: 60,
-                      // padding: EdgeInsets.all(.0),
+                      height: 100.h,
                       decoration: BoxDecoration(
-                        border: Border.all(width: 2, color: Colors.black.withOpacity(.35)),
+                        border: Border.all(
+                            width: 2, color: Colors.black.withOpacity(.35)),
                         color: Colors.black.withOpacity(.35),
                         //color: Colors.white.withOpacity(.20),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.r),
                       ),
                       child: Center(
                         child: Text(
@@ -94,9 +92,10 @@ class card extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.white.withOpacity(.80),
-                              fontSize: 22,
+                              fontSize: 22.sp,
                               fontWeight: FontWeight.bold,
-                              fontFamily: 'InriaSans',shadows: [
+                              fontFamily: 'InriaSans',
+                              shadows: const [
                                 Shadow(
                                   offset: Offset(3.0, 3.0),
                                   blurRadius: 5.0,

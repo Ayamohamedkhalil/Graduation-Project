@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/deporbitest.dart';
- // Assuming the Specifictest screen is in this path
+// Assuming the Specifictest screen is in this path
 
 class DeporbiTest extends StatelessWidget {
   const DeporbiTest({super.key});
@@ -99,12 +99,14 @@ class DeporbiTest extends StatelessWidget {
                     color: Color(0xFF537F5C), // Set the color of the arrow icon
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => homescreen(), // Replace with the appropriate screen
+                        builder: (context) =>
+                            homescreen(), // Replace with the appropriate screen
                       ));
                     },
                     iconSize: 25.0, // Adjust the size of the icon
                     padding: EdgeInsets.symmetric(
-                        vertical: 3, horizontal: 9), // Adjust padding around the icon
+                        vertical: 3,
+                        horizontal: 9), // Adjust padding around the icon
                     splashRadius: 25.0, // Adjust the splash radius on click
                     tooltip: "Next",
                   ),

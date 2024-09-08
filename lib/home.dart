@@ -1,6 +1,7 @@
 //import 'dart:math';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/components/card.dart';
 
@@ -13,15 +14,15 @@ class homescreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Padding(
-          padding:  EdgeInsets.only(left: 5),
+        title: Padding(
+          padding: EdgeInsets.only(left: 5.w),
           child: Text(
             'MALAZ',
             style: TextStyle(
               decoration: TextDecoration.underline,
               decorationColor: Color(0xff849A8A),
-              color: Color(0xff849A8A),
-              fontSize: 30,
+              color: const Color(0xff849A8A),
+              fontSize: 30.sp,
               fontFamily: 'Ledger',
             ),
           ),
@@ -31,11 +32,11 @@ class homescreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 3),
+            padding: EdgeInsets.only(bottom: 3.h),
             child: Container(
-                margin: const EdgeInsets.only(right: 23),
-                height: 40,
-                width: 40,
+                margin: EdgeInsets.only(right: 23.w),
+                height: 40.h,
+                width: 40.w,
                 child: Image.asset('assets/contact.png')),
           ),
         ],
@@ -43,28 +44,28 @@ class homescreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 7),
-              height: 130,
+              margin: EdgeInsets.symmetric(horizontal: 7.w),
+              height: 130.h,
               width: double.infinity,
               decoration: BoxDecoration(
                   border: Border.all(width: 1, color: Colors.black),
                   color: const Color(0xff537F5C),
-                  borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular(20.r)),
               child: Row(
                 children: [
                   Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 5),
+                          padding: EdgeInsets.only(left: 5.w),
                           child: Text(
                             '  "Getting help is a ',
                             style: TextStyle(
-                                fontSize: 23,
+                                fontSize: 2.sp,
                                 color: Colors.white.withOpacity(.80),
                                 fontWeight: FontWeight.w500,
                                 shadows: [
@@ -77,11 +78,11 @@ class homescreen extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 5),
+                          padding: EdgeInsets.only(left: 5.w),
                           child: Text(
                             ' sign of wisdom,',
                             style: TextStyle(
-                                fontSize: 23,
+                                fontSize: 23.sp,
                                 color: Colors.white.withOpacity(.80),
                                 fontWeight: FontWeight.w500,
                                 shadows: [
@@ -94,11 +95,11 @@ class homescreen extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 5),
+                          padding: EdgeInsets.only(left: 5.w),
                           child: Text(
                             ' not weakness."',
                             style: TextStyle(
-                                fontSize: 23,
+                                fontSize: 23.sp,
                                 color: Colors.white.withOpacity(.80),
                                 fontWeight: FontWeight.w500,
                                 shadows: [
@@ -113,23 +114,23 @@ class homescreen extends StatelessWidget {
                       ]),
                   Image.asset(
                     'assets/logo.png',
-                    height: 170,
-                    width: 165,
+                    height: 170.h,
+                    width: 165.w,
                   )
                 ],
               ),
             ),
-            const SizedBox(
-              height: 14,
+            SizedBox(
+              height: 14.h,
             ),
             //
             //Searchbar
             //
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 15),
+              padding: EdgeInsets.symmetric(vertical: 16.w, horizontal: 15.h),
               child: SizedBox(
-                height: 40,
-                width: MediaQuery.of(context).size.width * 0.8,
+                height: 40.h,
+                width: MediaQuery.of(context).size.width.w * 0.8,
                 child: TextFormField(
                   cursorColor: Colors.white,
                   decoration: InputDecoration(
@@ -137,20 +138,20 @@ class homescreen extends StatelessWidget {
                     filled: true,
                     fillColor: const Color(
                         0xffC4D3C7), // Background color similar to the image
-                    prefixIcon:const Icon(Icons.search,
+                    prefixIcon: const Icon(Icons.search,
                         color: Color(0xFF537F5C)), // Left icon
                     suffixIcon: const Icon(Icons.mic_none,
                         color: Color(0xFF537F5C)), // Right icon
                     hintText: 'Search for test',
-                    hintStyle: const TextStyle(
+                    hintStyle: TextStyle(
                         color: Color(0xFF537F5C),
                         fontFamily: 'Ledger',
-                        fontSize: 18), // Text color similar to the image
-                    contentPadding:const EdgeInsets.symmetric(vertical: 2.0),
+                        fontSize: 18.sp), // Text color similar to the image
+                    contentPadding: EdgeInsets.symmetric(vertical: 2.0.w),
                     // Padding to align text centrally
                     border: OutlineInputBorder(
                       borderRadius:
-                          BorderRadius.circular(25.0), // Rounded corners
+                          BorderRadius.circular(25.0.r), // Rounded corners
                       borderSide: const BorderSide(
                         color: Color(
                             0xFF52734D), // Border color similar to the image
@@ -158,7 +159,7 @@ class homescreen extends StatelessWidget {
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
+                      borderRadius: BorderRadius.circular(25.0.r),
                       borderSide: const BorderSide(
                         color:
                             Color(0xFF537F5C), // Border color for enabled state
@@ -166,7 +167,7 @@ class homescreen extends StatelessWidget {
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
+                      borderRadius: BorderRadius.circular(25.0.r),
                       borderSide: const BorderSide(
                         color:
                             Color(0xFF537F5C), // Border color for focused state
@@ -178,7 +179,7 @@ class homescreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 370,
+              height: 370.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: 1,
@@ -187,10 +188,7 @@ class homescreen extends StatelessWidget {
                 },
               ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
-            const BarButton()
+            const BarButton(),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
@@ -23,21 +24,21 @@ class BarButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
-      width: MediaQuery.of(context).size.width * ratioOfContainerWidth,
+      height: height.h,
+      width: MediaQuery.of(context).size.width.w * ratioOfContainerWidth,
       decoration: BoxDecoration(
         border: Border.all(width: 2, color: ThirdColor),
         color: backGroundColor,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
       ),
       child: SizedBox(
-        height: height,
+        height: height.h,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width:
-                  MediaQuery.of(context).size.width * ratioOfStartAndEndPadding,
+              width: MediaQuery.of(context).size.width.w *
+                  ratioOfStartAndEndPadding,
             ),
             Expanded(
               child: IconButton(
@@ -45,7 +46,7 @@ class BarButton extends StatelessWidget {
                 onPressed: () {},
                 icon: Icon(
                   Icons.edit,
-                  size: iconSize,
+                  size: iconSize.sp,
                 ),
               ),
             ),
@@ -61,7 +62,7 @@ class BarButton extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.home,
-                  size: iconSize,
+                  size: iconSize.sp,
                 ),
               ),
             ),
@@ -77,13 +78,13 @@ class BarButton extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.person,
-                  size: iconSize,
+                  size: iconSize.sp,
                 ),
               ),
             ),
             SizedBox(
-              width:
-                  MediaQuery.of(context).size.width * ratioOfStartAndEndPadding,
+              width: MediaQuery.of(context).size.width.w *
+                  ratioOfStartAndEndPadding,
             ),
           ],
         ),
