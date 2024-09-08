@@ -13,8 +13,8 @@ class homescreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.only(left: 5),
+        title: const Padding(
+          padding:  EdgeInsets.only(left: 5),
           child: Text(
             'MALAZ',
             style: TextStyle(
@@ -26,7 +26,6 @@ class homescreen extends StatelessWidget {
             ),
           ),
         ),
-
         automaticallyImplyLeading: false,
         //to remove icon from appbar
         backgroundColor: Colors.transparent,
@@ -34,7 +33,7 @@ class homescreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 3),
             child: Container(
-                margin: EdgeInsets.only(right: 23),
+                margin: const EdgeInsets.only(right: 23),
                 height: 40,
                 width: 40,
                 child: Image.asset('assets/contact.png')),
@@ -44,16 +43,16 @@ class homescreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 7),
+              margin: const EdgeInsets.symmetric(horizontal: 7),
               height: 130,
               width: double.infinity,
               decoration: BoxDecoration(
                   border: Border.all(width: 1, color: Colors.black),
-                  color: Color(0xff537F5C),
+                  color: const Color(0xff537F5C),
                   borderRadius: BorderRadius.circular(20)),
               child: Row(
                 children: [
@@ -70,7 +69,7 @@ class homescreen extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                                 shadows: [
                                   Shadow(
-                                    offset: Offset(3.0, 3.0),
+                                    offset: const Offset(3.0, 3.0),
                                     blurRadius: 5.0,
                                     color: Colors.black.withOpacity(.50),
                                   ),
@@ -87,7 +86,7 @@ class homescreen extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                                 shadows: [
                                   Shadow(
-                                    offset: Offset(3.0, 3.0),
+                                    offset: const Offset(3.0, 3.0),
                                     blurRadius: 5.0,
                                     color: Colors.black.withOpacity(.50),
                                   ),
@@ -104,7 +103,7 @@ class homescreen extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                                 shadows: [
                                   Shadow(
-                                    offset: Offset(3.0, 3.0),
+                                    offset: const Offset(3.0, 3.0),
                                     blurRadius: 5.0,
                                     color: Colors.black.withOpacity(.50),
                                   ),
@@ -120,37 +119,39 @@ class homescreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 14,
             ),
+            //
+            //Searchbar
+            //
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 15),
-              child: Container(
-                //margin: EdgeInsets.only(top: 10),
+              child: SizedBox(
                 height: 40,
-                width: 400,
+                width: MediaQuery.of(context).size.width * 0.8,
                 child: TextFormField(
                   cursorColor: Colors.white,
                   decoration: InputDecoration(
                     //hoverColor: Colors.white,
                     filled: true,
-                    fillColor: Color(
+                    fillColor: const Color(
                         0xffC4D3C7), // Background color similar to the image
-                    prefixIcon: Icon(Icons.search,
+                    prefixIcon:const Icon(Icons.search,
                         color: Color(0xFF537F5C)), // Left icon
-                    suffixIcon: Icon(Icons.mic_none,
+                    suffixIcon: const Icon(Icons.mic_none,
                         color: Color(0xFF537F5C)), // Right icon
                     hintText: 'Search for test',
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                         color: Color(0xFF537F5C),
                         fontFamily: 'Ledger',
                         fontSize: 18), // Text color similar to the image
-                    contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                    contentPadding:const EdgeInsets.symmetric(vertical: 2.0),
                     // Padding to align text centrally
                     border: OutlineInputBorder(
                       borderRadius:
                           BorderRadius.circular(25.0), // Rounded corners
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Color(
                             0xFF52734D), // Border color similar to the image
                         width: 1.2,
@@ -158,7 +159,7 @@ class homescreen extends StatelessWidget {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color:
                             Color(0xFF537F5C), // Border color for enabled state
                         width: 1.2,
@@ -166,7 +167,7 @@ class homescreen extends StatelessWidget {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color:
                             Color(0xFF537F5C), // Border color for focused state
                         width: 1.2,
