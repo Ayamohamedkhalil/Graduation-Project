@@ -36,7 +36,7 @@ class Result1 extends StatelessWidget {
                       height: 200,
                     )
                   : Image.asset(
-                      'assets/$result.png', // Adjust this line to match your image paths
+                      'assets/lastupdateofgeneraltest.png', // Adjust this line to match your image paths
                       width: 200,
                       height: 200,
                       errorBuilder: (context, error, stackTrace) {
@@ -44,7 +44,7 @@ class Result1 extends StatelessWidget {
                           color: Colors.grey,
                           width: 200,
                           height: 200,
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               'Image Error',
                               style: TextStyle(color: Colors.red),
@@ -66,8 +66,8 @@ class Result1 extends StatelessWidget {
             const SizedBox(height: 30),
             Text(
               result,
-              style: TextStyle(
-                color: const Color(0xffD9D9D9),
+              style: const TextStyle(
+                color: Color(0xffD9D9D9),
                 fontSize: 37,
                 fontFamily: 'Ledger-Regular',
               ),
@@ -93,7 +93,7 @@ class Result1 extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Resultpage2()),
+                              builder: (context) => Resultpage2(diseaseName: result)),
                         );
                       },
                     ),

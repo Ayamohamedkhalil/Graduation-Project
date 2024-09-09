@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
+import 'package:splash_onboarding_test/Registeration/auth_service.dart';
 import 'package:splash_onboarding_test/Registeration/forgetpassword.dart';
 import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'dart:convert';
@@ -51,14 +52,13 @@ class _LoginState extends State<Login> {
   }
 
   // Function to perform login
-  Future<void> _login() async {
-    final url = Uri.parse(
-        'https://backend-production-19d7.up.railway.app/api/login');
+ Future<void> _login() async {
+    final url = Uri.parse('https://backend-production-19d7.up.railway.app/api/login');
     final Map<String, String> requestBody = {
       "email": email!,
       "password": password!
     };
-    
+
     try {
       final response = await http.post(
         url,
@@ -68,7 +68,6 @@ class _LoginState extends State<Login> {
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
-
         final message = responseData['message'];
         final token = responseData['token'];
         final user = responseData['user'];
@@ -77,11 +76,16 @@ class _LoginState extends State<Login> {
         print('Token: $token');
         print('User: ${user['username']}');
 
-        // Navigate to home screen
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const homescreen()),
-        );
+        if (token != null && token.isNotEmpty) {
+          await AuthService.saveToken(token); // Use AuthService to save token
+
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const homescreen()),
+          );
+        } else {
+          print('Error: Received an invalid token from the server');
+        }
       } else {
         print('Failed to login: ${response.statusCode}');
         print('Response body: ${response.body}');
@@ -90,7 +94,6 @@ class _LoginState extends State<Login> {
       print('An error occurred: $e');
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
