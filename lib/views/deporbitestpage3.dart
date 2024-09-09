@@ -75,11 +75,11 @@ class _specifictestpage3 extends State<specifictestpage3> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Answer Required"),
-          content: Text("Please select an answer before proceeding."),
+          title: const Text("Answer Required"),
+          content: const Text("Please select an answer before proceeding."),
           actions: [
             TextButton(
-              child: Text("OK"),
+              child: const Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -96,23 +96,23 @@ class _specifictestpage3 extends State<specifictestpage3> {
       builder: (BuildContext context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
-            side:
-                BorderSide(color: Color(0xffD9D9D9).withOpacity(.69), width: 2),
+            side: BorderSide(
+                color: const Color(0xffD9D9D9).withOpacity(.69), width: 2),
             borderRadius: BorderRadius.circular(20),
           ),
-          backgroundColor:
-              Color(0xff537F5C).withOpacity(.88), // Match the background color
-          content: Container(
+          backgroundColor: const Color(0xff537F5C)
+              .withOpacity(.88), // Match the background color
+          content: SizedBox(
             height: 350, // Set the height of the dialog
             width: 320,
             // Set the width of the dialog
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 60,
                 ),
-                Text(
+                const Text(
                   "Are you sure\n you want to Quit the \ntest?",
                   style: TextStyle(
                       color: Colors.white, // White text color
@@ -121,7 +121,8 @@ class _specifictestpage3 extends State<specifictestpage3> {
                       fontFamily: 'InriaSans-Regular'),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 20), // Add space between text and buttons
+                const SizedBox(
+                    height: 20), // Add space between text and buttons
                 Container(
                   width: 200,
                   decoration: BoxDecoration(
@@ -144,15 +145,15 @@ class _specifictestpage3 extends State<specifictestpage3> {
                       // Add your logic to quit the test here
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffA71C1C)
+                      backgroundColor: const Color(0xffA71C1C)
                           .withOpacity(.88), // Red color for "Quit"
                       shape: RoundedRectangleBorder(
                         borderRadius:
                             BorderRadius.circular(10), // Rounded button
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Quit",
                       style: TextStyle(
                           color: Colors.white, // White text color
@@ -161,7 +162,7 @@ class _specifictestpage3 extends State<specifictestpage3> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20), // Add space between buttons
+                const SizedBox(height: 20), // Add space between buttons
                 SizedBox(
                   width: 200, // Set the width of the "Cancel" button
                   child: OutlinedButton(
@@ -169,15 +170,15 @@ class _specifictestpage3 extends State<specifictestpage3> {
                       Navigator.of(context).pop(); // Close the dialog
                     },
                     style: OutlinedButton.styleFrom(
-                      side: BorderSide(
+                      side: const BorderSide(
                           color: Colors.white, width: 2), // White border
                       shape: RoundedRectangleBorder(
                         borderRadius:
                             BorderRadius.circular(10), // Rounded button
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Cancel",
                       style: TextStyle(
                         color: Colors.white, // White text color
@@ -203,14 +204,14 @@ class _specifictestpage3 extends State<specifictestpage3> {
         child: Row(
           children: List.generate(_questions.length, (index) {
             return Container(
-              margin: EdgeInsets.symmetric(horizontal: 2.0),
+              margin: const EdgeInsets.symmetric(horizontal: 2.0),
               width: 16, // Adjusted width for oval shape
               height: 9.0, // Height remains the same
               decoration: BoxDecoration(
                 color: index == _currentQuestionIndex
                     ? Colors.white
                     : Colors.white.withOpacity(0.5),
-                borderRadius: BorderRadius.all(Radius.elliptical(16, 10)),
+                borderRadius: const BorderRadius.all(Radius.elliptical(16, 10)),
               ),
             );
           }),
@@ -222,129 +223,131 @@ class _specifictestpage3 extends State<specifictestpage3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff537F5C),
+      backgroundColor: const Color(0xff537F5C),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _buildProgressIndicator(),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: Container(
-                    height: 460,
-                    width: double.infinity,
-                    margin: EdgeInsets.symmetric(horizontal: 30),
-                    padding: EdgeInsets.all(30),
-                    decoration: BoxDecoration(
-                      color: Color(0xff5B8864),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.white10,
-                          spreadRadius: 2,
-                          blurRadius: 10,
-                          offset: Offset(0, 3), // Shadow position
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          _questions[_currentQuestionIndex] ,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22, // Adjust font size accordingly
+            Expanded(
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.6,
+                      width: double.infinity,
+                      margin: const EdgeInsets.symmetric(horizontal: 30),
+                      padding: const EdgeInsets.all(30),
+                      decoration: BoxDecoration(
+                        color: const Color(0xff5B8864),
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.white10,
+                            spreadRadius: 2,
+                            blurRadius: 10,
+                            offset: Offset(0, 3), // Shadow position
                           ),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 40),
-                        // This is the grid of 1-10 answer options
-                        GridView.builder(
-                          shrinkWrap: true,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 5,
-                            mainAxisSpacing: 10,
-                            crossAxisSpacing: 10,
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            _questions[_currentQuestionIndex],
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 22, // Adjust font size accordingly
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                _selectAnswer((index + 1).toString());
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: answers3[_currentQuestionIndex] ==
-                                          (index + 1).toString()
-                                      ? Color(0xFFB7B597)
-                                      : Colors.white.withOpacity(0.8),
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(.25),
-                                      spreadRadius: 0,
-                                      blurRadius: 4,
-                                      offset: Offset(0, 4),
-                                    ),
-                                  ],
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    (index + 1).toString(),
-                                    style: TextStyle(
-                                      color: answers3[_currentQuestionIndex] ==
-                                              (index + 1).toString()
-                                          ? Color(0xFF3E1904)
-                                          : Color(0xFF537F5C),
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
+                          const SizedBox(height: 40),
+                          // This is the grid of 1-10 answer options
+                          GridView.builder(
+                            shrinkWrap: true,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 5,
+                              mainAxisSpacing: 10,
+                              crossAxisSpacing: 10,
+                            ),
+                            itemCount: 10,
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  _selectAnswer((index + 1).toString());
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: answers3[_currentQuestionIndex] ==
+                                            (index + 1).toString()
+                                        ? const Color(0xFFB7B597)
+                                        : Colors.white.withOpacity(0.8),
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(.25),
+                                        spreadRadius: 0,
+                                        blurRadius: 4,
+                                        offset: const Offset(0, 4),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      (index + 1).toString(),
+                                      style: TextStyle(
+                                        color:
+                                            answers3[_currentQuestionIndex] ==
+                                                    (index + 1).toString()
+                                                ? const Color(0xFF3E1904)
+                                                : const Color(0xFF537F5C),
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             // Navigation buttons
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  color: Color.fromARGB(255, 244, 246, 244),
+                  icon: const Icon(Icons.arrow_back),
+                  color: const Color.fromARGB(255, 244, 246, 244),
                   onPressed: _previousQuestion,
                   iconSize: 30.0,
-                  padding: EdgeInsets.all(3.0),
+                  padding: const EdgeInsets.all(3.0),
                   splashRadius: 25.0,
                 ),
-                SizedBox(width: 110),
                 IconButton(
-                  icon: Icon(Icons.arrow_forward),
-                  color: Color.fromARGB(255, 253, 254, 254),
+                  icon: const Icon(Icons.arrow_forward),
+                  color: const Color.fromARGB(255, 253, 254, 254),
                   onPressed: _nextQuestion,
                   iconSize: 30.0,
-                  padding: EdgeInsets.all(3.0),
+                  padding: const EdgeInsets.all(3.0),
                   splashRadius: 25.0,
                 ),
               ],
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             // Quit button
             Container(
               width: 200,
-              height: 44,
+              height: MediaQuery.of(context).size.height * 0.075,
               decoration: BoxDecoration(
                 border: Border.all(width: 1, color: Colors.white),
                 borderRadius: BorderRadius.circular(20),
@@ -359,7 +362,7 @@ class _specifictestpage3 extends State<specifictestpage3> {
               ),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff618969),
+                  backgroundColor: const Color(0xff618969),
                   shadowColor: const Color(0xff537F5C),
                   alignment: Alignment.center,
                   shape: RoundedRectangleBorder(
@@ -372,12 +375,12 @@ class _specifictestpage3 extends State<specifictestpage3> {
                 child: Text(
                   'Quit test',
                   style: TextStyle(
-                    color: Color(0xffD9D9D9),
+                    color: const Color(0xffD9D9D9),
                     fontSize: 23,
                     shadows: [
                       Shadow(
                         color: Colors.black.withOpacity(0.5),
-                        offset: Offset(2, 2),
+                        offset: const Offset(2, 2),
                         blurRadius: 4,
                       ),
                     ],

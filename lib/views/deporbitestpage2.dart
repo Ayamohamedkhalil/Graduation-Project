@@ -6,8 +6,6 @@ import 'package:splash_onboarding_test/views/deporbitestpage3.dart';
 
 class specifictestpage2 extends StatefulWidget {
   @override
- 
-
   _specifictestpage2 createState() => _specifictestpage2();
 }
 
@@ -24,8 +22,6 @@ class _specifictestpage2 extends State<specifictestpage2> {
 
     // Add more questions here...
   ];
-
-
 
   @override
   void initState() {
@@ -53,7 +49,7 @@ class _specifictestpage2 extends State<specifictestpage2> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>specifictestpage3(),
+            builder: (context) => specifictestpage3(),
           ),
         );
       }
@@ -76,11 +72,11 @@ class _specifictestpage2 extends State<specifictestpage2> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Answer Required"),
-          content: Text("Please select an answer before proceeding."),
+          title: const Text("Answer Required"),
+          content: const Text("Please select an answer before proceeding."),
           actions: [
             TextButton(
-              child: Text("OK"),
+              child: const Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -97,23 +93,23 @@ class _specifictestpage2 extends State<specifictestpage2> {
       builder: (BuildContext context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
-            side:
-                BorderSide(color: Color(0xffD9D9D9).withOpacity(.69), width: 2),
+            side: BorderSide(
+                color: const Color(0xffD9D9D9).withOpacity(.69), width: 2),
             borderRadius: BorderRadius.circular(20),
           ),
-          backgroundColor:
-              Color(0xff537F5C).withOpacity(.88), // Match the background color
-          content: Container(
+          backgroundColor: const Color(0xff537F5C)
+              .withOpacity(.88), // Match the background color
+          content: SizedBox(
             height: 350, // Set the height of the dialog
             width: 320,
             // Set the width of the dialog
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 60,
                 ),
-                Text(
+                const Text(
                   "Are you sure\n you want to Quit the \ntest?",
                   style: TextStyle(
                       color: Colors.white, // White text color
@@ -122,7 +118,8 @@ class _specifictestpage2 extends State<specifictestpage2> {
                       fontFamily: 'InriaSans-Regular'),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 20), // Add space between text and buttons
+                const SizedBox(
+                    height: 20), // Add space between text and buttons
                 Container(
                   width: 200,
                   decoration: BoxDecoration(
@@ -145,15 +142,15 @@ class _specifictestpage2 extends State<specifictestpage2> {
                       // Add your logic to quit the test here
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffA71C1C)
+                      backgroundColor: const Color(0xffA71C1C)
                           .withOpacity(.88), // Red color for "Quit"
                       shape: RoundedRectangleBorder(
                         borderRadius:
                             BorderRadius.circular(10), // Rounded button
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Quit",
                       style: TextStyle(
                           color: Colors.white, // White text color
@@ -162,7 +159,7 @@ class _specifictestpage2 extends State<specifictestpage2> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20), // Add space between buttons
+                const SizedBox(height: 20), // Add space between buttons
                 SizedBox(
                   width: 200, // Set the width of the "Cancel" button
                   child: OutlinedButton(
@@ -170,15 +167,15 @@ class _specifictestpage2 extends State<specifictestpage2> {
                       Navigator.of(context).pop(); // Close the dialog
                     },
                     style: OutlinedButton.styleFrom(
-                      side: BorderSide(
+                      side: const BorderSide(
                           color: Colors.white, width: 2), // White border
                       shape: RoundedRectangleBorder(
                         borderRadius:
                             BorderRadius.circular(10), // Rounded button
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Cancel",
                       style: TextStyle(
                         color: Colors.white, // White text color
@@ -204,14 +201,14 @@ class _specifictestpage2 extends State<specifictestpage2> {
         child: Row(
           children: List.generate(_questions.length, (index) {
             return Container(
-              margin: EdgeInsets.symmetric(horizontal: 2.0),
+              margin: const EdgeInsets.symmetric(horizontal: 2.0),
               width: 16, // Adjusted width for oval shape
               height: 9.0, // Height remains the same
               decoration: BoxDecoration(
                 color: index == _currentQuestionIndex
                     ? Colors.white
                     : Colors.white.withOpacity(0.5),
-                borderRadius: BorderRadius.all(Radius.elliptical(16, 10)),
+                borderRadius: const BorderRadius.all(Radius.elliptical(16, 10)),
               ),
             );
           }),
@@ -223,26 +220,25 @@ class _specifictestpage2 extends State<specifictestpage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff537F5C),
+      backgroundColor: const Color(0xff537F5C),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _buildProgressIndicator(),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: Container(
-                    height: 460,
+            Expanded(
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.6,
                     width: double.infinity,
-                    margin: EdgeInsets.symmetric(horizontal: 30),
-                    padding: EdgeInsets.all(30),
+                    margin: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.all(30),
                     decoration: BoxDecoration(
-                      color: Color(0xff5B8864),
+                      color: const Color(0xff5B8864),
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.white10,
                           spreadRadius: 2,
@@ -256,13 +252,13 @@ class _specifictestpage2 extends State<specifictestpage2> {
                       children: [
                         Text(
                           _questions[_currentQuestionIndex],
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 30,
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 60),
+                        const SizedBox(height: 60),
                         Container(
                           // margin: EdgeInsets.all(20),
                           decoration: BoxDecoration(
@@ -283,14 +279,14 @@ class _specifictestpage2 extends State<specifictestpage2> {
                               _selectAnswer("YES");
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFFB7B597),
+                              backgroundColor: const Color(0xFFB7B597),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25),
                               ),
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 40),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 "YES",
                                 style: TextStyle(
@@ -302,7 +298,7 @@ class _specifictestpage2 extends State<specifictestpage2> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 40),
+                        const SizedBox(height: 40),
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
@@ -322,14 +318,14 @@ class _specifictestpage2 extends State<specifictestpage2> {
                               _selectAnswer("NO");
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFFB7B597),
+                              backgroundColor: const Color(0xFFB7B597),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25),
                               ),
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 40),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 "NO",
                                 style: TextStyle(
@@ -344,17 +340,16 @@ class _specifictestpage2 extends State<specifictestpage2> {
                       ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            //SizedBox(height: 20),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
                   width: 35.0, // Adjust the width of the circle
-                  height: 35.0, // Adjust the height of the circle
+                  height: MediaQuery.of(context).size.height * 0.12,
                   decoration: BoxDecoration(
                     color: Colors.white
                         .withOpacity(.70), // Background color (light green)
@@ -364,23 +359,22 @@ class _specifictestpage2 extends State<specifictestpage2> {
                         color: Colors.black.withOpacity(0.15), // Shadow color
                         spreadRadius: 2, // How much the shadow should spread
                         blurRadius: 5, // The blur radius of the shadow
-                        offset: Offset(0, 2), // Offset the shadow vertically
+                        offset:
+                            const Offset(0, 2), // Offset the shadow vertically
                       ),
                     ],
                   ),
                   child: IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    color: Color(0xFF537F5C), // Set the color of the arrow icon
+                    icon: const Icon(Icons.arrow_back),
+                    color: const Color(
+                        0xFF537F5C), // Set the color of the arrow icon
                     onPressed: _previousQuestion,
                     iconSize: 30.0, // Adjust the size of the icon
-                    padding:
-                        EdgeInsets.all(3.0), // Adjust padding around the icon
+                    padding: const EdgeInsets.all(
+                        3.0), // Adjust padding around the icon
                     splashRadius: 25.0, // Adjust the splash radius on click
                     tooltip: "Next",
                   ),
-                ),
-                SizedBox(
-                  width: 110,
                 ),
                 Container(
                   width: 35.0, // Adjust the width of the circle
@@ -394,27 +388,28 @@ class _specifictestpage2 extends State<specifictestpage2> {
                         color: Colors.black.withOpacity(0.15), // Shadow color
                         spreadRadius: 2, // How much the shadow should spread
                         blurRadius: 5, // The blur radius of the shadow
-                        offset: Offset(0, 2), // Offset the shadow vertically
+                        offset:
+                            const Offset(0, 2), // Offset the shadow vertically
                       ),
                     ],
                   ),
                   child: IconButton(
-                    icon: Icon(Icons.arrow_forward),
-                    color: Color(0xFF537F5C), // Set the color of the arrow icon
+                    icon: const Icon(Icons.arrow_forward),
+                    color: const Color(
+                        0xFF537F5C), // Set the color of the arrow icon
                     onPressed: _nextQuestion,
                     iconSize: 30.0, // Adjust the size of the icon
-                    padding:
-                        EdgeInsets.all(3.0), // Adjust padding around the icon
+                    padding: const EdgeInsets.all(
+                        3.0), // Adjust padding around the icon
                     splashRadius: 25.0, // Adjust the splash radius on click
                     tooltip: "Next",
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 40),
             Container(
               width: 200,
-              height: 44,
+              height: MediaQuery.of(context).size.height * 0.075,
               decoration: BoxDecoration(
                 border: Border.all(width: 1, color: Colors.white),
                 borderRadius: BorderRadius.circular(20),
@@ -429,7 +424,7 @@ class _specifictestpage2 extends State<specifictestpage2> {
               ),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff618969),
+                  backgroundColor: const Color(0xff618969),
                   shadowColor: const Color(0xff537F5C),
                   alignment: Alignment.center,
                   shape: RoundedRectangleBorder(
@@ -442,12 +437,12 @@ class _specifictestpage2 extends State<specifictestpage2> {
                 child: Text(
                   'Quit test', // Button text
                   style: TextStyle(
-                    color: Color(0xffD9D9D9), // Text color
+                    color: const Color(0xffD9D9D9), // Text color
                     fontSize: 23, // Text size
                     shadows: [
                       Shadow(
                         color: Colors.black.withOpacity(0.5), // Shadow color
-                        offset: Offset(2, 2), // Shadow offset
+                        offset: const Offset(2, 2), // Shadow offset
                         blurRadius: 4, // Shadow blur radius
                       ),
                     ],
