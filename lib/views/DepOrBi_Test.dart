@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/home.dart';
-import 'package:splash_onboarding_test/views/deporbitest.dart';
+
  // Assuming the Specifictest screen is in this path
 
 class DeporbiTest extends StatelessWidget {
@@ -117,11 +117,11 @@ class DeporbiTest extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              Navigator.of(context).push(
+             /* Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => Specifictest(),
                 ),
-              );
+              );*/
             },
             child: Text(
               "Let's get started >",
