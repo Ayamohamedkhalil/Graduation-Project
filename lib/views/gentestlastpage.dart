@@ -37,9 +37,12 @@ class SubmitPage extends StatelessWidget {
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
 
-        if (responseData is Map<String, dynamic>) {
+        // Ensure that the response is a Map and contains valid data
+        if (responseData is Map<String, dynamic> && responseData.isNotEmpty) {
+          // Extract the first value from the response map
           final result = responseData.values.first ?? 'Unknown';
 
+          // Navigate to the Result1 screen with the fetched result
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -47,13 +50,14 @@ class SubmitPage extends StatelessWidget {
             ),
           );
         } else {
-          throw Exception('Unexpected response format');
+          throw Exception('Unexpected response format or empty response');
         }
       } else {
-        throw Exception('Failed to submit answers');
+        throw Exception('Failed to submit answers. Server error with status code: ${response.statusCode}');
       }
     } catch (e) {
-      print('Error: $e'); // Debugging output
+      // Catch and display any errors that occur
+      print('Error: $e');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: ${e.toString()}')),
       );
