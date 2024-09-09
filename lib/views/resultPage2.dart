@@ -32,65 +32,62 @@ class _Resultpage2State extends State<Resultpage2> {
 
   // Function to fetch token from shared preferences
   Future<String?> getToken() async {
-  final String? token = await AuthService.getToken();
-  if (token == null) {
-    print('No token found');
-  } else {
-    print('Retrieved Token: $token');
-    //print('disease name:${widget.diseaseName}')
+    final String? token = await AuthService.getToken();
+    if (token == null) {
+      print('No token found');
+    } else {
+      print('Retrieved Token: $token');
+    }
+    return token;
   }
-  return token;
-}
 
   Future<void> fetchDiseaseDescription() async {
-  String? token = await getToken();
-  if (token == null) {
-    setState(() {
-      errorMessage = 'Token not found. Please login again.';
-      isLoading = false;
-    });
-    return;
+    String? token = await getToken();
+    if (token == null) {
+      setState(() {
+        errorMessage = 'Token not found. Please login again.';
+        isLoading = false;
+      });
+      return;
+    }
+
+    print('Token used in request: $token'); // Debug token
+
+    final response = await http.get(
+      Uri.parse('https://backend-production-19d7.up.railway.app/api/test/GeneralTest/${widget.diseaseName}'),
+      headers: {
+        'Authorization': '$token', // Pass token directly without 'Bearer '
+      },
+    );
+
+    print('Status Code: ${response.statusCode}');
+    print('Response Body: ${response.body}'); // Debug response
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      setState(() {
+        description = data['description'];
+        link = data['link']; // Ensure link is extracted from the response
+        isLoading = false;
+      });
+    } else if (response.statusCode == 401) {
+      setState(() {
+        errorMessage = 'Invalid token. Please login again.';
+        isLoading = false;
+      });
+    } else {
+      setState(() {
+        errorMessage = 'Failed to load description. Status code: ${response.statusCode}';
+        isLoading = false;
+      });
+    }
   }
-
-  print('Token used in request: $token'); // Debug token
-
-  final response = await http.get(
-    Uri.parse('https://backend-production-19d7.up.railway.app/api/test/GeneralTest/${widget.diseaseName}'),
-    headers: {
-      'Authorization': '$token', // Pass token directly without 'Bearer '
-    },
-  );
-
-  print('Status Code: ${response.statusCode}');
-  print('Response Body: ${response.body}'); // Debug response
-
-  if (response.statusCode == 200) {
-    final data = jsonDecode(response.body);
-    setState(() {
-      description = data['description'];
-      link = data['link']; // Ensure link is extracted from the response
-      isLoading = false;
-    });
-  } else if (response.statusCode == 401) {
-    setState(() {
-      errorMessage = 'Invalid token. Please login again.';
-      isLoading = false;
-    });
-  } else {
-    setState(() {
-      errorMessage = 'Failed to load description. Status code: ${response.statusCode}';
-      isLoading = false;
-    });
-  }
-}
-
 
   // Function to launch URL
-  void launchUrl(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+  Future<void> _launchUrl(String urlString) async {
+    final Uri url = Uri.parse(urlString);
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
     }
   }
 
@@ -190,7 +187,7 @@ class _Resultpage2State extends State<Resultpage2> {
                                     onTap: () {
                                       if (link != null) {
                                         // Launch URL
-                                        launchUrl(link!);
+                                        _launchUrl(link!);
                                       }
                                     },
                                     child: Text(
@@ -314,7 +311,7 @@ class _Resultpage2State extends State<Resultpage2> {
                       ),
                     ),
                   ),
-                   const SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   const BarButton(),
                   const SizedBox(height: 10),
                 ],
