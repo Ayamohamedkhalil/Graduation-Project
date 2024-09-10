@@ -2,9 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/Registeration/login.dart';
 import 'package:splash_onboarding_test/Registeration/sign-up.dart';
+import 'auth_service.dart'; // Import the AuthService
 
 class Registeration extends StatelessWidget {
   const Registeration({super.key});
+
+  void _continueAsGuest(BuildContext context) async {
+    await AuthService.saveLoginInfo("", "", "", isGuest: true);
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const homescreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +53,7 @@ class Registeration extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 2,
           ),
           Container(
@@ -57,21 +66,21 @@ class Registeration extends StatelessWidget {
                     color: Colors.black.withOpacity(.25),
                     spreadRadius: 0,
                     blurRadius: 4,
-                    offset: Offset(0, 4),
+                    offset: const Offset(0, 4),
                   )
                 ]),
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   alignment: Alignment.center,
-                  backgroundColor: Color(0xff537F5C),
+                  backgroundColor: const Color(0xff537F5C),
                 ),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Login()),
+                    MaterialPageRoute(builder: (context) => const Login()),
                   );
                 },
-                child: Text(
+                child: const Text(
                   'Log in',
                   style: TextStyle(
                       fontSize: 24,
@@ -79,36 +88,36 @@ class Registeration extends StatelessWidget {
                       fontFamily: 'InriaSans-Bold'),
                 )),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
             width: 270,
             height: 44,
             decoration: BoxDecoration(
-                border: Border.all(width: 2, color: Color(0xff537F5C)),
+                border: Border.all(width: 2, color: const Color(0xff537F5C)),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(.25),
                     spreadRadius: 0,
                     blurRadius: 4,
-                    offset: Offset(0, 4),
+                    offset: const Offset(0, 4),
                   )
                 ]),
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   alignment: Alignment.center,
-                  shadowColor: Color(0xff537F5C),
+                  shadowColor: const Color(0xff537F5C),
                 ),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Signup()),
+                    MaterialPageRoute(builder: (context) => const Signup()),
                   );
                 },
-                child: Text(
+                child: const Text(
                   'Sign-up',
                   style: TextStyle(
                       fontSize: 24,
@@ -116,10 +125,10 @@ class Registeration extends StatelessWidget {
                       fontFamily: 'InriaSans-Bold'),
                 )),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Row(
+          const Row(
             children: [
               Expanded(
                 child: Divider(
@@ -130,7 +139,7 @@ class Registeration extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                padding: EdgeInsets.symmetric(horizontal: 10.0),
                 child: Text(
                   'OR',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -146,34 +155,31 @@ class Registeration extends StatelessWidget {
               ),
             ],
           ),
-         SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           Container(
             width: 270,
             height: 44,
             decoration: BoxDecoration(
-                border: Border.all(width: 2, color: Color(0xff537F5C)),
+                border: Border.all(width: 2, color: const Color(0xff537F5C)),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(.25),
                     spreadRadius: 0,
                     blurRadius: 4,
-                    offset: Offset(0, 4),
+                    offset: const Offset(0, 4),
                   )
                 ]),
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   alignment: Alignment.center,
                   backgroundColor: Colors.white,
-                  shadowColor: Color(0xff537F5C),
+                  shadowColor: const Color(0xff537F5C),
                 ),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const homescreen()),
-                  );
+                  _continueAsGuest(context);
                 },
-                child: Text(
+                child: const Text(
                   'Continue as a guest',
                   style: TextStyle(
                       fontSize: 24,

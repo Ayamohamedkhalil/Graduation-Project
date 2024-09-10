@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
-import 'package:splash_onboarding_test/Registeration/auth_service.dart';
+import 'dart:convert';
+import 'auth_service.dart'; // Import your AuthService
+import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/Registeration/forgetpassword.dart';
 import 'package:splash_onboarding_test/Registeration/registeration.dart';
-import 'dart:convert';
-import 'package:splash_onboarding_test/home.dart';
 
 class Login extends StatefulWidget {
-  Login({super.key});
+  const Login({super.key});
 
   @override
   State<Login> createState() => _LoginState();
@@ -25,9 +24,9 @@ class _LoginState extends State<Login> {
       return 'Please enter your email';
     }
 
-    String pattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
-        r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
-        r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
+    String pattern = r"(?:[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'"
+        r'+/=?^_{|}~-]+)|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
+        r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])")@(?:(?:[a-z0-9](?:[a-z0-9-]'
         r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
         r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
         r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
@@ -52,48 +51,55 @@ class _LoginState extends State<Login> {
   }
 
   // Function to perform login
- Future<void> _login() async {
-    final url = Uri.parse('https://backend-production-19d7.up.railway.app/api/login');
-    final Map<String, String> requestBody = {
-      "email": email!,
-      "password": password!
-    };
+Future<void> _login() async {
+  final url = Uri.parse('https://backend-production-19d7.up.railway.app/api/login');
+  final Map<String, String> requestBody = {
+    "email": email!,
+    "password": password!
+  };
+  print('Email: $email');
+  print('Password: $password');
 
-    try {
-      final response = await http.post(
-        url,
-        headers: {"Content-Type": "application/json"},
-        body: jsonEncode(requestBody),
-      );
+  try {
+    final response = await http.post(
+      url,
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode(requestBody),
+    );
 
-      if (response.statusCode == 200) {
-        final responseData = jsonDecode(response.body);
-        final message = responseData['message'];
-        final token = responseData['token'];
-        final user = responseData['user'];
+    print('Status code: ${response.statusCode}');
+    print('Response body: ${response.body}');
 
-        print('Message: $message');
-        print('Token: $token');
-        print('User: ${user['username']}');
+    if (response.statusCode == 200) {
+      final responseData = jsonDecode(response.body);
+      final message = responseData['message'];
+      final token = responseData['token'];
+      final user = responseData['user'];
 
-        if (token != null && token.isNotEmpty) {
-          await AuthService.saveToken(token); // Use AuthService to save token
+      print('Message: $message');
+      print('Token: $token');
+      print('User: ${user['username']}');
 
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const homescreen()),
-          );
-        } else {
-          print('Error: Received an invalid token from the server');
-        }
+      if (token != null && token.isNotEmpty) {
+        // Save the token, email, and username using saveLoginInfo
+        await AuthService.saveLoginInfo(token, email!, user['username']);
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const homescreen()),
+        );
       } else {
-        print('Failed to login: ${response.statusCode}');
-        print('Response body: ${response.body}');
+        print('Error: Received an invalid token from the server');
       }
-    } catch (e) {
-      print('An error occurred: $e');
+    } else {
+      print('Failed to login: ${response.statusCode}');
+      print('Response body: ${response.body}');
     }
+  } catch (e) {
+    print('An error occurred: $e');
   }
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,36 +107,34 @@ class _LoginState extends State<Login> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
-        //iconTheme: IconThemeData(color: Colors.white),
         actions: [
           Container(
-            margin: EdgeInsets.only(right: 320),
-            width: 35.0, // Adjust the width of the circle
-            height: 35.0, // Adjust the height of the circle
+            margin: const EdgeInsets.only(right: 320),
+            width: 35.0,
+            height: 35.0,
             decoration: BoxDecoration(
-              color: Colors.white
-                  .withOpacity(.80), // Background color (light green)
-              shape: BoxShape.circle, // Circular shape
+              color: Colors.white.withOpacity(.80),
+              shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.15), // Shadow color
-                  spreadRadius: 2, // How much the shadow should spread
-                  blurRadius: 5, // The blur radius of the shadow
-                  offset: Offset(0, 2), // Offset the shadow vertically
+                  color: Colors.black.withOpacity(0.15),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: const Offset(0, 2),
                 ),
               ],
             ),
             child: IconButton(
-              icon: Icon(Icons.arrow_back_ios),
-              color: Color(0xFF537F5C), // Set the color of the arrow icon
+              icon: const Icon(Icons.arrow_back_ios),
+              color: const Color(0xFF537F5C),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Registeration(),
+                  builder: (context) => const Registeration(),
                 ));
               },
-              iconSize: 25.0, // Adjust the size of the icon
-              padding: EdgeInsets.symmetric(vertical:3 ,horizontal:9 ), // Adjust padding around the icon
-              splashRadius: 25.0, // Adjust the splash radius on click
+              iconSize: 25.0,
+              padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 9),
+              splashRadius: 25.0,
               tooltip: "Next",
             ),
           ),
@@ -166,9 +170,6 @@ class _LoginState extends State<Login> {
                   validator: _validateEmail,
                   cursorColor: Colors.white,
                   decoration: const InputDecoration(
-                    hoverColor: Colors.white,
-                    prefix: SizedBox(width: 1),
-                    // labelText: 'Email',
                     hintText: 'Email',
                     hintStyle: TextStyle(
                       color: Colors.white70,
@@ -176,8 +177,7 @@ class _LoginState extends State<Login> {
                       fontFamily: 'InriaSans-Regular',
                     ),
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color(0xffD9D9D9)), // Normal border color
+                      borderSide: BorderSide(color: Color(0xffD9D9D9)),
                     ),
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -185,9 +185,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: TextFormField(
@@ -199,8 +197,6 @@ class _LoginState extends State<Login> {
                   validator: _validatePassword,
                   cursorColor: Colors.white,
                   decoration: const InputDecoration(
-                    hoverColor: Colors.white,
-                    prefix: SizedBox(width: 1),
                     hintText: 'Password',
                     hintStyle: TextStyle(
                       color: Colors.white70,
@@ -208,8 +204,7 @@ class _LoginState extends State<Login> {
                       fontFamily: 'InriaSans-Regular',
                     ),
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color(0xffD9D9D9)), // Normal border color
+                      borderSide: BorderSide(color: Color(0xffD9D9D9)),
                     ),
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -217,9 +212,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 15,
-              ),
+              const SizedBox(height: 15),
               GestureDetector(
                 child: Container(
                   margin: const EdgeInsets.only(left: 172),
@@ -228,8 +221,6 @@ class _LoginState extends State<Login> {
                     style: TextStyle(
                       decoration: TextDecoration.underline,
                       decorationColor: Colors.white,
-
-                      //decorationStyle:TextDecorationStyle(boxsize) ,
                       color: Colors.white,
                       fontSize: 14,
                       fontFamily: 'InriaSans-Regular',
@@ -239,7 +230,7 @@ class _LoginState extends State<Login> {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => Forgetpassword(),
+                      builder: (context) =>  Forgetpassword(),
                     ),
                   );
                 },
@@ -264,25 +255,24 @@ class _LoginState extends State<Login> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff537F5C),
                     shadowColor: const Color(0xff537F5C),
-                    alignment: Alignment.center,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  onPressed: () {
-                    if (formstate.currentState!.validate()) {
-                      formstate.currentState!.save();
-                      _login(); // Trigger the login function
-                    } else {
-                      print('Not Valid');
+                  onPressed: () async {
+                    var formdata = formstate.currentState;
+                    if (formdata!.validate()) {
+                      formdata.save();
+                      await _login();
                     }
                   },
                   child: const Text(
-                    'Log in',
+                    'Login',
                     style: TextStyle(
-                      fontSize: 28,
                       color: Colors.white,
-                      fontFamily: 'InriaSans-Bold',
+                      fontSize: 22,
+                      fontFamily: 'InriaSans-Regular',
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),
