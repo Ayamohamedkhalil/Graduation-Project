@@ -3,8 +3,11 @@ import 'package:http/http.dart' as http;
 import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'dart:convert';
 import 'package:splash_onboarding_test/home.dart';
+import 'auth_service.dart';
 
 class Signup extends StatefulWidget {
+  const Signup({super.key});
+
   @override
   _SignupState createState() => _SignupState();
 }
@@ -39,8 +42,8 @@ class _SignupState extends State<Signup> {
       return 'Please enter your email';
     }
     String pattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
-        r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
-        r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
+        r'+/=?^_`{|}~-]+)|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
+        r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])")@(?:(?:[a-z0-9](?:[a-z0-9-]'
         r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
         r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
         r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
@@ -59,7 +62,7 @@ class _SignupState extends State<Signup> {
 
     // Regular expression for strong password
     String pattern =
-        r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
+        r'^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$';
     RegExp regex = RegExp(pattern);
 
     if (!regex.hasMatch(value)) {
@@ -82,14 +85,14 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF537F5C),
+      backgroundColor: const Color(0xFF537F5C),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           Container(
-            margin: EdgeInsets.only(right: 320),
+            margin: const EdgeInsets.only(right: 320),
             width: 35.0, // Adjust the width of the circle
             height: 35.0, // Adjust the height of the circle
             decoration: BoxDecoration(
@@ -101,20 +104,21 @@ class _SignupState extends State<Signup> {
                   color: Colors.black.withOpacity(0.15), // Shadow color
                   spreadRadius: 2, // How much the shadow should spread
                   blurRadius: 5, // The blur radius of the shadow
-                  offset: Offset(0, 2), // Offset the shadow vertically
+                  offset: const Offset(0, 2), // Offset the shadow vertically
                 ),
               ],
             ),
             child: IconButton(
-              icon: Icon(Icons.arrow_back_ios),
-              color: Color(0xFF537F5C), // Set the color of the arrow icon
+              icon: const Icon(Icons.arrow_back_ios),
+              color: const Color(0xFF537F5C), // Set the color of the arrow icon
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Registeration(),
+                  builder: (context) => const Registeration(),
                 ));
               },
               iconSize: 25.0, // Adjust the size of the icon
-               padding: EdgeInsets.symmetric(vertical:3 ,horizontal:9 ),  // Adjust padding around the icon
+              padding: const EdgeInsets.symmetric(
+                  vertical: 3, horizontal: 9), // Adjust padding around the icon
               splashRadius: 25.0, // Adjust the splash radius on click
               tooltip: "Next",
             ),
@@ -126,8 +130,8 @@ class _SignupState extends State<Signup> {
           key: formKey,
           child: Column(
             children: [
-              SizedBox(height: 80),
-              Center(
+              const SizedBox(height: 80),
+              const Center(
                 child: Text(
                   'Welcome',
                   style: TextStyle(
@@ -138,7 +142,7 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: TextFormField(
@@ -147,10 +151,9 @@ class _SignupState extends State<Signup> {
                   validator: _validateName,
                   cursorColor: Colors.white,
                   decoration: const InputDecoration(
-                  
                     hoverColor: Colors.white,
                     prefix: SizedBox(width: 1),
-                   // labelText: 'Email',
+                    // labelText: 'Email',
                     hintText: 'Name',
                     hintStyle: TextStyle(
                       color: Colors.white70,
@@ -167,7 +170,7 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -197,7 +200,7 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -209,10 +212,9 @@ class _SignupState extends State<Signup> {
                   validator: _validatePassword,
                   cursorColor: Colors.white,
                   decoration: const InputDecoration(
-                  
                     hoverColor: Colors.white,
                     prefix: SizedBox(width: 1),
-                   // labelText: 'Email',
+                    // labelText: 'Email',
                     hintText: 'Password',
                     hintStyle: TextStyle(
                       color: Colors.white70,
@@ -229,7 +231,7 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -241,10 +243,9 @@ class _SignupState extends State<Signup> {
                   validator: _validateConfirmPassword,
                   cursorColor: Colors.white,
                   decoration: const InputDecoration(
-                  
                     hoverColor: Colors.white,
                     prefix: SizedBox(width: 1),
-                   // labelText: 'Email',
+                    // labelText: 'Email',
                     hintText: 'Confirm Password',
                     hintStyle: TextStyle(
                       color: Colors.white70,
@@ -261,7 +262,7 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
               Container(
                 width: 270,
                 height: 44,
@@ -273,14 +274,14 @@ class _SignupState extends State<Signup> {
                       color: Colors.black.withOpacity(.25),
                       spreadRadius: 0,
                       blurRadius: 4,
-                      offset: Offset(0, 4),
+                      offset: const Offset(0, 4),
                     ),
                   ],
                 ),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xff537F5C),
-                    shadowColor: Color(0xff537F5C),
+                    backgroundColor: const Color(0xff537F5C),
+                    shadowColor: const Color(0xff537F5C),
                     alignment: Alignment.center,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -314,24 +315,37 @@ class _SignupState extends State<Signup> {
                           headers: {"Content-Type": "application/json"},
                           body: jsonEncode(requestBody),
                         );
-                        // print('Valid=76869767679697679679hghtt========================================================================================================================yty');
-                        //print(response.statusCode);
 
                         // Handle the response
                         if (response.statusCode == 201) {
-                          // Success: Navigate to the home screen
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const homescreen()),
-                          );
+                          final responseData = jsonDecode(response.body);
+                          final message = responseData['message'];
+                          final token = responseData['token'];
+                          final user = responseData['user'];
+
+                          print('Message: $message');
+                          print('Token: $token');
+                          print('User: ${user['username']}');
+
+                          if (token != null && token.isNotEmpty) {
+                            // Save the token, email, and username using saveLoginInfo
+                            await AuthService.saveLoginInfo(
+                                token, email!, user['username']);
+                            // Success: Navigate to the home screen
+
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const homescreen()),
+                            );
+                          }
                         } else {
                           // Handle errors: Show an alert dialog or snackbar
                           showDialog(
                             context: context,
                             builder: (context) {
                               return AlertDialog(
-                                title: Text('Error'),
+                                title: const Text('Error'),
                                 content: Text(
                                     'Registration failed: ${response.body}'),
                                 actions: [
@@ -339,7 +353,7 @@ class _SignupState extends State<Signup> {
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: Text('OK'),
+                                    child: const Text('OK'),
                                   ),
                                 ],
                               );
@@ -352,14 +366,14 @@ class _SignupState extends State<Signup> {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: Text('Error'),
+                              title: const Text('Error'),
                               content: Text('An error occurred: $e'),
                               actions: [
                                 TextButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: Text('OK'),
+                                  child: const Text('OK'),
                                 ),
                               ],
                             );
@@ -368,7 +382,7 @@ class _SignupState extends State<Signup> {
                       }
                     }
                   },
-                  child: Text(
+                  child: const Text(
                     'Sign-up',
                     style: TextStyle(
                       fontSize: 28,
