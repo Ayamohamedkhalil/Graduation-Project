@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/home.dart';
+import 'package:splash_onboarding_test/views/DepressionOrBipolarTest/DepOrBi.dart';
 
  // Assuming the Specifictest screen is in this path
 
@@ -117,11 +118,11 @@ class DeporbiTest extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-             /* Navigator.of(context).push(
+             Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => Specifictest(),
+                  builder: (context) => Deporbi(),
                 ),
-              );*/
+              );
             },
             child: Text(
               "Let's get started >",
