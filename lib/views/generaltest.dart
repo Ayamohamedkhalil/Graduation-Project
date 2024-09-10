@@ -486,14 +486,14 @@ class _Generaltest extends State<Generaltest> {
               ],
             ),
             SizedBox(height: 40),
-            _buildQuitButton(),
+            buildQuitButton(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildQuitButton() {
+  Widget buildQuitButton() {
     return Container(
       width: 200,
       height: 44,

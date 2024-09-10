@@ -13,16 +13,10 @@ class NavigationButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        ElevatedButton(
-          onPressed: onPrevious,
-          child: const Text('Previous'),
-        ),
-        ElevatedButton(
-          onPressed: onNext,
-          child: const Text('Next'),
-        ),
+       IconButton(onPressed: onNext, icon: Icon(Icons.arrow_forward_ios)),
+       IconButton(onPressed: onPrevious, icon: Icon(Icons.arrow_back_ios)),
       ],
     );
   }
