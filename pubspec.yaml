@@ -98,7 +98,10 @@ flutter:
         - asset: fonts/Inter-VariableFont_opsz,wght.ttf    
     - family: InriaSerif
       fonts:
-        - asset: fonts/InriaSerif-Bold.ttf     
+        - asset: fonts/InriaSerif-Bold.ttf 
+    - family: Martel-Black
+      fonts:
+        - asset: fonts/Martel-Black.ttf          
         
   #         weight: 700
   #
