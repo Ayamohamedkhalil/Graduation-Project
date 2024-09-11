@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:splash_onboarding_test/views/resultPage2.dart';
+import 'package:splash_onboarding_test/views/DepressionOrBipolarTest/Result2DepOrBi.dart';
 
-class Result1 extends StatelessWidget {
+class Result1DepORBi extends StatelessWidget {
   final String result;
 
-  const Result1({super.key, required this.result});
+  const Result1DepORBi({super.key, required this.result});
   
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class Result1 extends StatelessWidget {
                       height: 200,
                     )
                   : Image.asset(
-                      'assets/lastupdateofgeneraltest.png', // Adjust this line to match your image paths
+                      'assets/$result.png', // Adjust this line to match your image paths
                       width: 200,
                       height: 200,
                       errorBuilder: (context, error, stackTrace) {
@@ -44,7 +44,7 @@ class Result1 extends StatelessWidget {
                           color: Colors.grey,
                           width: 200,
                           height: 200,
-                          child: const Center(
+                          child: Center(
                             child: Text(
                               'Image Error',
                               style: TextStyle(color: Colors.red),
@@ -66,8 +66,8 @@ class Result1 extends StatelessWidget {
             const SizedBox(height: 30),
             Text(
               result,
-              style: const TextStyle(
-                color: Color(0xffD9D9D9),
+              style: TextStyle(
+                color: const Color(0xffD9D9D9),
                 fontSize: 37,
                 fontFamily: 'Ledger-Regular',
               ),
@@ -93,7 +93,7 @@ class Result1 extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Resultpage2(diseaseName: result)),
+                              builder: (context) => const Result2DepOrBi()),
                         );
                       },
                     ),

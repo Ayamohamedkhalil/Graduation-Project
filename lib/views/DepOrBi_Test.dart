@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:splash_onboarding_test/home.dart';
+<<<<<<< HEAD
 import 'package:splash_onboarding_test/views/deporbitest.dart';
 // Assuming the Specifictest screen is in this path
+=======
+import 'package:splash_onboarding_test/views/DepressionOrBipolarTest/DepOrBi.dart';
+
+ // Assuming the Specifictest screen is in this path
+>>>>>>> e75564316d68a4e8b8b34c5e32fda5ab47661df0
 
 class DeporbiTest extends StatelessWidget {
   const DeporbiTest({super.key});
@@ -123,6 +129,7 @@ class DeporbiTest extends StatelessWidget {
             ),
           ),
           SizedBox(
+<<<<<<< HEAD
             height: MediaQuery.of(context).size.height * 0.12,
             child: TextButton(
               onPressed: () {
@@ -139,6 +146,24 @@ class DeporbiTest extends StatelessWidget {
                     fontSize: 32,
                     fontFamily: 'InriaSans'),
               ),
+=======
+            height: 13,
+          ),
+          TextButton(
+            onPressed: () {
+             Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => Deporbi(),
+                ),
+              );
+            },
+            child: Text(
+              "Let's get started >",
+              style: TextStyle(
+                  color: Color(0xff537F5C),
+                  fontSize: 32,
+                  fontFamily: 'InriaSans'),
+>>>>>>> e75564316d68a4e8b8b34c5e32fda5ab47661df0
             ),
           ),
         ],

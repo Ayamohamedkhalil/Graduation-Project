@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:splash_onboarding_test/views/result1.dart';
 
-class SubmitPage extends StatelessWidget {
+import 'package:splash_onboarding_test/views/DepressionOrBipolarTest/ResultDepOrBi.dart';
+
+
+class DepoRBiSubmitPage extends StatelessWidget {
   final List<String?> answers;
 
-  const SubmitPage({Key? key, required this.answers}) : super(key: key);
+  const DepoRBiSubmitPage({Key? key, required this.answers}) : super(key: key);
 
   Future<void> _submitAnswers(BuildContext context) async {
-    final url = Uri.parse('https://ml-models-production-90be.up.railway.app/generalPredict');
+    final url = Uri.parse('https://ml-models-production-90be.up.railway.app/depressionPredict');
 
     // Convert answers to a list of maps
     final payload = jsonEncode({
@@ -37,27 +39,23 @@ class SubmitPage extends StatelessWidget {
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
 
-        // Ensure that the response is a Map and contains valid data
-        if (responseData is Map<String, dynamic> && responseData.isNotEmpty) {
-          // Extract the first value from the response map
+        if (responseData is Map<String, dynamic>) {
           final result = responseData.values.first ?? 'Unknown';
 
-          // Navigate to the Result1 screen with the fetched result
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => Result1(result: result),
+              builder: (context) => Result1DepORBi(result: result),
             ),
           );
         } else {
-          throw Exception('Unexpected response format or empty response');
+          throw Exception('Unexpected response format');
         }
       } else {
-        throw Exception('Failed to submit answers. Server error with status code: ${response.statusCode}');
+        throw Exception('Failed to submit answers');
       }
     } catch (e) {
-      // Catch and display any errors that occur
-      print('Error: $e');
+      print('Error: $e'); // Debugging output
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: ${e.toString()}')),
       );

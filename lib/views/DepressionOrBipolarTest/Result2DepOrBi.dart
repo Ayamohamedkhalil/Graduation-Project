@@ -1,102 +1,22 @@
-import 'dart:convert';
+//import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
+import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/components/Ellipses.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
-import 'package:splash_onboarding_test/Registeration/auth_service.dart';
-import 'package:splash_onboarding_test/components/ButtonBar.dart';
 
-class Resultpage2 extends StatefulWidget {
-  final String diseaseName; // Take the disease name from the previous page
-
-  const Resultpage2({Key? key, required this.diseaseName}) : super(key: key);
-
-  @override
-  _Resultpage2State createState() => _Resultpage2State();
-}
-
-class _Resultpage2State extends State<Resultpage2> {
-  String? description; // For holding the fetched disease description
-  String? link; // For holding the fetched link
-  bool isLoading = true;
-  String? errorMessage;
-  String? token; // Store the fetched token
-
-  @override
-  void initState() {
-    super.initState();
-    fetchDiseaseDescription(); // Fetch the disease description when the page loads
-  }
-
-  // Function to fetch token from shared preferences
-  Future<String?> getToken() async {
-    final String? token = await AuthService.getToken();
-    if (token == null) {
-      print('No token found');
-    } else {
-      print('Retrieved Token: $token');
-    }
-    return token;
-  }
-
-  Future<void> fetchDiseaseDescription() async {
-    String? token = await getToken();
-    if (token == null) {
-      setState(() {
-        errorMessage = 'Token not found. Please login again.';
-        isLoading = false;
-      });
-      return;
-    }
-
-    print('Token used in request: $token'); // Debug token
-
-    final response = await http.get(
-      Uri.parse('https://backend-production-19d7.up.railway.app/api/test/GeneralTest/${widget.diseaseName}'),
-      headers: {
-        'Authorization': '$token', // Pass token directly without 'Bearer '
-      },
-    );
-
-    print('Status Code: ${response.statusCode}');
-    print('Response Body: ${response.body}'); // Debug response
-
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      setState(() {
-        description = data['description'];
-        link = data['link']; // Ensure link is extracted from the response
-        isLoading = false;
-      });
-    } else if (response.statusCode == 401) {
-      setState(() {
-        errorMessage = 'Invalid token. Please login again.';
-        isLoading = false;
-      });
-    } else {
-      setState(() {
-        errorMessage = 'Failed to load description. Status code: ${response.statusCode}';
-        isLoading = false;
-      });
-    }
-  }
-
-  // Function to launch URL
-  Future<void> _launchUrl(String urlString) async {
-    final Uri url = Uri.parse(urlString);
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
-    }
-  }
+class Result2DepOrBi extends StatelessWidget {
+  const Result2DepOrBi({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          // Background
+          //
+          //for backGround
+          //
           Container(
             decoration: BoxDecoration(
               color: PriamryColor,
@@ -109,14 +29,21 @@ class _Resultpage2State extends State<Resultpage2> {
               fit: BoxFit.cover,
             ),
           ),
+          //
+          //
+          //
           Column(
             children: [
+              //
+              //scrollable content
+              //
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
                       Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 30),
                         padding: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.06),
@@ -127,36 +54,33 @@ class _Resultpage2State extends State<Resultpage2> {
                         ),
                         child: Column(
                           children: [
-                            Image.asset("assets/logo.png"),
-                            const SizedBox(height: 10),
-                            isLoading
-                                ? const CircularProgressIndicator() // Show loading spinner while fetching data
-                                : errorMessage != null
-                                    ? Text(
-                                        errorMessage!,
-                                        style: const TextStyle(color: Colors.red, fontSize: 18),
-                                      )
-                                    : Text(
-                                        description ?? "No description available", // Show fetched description or fallback
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 21,
-                                          fontFamily: "Ledger",
-                                        ),
-                                      ),
-                            const SizedBox(height: 30),
+                            Image.asset(
+                              "assets/logo.png",
+                            ),
+                            const Text(
+                              "“ADHD, or Attention-Deficit/Hyperactivity Disorder, can be abstractly understood as a mind in constant motion, where focus drifts like a leaf in the wind. It’s the challenge of holding onto a single thought as countless others rush in, competing for attention.”",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 21,
+                                  fontFamily: "Ledger"),
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
                             Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 10),
-                              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 10),
                               decoration: BoxDecoration(
-                                color: BackgroundColor,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
+                                  color: BackgroundColor,
+                                  borderRadius: BorderRadius.circular(10)),
                               child: Column(
                                 children: [
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       const Expanded(
@@ -166,10 +90,9 @@ class _Resultpage2State extends State<Resultpage2> {
                                           softWrap: true,
                                           overflow: TextOverflow.clip,
                                           style: TextStyle(
-                                            fontSize: 18,
-                                            fontFamily: "Inter",
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                              fontSize: 18,
+                                              fontFamily: "Inter",
+                                              fontWeight: FontWeight.w500),
                                         ),
                                       ),
                                       IconButton(
@@ -182,29 +105,26 @@ class _Resultpage2State extends State<Resultpage2> {
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(height: 10),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
                                   GestureDetector(
-                                    onTap: () {
-                                      if (link != null) {
-                                        // Launch URL
-                                        _launchUrl(link!);
-                                      }
-                                    },
-                                    child: Text(
-                                      link != null ? link! : "No additional information available",
-                                      style: const TextStyle(
-                                        fontFamily: "Inter",
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w500,
-                                        color: Color(0xff1D17D1),
-                                        decoration: TextDecoration.underline,
-                                      ),
+                                    child: const Text(
+                                      "WHAT IS ADHD: your guide to adrenaline deficiency & hyperactivity disorder",
+                                      style: TextStyle(
+                                          fontFamily: "Inter",
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w500,
+                                          color: Color(0xff1D17D1),
+                                          decoration: TextDecoration.underline),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            const SizedBox(height: 25),
+                            const SizedBox(
+                              height: 25,
+                            )
                           ],
                         ),
                       ),
@@ -213,7 +133,6 @@ class _Resultpage2State extends State<Resultpage2> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             const Expanded(
-                              flex: 1,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [EllipsesInResultpage()],
@@ -224,15 +143,15 @@ class _Resultpage2State extends State<Resultpage2> {
                               child: Column(
                                 children: [
                                   SizedBox(
-                                    width: MediaQuery.of(context).size.width * 0.9,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
                                     child: const Text(
                                       "But don’t worry. we’re here to join you through your healing journey, so we’ve designed comprehensive guidelines specifically tailored to support your mental well-being",
                                       softWrap: true,
                                       style: TextStyle(
-                                        fontFamily: "Ledger",
-                                        fontSize: 21,
-                                        color: Colors.white,
-                                      ),
+                                          fontFamily: "Ledger",
+                                          fontSize: 21,
+                                          color: Colors.white),
                                       textAlign: TextAlign.center,
                                     ),
                                   )
@@ -240,7 +159,6 @@ class _Resultpage2State extends State<Resultpage2> {
                               ),
                             ),
                             const Expanded(
-                              flex: 1,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [EllipsesInResultpage()],
@@ -253,11 +171,20 @@ class _Resultpage2State extends State<Resultpage2> {
                   ),
                 ),
               ),
-              // Button Bar
+              //
+              //
+              //
+              //Button Bar
+              //
+              //
               Column(
                 children: [
-                  const SizedBox(height: 15),
-                  // Guidelines Button
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  //
+                  //Guidlines Button
+                  //
                   Container(
                     width: 200,
                     height: 44,
@@ -282,9 +209,7 @@ class _Resultpage2State extends State<Resultpage2> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      onPressed: () {
-                        // Handle guidelines button press
-                      },
+                      onPressed: () {},
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -295,7 +220,8 @@ class _Resultpage2State extends State<Resultpage2> {
                               fontSize: 23, // Text size
                               shadows: [
                                 Shadow(
-                                  color: Colors.black.withOpacity(0.5), // Shadow color
+                                  color: Colors.black
+                                      .withOpacity(0.5), // Shadow color
                                   offset: const Offset(2, 2), // Shadow offset
                                   blurRadius: 4, // Shadow blur radius
                                 ),
@@ -305,19 +231,23 @@ class _Resultpage2State extends State<Resultpage2> {
                           const Icon(
                             FontAwesomeIcons.arrowRight,
                             color: Colors.white,
-                            size: 18,
-                          ),
+                            size: 20,
+                          )
                         ],
                       ),
                     ),
                   ),
-                  const SizedBox(height: 15),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   const BarButton(),
-                  const SizedBox(height: 10),
+                  const SizedBox(
+                    height: 10,
+                  ),
                 ],
-              ),
+              )
             ],
-          ),
+          )
         ],
       ),
     );
