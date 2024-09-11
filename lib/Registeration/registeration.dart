@@ -26,7 +26,7 @@ class Registeration extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(60),
                 child: Image.asset(
-                  'assets/New Project-2-svg 1.png',
+                  'assets/registeration.png',
                   height: 250,
                   width: 300,
                 ),
