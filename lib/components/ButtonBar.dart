@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:splash_onboarding_test/constant/Colors.dart';
-import 'package:splash_onboarding_test/home.dart'; 
-import 'package:splash_onboarding_test/views/UserProfile.dart';
 import 'package:splash_onboarding_test/Registeration/login.dart';
 import 'package:splash_onboarding_test/Registeration/sign-up.dart';
+import 'package:splash_onboarding_test/constant/Colors.dart';
+import 'package:splash_onboarding_test/home.dart';
+import 'package:splash_onboarding_test/views/UserProfile.dart';
+
 import 'package:splash_onboarding_test/Registeration/auth_service.dart';
 import 'package:splash_onboarding_test/views/journalPages/journalPage.dart';
 
@@ -42,91 +43,149 @@ class BarButton extends StatelessWidget {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
+        return Dialog(
+          backgroundColor: Color(0xff537F5C).withOpacity(.88),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(30),
           ),
-          backgroundColor: const Color(0xff537F5C).withOpacity(.88),
-          content: SizedBox(
-            height: 350,
-            width: 320,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+          child: Container(
+            width: 300, // Set width of the dialog
+            height: 500, // Set height of the dialog
+            padding: EdgeInsets.all(20),
+            child: Stack(
+              alignment: Alignment.center,
               children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: IconButton(
-                    icon: Icon(Icons.close, color: Colors.white),
-                    onPressed: () {
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset('assets/oops.png'),
+                    SizedBox(height: 10,),
+                    Text(
+                      'Oops!!!',
+                      style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontFamily: 'Martel-Black'),
+                    ),
+                    SizedBox(height: 20,),
+                    Text(
+                      "It looks like you're not signed in.\n please",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 22,
+                        color: Colors.white,
+                        fontFamily: 'Ledger',
+                       fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                   
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            // Handle login action
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => Login(),
+                              ),
+                            ); // Close the dialog
+                          },
+                          child: Text(
+                            'log-in',
+                            style: TextStyle(
+                              color: Color(0xff1F355A),
+                              fontSize: 24,
+                              decoration: TextDecoration.underline,
+                               decorationColor:Color(0xff1F355A) , 
+                               fontFamily: 'Ledger',
+                               fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          ' or ',
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.white,
+                             fontFamily: 'Ledger',
+                             fontWeight: FontWeight.w500,
+                            // fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            // Handle sign-up action
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => Signup(),
+                              ),
+                            ); // Cl // Close the dialog
+                          },
+                          child: Text(
+                            'sign-up',
+                            style: TextStyle(
+                              color: Color(0xff1F355A),
+                              fontSize: 24,
+                              decoration: TextDecoration.underline,
+                               decorationColor:Color(0xff1F355A) , 
+                               fontFamily: 'Ledger',
+                               fontWeight: FontWeight.w500,
+                              
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                     Text(
+                          ' to continue ',
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.white,
+                             fontFamily: 'Ledger',
+                            // fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                  ],
+                ),
+                Positioned(
+                  top: 2,
+                  right: 2,
+                  child: GestureDetector(
+                    onTap: () {
                       Navigator.of(context).pop(); // Close the dialog
                     },
-                  ),
+                    child: Container(
+          // margin: EdgeInsets.only(left: 5),
+            width: 35.0,
+            height: 35.0,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(.80),
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.15),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: const Offset(0, 2),
                 ),
-                Image.asset('assets/Answerreqiured.png',
-                    width: 140, height: 100),
-                const SizedBox(height: 20),
-                const Text(
-                  "Oops!!!",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Poppins',
+              ],
+            ),
+            child: IconButton(
+              icon: const Icon(Icons.close_rounded),
+              color: const Color(0xFF537F5C),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              iconSize: 30.0,
+              padding: const EdgeInsets.symmetric(vertical: 3, horizontal:3),
+              splashRadius: 25.0,
+              
+            ),
+          ),
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  "It looks like you’re not signed in. Please log-in or sign-up to continue.",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontFamily: 'InriaSans-Regular',
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop(); // Close the dialog
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Login()),
-                        );
-                      },
-                      child: Text(
-                        "Log In",
-                        style: TextStyle(
-                          color: const Color(0xff003366), // Dark blue color
-                          fontSize: 16,
-                          fontFamily: 'InriaSans-Regular',
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10), // Add space between buttons
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop(); // Close the dialog
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Signup()),
-                        );
-                      },
-                      child: Text(
-                        "Sign Up",
-                        style: TextStyle(
-                          color: const Color(0xff003366), // Dark blue color
-                          fontSize: 16,
-                          fontFamily: 'InriaSans-Regular',
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),
@@ -182,13 +241,12 @@ class BarButton extends StatelessWidget {
                   child: IconButton(
                     color: const Color(0xff3B5D44),
                     onPressed: () {
-                      _handleButtonPress(context, () {
-                        Navigator.pushReplacement(
+                   Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const homescreen()), // Assuming Home is the correct route.
+                              builder: (context) =>
+                                  const homescreen()), // Assuming Home is the correct route.
                         );
-                      });
                     },
                     icon: Icon(
                       Icons.home,
