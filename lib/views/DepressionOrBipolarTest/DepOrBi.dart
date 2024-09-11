@@ -549,7 +549,7 @@ Question(
             
             onTap: () => _selectAnswer(answer),
             child: CircleAvatar(
-              maxRadius: 25,
+              maxRadius: 20,
               backgroundColor: _selectedAnswer == answer
                   ? Color(0xff666556)
                   : const Color(0xFFB7B597), // Default color
