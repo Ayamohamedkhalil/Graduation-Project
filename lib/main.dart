@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:splash_onboarding_test/home.dart';
-import 'package:splash_onboarding_test/Logo/splashScreen.dart';
+
+import 'package:splash_onboarding_test/views/splashfile/splashview.dart';
 
 void main() {
   runApp( test_app());
@@ -15,7 +16,7 @@ class test_app extends StatelessWidget {
         return MaterialApp(
          // title: 'Aya',
       debugShowCheckedModeBanner: false,
-      home:Splashscreen() ,
+      home:SplashView() ,
     );
   }
 }

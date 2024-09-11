@@ -37,7 +37,7 @@ class Result1DepORBi extends StatelessWidget {
                     )
                   : Image.asset(
                       'assets/image1.png',
-                      width: 200,
+                      width:200,
                       height: 200,
                       errorBuilder: (context, error, stackTrace) {
                         return Container(
