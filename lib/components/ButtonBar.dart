@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
-import 'package:splash_onboarding_test/home.dart';
+import 'package:splash_onboarding_test/home.dart'; 
 import 'package:splash_onboarding_test/views/UserProfile.dart';
 import 'package:splash_onboarding_test/Registeration/login.dart';
 import 'package:splash_onboarding_test/Registeration/sign-up.dart';
@@ -164,11 +164,13 @@ class BarButton extends StatelessWidget {
                   child: IconButton(
                     color: isGuest ? const Color(0xff3B5D44) : iconColor,
                     onPressed: () {
-                      if (isGuest) {
-                        _showLoginAlert(context);
-                      } else {
-                        // Handle edit button press
-                      }
+                      _handleButtonPress(context, () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => JournalPage()),
+                        );
+                      });
                     },
                     icon: Icon(
                       Icons.edit,
@@ -180,10 +182,13 @@ class BarButton extends StatelessWidget {
                   child: IconButton(
                     color: const Color(0xff3B5D44),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => JournalPage()),
-                      );
+                      _handleButtonPress(context, () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const homescreen()), // Assuming Home is the correct route.
+                        );
+                      });
                     },
                     icon: Icon(
                       Icons.home,
@@ -195,15 +200,13 @@ class BarButton extends StatelessWidget {
                   child: IconButton(
                     color: const Color(0xff3B5D44),
                     onPressed: () {
-                      if (isGuest) {
-                        _showLoginAlert(context);
-                      } else {
+                      _handleButtonPress(context, () {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const UserProfile()),
                         );
-                      }
+                      });
                     },
                     icon: Icon(
                       Icons.person,

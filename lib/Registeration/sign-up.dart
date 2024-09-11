@@ -330,7 +330,7 @@ class _SignupState extends State<Signup> {
                           if (token != null && token.isNotEmpty) {
                             // Save the token, email, and username using saveLoginInfo
                             await AuthService.saveLoginInfo(
-                                token, email!, user['username']);
+                                token, email, user['username']);
                             // Success: Navigate to the home screen
 
                             Navigator.pushReplacement(
