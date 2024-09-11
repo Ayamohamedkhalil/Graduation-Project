@@ -4,7 +4,6 @@ import 'dart:convert';
 
 import 'package:splash_onboarding_test/views/DepressionOrBipolarTest/ResultDepOrBi.dart';
 
-
 class DepoRBiSubmitPage extends StatelessWidget {
   final List<String?> answers;
 
@@ -21,7 +20,7 @@ class DepoRBiSubmitPage extends StatelessWidget {
           'question': 'Question ${index + 1}',
           'answer': answers[index] ?? 'Unknown',
         },
-      )
+      ),
     });
 
     print('Payload: $payload'); // Debugging output
@@ -79,6 +78,7 @@ class DepoRBiSubmitPage extends StatelessWidget {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.bold,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
             Image.asset(
@@ -105,18 +105,13 @@ class DepoRBiSubmitPage extends StatelessWidget {
   }
 
   Widget _buildButton(BuildContext context, String label, VoidCallback onPressed) {
-    return Container(
+    return SizedBox(
       width: 180,
       height: 40,
-      decoration: BoxDecoration(
-        border: Border.all(width: 1, color: Colors.white),
-        borderRadius: BorderRadius.circular(20),
-      ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xff618969),
           shadowColor: const Color(0xff537F5C),
-          alignment: Alignment.center,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -124,8 +119,8 @@ class DepoRBiSubmitPage extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           label,
-          style: TextStyle(
-            color: const Color(0xffD9D9D9),
+          style: const TextStyle(
+            color: Color(0xffD9D9D9),
             fontSize: 20,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w700,

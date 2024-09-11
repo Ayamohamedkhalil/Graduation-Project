@@ -15,7 +15,8 @@ class _Deporbi extends State<Deporbi> {
   int _currentQuestionIndex = 0;
   String? _selectedAnswer;
 
-  final List<Question> _questions = [
+  
+final List<Question> _questions = [
     Question(
       questionText: "I usually experience Mood Swings",
       possibleAnswers: [
@@ -39,49 +40,51 @@ class _Deporbi extends State<Deporbi> {
         "10",
       ],
     ),
-    Question(
-      questionText: "I feel an unstoppable wave of sadness",
-      possibleAnswers: ["Seldom", "Someties", "Usually", "Most-often"],
-    ),
-    Question(
-      questionText:
-          "On a scale of 1 to 10, how sexually active do you usually find yourself",
-      possibleAnswers: [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-      ],
-    ),
-    Question(
-      questionText: "I feel euphoric",
-      possibleAnswers: ["Seldom", "Someties", "Usually", "Most-often"],
-    ),
-    Question(
+Question(
       questionText: "I experience a lot of nervous breakdowns",
       possibleAnswers: [
         "YES",
         "NO",
       ],
     ),
-    Question(
-      questionText: "How often do you feel drained?",
-      possibleAnswers: ["Seldom", "Someties", "Usually", "Most-often"],
-    ),
-    Question(
+Question(
       questionText: "I’ve suicidal thoughts and can be easily triggered",
       possibleAnswers: [
         "YES",
         "NO",
       ],
     ),
-    Question(
+
+Question(
+      questionText: "I feel an unstoppable wave of sadness",
+      possibleAnswers: ["Seldom", "Someties", "Usually", "Most-often"],
+    ),
+Question(
+      questionText: "I usually find myself deep in the pit of overthinking",
+      possibleAnswers: [
+        "YES",
+        "NO",
+      ],
+    ),
+
+Question(
+      questionText: "I feel euphoric",
+      possibleAnswers: ["Seldom", "Someties", "Usually", "Most-often"],
+    ),
+
+
+Question(
+      questionText:
+          "Do you find your self sexually active",
+      possibleAnswers: [
+        "YES",
+        "NO",
+      ],
+
+    ),
+         
+                       
+Question(
       questionText:
           "On a scale of 1 to 10, rank your attention span/concentration",
       possibleAnswers: [
@@ -97,13 +100,13 @@ class _Deporbi extends State<Deporbi> {
         "10",
       ],
     ),
-    Question(
-      questionText: "I usually find myself deep in the pit of overthinking",
-      possibleAnswers: [
-        "YES",
-        "NO",
-      ],
+  Question(
+      questionText: "How often do you feel drained?",
+      possibleAnswers: ["Seldom", "Someties", "Usually", "Most-often"],
     ),
+
+
+
   ];
 
   List<String?> _generalAnswers = [];
