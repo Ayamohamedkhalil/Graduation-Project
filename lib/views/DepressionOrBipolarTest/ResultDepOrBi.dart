@@ -17,7 +17,7 @@ class Result1DepORBi extends StatelessWidget {
               padding: EdgeInsets.only(top: 130),
               child: Center(
                 child: Text(
-                  'The Result of General Test',
+                  'The Result of DEPRESSION or Bipolar Test',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -36,7 +36,7 @@ class Result1DepORBi extends StatelessWidget {
                       height: 200,
                     )
                   : Image.asset(
-                      'assets/$result.png', // Adjust this line to match your image paths
+                      'assets/image1.png',
                       width: 200,
                       height: 200,
                       errorBuilder: (context, error, stackTrace) {
@@ -90,15 +90,15 @@ class Result1DepORBi extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
+                        Navigator.of(context).push(
                           MaterialPageRoute(
-                              builder: (context) => const Result2DepOrBi()),
+                            builder: (context) => Result2DepOrBi(result: result),
+                          ),
                         );
                       },
                     ),
                   ),
-                ),
+                )
               ],
             ),
           ],
