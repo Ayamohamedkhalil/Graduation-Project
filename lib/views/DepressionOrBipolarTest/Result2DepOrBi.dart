@@ -98,8 +98,8 @@ Widget build(BuildContext context) {
         ),
         Center(
           child: Image.asset(
-            'assets/New Project-2-svg 1.png',
-            color: Colors.white.withOpacity(0.1),
+            'assets/NewProject-2-svg-1.png',
+            //color: Colors.white.withOpacity(.1),
             fit: BoxFit.cover,
           ),
         ),

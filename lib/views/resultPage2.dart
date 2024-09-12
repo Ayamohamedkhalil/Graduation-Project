@@ -54,7 +54,8 @@ class _Resultpage2State extends State<Resultpage2> {
     print('Token used in request: $token'); // Debug token
 
     final response = await http.get(
-      Uri.parse('https://backend-production-19d7.up.railway.app/api/test/GeneralTest/${widget.diseaseName}'),
+      Uri.parse(
+          'https://backend-production-19d7.up.railway.app/api/test/GeneralTest/${widget.diseaseName}'),
       headers: {
         'Authorization': '$token', // Pass token directly without 'Bearer '
       },
@@ -77,7 +78,8 @@ class _Resultpage2State extends State<Resultpage2> {
       });
     } else {
       setState(() {
-        errorMessage = 'Failed to load description. Status code: ${response.statusCode}';
+        errorMessage =
+            'Failed to load description. Status code: ${response.statusCode}';
         isLoading = false;
       });
     }
@@ -104,8 +106,8 @@ class _Resultpage2State extends State<Resultpage2> {
           ),
           Center(
             child: Image.asset(
-              'assets/New Project-2-svg 1.png',
-              color: Colors.white.withOpacity(0.1),
+              'assets/NewProject-2-svg-1.png',
+              //color: Colors.white.withOpacity(.3),
               fit: BoxFit.cover,
             ),
           ),
@@ -116,7 +118,8 @@ class _Resultpage2State extends State<Resultpage2> {
                   child: Column(
                     children: [
                       Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 30),
                         padding: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.06),
@@ -134,10 +137,12 @@ class _Resultpage2State extends State<Resultpage2> {
                                 : errorMessage != null
                                     ? Text(
                                         errorMessage!,
-                                        style: const TextStyle(color: Colors.red, fontSize: 18),
+                                        style: const TextStyle(
+                                            color: Colors.red, fontSize: 18),
                                       )
                                     : Text(
-                                        description ?? "No description available", // Show fetched description or fallback
+                                        description ??
+                                            "No description available", // Show fetched description or fallback
                                         textAlign: TextAlign.center,
                                         style: const TextStyle(
                                           color: Colors.white,
@@ -147,8 +152,10 @@ class _Resultpage2State extends State<Resultpage2> {
                                       ),
                             const SizedBox(height: 30),
                             Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 10),
-                              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 10),
                               decoration: BoxDecoration(
                                 color: BackgroundColor,
                                 borderRadius: BorderRadius.circular(10),
@@ -156,7 +163,8 @@ class _Resultpage2State extends State<Resultpage2> {
                               child: Column(
                                 children: [
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       const Expanded(
@@ -191,7 +199,9 @@ class _Resultpage2State extends State<Resultpage2> {
                                       }
                                     },
                                     child: Text(
-                                      link != null ? link! : "No additional information available",
+                                      link != null
+                                          ? link!
+                                          : "No additional information available",
                                       style: const TextStyle(
                                         fontFamily: "Inter",
                                         fontSize: 13,
@@ -224,7 +234,8 @@ class _Resultpage2State extends State<Resultpage2> {
                               child: Column(
                                 children: [
                                   SizedBox(
-                                    width: MediaQuery.of(context).size.width * 0.9,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
                                     child: const Text(
                                       "But don’t worry. we’re here to join you through your healing journey, so we’ve designed comprehensive guidelines specifically tailored to support your mental well-being",
                                       softWrap: true,
@@ -295,7 +306,8 @@ class _Resultpage2State extends State<Resultpage2> {
                               fontSize: 23, // Text size
                               shadows: [
                                 Shadow(
-                                  color: Colors.black.withOpacity(0.5), // Shadow color
+                                  color: Colors.black
+                                      .withOpacity(0.5), // Shadow color
                                   offset: const Offset(2, 2), // Shadow offset
                                   blurRadius: 4, // Shadow blur radius
                                 ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/views/journalPages/journalPage.dart';
-import 'package:splash_onboarding_test/views/journalPages/widgets/JournalData.dart';
 import 'package:splash_onboarding_test/views/journalPages/widgets/JournalYearData.dart';
 
 class Journalyearpage extends StatelessWidget {
