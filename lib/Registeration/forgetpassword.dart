@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/Registeration/login.dart';
 import 'package:splash_onboarding_test/Registeration/verification.dart';
 
 class Forgetpassword extends StatefulWidget {
@@ -38,19 +39,50 @@ class _ForgetpasswordState extends State<Forgetpassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF537F5C),
-      
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: Container(
+          // Use leading for the icon on the left
+          width: 35.0,
+          height: 35.0,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.80),
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.15),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: Offset(0, 2),
+              ),
+            ],
+          ),
+          margin: EdgeInsets.only(
+              left: 22), // Properly position the icon within the AppBar
+          child: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Color(0xFF537F5C),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Login()),
+              ); // Adjusted for a typical back operation
+            },
+            iconSize: 25.0,
+            splashRadius: 25.0,
+            tooltip: "Back",
+          ),
+        ),
         title: Text(
           'Forget password',
           style: TextStyle(
               color: Colors.white,
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
               fontFamily: 'Inter'),
         ),
-        titleSpacing: 40,
+        centerTitle: true, // Ensure the title is centered
         backgroundColor: Colors.transparent,
-        iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -59,21 +91,21 @@ class _ForgetpasswordState extends State<Forgetpassword> {
           child: Column(
             //crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
               Image.asset(
                 'assets/Forget Password.png',
-                height: 260,
-                width: 300,
+                height: 270,
+                width: 270,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
               Text(
                 'No worries! Just enter your email\naddress below, and we’ll send you\na Verification code to reset your\n                 password.',
                 style: TextStyle(
-                    color: Colors.white, fontSize: 19, fontFamily: 'Inter'),
+                    color: Colors.white.withOpacity(.80), fontSize: 17, fontFamily: 'Inter'),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   onSaved: (val) {
@@ -83,16 +115,16 @@ class _ForgetpasswordState extends State<Forgetpassword> {
                   cursorColor: Colors.white,
                   decoration: const InputDecoration(
                     hoverColor: Colors.white,
-                    prefix: SizedBox(width: 3),
+                    prefix: SizedBox(width: 1),
                     hintText: 'Email',
                     hintStyle: TextStyle(
                       color: Colors.white70,
                       fontSize: 16,
                       fontFamily: 'InriaSans-Regular',
                     ),
-                     enabledBorder:UnderlineInputBorder(
+                    enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                          color:  Color(0xffD9D9D9)), // Normal border color
+                          color: Color(0xffD9D9D9)), // Normal border color
                     ),
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -100,12 +132,12 @@ class _ForgetpasswordState extends State<Forgetpassword> {
                   ),
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 70),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Container(
-                  width: 305,
-                  height: 44,
+                  width: 270,
+                height: 44,
                   decoration: BoxDecoration(
                     border: Border.all(width: 1, color: Colors.white),
                     borderRadius: BorderRadius.circular(20),

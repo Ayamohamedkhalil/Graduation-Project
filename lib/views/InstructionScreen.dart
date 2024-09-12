@@ -60,14 +60,20 @@ class IntroScreen extends StatelessWidget {
       title: '',
       bodyWidget: Stack(
         children: [
-          /*Align(
-            alignment: Alignment.topLeft, // Ensures the image is at the top left corner
-            child: Image.asset('assets/vecteezy_green-leaves-watercolor_11729507 2.png', 
-              width: 100, // Specify width to control size
-              fit: BoxFit.cover, // Ensure the image covers the specified area
+          SizedBox(
+            width: 300, // Specify the width of the image
+            height: 605, // Specify the height of the image
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                      'assets/insturction2.png'), // Ensure the path is correct
+                   // Ensures the image covers the specified area of the SizedBox
+                ),
+              ),
             ),
-          ),*/
-          Center(
+          ),
+           Center(
             child: Text(
               'Our app is designed\nto help you \nunderstand and\n manage your mental health\nthrough a variety of \ndiagnostic tests',
               style: TextStyle(
@@ -78,17 +84,14 @@ class IntroScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          /*Align(
-            alignment: Alignment.bottomRight, // Ensures the image is at the bottom right corner
-            child: Image.asset('assets/vecteezy_green-leaves-watercolor_11729507 1.png', 
-              width: 100, // Specify width to control size
-              fit: BoxFit.cover, // Ensure the image covers the specified area
-            ),
-          ),*/
         ],
       ),
+      /*  decoration: const PageDecoration(
+        pageColor: Colors.transparent, // This ensures no other color affects your background image
+        bodyPadding: EdgeInsets.all(0),
+      ),*/
       decoration: const PageDecoration(
-        pageColor: Color(0xFF537F5C), // Matching the background color
+        // pageColor: Color(0xFF537F5C), // Matching the background color
         bodyPadding: EdgeInsets.all(0), // Padding controlled within stack
       ),
     ),
@@ -174,42 +177,39 @@ class IntroScreen extends StatelessWidget {
     ),
     PageViewModel(
       title: '',
-      bodyWidget:Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: 50),
-                  // Background image with decoration
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      // Decorative background image
-                      Image.asset(
-                        'assets/intro4.png', // Make sure this asset path is correct
-                        fit: BoxFit.contain,
-                      ),
-                      // Centered text
-                      Text(
-                        ' Your\n Journey\n Starts\n  Now',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500,
-                         // height: 1.4,
-                          fontFamily: 'Ledger', // Customize as per your font choice
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ],
-              
-            ),
-
+      bodyWidget: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(height: 50),
+          // Background image with decoration
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              // Decorative background image
+              Image.asset(
+                'assets/intro4.png', // Make sure this asset path is correct
+                fit: BoxFit.contain,
+              ),
+              // Centered text
+              Text(
+                ' Your\n Journey\n Starts\n  Now',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w500,
+                  // height: 1.4,
+                  fontFamily: 'Ledger', // Customize as per your font choice
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ],
+      ),
       decoration: const PageDecoration(
         pageColor: Color(0xFF537F5C), // Matching the background color
       ),
-      
-      ),
+    ),
   ];
 
   @override

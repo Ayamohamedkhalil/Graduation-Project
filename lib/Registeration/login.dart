@@ -102,7 +102,7 @@ Future<void> _login() async {
     return Scaffold(
       backgroundColor: const Color(0xFF537F5C),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
         automaticallyImplyLeading: false,
         actions: [
           Container(
