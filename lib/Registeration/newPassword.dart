@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/Registeration/login.dart';
+import 'package:splash_onboarding_test/Registeration/verification.dart';
 
 class Newpassword extends StatefulWidget {
   @override
@@ -52,39 +53,76 @@ class _Newpassword extends State<Newpassword> {
     return Scaffold(
       backgroundColor: Color(0xFF537F5C),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: Container(
+          // Use leading for the icon on the left
+          width: 35.0,
+          height: 35.0,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.80),
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.15),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: Offset(0, 2),
+              ),
+            ],
+          ),
+          margin: EdgeInsets.only(
+              left: 22), // Properly position the icon within the AppBar
+          child: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Color(0xFF537F5C),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => VerifyEmailScreen()),
+              ); // Adjusted for a typical back operation
+            },
+            iconSize: 25.0,
+            splashRadius: 25.0,
+            tooltip: "Back",
+          ),
+        ),
         title: Text(
           'Create new password',
           style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Inter',
-          ),
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Inter'),
         ),
+        titleSpacing: 30,
+        centerTitle: true, // Ensure the title is centered
         backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: Colors.white),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Form(
           key: formKey,
           child: Column(
             children: [
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
               Image.asset(
                 'assets/New-password.png', // Replace with your image path
-                height: 200,
+                height: 270,
+                width: 270,
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               Text(
                 'Please enter your new password below',
                 style: TextStyle(
-                    fontSize: 18, color: Colors.white70, fontFamily: 'Inter'),
+                    fontSize: 17,
+                    color: Colors.white.withOpacity(.90),
+                    fontFamily: 'Inter'),
               ),
               SizedBox(
                 height: 40,
               ),
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: TextFormField(
                   controller: passwordController,
                   obscureText: true, // Hides password input
@@ -93,16 +131,16 @@ class _Newpassword extends State<Newpassword> {
                   cursorColor: Colors.white,
                   decoration: InputDecoration(
                     hoverColor: Colors.white,
-                    prefix: SizedBox(width: 3),
+                    prefix: SizedBox(width: 1),
                     hintText: 'Password',
                     hintStyle: TextStyle(
                       color: Colors.white70,
                       fontSize: 16,
                       fontFamily: 'InriaSans-Regular',
                     ),
-                     enabledBorder:UnderlineInputBorder(
+                    enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                          color:  Color(0xffD9D9D9)), // Normal border color
+                          color: Color(0xffD9D9D9)), // Normal border color
                     ),
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -110,8 +148,9 @@ class _Newpassword extends State<Newpassword> {
                   ),
                 ),
               ),
+              SizedBox(height: 20,),
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: TextFormField(
                   controller: confirmPasswordController,
                   obscureText: true, // Hides password input
@@ -120,16 +159,16 @@ class _Newpassword extends State<Newpassword> {
                   cursorColor: Colors.white,
                   decoration: InputDecoration(
                     hoverColor: Colors.white,
-                    prefix: SizedBox(width: 3),
+                    prefix: SizedBox(width: 1),
                     hintText: 'Confirm Password',
                     hintStyle: TextStyle(
                       color: Colors.white70,
                       fontSize: 16,
                       fontFamily: 'InriaSans-Regular',
                     ),
-                  enabledBorder:UnderlineInputBorder(
+                    enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                          color:  Color(0xffD9D9D9)), // Normal border color
+                          color: Color(0xffD9D9D9)), // Normal border color
                     ),
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -139,7 +178,7 @@ class _Newpassword extends State<Newpassword> {
               ),
               SizedBox(height: 60),
               Container(
-                width: 305,
+                width: 270,
                 height: 44,
                 decoration: BoxDecoration(
                   border: Border.all(width: 1, color: Colors.white),
@@ -165,10 +204,9 @@ class _Newpassword extends State<Newpassword> {
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Login()),
-                        );
+                        context,
+                        MaterialPageRoute(builder: (context) => Login()),
+                      );
                       // Gather form data
                     }
                   },
