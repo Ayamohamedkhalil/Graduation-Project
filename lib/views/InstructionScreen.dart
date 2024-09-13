@@ -56,45 +56,40 @@ class IntroScreen extends StatelessWidget {
         bodyPadding: EdgeInsets.only(top: 0),
       ),
     ),
-    PageViewModel(
+     PageViewModel(
       title: '',
-      bodyWidget: Stack(
+      bodyWidget: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
-            width: 300, // Specify the width of the image
-            height: 605, // Specify the height of the image
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                      'assets/insturction2.png'), // Ensure the path is correct
-                   // Ensures the image covers the specified area of the SizedBox
-                ),
+         // SizedBox(height: 10),
+          // Background image with decoration
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              // Decorative background image
+              Image.asset(
+                'assets/updateintro.png', // Make sure this asset path is correct
+                fit: BoxFit.contain,
               ),
-            ),
-          ),
-           Center(
-            child: Text(
+              // Centered text
+             Text(
               'Our app is designed\nto help you \nunderstand and\n manage your mental health\nthrough a variety of \ndiagnostic tests',
               style: TextStyle(
                 fontFamily: 'Ledger',
-                fontSize: 26,
+                fontSize: 23,
                 color: Colors.white,
               ),
               textAlign: TextAlign.center,
             ),
+            ],
           ),
         ],
       ),
-      /*  decoration: const PageDecoration(
-        pageColor: Colors.transparent, // This ensures no other color affects your background image
-        bodyPadding: EdgeInsets.all(0),
-      ),*/
       decoration: const PageDecoration(
-        // pageColor: Color(0xFF537F5C), // Matching the background color
-        bodyPadding: EdgeInsets.all(0), // Padding controlled within stack
+        pageColor: Color(0xFF537F5C), // Matching the background color
       ),
     ),
+    
     PageViewModel(
       title: '', // Empty since the design does not include a title
       bodyWidget: Padding(

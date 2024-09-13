@@ -67,7 +67,7 @@ class _JournalPageDayState extends State<JournalPageDay> {
                   //
                   SizedBox(
                     height: 40,
-                    width: MediaQuery.of(context).size.width * 0.8,
+                    width: MediaQuery.of(context).size.width * 0.9,
                     child: TextFormField(
                       cursorColor: Colors.white,
                       decoration: InputDecoration(
@@ -179,8 +179,11 @@ class _JournalPageDayState extends State<JournalPageDay> {
                           right: MediaQuery.of(context).size.width * 0.1),
                       formatButtonVisible: false,
                       titleCentered: true,
-                      titleTextStyle:
-                          const TextStyle(fontSize: 23, color: Colors.white),
+                      titleTextStyle: const TextStyle(
+                        fontSize: 23,
+                        color: Colors.white,
+                        fontFamily: 'Ledger', // Change the font to Ledger
+                      ),
                       leftChevronVisible: true,
                       rightChevronVisible: true,
                     ),
@@ -233,7 +236,7 @@ class _JournalPageDayState extends State<JournalPageDay> {
                                 fontSize: 30,
                               ),
                             ),
-                            GestureDetector(
+                            /* GestureDetector(
                               child: const Text(
                                 "See All",
                                 style: TextStyle(
@@ -241,7 +244,7 @@ class _JournalPageDayState extends State<JournalPageDay> {
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500),
                               ),
-                            )
+                            )*/
                           ],
                         ),
                       ],
@@ -250,6 +253,7 @@ class _JournalPageDayState extends State<JournalPageDay> {
                   SizedBox(
                     height: 300,
                     child: ListView.builder(
+                      itemCount: 1,
                       padding: EdgeInsets.zero,
                       itemBuilder: (context, index) {
                         return JournalData(title: "Day one", date: "14/1/2024");

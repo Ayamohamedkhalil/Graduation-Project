@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
-import 'package:splash_onboarding_test/home.dart';
+
 
 import 'package:splash_onboarding_test/views/edituserprofile.dart';
 import 'package:splash_onboarding_test/views/reasonfordeleteaccount.dart';
@@ -179,7 +180,7 @@ class _AccountsettingState extends State<Accountsetting> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const homescreen()),
+                            builder: (context) => const Registeration()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
