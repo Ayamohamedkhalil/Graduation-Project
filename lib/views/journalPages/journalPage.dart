@@ -85,8 +85,10 @@ class _JournalPageState extends State<JournalPage> {
                       children: [
                         Text(
                           "Welcome John!",
-                          style:
-                              TextStyle(color: Color(0xffAFAC7F), fontSize: 29),
+                          style: TextStyle(
+                              color: Color(0xffAFAC7F),
+                              fontSize: 29,
+                              fontFamily: 'Ledger'),
                         ),
                         Icon(
                           FontAwesomeIcons.penToSquare,
@@ -98,53 +100,65 @@ class _JournalPageState extends State<JournalPage> {
                     SizedBox(
                       height: 3,
                     ),
-                    Text(
-                      "Malaz thinks you are about to make something great",
-                      softWrap: true,
-                      style: TextStyle(
-                          color: Color.fromARGB(216, 255, 255, 255),
-                          fontSize: 18),
+                    Padding(
+                      padding: EdgeInsets.only(left: 7),
+                      child: Text(
+                        "Malaz thinks you are about to make something great",
+                        softWrap: true,
+                        style: TextStyle(
+                            color: Color.fromARGB(216, 255, 255, 255),
+                            fontSize: 18),
+                      ),
                     )
                   ],
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
                 //
                 //calender
                 //
                 TableCalendar(
+                  //daysOfWeekHeight:3 ,
+
                   daysOfWeekStyle: DaysOfWeekStyle(
-                      dowTextFormatter: (date, locale) {
-                        switch (DateFormat('E', locale).format(date)) {
-                          case "Sun":
-                            return "S";
+                    dowTextFormatter: (date, locale) {
+                      switch (DateFormat('E', locale).format(date)) {
+                        case "Sun":
+                          return "S";
 
-                          case "Mon":
-                            return "M";
+                        case "Mon":
+                          return "M";
 
-                          case "Tue":
-                            return "T";
+                        case "Tue":
+                          return "T";
 
-                          case "Wed":
-                            return "W";
+                        case "Wed":
+                          return "W";
 
-                          case "Thu":
-                            return "T";
+                        case "Thu":
+                          return "T";
 
-                          case "Fri":
-                            return "F";
+                        case "Fri":
+                          return "F";
 
-                          case "Sat":
-                            return "S";
+                        case "Sat":
+                          return "S";
 
-                          default:
-                            return DateFormat('E', locale).format(date);
-                        }
-                      },
-                      weekdayStyle: const TextStyle(color: Colors.white),
-                      weekendStyle: const TextStyle(color: Colors.white)),
+                        default:
+                          return DateFormat('E', locale).format(date);
+                      }
+                    },
+                    weekdayStyle: const TextStyle(color: Colors.white),
+                    weekendStyle: const TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+
                   calendarStyle: CalendarStyle(
+                      //   cellPadding: EdgeInsets.symmetric(vertical: 20),
+                      //cellMargin: EdgeInsets.symmetric(horizontal: 15),
+                      // cellMargin: const EdgeInsets.all(2.0),
                       todayTextStyle: const TextStyle(color: Colors.white),
                       todayDecoration: BoxDecoration(
                           color: const Color.fromARGB(68, 217, 217, 217),
@@ -178,8 +192,11 @@ class _JournalPageState extends State<JournalPage> {
                         right: MediaQuery.of(context).size.width * 0.1),
                     formatButtonVisible: false,
                     titleCentered: true,
-                    titleTextStyle:
-                        const TextStyle(fontSize: 23, color: Colors.white),
+                    titleTextStyle: const TextStyle(
+                      fontSize: 23,
+                      color: Colors.white,
+                      fontFamily: 'Ledger', // Change the font to Ledger
+                    ),
                     leftChevronVisible: true,
                     rightChevronVisible: true,
                   ),
@@ -226,6 +243,7 @@ class _JournalPageState extends State<JournalPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => Journalyearpage(
+
                           selectYear: selectedYear.year,
                         ),
                       ),
@@ -245,26 +263,27 @@ class _JournalPageState extends State<JournalPage> {
                           const Text(
                             "Month Journals",
                             style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                            ),
+                                color: Colors.white,
+                                fontSize: 30,
+                                fontFamily: 'Ledger'),
                           ),
-                          GestureDetector(
+                          /*GestureDetector(
                             child: const Text(
                               "See All",
                               style: TextStyle(
                                   color: Color(0xffD1CEA1),
                                   fontSize: 18,
-                                  fontWeight: FontWeight.w500),
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Ledger'),
                             ),
-                          )
+                          )*/
                         ],
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: 300,
+                  height: 250,
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
                     itemBuilder: (context, index) {
