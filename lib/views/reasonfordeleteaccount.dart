@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
 
 class DeleteAccountScreen extends StatefulWidget {
@@ -109,11 +110,18 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                     ),
                   ),
                   onPressed: () {
-                    // Confirm action
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Registeration()),
+                      );
                   },
                   child: Text(
                     'Confirm',
-                    style: TextStyle(fontSize: 26.0, color: Colors.white,fontFamily: 'InriaSans-Bold'),
+                    style: TextStyle(
+                        fontSize: 26.0,
+                        color: Colors.white,
+                        fontFamily: 'InriaSans-Bold'),
                   ),
                 ),
               ),
@@ -137,8 +145,8 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
             });
           },
           activeColor: Colors.white,
-          
-         // fillColor: disab.Colors.transparent,
+
+          // fillColor: disab.Colors.transparent,
         ),
       ),
       title: Text(
