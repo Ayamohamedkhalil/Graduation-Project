@@ -21,11 +21,12 @@ class ContactUsPage extends StatelessWidget {
             Row(
               children: [
                 const SizedBox(
-                  height: 80,
+                  height: 100,
                 ),
                 Stack(children: [
                   Positioned(
                     left: 20,
+                    top: 3,
                     child: Container(
                       width: 35.0, // Adjust the width of the circle
                       height: 35.0, // Adjust the height of the circle
@@ -92,9 +93,10 @@ class ContactUsPage extends StatelessWidget {
                   const Text(
                     "We’re here to help!",
                     style: TextStyle(
-                        fontFamily: "InriaSans-Bold",
+                        fontFamily: "InriaSans",
                         color: Colors.white,
-                        fontSize: 28),
+                        fontSize: 27,
+                        fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(
                     height: 10,
@@ -111,13 +113,13 @@ class ContactUsPage extends StatelessWidget {
                     height: 40,
                   ),
                   const Text("contact us through these channels:",
-                      style: TextStyle(color: Colors.white, fontSize: 24)),
+                      style: TextStyle(color: Colors.white, fontSize: 20,fontFamily: 'InriaSans')),
                   const SizedBox(
                     height: 10,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                        color: BackgroundColor,
+                        color: Color.fromARGB(255, 194, 193, 193),
                         borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       children: [
@@ -137,9 +139,9 @@ class ContactUsPage extends StatelessWidget {
                                 "aya823623@gmail.com",
                                 style: TextStyle(
                                     fontFamily: "Inter",
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     letterSpacing: 0,
-                                    fontWeight: FontWeight.w500),
+                                    fontWeight: FontWeight.w400),
                               )
                             ],
                           ),
@@ -167,9 +169,9 @@ class ContactUsPage extends StatelessWidget {
                                 "+20 1026537894",
                                 style: TextStyle(
                                     fontFamily: "Inter",
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     letterSpacing: 0,
-                                    fontWeight: FontWeight.w500),
+                                    fontWeight: FontWeight.w400),
                               )
                             ],
                           ),

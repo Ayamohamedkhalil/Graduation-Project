@@ -15,10 +15,7 @@ class ResultCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: const BoxDecoration(
-          border: Border(
-              bottom: BorderSide(color: Color.fromARGB(62, 255, 255, 255)))),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -26,9 +23,9 @@ class ResultCard extends StatelessWidget {
             testName,
             style: const TextStyle(
               fontFamily: "Inter",
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Color(0xffD1E7D6),
+              fontSize: 17,
+              fontWeight: FontWeight.w700,
+              color: Color.fromARGB(255, 235, 229, 229),
             ),
           ),
           Row(
@@ -40,7 +37,7 @@ class ResultCard extends StatelessWidget {
                     "Result",
                     style: TextStyle(
                         color: Color(0xffD1CEA1),
-                        fontSize: 17,
+                        fontSize: 16,
                         fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(
@@ -48,7 +45,7 @@ class ResultCard extends StatelessWidget {
                   ),
                   const Icon(
                     FontAwesomeIcons.arrowRight,
-                    size: 16,
+                    size: 14,
                     color: Color(0xffD1CEA1),
                   ),
                   const SizedBox(
@@ -58,7 +55,7 @@ class ResultCard extends StatelessWidget {
                     testResult,
                     style: const TextStyle(
                         color: Color(0xffD1CEA1),
-                        fontSize: 17,
+                        fontSize: 16,
                         fontWeight: FontWeight.w500),
                   )
                 ],
@@ -66,9 +63,15 @@ class ResultCard extends StatelessWidget {
               Text(
                 testDate,
                 style: const TextStyle(
-                    color: Colors.white, fontSize: 14, fontFamily: "Inter"),
-              )
+                    color: Colors.white, fontSize: 12, fontFamily: "Inter"),
+              ),
             ],
+          ),
+          const Divider(
+            indent: 5, // Add padding to reduce width from left edge
+            endIndent: 5, // Add padding to reduce width from right edge
+            thickness: 0.5, // Control thickness of the line
+            color: Color.fromARGB(62, 255, 255, 255),
           ),
         ],
       ),
