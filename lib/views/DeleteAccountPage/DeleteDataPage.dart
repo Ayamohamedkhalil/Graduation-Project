@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/views/PrivacySettingPage/PrivacySettingPage.dart';
@@ -20,11 +21,12 @@ class DeleteDataPage extends StatelessWidget {
             Row(
               children: [
                 const SizedBox(
-                  height: 80,
+                  height: 100,
                 ),
                 Stack(children: [
                   Positioned(
                     left: 20,
+                    top: 5,
                     child: Container(
                       width: 35.0, // Adjust the width of the circle
                       height: 35.0, // Adjust the height of the circle
@@ -68,7 +70,7 @@ class DeleteDataPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Privacy settings",
+                          "delete your data",
                           style: TextStyle(
                               fontFamily: "InriaSans-Bold",
                               fontSize: 28,
@@ -94,13 +96,26 @@ class DeleteDataPage extends StatelessWidget {
                         "Are you sure you want to delete your data? This action will remove all your previous test results,you’ve stored in the app. Once deleted, this data cannot be recovered. If you’re certain, please confirm your decision by clicking 'Delete Data.",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 22,
+                          fontSize: 20,
                         ),
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    SizedBox(
-                      width: 305,
+                    Container(
+                      width: 270,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        // border: Border.all(width: 1, color: Colors.white),
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(.25),
+                            spreadRadius: 0,
+                            blurRadius: 4,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           minimumSize: const Size(100, 44),
@@ -111,7 +126,13 @@ class DeleteDataPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => Registeration(),
+                            ),
+                          );
+                        },
                         child: const Text(
                           'Delete Data',
                           style: TextStyle(
@@ -131,7 +152,7 @@ class DeleteDataPage extends StatelessWidget {
             //
             const BarButton(),
             const SizedBox(
-              height: 5,
+              height: 10,
             )
           ],
         ),

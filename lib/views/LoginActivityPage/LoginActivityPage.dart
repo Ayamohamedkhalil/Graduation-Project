@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/views/LoginActivityPage/component/PreviosLogInCard.dart';
-
-
-import 'package:splash_onboarding_test/views/UserProfile.dart';
+import 'package:splash_onboarding_test/views/PrivacySettingPage/PrivacySettingPage.dart';
 
 class Loginactivitypage extends StatelessWidget {
   const Loginactivitypage({super.key});
@@ -77,10 +75,11 @@ class Loginactivitypage extends StatelessWidget {
             Row(
               children: [
                 const SizedBox(
-                  height: 80,
+                  height: 100,
                 ),
                 Stack(children: [
                   Positioned(
+                    top: 5,
                     left: 20,
                     child: Container(
                       width: 35.0, // Adjust the width of the circle
@@ -107,7 +106,7 @@ class Loginactivitypage extends StatelessWidget {
                             0xFF537F5C), // Set the color of the arrow icon
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const UserProfile(),
+                            builder: (context) => const PrivacySettingPage(),
                           ));
                         },
                         iconSize: 25.0, // Adjust the size of the icon
@@ -125,7 +124,7 @@ class Loginactivitypage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Login Acivity",
+                          "login acivity",
                           style: TextStyle(
                               fontFamily: "InriaSans-Bold",
                               fontSize: 28,
@@ -178,10 +177,18 @@ class Loginactivitypage extends StatelessWidget {
                 padding: const EdgeInsets.all(5),
                 margin: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.10),
+                      spreadRadius: 0,
+                      blurRadius: 4,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    width: 2,
-                    color: const Color.fromARGB(109, 255, 255, 255),
+                    width: 1,
+                    color:  Colors.white,
                   ),
                 ),
                 child: Column(
@@ -189,7 +196,10 @@ class Loginactivitypage extends StatelessWidget {
                   children: [
                     const Text(
                       "Previous log in",
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontFamily: 'InriaSans'),
                     ),
                     const SizedBox(
                       height: 5,
@@ -221,7 +231,7 @@ class Loginactivitypage extends StatelessWidget {
             //
             const BarButton(),
             const SizedBox(
-              height: 5,
+              height: 10,
             )
           ],
         ),

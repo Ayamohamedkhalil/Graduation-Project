@@ -3,7 +3,6 @@ import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/views/PrivacySettingPage/PrivacySettingPage.dart';
 
-
 class RequestdataPage extends StatelessWidget {
   const RequestdataPage({super.key});
 
@@ -21,11 +20,12 @@ class RequestdataPage extends StatelessWidget {
             Row(
               children: [
                 const SizedBox(
-                  height: 80,
+                  height: 100,
                 ),
                 Stack(children: [
                   Positioned(
                     left: 20,
+                    top: 5,
                     child: Container(
                       width: 35.0, // Adjust the width of the circle
                       height: 35.0, // Adjust the height of the circle
@@ -69,7 +69,7 @@ class RequestdataPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Privacy settings",
+                          "Request  your data",
                           style: TextStyle(
                               fontFamily: "InriaSans-Bold",
                               fontSize: 28,
@@ -90,18 +90,31 @@ class RequestdataPage extends StatelessWidget {
                 child: Column(
                   children: [
                     const Padding(
-                      padding: EdgeInsets.only(top: 40, bottom: 40),
+                      padding: EdgeInsets.only(top: 20, bottom: 40),
                       child: Text(
                         "You will receive email from our mail to complete your reuest",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 22,
+                          fontSize: 20,
                         ),
-                        textAlign: TextAlign.center,
+                        // textAlign: TextAlign.center,
                       ),
                     ),
-                    SizedBox(
-                      width: 305,
+                    Container(
+                      width: 270,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(.10),
+                            spreadRadius: 0,
+                            blurRadius: 4,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                        borderRadius: BorderRadius.circular(20),
+                         
+                      ),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           minimumSize: const Size(100, 44),
@@ -114,9 +127,9 @@ class RequestdataPage extends StatelessWidget {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'Start Request',
+                          'Start request',
                           style: TextStyle(
-                            fontSize: 28,
+                            fontSize: 24,
                             color: Colors.white,
                             fontFamily: 'InriaSans-Bold',
                           ),
@@ -132,7 +145,7 @@ class RequestdataPage extends StatelessWidget {
             //
             const BarButton(),
             const SizedBox(
-              height: 5,
+              height: 10,
             )
           ],
         ),

@@ -56,10 +56,11 @@ class Previoustestpage extends StatelessWidget {
             Row(
               children: [
                 const SizedBox(
-                  height: 80,
+                  height: 90,
                 ),
                 Stack(children: [
                   Positioned(
+                    top: 2,
                     left: 20,
                     child: Container(
                       width: 35.0, // Adjust the width of the circle
@@ -104,11 +105,12 @@ class Previoustestpage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Tests History",
+                          "Tests history",
                           style: TextStyle(
-                              fontFamily: "InriaSans-Bold",
-                              fontSize: 28,
-                              color: Colors.white),
+                              fontFamily: "InriaSans",
+                              fontSize: 26,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),
@@ -124,40 +126,58 @@ class Previoustestpage extends StatelessWidget {
                 padding: const EdgeInsets.all(5),
                 margin: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
+                  // boxShadow: ,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    width: 2,
-                    color: const Color.fromARGB(109, 255, 255, 255),
+                    width: 1,
+                    color: Colors.white,
                   ),
+
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.10),
+                      spreadRadius: 0,
+                      blurRadius: 4,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
                 ),
                 child: Scrollbar(
                   thumbVisibility: true,
                   interactive: true,
                   thickness: 6,
                   radius: const Radius.circular(40),
-                  child: ListView.builder(
-                    primary: true,
-                    padding: EdgeInsets.zero,
-                    itemCount: testData.length, // Use the length of the test data list
-                    itemBuilder: (context, index) {
-                      // Get data for the current test
-                      final test = testData[index];
-                      return ResultCard(
-                        testName: test["testName"]!,
-                        testResult: test["testResult"]!,
-                        testDate: test["testDate"]!,
-                      );
-                    },
+                  child:
+                    
+                      ListView.builder(
+                        primary: true,
+                        padding: EdgeInsets.zero,
+                        itemCount:
+                            testData.length, // Use the length of the test data list
+                        itemBuilder: (context, index) {
+                          // Get data for the current test
+                          final test = testData[index];
+                          return ResultCard(
+                            testName: test["testName"]!,
+                            testResult: test["testResult"]!,
+                            testDate: test["testDate"]!,
+                          );
+                         
+                        },
+                        
+                      ),
+                      
+                    
                   ),
                 ),
               ),
-            ),
+           
             //
             // ButtonBar
             //
             const BarButton(),
             const SizedBox(
-              height: 5,
+              height: 10,
             )
           ],
         ),

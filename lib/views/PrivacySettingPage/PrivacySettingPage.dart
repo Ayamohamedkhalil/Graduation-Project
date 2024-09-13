@@ -24,11 +24,12 @@ class PrivacySettingPage extends StatelessWidget {
             Row(
               children: [
                 const SizedBox(
-                  height: 80,
+                  height: 100,
                 ),
                 Stack(children: [
                   Positioned(
                     left: 20,
+                    top: 5,
                     child: Container(
                       width: 35.0, // Adjust the width of the circle
                       height: 35.0, // Adjust the height of the circle
@@ -98,15 +99,13 @@ class PrivacySettingPage extends StatelessWidget {
                         "Your privacy is our top priority. This section allows you to manage how your data is collected, stored, and used within the app",
                         style: TextStyle(
                             fontFamily: "InriaSans-Light",
-                            fontSize: 21,
+                            fontSize: 18,
                             letterSpacing: 0,
                             color: Colors.white,
                             height: 1.1),
                       ),
                     ),
-                    const Divider(
-                      color: Color.fromARGB(83, 255, 255, 255),
-                    ),
+                    const Divider(color: Colors.white24),
                     const SizedBox(
                       height: 20,
                     ),
@@ -127,9 +126,16 @@ class PrivacySettingPage extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 12),
                               decoration: BoxDecoration(
-                                  color: ThirdColor,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(.10),
+                                      spreadRadius: 0,
+                                      blurRadius: 4,
+                                      offset: const Offset(0, 4),
+                                    ),
+                                  ],
                                   borderRadius: BorderRadius.circular(17),
-                                  border: Border.all(color: BackgroundColor)),
+                                  border: Border.all(color:Colors.white)),
                               child: const Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -143,7 +149,7 @@ class PrivacySettingPage extends StatelessWidget {
                                   ),
                                   Icon(
                                     FontAwesomeIcons.play,
-                                    size: 18,
+                                    size: 14,
                                     color: Colors.white,
                                   )
                                 ],
@@ -163,9 +169,16 @@ class PrivacySettingPage extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 18),
                               decoration: BoxDecoration(
-                                  color: ThirdColor,
+                                boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(.10),
+                                      spreadRadius: 0,
+                                      blurRadius: 4,
+                                      offset: const Offset(0, 4),
+                                    ),
+                                  ],
                                   borderRadius: BorderRadius.circular(17),
-                                  border: Border.all(color: BackgroundColor)),
+                                  border: Border.all(color: Colors.white)),
                               child: const Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -183,7 +196,7 @@ class PrivacySettingPage extends StatelessWidget {
                                       ),
                                       Icon(
                                         FontAwesomeIcons.play,
-                                        size: 18,
+                                        size: 14,
                                         color: Colors.white,
                                       )
                                     ],
@@ -192,7 +205,7 @@ class PrivacySettingPage extends StatelessWidget {
                                     "This action will remove all your data.",
                                     softWrap: true,
                                     style: TextStyle(
-                                        fontSize: 16, color: Colors.white),
+                                        fontSize: 14, color: Colors.white),
                                   ),
                                 ],
                               ),
@@ -211,9 +224,16 @@ class PrivacySettingPage extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 18),
                               decoration: BoxDecoration(
-                                  color: ThirdColor,
+                                boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(.10),
+                                      spreadRadius: 0,
+                                      blurRadius: 4,
+                                      offset: const Offset(0, 4),
+                                    ),
+                                  ],
                                   borderRadius: BorderRadius.circular(17),
-                                  border: Border.all(color: BackgroundColor)),
+                                  border: Border.all(color: Colors.white)),
                               child: const Column(
                                 children: [
                                   Row(
@@ -229,7 +249,7 @@ class PrivacySettingPage extends StatelessWidget {
                                       ),
                                       Icon(
                                         FontAwesomeIcons.play,
-                                        size: 18,
+                                        size: 14,
                                         color: Colors.white,
                                       )
                                     ],
@@ -238,7 +258,7 @@ class PrivacySettingPage extends StatelessWidget {
                                     "Request a copy of your data Malaz collects about you",
                                     softWrap: true,
                                     style: TextStyle(
-                                        fontSize: 16, color: Colors.white),
+                                        fontSize: 14, color: Colors.white),
                                   ),
                                 ],
                               ),
@@ -256,7 +276,7 @@ class PrivacySettingPage extends StatelessWidget {
             //
             const BarButton(),
             const SizedBox(
-              height: 5,
+              height: 20,
             )
           ],
         ),

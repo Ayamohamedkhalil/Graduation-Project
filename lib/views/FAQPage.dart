@@ -27,6 +27,12 @@ List<Map<String, String>> FAQ = [
     "A":
         "if you want to know more about this disorder more about this disorder more about this disorder."
   },
+  {
+    "Q": "How to reset Account?",
+    "A":
+        "if you want to know more about this disorder more about this disorder more about this disorder."
+  },
+  
 ];
 
 class FAQPage extends StatelessWidget {
@@ -113,12 +119,11 @@ class FAQPage extends StatelessWidget {
                           width: MediaQuery.of(context).size.width,
                           child: Column(
                             children: [
-                              const SizedBox(
-                                height: 20,
-                              ),
                               Image.asset(
-                                "assets/New Project-2-svg 1.png",
-                                width: 110,
+                                "assets/logo1.png",
+                                height: 130,
+                                width: 170,
+                                
                               ),
                               const Expanded(
                                 child: Text(
