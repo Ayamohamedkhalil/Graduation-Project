@@ -17,7 +17,7 @@ class Result1DepORBi extends StatelessWidget {
               padding: EdgeInsets.only(top: 130),
               child: Center(
                 child: Text(
-                  'The Result of DEPRESSION or Bipolar Test',
+                  '              The Result of\n DEPRESSION or Bipolar Test',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,

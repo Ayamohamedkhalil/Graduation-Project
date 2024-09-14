@@ -59,14 +59,14 @@ class _JournalPageState extends State<JournalPage> {
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
+                        borderRadius: BorderRadius.circular(30.0),
                         borderSide: const BorderSide(
                           color: Color(0xffD9D9D9),
                           width: 1.2,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
+                        borderRadius: BorderRadius.circular(30.0),
                         borderSide: const BorderSide(
                           color: Color(0xffD9D9D9),
                           width: 1.2,
@@ -120,6 +120,7 @@ class _JournalPageState extends State<JournalPage> {
                 //
                 TableCalendar(
                   //daysOfWeekHeight:3 ,
+                  //rowHeight: 1,
 
                   daysOfWeekStyle: DaysOfWeekStyle(
                     dowTextFormatter: (date, locale) {
@@ -149,16 +150,19 @@ class _JournalPageState extends State<JournalPage> {
                           return DateFormat('E', locale).format(date);
                       }
                     },
-                    weekdayStyle: const TextStyle(color: Colors.white),
+                    weekdayStyle: const TextStyle(
+                        color: Colors.white, fontFamily: 'Ledger'),
                     weekendStyle: const TextStyle(
                       color: Colors.white,
+                      fontFamily: 'Ledger',
                     ),
                   ),
 
                   calendarStyle: CalendarStyle(
                       //   cellPadding: EdgeInsets.symmetric(vertical: 20),
-                      //cellMargin: EdgeInsets.symmetric(horizontal: 15),
-                      // cellMargin: const EdgeInsets.all(2.0),
+                      cellMargin:
+                          EdgeInsets.symmetric(horizontal: 13, vertical: 13),
+                      //cellMargin: const EdgeInsets.symmetric(),
                       todayTextStyle: const TextStyle(color: Colors.white),
                       todayDecoration: BoxDecoration(
                           color: const Color.fromARGB(68, 217, 217, 217),
@@ -176,6 +180,7 @@ class _JournalPageState extends State<JournalPage> {
                           color: Color.fromARGB(85, 255, 255, 255)),
                       weekendTextStyle: const TextStyle(color: Colors.white)),
                   headerStyle: HeaderStyle(
+                    // headerMargin: EdgeInsets.only(top: 10),
                     rightChevronIcon: const Icon(
                       Icons.chevron_right,
                       color: Colors.white,
@@ -243,7 +248,6 @@ class _JournalPageState extends State<JournalPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => Journalyearpage(
-
                           selectYear: selectedYear.year,
                         ),
                       ),
@@ -254,7 +258,8 @@ class _JournalPageState extends State<JournalPage> {
                 //
                 //
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                   child: Column(
                     children: [
                       Row(
