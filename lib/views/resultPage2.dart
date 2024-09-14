@@ -269,7 +269,7 @@ class _Resultpage2State extends State<Resultpage2> {
                 children: [
                   const SizedBox(height: 15),
                   // Guidelines Button
-                  Container(
+                 /* Container(
                     width: 200,
                     height: 44,
                     decoration: BoxDecoration(
@@ -322,7 +322,7 @@ class _Resultpage2State extends State<Resultpage2> {
                         ],
                       ),
                     ),
-                  ),
+                  ),*/
                   const SizedBox(height: 15),
                   const BarButton(),
                   const SizedBox(height: 10),

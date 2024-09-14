@@ -109,7 +109,7 @@ class _JournalPageDayState extends State<JournalPageDay> {
                     ),
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 10,
                   ),
                   //
                   //calender
@@ -143,9 +143,11 @@ class _JournalPageDayState extends State<JournalPageDay> {
                               return DateFormat('E', locale).format(date);
                           }
                         },
-                        weekdayStyle: const TextStyle(color: Colors.white),
-                        weekendStyle: const TextStyle(color: Colors.white)),
+                        weekdayStyle: const TextStyle(color: Colors.white,fontFamily: 'Ledger'),
+                        weekendStyle: const TextStyle(color: Colors.white,fontFamily: 'Ledger')),
                     calendarStyle: CalendarStyle(
+                        cellMargin:
+                            EdgeInsets.symmetric(horizontal: 13, vertical: 13),
                         todayTextStyle: const TextStyle(color: Colors.white),
                         todayDecoration: BoxDecoration(
                             color: const Color.fromARGB(68, 217, 217, 217),
@@ -222,7 +224,8 @@ class _JournalPageDayState extends State<JournalPageDay> {
                   //
                   //
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 16),
                     child: Column(
                       children: [
                         Row(
@@ -251,7 +254,7 @@ class _JournalPageDayState extends State<JournalPageDay> {
                     ),
                   ),
                   SizedBox(
-                    height: 300,
+                    height: 250,
                     child: ListView.builder(
                       itemCount: 1,
                       padding: EdgeInsets.zero,
