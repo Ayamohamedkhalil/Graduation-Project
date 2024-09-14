@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/Registeration/login.dart';
 import 'package:splash_onboarding_test/Registeration/verification.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Forgetpassword extends StatefulWidget {
   Forgetpassword({super.key});
@@ -159,17 +161,50 @@ class _ForgetpasswordState extends State<Forgetpassword> {
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    onPressed: () {
-                      if (formstate.currentState!.validate()) {
-                        formstate.currentState!.save();
-                        // _For(); // Trigger the login function
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => VerifyEmailScreen()),
-                        );
-                      }
-                    },
+                    onPressed: () async {
+  if (formstate.currentState!.validate()) {
+    formstate.currentState!.save();
+    try {
+      // Call the API
+      var response = await http.post(
+        Uri.parse('https://backend-production-19d7.up.railway.app/api/verify'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({'email': email}),
+      );
+
+      // Parse the response
+      var responseBody = jsonDecode(response.body);
+
+      // Check if verification code was sent
+      if (response.statusCode == 200 && responseBody['message'] == 'Verification code sent to your email') {
+        // Show success message
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Verification code sent to your email')),
+        );
+
+        // Navigate to the VerifyEmailScreen
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => VerifyEmailScreen()),
+        );
+      } else {
+        // Handle other responses
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to send verification code')),
+        );
+      }
+    } catch (e) {
+      // Handle exceptions (like network errors)
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('An error occurred: $e')),
+      );
+    }
+  }
+},
+
+
                     child: const Text(
                       'Send',
                       style: TextStyle(

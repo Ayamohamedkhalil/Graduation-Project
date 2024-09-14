@@ -1,6 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/Registeration/login.dart';
 import 'package:splash_onboarding_test/Registeration/verification.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+Future<void> resetPassword(String password, String confirmPassword) async {
+  var url = Uri.parse('https://backend-production-19d7.up.railway.app/api/resetPassword');
+  var response = await http.post(
+    url,
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode({
+      'password': password,
+      'confirm_password': confirmPassword,
+    }),
+  );
+  
+  if (response.statusCode == 200) {
+    var jsonResponse = jsonDecode(response.body);
+    print(jsonResponse['message']);  // Handle success message
+  } else {
+    print('Failed to reset password: ${response.body}');
+  }
+}
 
 class Newpassword extends StatefulWidget {
   @override
@@ -202,13 +223,15 @@ class _Newpassword extends State<Newpassword> {
                     ),
                   ),
                   onPressed: () async {
+                    
                     if (formKey.currentState!.validate()) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Login()),
-                      );
-                      // Gather form data
-                    }
+  await resetPassword(passwordController.text, confirmPasswordController.text);
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Login()),
+  );
+}
+
                   },
                   child: Text(
                     'Save',
