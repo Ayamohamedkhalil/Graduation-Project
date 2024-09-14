@@ -154,7 +154,7 @@ class _JournalPageState extends State<JournalPage> {
                         color: Colors.white, fontFamily: 'Ledger'),
                     weekendStyle: const TextStyle(
                       color: Colors.white,
-                      fontFamily: 'Ledger',
+                      fontFamily: 'Ledger'
                     ),
                   ),
 

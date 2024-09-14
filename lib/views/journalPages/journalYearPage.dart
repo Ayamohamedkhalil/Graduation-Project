@@ -4,16 +4,24 @@ import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/views/journalPages/journalPage.dart';
 import 'package:splash_onboarding_test/views/journalPages/widgets/JournalYearData.dart';
 
-class Journalyearpage extends StatelessWidget {
+class Journalyearpage extends StatefulWidget {
   final int selectYear;
 
   Journalyearpage({required this.selectYear});
 
   @override
+  _JournalyearpageState createState() => _JournalyearpageState();
+}
+
+class _JournalyearpageState extends State<Journalyearpage> {
+  // To store the state of expanded tiles
+  Map<int, bool> _isOpen = {};
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      padding:const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       color: PriamryColor,
       child: Stack(children: [
         Column(
@@ -57,7 +65,7 @@ class Journalyearpage extends StatelessWidget {
                     ),
                     Center(
                       child: Text(
-                        "$selectYear",
+                        "${widget.selectYear}",
                         style: const TextStyle(
                             fontSize: 30,
                             fontFamily: "LEDGER",
@@ -117,351 +125,40 @@ class Journalyearpage extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
+            //
+            // Custom Expansion Tiles
+            //
             Flexible(
               child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  ExpansionTile(
-                    collapsedIconColor: Colors.white,
-                    iconColor: Colors.white,
-                    title: const Text(
-                      "January",
-                      style: TextStyle(
-                          fontFamily: "Ledger",
-                          color: Colors.white,
-                          fontSize: 30),
-                    ),
+                padding: const EdgeInsets.only(bottom: 80),  // Padding added at the bottom
+                children: List.generate(12, (index) {
+                  String month = _getMonthName(index + 1);
+                  return _customExpansionTile(
+                    title: month,
+                    index: index,
                     children: [
                       Container(
                         padding: const EdgeInsets.only(left: 25, right: 6),
                         decoration: BoxDecoration(
-                            color: BackgroundColor,
-                            borderRadius: BorderRadius.circular(10)),
+                          color: BackgroundColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         child: SizedBox(
-                            height: 240,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) {
-                                return JournalYearData(
-                                    title: "Day one", date: "12/3/2024");
-                              },
-                            )),
+                          height: 240,
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            itemBuilder: (context, index) {
+                              return JournalYearData(
+                                title: "Day one", 
+                                date: "12/3/2024"
+                              );
+                            },
+                          ),
+                        ),
                       ),
                     ],
-                  ),
-                  ExpansionTile(
-                    collapsedIconColor: Colors.white,
-                    iconColor: Colors.white,
-                    title: const Text(
-                      "February",
-                      style: TextStyle(
-                          fontFamily: "Ledger",
-                          color: Colors.white,
-                          fontSize: 30),
-                    ),
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 25, right: 6),
-                        decoration: BoxDecoration(
-                            color: BackgroundColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: SizedBox(
-                            height: 240,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) {
-                                return JournalYearData(
-                                    title: "Day one", date: "12/3/2024");
-                              },
-                            )),
-                      ),
-                    ],
-                  ),
-                  
-                  ExpansionTile(
-                    collapsedIconColor: Colors.white,
-                    iconColor: Colors.white,
-                    title: const Text(
-                      "March",
-                      style: TextStyle(
-                          fontFamily: "Ledger",
-                          color: Colors.white,
-                          fontSize: 30),
-                    ),
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 25, right: 6),
-                        decoration: BoxDecoration(
-                            color: BackgroundColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: SizedBox(
-                            height: 240,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) {
-                                return JournalYearData(
-                                    title: "Day one", date: "12/3/2024");
-                              },
-                            )),
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    collapsedIconColor: Colors.white,
-                    iconColor: Colors.white,
-                    title: const Text(
-                      "April",
-                      style: TextStyle(
-                          fontFamily: "Ledger",
-                          color: Colors.white,
-                          fontSize: 30),
-                    ),
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 25, right: 6),
-                        decoration: BoxDecoration(
-                            color: BackgroundColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: SizedBox(
-                            height: 240,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) {
-                                return JournalYearData(
-                                    title: "Day one", date: "12/3/2024");
-                              },
-                            )),
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    collapsedIconColor: Colors.white,
-                    iconColor: Colors.white,
-                    title: const Text(
-                      "May",
-                      style: TextStyle(
-                          fontFamily: "Ledger",
-                          color: Colors.white,
-                          fontSize: 30),
-                    ),
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 25, right: 6),
-                        decoration: BoxDecoration(
-                            color: BackgroundColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: SizedBox(
-                            height: 240,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) {
-                                return JournalYearData(
-                                    title: "Day one", date: "12/3/2024");
-                              },
-                            )),
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    collapsedIconColor: Colors.white,
-                    iconColor: Colors.white,
-                    title: const Text(
-                      "June",
-                      style: TextStyle(
-                          fontFamily: "Ledger",
-                          color: Colors.white,
-                          fontSize: 30),
-                    ),
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 25, right: 6),
-                        decoration: BoxDecoration(
-                            color: BackgroundColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: SizedBox(
-                            height: 240,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) {
-                                return JournalYearData(
-                                    title: "Day one", date: "12/3/2024");
-                              },
-                            )),
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    collapsedIconColor: Colors.white,
-                    iconColor: Colors.white,
-                    title: const Text(
-                      "July",
-                      style: TextStyle(
-                          fontFamily: "Ledger",
-                          color: Colors.white,
-                          fontSize: 30),
-                    ),
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 25, right: 6),
-                        decoration: BoxDecoration(
-                            color: BackgroundColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: SizedBox(
-                            height: 240,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) {
-                                return JournalYearData(
-                                    title: "Day one", date: "12/3/2024");
-                              },
-                            )),
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    collapsedIconColor: Colors.white,
-                    iconColor: Colors.white,
-                    title: const Text(
-                      "August",
-                      style: TextStyle(
-                          fontFamily: "Ledger",
-                          color: Colors.white,
-                          fontSize: 30),
-                    ),
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 25, right: 6),
-                        decoration: BoxDecoration(
-                            color: BackgroundColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: SizedBox(
-                            height: 240,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) {
-                                return JournalYearData(
-                                    title: "Day one", date: "12/3/2024");
-                              },
-                            )),
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    collapsedIconColor: Colors.white,
-                    iconColor: Colors.white,
-                    title: const Text(
-                      "September",
-                      style: TextStyle(
-                          fontFamily: "Ledger",
-                          color: Colors.white,
-                          fontSize: 30),
-                    ),
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 25, right: 6),
-                        decoration: BoxDecoration(
-                            color: BackgroundColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: SizedBox(
-                            height: 240,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) {
-                                return JournalYearData(
-                                    title: "Day one", date: "12/3/2024");
-                              },
-                            )),
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    collapsedIconColor: Colors.white,
-                    iconColor: Colors.white,
-                    title: const Text(
-                      "October",
-                      style: TextStyle(
-                          fontFamily: "Ledger",
-                          color: Colors.white,
-                          fontSize: 30),
-                    ),
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 25, right: 6),
-                        decoration: BoxDecoration(
-                            color: BackgroundColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: SizedBox(
-                            height: 240,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) {
-                                return JournalYearData(
-                                    title: "Day one", date: "12/3/2024");
-                              },
-                            )),
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    collapsedIconColor: Colors.white,
-                    iconColor: Colors.white,
-                    title: const Text(
-                      "November",
-                      style: TextStyle(
-                          fontFamily: "Ledger",
-                          color: Colors.white,
-                          fontSize: 30),
-                    ),
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 25, right: 6),
-                        decoration: BoxDecoration(
-                            color: BackgroundColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: SizedBox(
-                            height: 240,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) {
-                                return JournalYearData(
-                                    title: "Day one", date: "12/3/2024");
-                              },
-                            )),
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    collapsedIconColor: Colors.white,
-                    iconColor: Colors.white,
-                    title: const Text(
-                      "December",
-                      style: TextStyle(
-                          fontFamily: "Ledger",
-                          color: Colors.white,
-                          fontSize: 30),
-                    ),
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 25, right: 6),
-                        decoration: BoxDecoration(
-                            color: BackgroundColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: SizedBox(
-                            height: 240,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) {
-                                return JournalYearData(
-                                    title: "Day one", date: "12/3/2024");
-                              },
-                            )),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 60,
-                  )
-                ],
+                  );
+                }),
               ),
             ),
           ],
@@ -473,5 +170,54 @@ class Journalyearpage extends StatelessWidget {
             child: const BarButton())
       ]),
     ));
+  }
+
+  // Method to create a custom ExpansionTile
+  Widget _customExpansionTile(
+      {required String title,
+      required int index,
+      required List<Widget> children}) {
+    return ExpansionTile(
+      collapsedIconColor: Colors.white,
+      iconColor: Colors.white,
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontFamily: "Ledger",
+          color: Colors.white,
+          fontSize: 30,
+        ),
+      ),
+      // Custom icon changes based on expansion state
+      trailing: Icon(
+        _isOpen[index] ?? false ? Icons.expand_more : Icons.chevron_right,
+        color: Colors.white,
+      ),
+      onExpansionChanged: (bool expanded) {
+        setState(() {
+          _isOpen[index] = expanded;
+        });
+      },
+      children: children,
+    );
+  }
+
+  // Helper method to get the name of the month
+  String _getMonthName(int monthNumber) {
+    List<String> months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    return months[monthNumber - 1];
   }
 }
