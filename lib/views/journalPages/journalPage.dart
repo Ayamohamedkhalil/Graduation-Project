@@ -26,6 +26,7 @@ class _JournalPageState extends State<JournalPage> {
         color: const Color(0xff537F5C),
         child: Stack(children: [
           SingleChildScrollView(
+            padding: const EdgeInsets.only(bottom: 80),  // Extra padding at the bottom
             child: Column(
               children: [
                 const SizedBox(
@@ -119,33 +120,23 @@ class _JournalPageState extends State<JournalPage> {
                 //calender
                 //
                 TableCalendar(
-                  //daysOfWeekHeight:3 ,
-                  //rowHeight: 1,
-
                   daysOfWeekStyle: DaysOfWeekStyle(
                     dowTextFormatter: (date, locale) {
                       switch (DateFormat('E', locale).format(date)) {
                         case "Sun":
                           return "S";
-
                         case "Mon":
                           return "M";
-
                         case "Tue":
                           return "T";
-
                         case "Wed":
                           return "W";
-
                         case "Thu":
                           return "T";
-
                         case "Fri":
                           return "F";
-
                         case "Sat":
                           return "S";
-
                         default:
                           return DateFormat('E', locale).format(date);
                       }
@@ -153,16 +144,11 @@ class _JournalPageState extends State<JournalPage> {
                     weekdayStyle: const TextStyle(
                         color: Colors.white, fontFamily: 'Ledger'),
                     weekendStyle: const TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Ledger'
-                    ),
+                        color: Colors.white, fontFamily: 'Ledger'),
                   ),
-
                   calendarStyle: CalendarStyle(
-                      //   cellPadding: EdgeInsets.symmetric(vertical: 20),
-                      cellMargin:
-                          EdgeInsets.symmetric(horizontal: 13, vertical: 13),
-                      //cellMargin: const EdgeInsets.symmetric(),
+                      cellMargin: const EdgeInsets.symmetric(
+                          horizontal: 13, vertical: 13),
                       todayTextStyle: const TextStyle(color: Colors.white),
                       todayDecoration: BoxDecoration(
                           color: const Color.fromARGB(68, 217, 217, 217),
@@ -180,7 +166,6 @@ class _JournalPageState extends State<JournalPage> {
                           color: Color.fromARGB(85, 255, 255, 255)),
                       weekendTextStyle: const TextStyle(color: Colors.white)),
                   headerStyle: HeaderStyle(
-                    // headerMargin: EdgeInsets.only(top: 10),
                     rightChevronIcon: const Icon(
                       Icons.chevron_right,
                       color: Colors.white,
@@ -200,7 +185,7 @@ class _JournalPageState extends State<JournalPage> {
                     titleTextStyle: const TextStyle(
                       fontSize: 23,
                       color: Colors.white,
-                      fontFamily: 'Ledger', // Change the font to Ledger
+                      fontFamily: 'Ledger',
                     ),
                     leftChevronVisible: true,
                     rightChevronVisible: true,
@@ -212,20 +197,14 @@ class _JournalPageState extends State<JournalPage> {
                   lastDay: DateTime.utc(2050, 12, 31),
                   focusedDay: focusedDay,
                   calendarFormat: calendarFormat,
-                  //
-                  //to mark on day that selcted only
-                  //
                   selectedDayPredicate: (day) {
                     return day == selectedDay ? true : false;
                   },
                   onDaySelected: (selectedDay, focusedDay) {
                     setState(() {
-                      selectedDay = selectedDay;
-                      focusedDay = focusedDay;
+                      this.selectedDay = selectedDay;
+                      this.focusedDay = focusedDay;
                     });
-                    //
-                    // go to the second Page
-                    //
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -235,15 +214,12 @@ class _JournalPageState extends State<JournalPage> {
                     );
                   },
                   onPageChanged: (focusedDay) {
-                    focusedDay = focusedDay;
+                    this.focusedDay = focusedDay;
                   },
                   onHeaderTapped: (Date) {
                     setState(() {
                       selectedYear = Date;
                     });
-                    //
-                    //go to third Page
-                    //
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -255,7 +231,7 @@ class _JournalPageState extends State<JournalPage> {
                   },
                 ),
                 //
-                //
+                // Month Journals
                 //
                 Padding(
                   padding:
@@ -272,16 +248,6 @@ class _JournalPageState extends State<JournalPage> {
                                 fontSize: 30,
                                 fontFamily: 'Ledger'),
                           ),
-                          /*GestureDetector(
-                            child: const Text(
-                              "See All",
-                              style: TextStyle(
-                                  color: Color(0xffD1CEA1),
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'Ledger'),
-                            ),
-                          )*/
                         ],
                       ),
                     ],
@@ -290,7 +256,7 @@ class _JournalPageState extends State<JournalPage> {
                 SizedBox(
                   height: 250,
                   child: ListView.builder(
-                    padding: EdgeInsets.zero,
+                    padding: const EdgeInsets.only(bottom: 80), // Add bottom padding here
                     itemBuilder: (context, index) {
                       return JournalData(
                           title: "I was wondering", date: "14/1/2024");
