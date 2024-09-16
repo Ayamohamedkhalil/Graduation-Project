@@ -3,7 +3,7 @@ import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 
 
-import 'package:splash_onboarding_test/views/edituserprofile.dart';
+
 import 'package:splash_onboarding_test/views/reasonfordeleteaccount.dart';
 
 class Accountsetting extends StatefulWidget {
@@ -336,11 +336,11 @@ class _AccountsettingState extends State<Accountsetting> {
                           color: Colors.white, fontFamily: 'InriaSans-Bold')),
                   trailing: Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
-                    Navigator.push(
+                   /* Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => Edituserprofile()),
-                    );
+                    );*/
                   },
                 ),
                 ListTile(
