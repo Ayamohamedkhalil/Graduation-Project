@@ -6,6 +6,7 @@ import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/views/PreviosTestPage/component/ResultCard.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
 import 'package:splash_onboarding_test/Registeration/auth_service.dart';
+
 // Model class for Test
 class Test {
   final String date;
@@ -35,12 +36,19 @@ Future<List<Test>> getTests() async {
 
   if (response.statusCode == 200) {
     final jsonData = json.decode(response.body);
+
+    // Check if the message indicates no tests found
+    if (jsonData['message'] == "No tests found") {
+      return Future.error(jsonData['message']);
+    }
+
     final List<Test> tests = (jsonData['tests'] as List)
         .map((test) => Test.fromJson(test))
         .toList();
+    
     return tests;
   } else {
-    throw Exception('Failed to load tests');
+    throw Exception('No tests yet');
   }
 }
 
@@ -176,11 +184,11 @@ class Previoustestpage extends StatelessWidget {
 
 // Method to retrieve the token (stub)
 Future<String?> getToken() async {
-    final String? token = await AuthService.getToken();
-    if (token == null) {
-      print('No token found');
-    } else {
-      print('Retrieved Token: $token');
-    }
-    return token;
+  final String? token = await AuthService.getToken();
+  if (token == null) {
+    print('No token found');
+  } else {
+    print('Retrieved Token: $token');
   }
+  return token;
+}
