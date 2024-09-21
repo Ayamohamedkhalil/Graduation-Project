@@ -1,101 +1,96 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
-
 import 'package:splash_onboarding_test/views/PreviosTestPage/component/ResultCard.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
+import 'package:splash_onboarding_test/Registeration/auth_service.dart';
+// Model class for Test
+class Test {
+  final String date;
+  final String diseaseName;
+  final String testName;
 
+  Test({required this.date, required this.diseaseName, required this.testName});
+
+  factory Test.fromJson(Map<String, dynamic> json) {
+    return Test(
+      date: json['date'],
+      diseaseName: json['disease_name'],
+      testName: json['test_name'],
+    );
+  }
+}
+
+// Function to fetch tests from the API
+Future<List<Test>> getTests() async {
+  final String? token = await getToken(); // Your method to get the token
+  final response = await http.get(
+    Uri.parse('https://backend-production-19d7.up.railway.app/api/tests'),
+    headers: {
+      'Authorization': token ?? '',
+    },
+  );
+
+  if (response.statusCode == 200) {
+    final jsonData = json.decode(response.body);
+    final List<Test> tests = (jsonData['tests'] as List)
+        .map((test) => Test.fromJson(test))
+        .toList();
+    return tests;
+  } else {
+    throw Exception('Failed to load tests');
+  }
+}
+
+// Main widget for Previous Test Page
 class Previoustestpage extends StatelessWidget {
   const Previoustestpage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Define a list of test data (diseases, results, and dates)
-    final List<Map<String, String>> testData = [
-      {
-        "testName": "Depression Assessment",
-        "testResult": "Depressed",
-        "testDate": "01/01/2023",
-      },
-      {
-        "testName": "Anxiety Test",
-        "testResult": "Moderate Anxiety",
-        "testDate": "05/02/2023",
-      },
-      {
-        "testName": "Bipolar Disorder Test",
-        "testResult": "Bipolar Disorder",
-        "testDate": "12/03/2023",
-      },
-      {
-        "testName": "Stress Level Test",
-        "testResult": "High Stress",
-        "testDate": "20/03/2023",
-      },
-      {
-        "testName": "PTSD Assessment",
-        "testResult": "PTSD Detected",
-        "testDate": "18/04/2023",
-      },
-      {
-        "testName": "ADHD Test",
-        "testResult": "Possible ADHD",
-        "testDate": "22/05/2023",
-      },
-    ];
-
     return Scaffold(
       body: Container(
         color: PriamryColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            //
             // Appbar
-            //
             Row(
               children: [
-                const SizedBox(
-                  height: 90,
-                ),
+                const SizedBox(height: 90),
                 Stack(children: [
                   Positioned(
                     top: 2,
                     left: 20,
                     child: Container(
-                      width: 35.0, // Adjust the width of the circle
-                      height: 35.0, // Adjust the height of the circle
+                      width: 35.0,
+                      height: 35.0,
                       decoration: BoxDecoration(
-                        color: Colors.white
-                            .withOpacity(.80), // Background color (light green)
-                        shape: BoxShape.circle, // Circular shape
+                        color: Colors.white.withOpacity(.80),
+                        shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color:
-                                Colors.black.withOpacity(0.15), // Shadow color
-                            spreadRadius:
-                                2, // How much the shadow should spread
-                            blurRadius: 5, // The blur radius of the shadow
-                            offset: const Offset(
-                                0, 2), // Offset the shadow vertically
+                            color: Colors.black.withOpacity(0.15),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 2),
                           ),
                         ],
                       ),
                       child: IconButton(
                         icon: const Icon(Icons.arrow_back_ios),
-                        color: const Color(
-                            0xFF537F5C), // Set the color of the arrow icon
+                        color: const Color(0xFF537F5C),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const UserProfile(),
                           ));
                         },
-                        iconSize: 25.0, // Adjust the size of the icon
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 3,
-                            horizontal: 9), // Adjust padding around the icon
-                        splashRadius: 25.0, // Adjust the splash radius on click
-                        tooltip: "Next",
+                        iconSize: 25.0,
+                        padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 9),
+                        splashRadius: 25.0,
+                        tooltip: "Back",
                       ),
                     ),
                   ),
@@ -105,12 +100,13 @@ class Previoustestpage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Tests history",
+                          "Tests History",
                           style: TextStyle(
-                              fontFamily: "InriaSans",
-                              fontSize: 26,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500),
+                            fontFamily: "InriaSans",
+                            fontSize: 26,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ],
                     ),
@@ -118,21 +114,14 @@ class Previoustestpage extends StatelessWidget {
                 ]),
               ],
             ),
-            //
             // Result content
-            //
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(5),
                 margin: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
-                  // boxShadow: ,
                   borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    width: 1,
-                    color: Colors.white,
-                  ),
-
+                  border: Border.all(width: 1, color: Colors.white),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(.10),
@@ -142,46 +131,56 @@ class Previoustestpage extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Scrollbar(
-                  thumbVisibility: true,
-                  interactive: true,
-                  thickness: 6,
-                  radius: const Radius.circular(40),
-                  child:
-                    
-                      ListView.builder(
-                        primary: true,
-                        padding: EdgeInsets.zero,
-                        itemCount:
-                            testData.length, // Use the length of the test data list
+                child: FutureBuilder<List<Test>>(
+                  future: getTests(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    } else if (snapshot.hasError) {
+                      return Center(child: Text('Error: ${snapshot.error}'));
+                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return Center(child: Text('No tests available'));
+                    }
+
+                    final tests = snapshot.data!;
+                    return Scrollbar(
+                      thumbVisibility: true,
+                      interactive: true,
+                      thickness: 6,
+                      radius: const Radius.circular(40),
+                      child: ListView.builder(
+                        itemCount: tests.length,
                         itemBuilder: (context, index) {
-                          // Get data for the current test
-                          final test = testData[index];
+                          final test = tests[index];
                           return ResultCard(
-                            testName: test["testName"]!,
-                            testResult: test["testResult"]!,
-                            testDate: test["testDate"]!,
+                            testName: test.testName,
+                            testResult: test.diseaseName, // or any relevant field
+                            testDate: test.date,
                           );
-                         
                         },
-                        
                       ),
-                      
-                    
-                  ),
+                    );
+                  },
                 ),
               ),
-           
-            //
+            ),
             // ButtonBar
-            //
             const BarButton(),
-            const SizedBox(
-              height: 10,
-            )
+            const SizedBox(height: 10),
           ],
         ),
       ),
     );
   }
 }
+
+// Method to retrieve the token (stub)
+Future<String?> getToken() async {
+    final String? token = await AuthService.getToken();
+    if (token == null) {
+      print('No token found');
+    } else {
+      print('Retrieved Token: $token');
+    }
+    return token;
+  }
