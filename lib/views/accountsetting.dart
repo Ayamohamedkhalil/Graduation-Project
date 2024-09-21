@@ -322,7 +322,7 @@ class _AccountsettingState extends State<Accountsetting> {
           ),
           Container(
             decoration: BoxDecoration(
-                color: Colors.black.withOpacity(.25),
+                color: Colors.black.withOpacity(.15),
                 borderRadius: BorderRadius.circular(20)),
             height: 270,
             width: 320,
@@ -333,7 +333,7 @@ class _AccountsettingState extends State<Accountsetting> {
                   leading: Icon(Icons.edit, color: Colors.white),
                   title: Text('Edit profile',
                       style: TextStyle(
-                          color: Colors.white, fontFamily: 'InriaSans-Bold')),
+                          color: Colors.white, fontFamily: 'InriaSans')),
                   trailing: Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
                    /* Navigator.push(
@@ -350,7 +350,7 @@ class _AccountsettingState extends State<Accountsetting> {
                   ),
                   title: Text('Change Password',
                       style: TextStyle(
-                          color: Colors.white, fontFamily: 'InriaSans-Bold')),
+                          color: Colors.white, fontFamily: 'InriaSans')),
                   trailing: Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
                     // Add your onTap code here
@@ -360,19 +360,17 @@ class _AccountsettingState extends State<Accountsetting> {
                   leading: Icon(Icons.logout, color: Colors.white),
                   title: Text('Logout',
                       style: TextStyle(
-                          color: Colors.white, fontFamily: 'InriaSans-Bold')),
+                          color: Colors.white, fontFamily: 'InriaSans')),
                   trailing: Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
                     _logout();
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.delete, color: Color(0xffA71C1C).withOpacity(.88)),
+                  leading: Icon(Icons.delete, color: Color(0xffA71C1C).withOpacity(.80)),
                   title: Text('Delete Account',
                       style: TextStyle(
-                          color: Color(
-                            0xffA71C1C,
-                          ).withOpacity(.88),
+                          color: Color.fromARGB(255, 162, 16, 16).withOpacity(.88),
                           // fontSize: 20,
                           fontFamily: 'InriaSans-Bold')),
                   trailing: Icon(Icons.arrow_forward, color: Color(0xffA71C1C).withOpacity(.80)),

@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 class JournalPageDay extends StatefulWidget {
   @override
   _JournalPageDayState createState() => _JournalPageDayState();
-  JournalPageDay({required this.selectDay});
+  const JournalPageDay({super.key, required this.selectDay});
   final DateTime selectDay;
 }
 
@@ -59,7 +59,7 @@ class _JournalPageDayState extends State<JournalPageDay> {
                       tooltip: "Next",
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   //
@@ -147,7 +147,7 @@ class _JournalPageDayState extends State<JournalPageDay> {
                         weekendStyle: const TextStyle(color: Colors.white,fontFamily: 'Ledger')),
                     calendarStyle: CalendarStyle(
                         cellMargin:
-                            EdgeInsets.symmetric(horizontal: 13, vertical: 13),
+                            const EdgeInsets.symmetric(horizontal: 13, vertical: 13),
                         todayTextStyle: const TextStyle(color: Colors.white),
                         todayDecoration: BoxDecoration(
                             color: const Color.fromARGB(68, 217, 217, 217),
@@ -223,15 +223,15 @@ class _JournalPageDayState extends State<JournalPageDay> {
                   //
                   //
                   //
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(
                         vertical: 16, horizontal: 16),
                     child: Column(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
+                            Text(
                               "Day Journals",
                               style: TextStyle(
                                 fontFamily: "Ledger",

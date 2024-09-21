@@ -368,7 +368,7 @@ class _Generaltest extends State<Generaltest> {
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: _selectedAnswer == "YES"
-                                ? Color(0xff666556)
+                                ? const Color(0xff666556)
                                 : const Color(0xFFB7B597),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
@@ -409,7 +409,7 @@ class _Generaltest extends State<Generaltest> {
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: _selectedAnswer == "NO"
-                                ? Color(0xff666556)
+                                ? const Color(0xff666556)
                                 : const Color(0xFFB7B597),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),

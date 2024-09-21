@@ -5,7 +5,7 @@ import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/components/FAQCard.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
-import 'package:splash_onboarding_test/Registeration/auth_service.dart'; // Assuming AuthService is handling token storage
+import 'package:splash_onboarding_test/Registeration/auth_service.dart'; 
 
 class FAQPage extends StatefulWidget {
   const FAQPage({super.key});
@@ -41,7 +41,7 @@ class _FAQPageState extends State<FAQPage> {
     try {
       final response = await http.get(
         Uri.parse('https://backend-production-19d7.up.railway.app/api/faq'),
-        headers: {'Authorization': '$token',},
+        headers: {'Authorization': token,},
       );
 
       if (response.statusCode == 200) {

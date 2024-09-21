@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Forgetpassword extends StatefulWidget {
-  Forgetpassword({super.key});
+  const Forgetpassword({super.key});
 
   @override
   State<Forgetpassword> createState() => _ForgetpasswordState();
@@ -55,19 +55,19 @@ class _ForgetpasswordState extends State<Forgetpassword> {
                 color: Colors.black.withOpacity(0.15),
                 spreadRadius: 2,
                 blurRadius: 5,
-                offset: Offset(0, 2),
+                offset: const Offset(0, 2),
               ),
             ],
           ),
-          margin: EdgeInsets.only(
+          margin: const EdgeInsets.only(
               left: 22), // Properly position the icon within the AppBar
           child: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            color: Color(0xFF537F5C),
+            icon: const Icon(Icons.arrow_back_ios),
+            color: const Color(0xFF537F5C),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Login()),
+                MaterialPageRoute(builder: (context) => const Login()),
               ); // Adjusted for a typical back operation
             },
             iconSize: 25.0,
@@ -75,7 +75,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
             tooltip: "Back",
           ),
         ),
-        title: Text(
+        title: const Text(
           'Forget password',
           style: TextStyle(
               color: Colors.white,
@@ -181,7 +181,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
       if (response.statusCode == 200 && responseBody['message'] == 'Verification code sent to your email') {
         // Show success message
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Verification code sent to your email')),
+          const SnackBar(content: Text('Verification code sent to your email')),
         );
 
         // Navigate to the VerifyEmailScreen
@@ -192,7 +192,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
       } else {
         // Handle other responses
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to send verification code')),
+          const SnackBar(content: Text('Failed to send verification code')),
         );
       }
     } catch (e) {

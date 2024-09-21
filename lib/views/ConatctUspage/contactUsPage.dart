@@ -143,11 +143,11 @@ class ContactUsPage extends StatelessWidget {
                         future: fetchContacts(),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState == ConnectionState.waiting) {
-                            return Center(child: CircularProgressIndicator());
+                            return const Center(child: CircularProgressIndicator());
                           } else if (snapshot.hasError) {
                             return Center(child: Text('Error: ${snapshot.error}'));
                           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                            return Center(child: Text('No contact information available'));
+                            return const Center(child: Text('No contact information available'));
                           }
 
                           final contacts = snapshot.data!;
@@ -158,7 +158,7 @@ class ContactUsPage extends StatelessWidget {
                               final contact = contacts[index];
                               return Container(
                                 decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 194, 193, 193),
+                                  color: const Color.fromARGB(255, 194, 193, 193),
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 margin: const EdgeInsets.symmetric(vertical: 5),

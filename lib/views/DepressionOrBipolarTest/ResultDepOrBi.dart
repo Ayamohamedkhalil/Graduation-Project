@@ -44,7 +44,7 @@ class Result1DepORBi extends StatelessWidget {
                           color: Colors.grey,
                           width: 200,
                           height: 200,
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               'Image Error',
                               style: TextStyle(color: Colors.red),
@@ -66,8 +66,8 @@ class Result1DepORBi extends StatelessWidget {
             const SizedBox(height: 30),
             Text(
               result,
-              style: TextStyle(
-                color: const Color(0xffD9D9D9),
+              style: const TextStyle(
+                color: Color(0xffD9D9D9),
                 fontSize: 37,
                 fontFamily: 'Ledger-Regular',
               ),

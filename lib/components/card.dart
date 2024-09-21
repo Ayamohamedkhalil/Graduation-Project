@@ -13,7 +13,7 @@ class card extends StatelessWidget {
             child: Container(
               height: 340,
               width: 240,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/image.png'),
                   // fit: BoxFit.cover,
@@ -43,7 +43,7 @@ class card extends StatelessWidget {
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'InriaSans',
-                              shadows: [
+                              shadows: const [
                                 Shadow(
                                   offset: Offset(3.0, 3.0),
                                   blurRadius: 5.0,
@@ -65,7 +65,7 @@ class card extends StatelessWidget {
             child: Container(
               height: 340,
               width: 240,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/Generaltest.png'),
                   // fit: BoxFit.cover,
@@ -96,7 +96,7 @@ class card extends StatelessWidget {
                               color: Colors.white.withOpacity(.80),
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
-                              fontFamily: 'InriaSans',shadows: [
+                              fontFamily: 'InriaSans',shadows: const [
                                 Shadow(
                                   offset: Offset(3.0, 3.0),
                                   blurRadius: 5.0,

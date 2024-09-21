@@ -24,6 +24,8 @@ Future<void> resetPassword(String password, String confirmPassword) async {
 }
 
 class Newpassword extends StatefulWidget {
+  const Newpassword({super.key});
+
   @override
   _Newpassword createState() => _Newpassword();
 }
@@ -72,7 +74,7 @@ class _Newpassword extends State<Newpassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF537F5C),
+      backgroundColor: const Color(0xFF537F5C),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: Container(
@@ -87,15 +89,15 @@ class _Newpassword extends State<Newpassword> {
                 color: Colors.black.withOpacity(0.15),
                 spreadRadius: 2,
                 blurRadius: 5,
-                offset: Offset(0, 2),
+                offset: const Offset(0, 2),
               ),
             ],
           ),
-          margin: EdgeInsets.only(
+          margin: const EdgeInsets.only(
               left: 22), // Properly position the icon within the AppBar
           child: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            color: Color(0xFF537F5C),
+            icon: const Icon(Icons.arrow_back_ios),
+            color: const Color(0xFF537F5C),
             onPressed: () {
               Navigator.push(
                 context,
@@ -107,7 +109,7 @@ class _Newpassword extends State<Newpassword> {
             tooltip: "Back",
           ),
         ),
-        title: Text(
+        title: const Text(
           'Create new password',
           style: TextStyle(
               color: Colors.white,
@@ -139,7 +141,7 @@ class _Newpassword extends State<Newpassword> {
                     color: Colors.white.withOpacity(.90),
                     fontFamily: 'Inter'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Padding(
@@ -150,7 +152,7 @@ class _Newpassword extends State<Newpassword> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: _validatePassword,
                   cursorColor: Colors.white,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hoverColor: Colors.white,
                     prefix: SizedBox(width: 1),
                     hintText: 'Password',
@@ -169,7 +171,7 @@ class _Newpassword extends State<Newpassword> {
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: TextFormField(
@@ -178,7 +180,7 @@ class _Newpassword extends State<Newpassword> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: _validateConfirmPassword,
                   cursorColor: Colors.white,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hoverColor: Colors.white,
                     prefix: SizedBox(width: 1),
                     hintText: 'Confirm Password',
@@ -197,7 +199,7 @@ class _Newpassword extends State<Newpassword> {
                   ),
                 ),
               ),
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
               Container(
                 width: 270,
                 height: 44,
@@ -209,14 +211,14 @@ class _Newpassword extends State<Newpassword> {
                       color: Colors.black.withOpacity(.25),
                       spreadRadius: 0,
                       blurRadius: 4,
-                      offset: Offset(0, 4),
+                      offset: const Offset(0, 4),
                     ),
                   ],
                 ),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xff537F5C),
-                    shadowColor: Color(0xff537F5C),
+                    backgroundColor: const Color(0xff537F5C),
+                    shadowColor: const Color(0xff537F5C),
                     alignment: Alignment.center,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -228,12 +230,12 @@ class _Newpassword extends State<Newpassword> {
   await resetPassword(passwordController.text, confirmPasswordController.text);
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => Login()),
+    MaterialPageRoute(builder: (context) => const Login()),
   );
 }
 
                   },
-                  child: Text(
+                  child: const Text(
                     'Save',
                     style: TextStyle(
                       fontSize: 28,

@@ -8,7 +8,7 @@ import 'package:splash_onboarding_test/views/splashfile/slidingtext.dart';
 
 
 class SplashViewbody extends StatefulWidget {
-  const SplashViewbody({Key? key}) : super(key: key);
+  const SplashViewbody({super.key});
 
   @override
   State<SplashViewbody> createState() => _SplashViewbodyState();
@@ -54,7 +54,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
     );
 
     slidingAnimation =
-        Tween<Offset>(begin: const Offset(0, 2), end: Offset(0,-1))
+        Tween<Offset>(begin: const Offset(0, 2), end: const Offset(0,-1))
             .animate(animationController);
 
     animationController.forward();

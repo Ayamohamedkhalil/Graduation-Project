@@ -55,7 +55,7 @@ class _Result2DepOrBiState extends State<Result2DepOrBi> {
       Uri.parse(
           'https://backend-production-19d7.up.railway.app/api/test/GeneralTest/${widget.result}'),
       headers: {
-        'Authorization': '$token',
+        'Authorization': token,
       },
     );
     print('Response status: ${response.statusCode}'); // Add this for debugging
@@ -134,7 +134,7 @@ class _Result2DepOrBiState extends State<Result2DepOrBi> {
                                         errorMessage ??
                                             'No description available',
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 21,
                                             fontFamily: "Ledger"),
@@ -142,7 +142,7 @@ class _Result2DepOrBiState extends State<Result2DepOrBi> {
                                     : Text(
                                         description!,
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 21,
                                             fontFamily: "Ledger"),
@@ -198,7 +198,7 @@ class _Result2DepOrBiState extends State<Result2DepOrBi> {
                                     },
                                     child: Text(
                                       link ?? "No link available",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontFamily: "Inter",
                                           fontSize: 13,
                                           fontWeight: FontWeight.w500,
@@ -258,9 +258,9 @@ class _Result2DepOrBiState extends State<Result2DepOrBi> {
                   ),
                 ),
               ),
-              Column(
+              const Column(
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     height: 15,
                   ),
                  /* Container(
@@ -315,11 +315,11 @@ class _Result2DepOrBiState extends State<Result2DepOrBi> {
                       ),
                     ),
                   ),*/
-                  const SizedBox(
+                  SizedBox(
                     height: 15,
                   ),
-                  const BarButton(),
-                  const SizedBox(
+                  BarButton(),
+                  SizedBox(
                     height: 10,
                   ),
                 ],

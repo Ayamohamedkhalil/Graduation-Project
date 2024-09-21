@@ -44,14 +44,14 @@ class BarButton extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return Dialog(
-          backgroundColor: Color(0xff537F5C).withOpacity(.88),
+          backgroundColor: const Color(0xff537F5C).withOpacity(.88),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
           child: Container(
             width: 300, // Set width of the dialog
             height: 500, // Set height of the dialog
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Stack(
               alignment: Alignment.center,
               children: [
@@ -59,8 +59,8 @@ class BarButton extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Image.asset('assets/oops.png'),
-                    SizedBox(height: 10,),
-                    Text(
+                    const SizedBox(height: 10,),
+                    const Text(
                       'Oops!!!',
                       style: TextStyle(
                           fontSize: 28,
@@ -68,8 +68,8 @@ class BarButton extends StatelessWidget {
                           color: Colors.white,
                           fontFamily: 'Martel-Black'),
                     ),
-                    SizedBox(height: 20,),
-                    Text(
+                    const SizedBox(height: 20,),
+                    const Text(
                       "It looks like you're not signed in.\n please",
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -88,11 +88,11 @@ class BarButton extends StatelessWidget {
                             // Handle login action
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (context) => Login(),
+                                builder: (context) => const Login(),
                               ),
                             ); // Close the dialog
                           },
-                          child: Text(
+                          child: const Text(
                             'log-in',
                             style: TextStyle(
                               color: Color(0xff1F355A),
@@ -104,7 +104,7 @@ class BarButton extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Text(
+                        const Text(
                           ' or ',
                           style: TextStyle(
                             fontSize: 22,
@@ -119,11 +119,11 @@ class BarButton extends StatelessWidget {
                             // Handle sign-up action
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (context) => Signup(),
+                                builder: (context) => const Signup(),
                               ),
                             ); // Cl // Close the dialog
                           },
-                          child: Text(
+                          child: const Text(
                             'sign-up',
                             style: TextStyle(
                               color: Color(0xff1F355A),
@@ -138,7 +138,7 @@ class BarButton extends StatelessWidget {
                         ),
                       ],
                     ),
-                     Text(
+                     const Text(
                           ' to continue ',
                           style: TextStyle(
                             fontSize: 22,

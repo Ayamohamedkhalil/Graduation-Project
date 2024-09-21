@@ -37,7 +37,7 @@ Future<String?> getToken() async {
     Navigator.of(context).pop(); // Close the dialog before navigating
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => Previoustestpage()), 
+      MaterialPageRoute(builder: (context) => const Previoustestpage()), 
     );
   } else {
     // Handle error (e.g., show a message)
@@ -53,19 +53,19 @@ void _Deleteaccount(BuildContext context) {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        backgroundColor: Color(0xff537F5C).withOpacity(.88),
+        backgroundColor: const Color(0xff537F5C).withOpacity(.88),
         elevation: 20,
         shadowColor: Colors.black.withOpacity(0.25),
-        content: Container(
+        content: SizedBox(
           height: 420,
           width: 320,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Image.asset('assets/deleteimage.png'), 
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 "Are you sure you want to delete your data?",
                 style: TextStyle(
                   color: Colors.white,
@@ -74,21 +74,21 @@ void _Deleteaccount(BuildContext context) {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 20),
-              Container(
+              const SizedBox(height: 20),
+              SizedBox(
                 width: 240,
                 child: ElevatedButton(
                   onPressed: () {
                     deleteData(context); // Call the data deletion function
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xffA71C1C).withOpacity(.88),
+                    backgroundColor: const Color(0xffA71C1C).withOpacity(.88),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    padding: EdgeInsets.symmetric(vertical: 12),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                   ),
-                  child: Text(
+                  child: const Text(
                     "Confirm",
                     style: TextStyle(
                       color: Colors.white,
@@ -98,21 +98,21 @@ void _Deleteaccount(BuildContext context) {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              Container(
+              const SizedBox(height: 20),
+              SizedBox(
                 width: 240,
                 child: OutlinedButton(
                   onPressed: () {
                     Navigator.of(context).pop(); // Close the dialog
                   },
                   style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: Colors.white, width: 1),
+                    side: const BorderSide(color: Colors.white, width: 1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    padding: EdgeInsets.symmetric(vertical: 12),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                   ),
-                  child: Text(
+                  child: const Text(
                     "Cancel",
                     style: TextStyle(
                       color: Colors.white,

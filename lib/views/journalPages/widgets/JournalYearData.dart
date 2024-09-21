@@ -5,7 +5,7 @@ class JournalYearData extends StatelessWidget {
   final String title;
   final String date;
 
-  JournalYearData({required this.title, required this.date});
+  const JournalYearData({super.key, required this.title, required this.date});
 
   @override
   Widget build(BuildContext context) {

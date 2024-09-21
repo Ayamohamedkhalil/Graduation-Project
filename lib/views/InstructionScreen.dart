@@ -24,7 +24,7 @@ class IntroScreen extends StatelessWidget {
       bodyWidget: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           Padding(
@@ -34,10 +34,10 @@ class IntroScreen extends StatelessWidget {
               width: 300,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 70,
           ),
-          Text(
+          const Text(
             'your personal mental\nwellness companion',
             style: TextStyle(
               color: Colors.white,
@@ -72,7 +72,7 @@ class IntroScreen extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
               // Centered text
-             Text(
+             const Text(
               'Our app is designed\nto help you \nunderstand and\n manage your mental health\nthrough a variety of \ndiagnostic tests',
               style: TextStyle(
                 fontFamily: 'Ledger',
@@ -102,7 +102,7 @@ class IntroScreen extends StatelessWidget {
             Row(children: [
               Image.asset('assets/introonboarding1.png',
                   height: 120), // Example image
-              SizedBox(
+              const SizedBox(
                 width: 70,
               ),
               Text(
@@ -132,7 +132,7 @@ class IntroScreen extends StatelessWidget {
                       color: Colors.white.withOpacity(.85),
                       fontFamily: 'Ledger'),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 50,
                 ),
                 Image.asset('assets/introonboarding2.png', height: 120),
@@ -149,7 +149,7 @@ class IntroScreen extends StatelessWidget {
               children: [
                 Image.asset('assets/introonboarding3.png',
                     height: 120), // Example image
-                SizedBox(
+                const SizedBox(
                   width: 50,
                 ),
                 Text(
@@ -165,7 +165,7 @@ class IntroScreen extends StatelessWidget {
           ],
         ),
       ),
-      decoration: PageDecoration(
+      decoration: const PageDecoration(
         pageColor:
             Color(0xFF537F5C), // Background color similar to the screenshot
       ),
@@ -175,7 +175,7 @@ class IntroScreen extends StatelessWidget {
       bodyWidget: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
           // Background image with decoration
           Stack(
             alignment: Alignment.center,
@@ -186,7 +186,7 @@ class IntroScreen extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
               // Centered text
-              Text(
+              const Text(
                 ' Your\n Journey\n Starts\n  Now',
                 style: TextStyle(
                   color: Colors.white,
@@ -212,7 +212,7 @@ class IntroScreen extends StatelessWidget {
     return Scaffold(
       // backgroundColor: Color(0xFF537F5C), // Set the background color of the Scaffold
       body: IntroductionScreen(
-        globalBackgroundColor: Color(0xFF537F5C),
+        globalBackgroundColor: const Color(0xFF537F5C),
         pages: pages,
         dotsDecorator: const DotsDecorator(
           size: Size(10, 10),
