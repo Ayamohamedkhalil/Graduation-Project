@@ -16,9 +16,10 @@ class Registeration extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: SingleChildScrollView(
+      child: Column(
         children: [
           Stack(
             children: [
@@ -41,93 +42,90 @@ class Registeration extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Ledger',
                       fontSize: 30, // Adjust the font size as needed
-                      fontWeight:
-                          FontWeight.w500, // Make the text bold if needed
-                      color:
-                          Colors.white.withOpacity(.80), // Use a contrasting color to the image
-                      letterSpacing:
-                          4, // Adjust letter spacing to match the design
+                      fontWeight: FontWeight.w500, // Make the text bold if needed
+                      color: Colors.white.withOpacity(.80),
+                      letterSpacing: 4,
                     ),
                   ),
                 ),
               ),
             ],
           ),
-          const SizedBox(
-            height: 2,
-          ),
+          const SizedBox(height: 2),
           Container(
             width: 270,
             height: 44,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.25),
-                    spreadRadius: 0,
-                    blurRadius: 4,
-                    offset: const Offset(0, 4),
-                  )
-                ]),
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  alignment: Alignment.center,
-                  backgroundColor: const Color(0xff537F5C),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(.25),
+                  spreadRadius: 0,
+                  blurRadius: 4,
+                  offset: const Offset(0, 4),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Login()),
-                  );
-                },
-                child: const Text(
-                  'Log in',
-                  style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                      fontFamily: 'InriaSans-Bold'),
-                )),
+              ],
+            ),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                alignment: Alignment.center,
+                backgroundColor: const Color(0xff537F5C),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Login()),
+                );
+              },
+              child: const Text(
+                'Log in',
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
+                  fontFamily: 'InriaSans-Bold',
+                ),
+              ),
+            ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           Container(
             width: 270,
             height: 44,
             decoration: BoxDecoration(
-                border: Border.all(width: 2, color: const Color(0xff537F5C)),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.25),
-                    spreadRadius: 0,
-                    blurRadius: 4,
-                    offset: const Offset(0, 4),
-                  )
-                ]),
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  alignment: Alignment.center,
-                  shadowColor: const Color(0xff537F5C),
+              border: Border.all(width: 2, color: const Color(0xff537F5C)),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(.25),
+                  spreadRadius: 0,
+                  blurRadius: 4,
+                  offset: const Offset(0, 4),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Signup()),
-                  );
-                },
-                child: const Text(
-                  'Sign-up',
-                  style: TextStyle(
-                      fontSize: 24,
-                      color: Color(0xff537F5C),
-                      fontFamily: 'InriaSans-Bold'),
-                )),
+              ],
+            ),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                alignment: Alignment.center,
+                shadowColor: const Color(0xff537F5C),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Signup()),
+                );
+              },
+              child: const Text(
+                'Sign-up',
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Color(0xff537F5C),
+                  fontFamily: 'InriaSans-Bold',
+                ),
+              ),
+            ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           const Row(
             children: [
               Expanded(
@@ -155,40 +153,44 @@ class Registeration extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 20,),
+          const SizedBox(height: 20),
           Container(
             width: 270,
             height: 44,
             decoration: BoxDecoration(
-                border: Border.all(width: 2, color: const Color(0xff537F5C)),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.25),
-                    spreadRadius: 0,
-                    blurRadius: 4,
-                    offset: const Offset(0, 4),
-                  )
-                ]),
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  alignment: Alignment.center,
-                  backgroundColor: Colors.white,
-                  shadowColor: const Color(0xff537F5C),
+              border: Border.all(width: 2, color: const Color(0xff537F5C)),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(.25),
+                  spreadRadius: 0,
+                  blurRadius: 4,
+                  offset: const Offset(0, 4),
                 ),
-                onPressed: () {
-                  _continueAsGuest(context);
-                },
-                child: const Text(
-                  'Continue as a guest',
-                  style: TextStyle(
-                      fontSize: 24,
-                      color: Color(0xff537F5C),
-                      fontFamily: 'InriaSans-Bold'),
-                )),
+              ],
+            ),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                alignment: Alignment.center,
+                backgroundColor: Colors.white,
+                shadowColor: const Color(0xff537F5C),
+              ),
+              onPressed: () {
+                _continueAsGuest(context);
+              },
+              child: const Text(
+                'Continue as a guest',
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Color(0xff537F5C),
+                  fontFamily: 'InriaSans-Bold',
+                ),
+              ),
+            ),
           ),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
 }

@@ -52,7 +52,8 @@ Future<void> _login() async {
   final url = Uri.parse('https://backend-production-19d7.up.railway.app/api/login');
   final Map<String, String> requestBody = {
     "email": email!,
-    "password": password!
+    "password": password!,
+    "phone": "test from production"
   };
   print('Email: $email');
   print('Password: $password');
