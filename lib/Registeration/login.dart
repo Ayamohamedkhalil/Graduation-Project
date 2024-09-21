@@ -5,6 +5,7 @@ import 'auth_service.dart'; // Import your AuthService
 import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/Registeration/forgetpassword.dart';
 import 'package:splash_onboarding_test/Registeration/registeration.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -47,24 +48,40 @@ class _LoginState extends State<Login> {
     return null;
   }
 
-  // Function to perform login
 Future<void> _login() async {
   final url = Uri.parse('https://backend-production-19d7.up.railway.app/api/login');
+
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  String phoneType = '';
+
+  if (Theme.of(context).platform == TargetPlatform.android) {
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    phoneType = androidInfo.model; // Get the phone model for Android
+  } else if (Theme.of(context).platform == TargetPlatform.iOS) {
+    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+    phoneType = iosInfo.utsname.machine; // Get the phone model for iOS
+  }
+
+  // Add phone type to the request body
   final Map<String, String> requestBody = {
     "email": email!,
     "password": password!,
-    "phone": "test from production"
+    "phone": phoneType, // Include the phone type in the request body
   };
+
   print('Email: $email');
   print('Password: $password');
-
+  print('Phone type: $phoneType');
+  
   try {
     final response = await http.post(
       url,
-      headers: {"Content-Type": "application/json"},
-      body: jsonEncode(requestBody),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: jsonEncode(requestBody), // Properly encode the request body with phone
     );
-
+    
     print('Status code: ${response.statusCode}');
     print('Response body: ${response.body}');
 
@@ -79,7 +96,6 @@ Future<void> _login() async {
       print('User: ${user['username']}');
 
       if (token != null && token.isNotEmpty) {
-        // Save the token, email, and username using saveLoginInfo
         await AuthService.saveLoginInfo(token, email!, user['username']);
 
         Navigator.pushReplacement(

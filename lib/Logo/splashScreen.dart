@@ -41,14 +41,14 @@ class _SplashscreenState extends State<Splashscreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF537F5C),
+      backgroundColor: const Color(0xFF537F5C),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             
             Image.asset('assets/New Project-2-svg 1.png',height: 200,width: 250,),
-            Text(
+            const Text(
               'MALAZ',
               style: TextStyle(
                   color: Colors.white, fontSize: 37, fontFamily: 'Ledger'),

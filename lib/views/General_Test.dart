@@ -17,7 +17,7 @@ class General_test extends StatelessWidget {
               Container(
                 height: 710,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(40),
                     bottomRight: Radius.circular(40),
@@ -32,13 +32,13 @@ class General_test extends StatelessWidget {
               ),
               Center(
                 child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 80),
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                  margin: const EdgeInsets.symmetric(vertical: 80),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(.30),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: SizedBox(
+                  child: const SizedBox(
                     height: 500,
                     width: 270,
                     child: Column(
@@ -90,20 +90,20 @@ class General_test extends StatelessWidget {
                         color: Colors.black.withOpacity(0.15), // Shadow color
                         spreadRadius: 2, // How much the shadow should spread
                         blurRadius: 5, // The blur radius of the shadow
-                        offset: Offset(0, 2), // Offset the shadow vertically
+                        offset: const Offset(0, 2), // Offset the shadow vertically
                       ),
                     ],
                   ),
                   child: IconButton(
-                    icon: Icon(Icons.arrow_back_ios),
-                    color: Color(0xFF537F5C), // Set the color of the arrow icon
+                    icon: const Icon(Icons.arrow_back_ios),
+                    color: const Color(0xFF537F5C), // Set the color of the arrow icon
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => homescreen(), // Navigate to Registeration screen
+                        builder: (context) => const homescreen(), // Navigate to Registeration screen
                       ));
                     },
                     iconSize: 25.0, // Adjust the size of the icon
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                         vertical: 3, horizontal: 9), // Adjust padding around the icon
                     splashRadius: 25.0, // Adjust the splash radius on click
                     tooltip: "Next",
@@ -112,18 +112,18 @@ class General_test extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 13,
           ),
           TextButton(
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => Generaltest(),
+                  builder: (context) => const Generaltest(),
                 ),
               );
             },
-            child: Text(
+            child: const Text(
               "Let's get started >",
               style: TextStyle(
                   color: Color(0xff537F5C),

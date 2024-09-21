@@ -5,18 +5,18 @@ class NavigationButtons extends StatelessWidget {
   final VoidCallback onNext;
 
   const NavigationButtons({
-    Key? key,
+    super.key,
     required this.onPrevious,
     required this.onNext,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-       IconButton(onPressed: onNext, icon: Icon(Icons.arrow_forward_ios)),
-       IconButton(onPressed: onPrevious, icon: Icon(Icons.arrow_back_ios)),
+       IconButton(onPressed: onNext, icon: const Icon(Icons.arrow_forward_ios)),
+       IconButton(onPressed: onPrevious, icon: const Icon(Icons.arrow_back_ios)),
       ],
     );
   }

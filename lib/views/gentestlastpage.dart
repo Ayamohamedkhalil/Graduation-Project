@@ -6,7 +6,7 @@ import 'package:splash_onboarding_test/views/result1.dart';
 class SubmitPage extends StatelessWidget {
   final List<String?> answers;
 
-  const SubmitPage({Key? key, required this.answers}) : super(key: key);
+  const SubmitPage({super.key, required this.answers});
 
   Future<void> _submitAnswers(BuildContext context) async {
     final url = Uri.parse('https://ml-models-production-90be.up.railway.app/generalPredict');
@@ -126,8 +126,8 @@ class SubmitPage extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           label,
-          style: TextStyle(
-            color: const Color(0xffD9D9D9),
+          style: const TextStyle(
+            color: Color(0xffD9D9D9),
             fontSize: 20,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w700,

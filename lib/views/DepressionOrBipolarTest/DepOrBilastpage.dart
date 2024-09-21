@@ -7,7 +7,7 @@ import 'package:splash_onboarding_test/views/DepressionOrBipolarTest/ResultDepOr
 class DepoRBiSubmitPage extends StatelessWidget {
   final List<String?> answers;
 
-  const DepoRBiSubmitPage({Key? key, required this.answers}) : super(key: key);
+  const DepoRBiSubmitPage({super.key, required this.answers});
 
   Future<void> _submitAnswers(BuildContext context) async {
     final url = Uri.parse('https://ml-models-production-90be.up.railway.app/depressionPredict');

@@ -550,19 +550,19 @@ class _Deporbi extends State<Deporbi> {
         padding: const EdgeInsets.all(8.0),
         child: TextButton(
           style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all<Size>(const Size(220, 50)),
-            backgroundColor: MaterialStateProperty.all<Color>(
+            fixedSize: WidgetStateProperty.all<Size>(const Size(220, 50)),
+            backgroundColor: WidgetStateProperty.all<Color>(
               _selectedAnswer == answer
                   ? const Color(0xff666556)
                   : const Color(0xFFB7B597),
             ),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25.0),
               ),
             ),
-            elevation: MaterialStateProperty.all<double>(5.0),
-            shadowColor: MaterialStateProperty.all<Color>(
+            elevation: WidgetStateProperty.all<double>(5.0),
+            shadowColor: WidgetStateProperty.all<Color>(
               Colors.black.withOpacity(.80),
             ),
           ),

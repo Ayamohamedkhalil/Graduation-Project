@@ -6,7 +6,7 @@ import 'package:splash_onboarding_test/views/splashfile/splashbody.dart';
 
 
 class SplashView extends StatelessWidget {
-  const SplashView({Key? key}) : super(key: key);
+  const SplashView({super.key});
 
   @override
   Widget build(BuildContext context) {

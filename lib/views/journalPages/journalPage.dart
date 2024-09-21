@@ -8,6 +8,8 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
 class JournalPage extends StatefulWidget {
+  const JournalPage({super.key});
+
   @override
   _JournalPageState createState() => _JournalPageState();
 }
@@ -233,15 +235,15 @@ class _JournalPageState extends State<JournalPage> {
                 //
                 // Month Journals
                 //
-                Padding(
+                const Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                      EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                   child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                          Text(
                             "Month Journals",
                             style: TextStyle(
                                 color: Colors.white,

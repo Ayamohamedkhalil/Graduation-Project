@@ -8,12 +8,12 @@ void main() {
 }
 
 class test_app extends StatelessWidget {
-   test_app({super.key});
+   const test_app({super.key});
 
 
   @override
   Widget build(BuildContext context) {
-        return MaterialApp(
+        return const MaterialApp(
          // title: 'Aya',
       debugShowCheckedModeBanner: false,
       home:SplashView() ,

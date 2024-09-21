@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
 
 class Edituserprofile extends StatefulWidget {
+  const Edituserprofile({super.key});
+
   @override
   _Edituserprofile createState() => _Edituserprofile();
 }
@@ -50,14 +52,14 @@ class _Edituserprofile extends State<Edituserprofile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF537F5C),
+      backgroundColor: const Color(0xFF537F5C),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           Container(
-            margin: EdgeInsets.only(right: 320),
+            margin: const EdgeInsets.only(right: 320),
             width: 35.0, // Adjust the width of the circle
             height: 35.0, // Adjust the height of the circle
             decoration: BoxDecoration(
@@ -69,20 +71,20 @@ class _Edituserprofile extends State<Edituserprofile> {
                   color: Colors.black.withOpacity(0.15), // Shadow color
                   spreadRadius: 2, // How much the shadow should spread
                   blurRadius: 5, // The blur radius of the shadow
-                  offset: Offset(0, 2), // Offset the shadow vertically
+                  offset: const Offset(0, 2), // Offset the shadow vertically
                 ),
               ],
             ),
             child: IconButton(
-              icon: Icon(Icons.arrow_back_ios),
-              color: Color(0xFF537F5C), // Set the color of the arrow icon
+              icon: const Icon(Icons.arrow_back_ios),
+              color: const Color(0xFF537F5C), // Set the color of the arrow icon
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Accountsetting(),
+                  builder: (context) => const Accountsetting(),
                 ));
               },
               iconSize: 25.0, // Adjust the size of the icon
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                   vertical: 3, horizontal: 9), // Adjust padding around the icon
               splashRadius: 25.0, // Adjust the splash radius on click
               tooltip: "Next",
@@ -122,7 +124,7 @@ class _Edituserprofile extends State<Edituserprofile> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -152,7 +154,7 @@ class _Edituserprofile extends State<Edituserprofile> {
                   ),
                 ),
               ),
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
               Container(
                 width: 270,
                 height: 44,
@@ -164,14 +166,14 @@ class _Edituserprofile extends State<Edituserprofile> {
                       color: Colors.black.withOpacity(.25),
                       spreadRadius: 0,
                       blurRadius: 4,
-                      offset: Offset(0, 4),
+                      offset: const Offset(0, 4),
                     ),
                   ],
                 ),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xff537F5C),
-                    shadowColor: Color(0xff537F5C),
+                    backgroundColor: const Color(0xff537F5C),
+                    shadowColor: const Color(0xff537F5C),
                     alignment: Alignment.center,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -182,7 +184,7 @@ class _Edituserprofile extends State<Edituserprofile> {
                       // Gather form data
                     }
                   },
-                  child: Text(
+                  child: const Text(
                     'Sign-up',
                     style: TextStyle(
                       fontSize: 28,

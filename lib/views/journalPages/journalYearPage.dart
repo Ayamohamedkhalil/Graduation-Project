@@ -7,7 +7,7 @@ import 'package:splash_onboarding_test/views/journalPages/widgets/JournalYearDat
 class Journalyearpage extends StatefulWidget {
   final int selectYear;
 
-  Journalyearpage({required this.selectYear});
+  const Journalyearpage({super.key, required this.selectYear});
 
   @override
   _JournalyearpageState createState() => _JournalyearpageState();
@@ -15,7 +15,7 @@ class Journalyearpage extends StatefulWidget {
 
 class _JournalyearpageState extends State<Journalyearpage> {
   // To store the state of expanded tiles
-  Map<int, bool> _isOpen = {};
+  final Map<int, bool> _isOpen = {};
 
   @override
   Widget build(BuildContext context) {

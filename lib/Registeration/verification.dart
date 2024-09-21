@@ -6,6 +6,8 @@ import 'package:splash_onboarding_test/Registeration/forgetpassword.dart';
 import 'package:splash_onboarding_test/Registeration/newPassword.dart';
 
 class VerifyEmailScreen extends StatefulWidget {
+  const VerifyEmailScreen({super.key});
+
   @override
   _VerifyEmailScreenState createState() => _VerifyEmailScreenState();
 }
@@ -45,7 +47,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
       } else {
         // Show an error message if verification fails
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
               content: Text('Invalid verification code. Please try again.')),
         );
       }
@@ -74,14 +76,14 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                 color: Colors.black.withOpacity(0.15),
                 spreadRadius: 2,
                 blurRadius: 5,
-                offset: Offset(0, 2),
+                offset: const Offset(0, 2),
               ),
             ],
           ),
-          margin: EdgeInsets.only(left: 22),
+          margin: const EdgeInsets.only(left: 22),
           child: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            color: Color(0xFF537F5C),
+            icon: const Icon(Icons.arrow_back_ios),
+            color: const Color(0xFF537F5C),
             onPressed: () {
               Navigator.push(
                 context,
@@ -93,7 +95,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
             tooltip: "Back",
           ),
         ),
-        title: Text(
+        title: const Text(
           'Verify your email',
           style: TextStyle(
               color: Colors.white,
@@ -195,18 +197,18 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                         color: Colors.black.withOpacity(.25),
                         spreadRadius: 0,
                         blurRadius: 4,
-                        offset: Offset(0, 4),
+                        offset: const Offset(0, 4),
                       )
                     ]),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       alignment: Alignment.center,
-                      backgroundColor: Color(0xff537F5C),
+                      backgroundColor: const Color(0xff537F5C),
                     ),
                     onPressed: () {
                       verifyCode(); // Call the verification function
                     },
-                    child: Text(
+                    child: const Text(
                       'Verify',
                       style: TextStyle(
                           fontSize: 28,

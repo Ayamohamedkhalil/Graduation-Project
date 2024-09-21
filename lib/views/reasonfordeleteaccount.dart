@@ -3,6 +3,8 @@ import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
 
 class DeleteAccountScreen extends StatefulWidget {
+  const DeleteAccountScreen({super.key});
+
   @override
   _DeleteAccountScreenState createState() => _DeleteAccountScreenState();
 }
@@ -15,11 +17,11 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xff537F5C),
+        backgroundColor: const Color(0xff537F5C),
         elevation: 0,
         actions: [
           Container(
-            margin: EdgeInsets.only(right: 320),
+            margin: const EdgeInsets.only(right: 320),
             width: 35.0, // Adjust the width of the circle
             height: 35.0, // Adjust the height of the circle
             decoration: BoxDecoration(
@@ -31,20 +33,20 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                   color: Colors.black.withOpacity(0.15), // Shadow color
                   spreadRadius: 2, // How much the shadow should spread
                   blurRadius: 5, // The blur radius of the shadow
-                  offset: Offset(0, 2), // Offset the shadow vertically
+                  offset: const Offset(0, 2), // Offset the shadow vertically
                 ),
               ],
             ),
             child: IconButton(
-              icon: Icon(Icons.arrow_back_ios),
-              color: Color(0xFF537F5C), // Set the color of the arrow icon
+              icon: const Icon(Icons.arrow_back_ios),
+              color: const Color(0xFF537F5C), // Set the color of the arrow icon
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Accountsetting(),
+                  builder: (context) => const Accountsetting(),
                 ));
               },
               iconSize: 25.0, // Adjust the size of the icon
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                   vertical: 3, horizontal: 9), // Adjust padding around the icon
               splashRadius: 25.0, // Adjust the splash radius on click
               tooltip: "Next",
@@ -53,12 +55,12 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
         ],
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
-        color: Color(0xFF537F5C), // Background color matching the image
+        padding: const EdgeInsets.all(16.0),
+        color: const Color(0xFF537F5C), // Background color matching the image
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Reasons for deleting profile',
               style: TextStyle(
                 fontSize: 22.0,
@@ -66,29 +68,29 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 8.0),
-            Text(
+            const SizedBox(height: 8.0),
+            const Text(
               'we are really sorry to see you go, are you sure you want to delete your account? Once you confirm your data will be gone.',
               style: TextStyle(
                   fontSize: 17.0,
                   color: Colors.white,
                   fontFamily: 'InriaSans-Light'),
             ),
-            SizedBox(height: 40.0),
+            const SizedBox(height: 40.0),
             _buildCustomRadioButton(0, 'I have privacy concerns'),
             Divider(
-              color: Color(0xffD9D9D9).withOpacity(.59),
+              color: const Color(0xffD9D9D9).withOpacity(.59),
             ),
             _buildCustomRadioButton(1, 'Something is broken'),
             Divider(
-              color: Color(0xffD9D9D9).withOpacity(.59),
+              color: const Color(0xffD9D9D9).withOpacity(.59),
             ),
             _buildCustomRadioButton(2, 'I’m no longer using my account'),
             Divider(
-              color: Color(0xffD9D9D9).withOpacity(.59),
+              color: const Color(0xffD9D9D9).withOpacity(.59),
             ),
             _buildCustomRadioButton(3, 'Other'),
-            Spacer(),
+            const Spacer(),
             Center(
               child: Container(
                 height: 60,
@@ -97,12 +99,12 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                   // color: Colors.white.withOpacity(0.06),
                   borderRadius: BorderRadius.circular(18),
                   border: Border.all(
-                    color: Color(0xffD9D9D9),
+                    color: const Color(0xffD9D9D9),
                   ),
                 ),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(
+                    backgroundColor: const Color.fromARGB(
                         129, 217, 217, 217), // Button color matching the image
 
                     shape: RoundedRectangleBorder(
@@ -116,7 +118,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                             builder: (context) => const Registeration()),
                       );
                   },
-                  child: Text(
+                  child: const Text(
                     'Confirm',
                     style: TextStyle(
                         fontSize: 26.0,
@@ -151,7 +153,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
       ),
       title: Text(
         text,
-        style: TextStyle(color: Colors.white, fontFamily: 'InriaSans-Bold'),
+        style: const TextStyle(color: Colors.white, fontFamily: 'InriaSans-Bold'),
       ),
     );
   }

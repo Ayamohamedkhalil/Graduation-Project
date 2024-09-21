@@ -11,7 +11,7 @@ import 'package:splash_onboarding_test/components/ButtonBar.dart';
 class Resultpage2 extends StatefulWidget {
   final String diseaseName; // Take the disease name from the previous page
 
-  const Resultpage2({Key? key, required this.diseaseName}) : super(key: key);
+  const Resultpage2({super.key, required this.diseaseName});
 
   @override
   _Resultpage2State createState() => _Resultpage2State();
@@ -57,7 +57,7 @@ class _Resultpage2State extends State<Resultpage2> {
       Uri.parse(
           'https://backend-production-19d7.up.railway.app/api/test/GeneralTest/${widget.diseaseName}'),
       headers: {
-        'Authorization': '$token', // Pass token directly without 'Bearer '
+        'Authorization': token, // Pass token directly without 'Bearer '
       },
     );
 
@@ -265,9 +265,9 @@ class _Resultpage2State extends State<Resultpage2> {
                 ),
               ),
               // Button Bar
-              Column(
+              const Column(
                 children: [
-                  const SizedBox(height: 15),
+                  SizedBox(height: 15),
                   // Guidelines Button
                  /* Container(
                     width: 200,
@@ -323,9 +323,9 @@ class _Resultpage2State extends State<Resultpage2> {
                       ),
                     ),
                   ),*/
-                  const SizedBox(height: 15),
-                  const BarButton(),
-                  const SizedBox(height: 10),
+                  SizedBox(height: 15),
+                  BarButton(),
+                  SizedBox(height: 10),
                 ],
               ),
             ],
