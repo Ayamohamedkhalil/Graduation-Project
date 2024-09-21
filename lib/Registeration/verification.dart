@@ -17,18 +17,26 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     // API call to verify the code
     try {
       var response = await http.post(
-        Uri.parse('https://backend-production-19d7.up.railway.app/api/resetPasswordInternal'),
+        Uri.parse(
+            'https://backend-production-19d7.up.railway.app/api/resetPasswordInternal'),
         headers: {
           'Content-Type': 'application/json',
+         'Cookie': 'session=eyJlbWFpbCI6ImF5YWs3ODExOEBnbWFpbC5jb20ifQ.ZusXlQ.M91jNiCyvnr8Klr_02gQzHcJte0',
+
         },
         body: jsonEncode({
           'verification_code': verificationCode, // Send the entered code
         }),
       );
-      
+      print(verificationCode);
+      print(verificationCode.runtimeType == String);
       var responseBody = jsonDecode(response.body);
-      print(responseBody);  // Add this to see the full response from the backend
-      if (response.statusCode == 200 && responseBody['message'] == 'Verification successful, proceed to reset password.') {
+      print(responseBody);
+
+      // Add this to see the full response from the backend
+      if (response.statusCode == 200 &&
+          responseBody['message'] ==
+              'Verification successful, proceed to reset password.') {
         // Navigate to the NewPassword screen on success
         Navigator.push(
           context,
@@ -37,7 +45,8 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
       } else {
         // Show an error message if verification fails
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Invalid verification code. Please try again.')),
+          SnackBar(
+              content: Text('Invalid verification code. Please try again.')),
         );
       }
     } catch (e) {
@@ -121,43 +130,42 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: PinCodeTextField(
-  appContext: context,
-  length: 4,
-  obscureText: false,
-  animationType: AnimationType.fade,
-  pinTheme: PinTheme(
-    shape: PinCodeFieldShape.box,
-    borderRadius: BorderRadius.circular(20),
-    fieldHeight: 60,
-    fieldWidth: 60,
-    activeFillColor: Colors.white54,
-    inactiveFillColor: Colors.white30,
-    selectedFillColor: Colors.white,
-    activeColor: Colors.transparent,
-    inactiveColor: Colors.transparent,
-    selectedColor: Colors.transparent,
-  ),
-  animationDuration: const Duration(milliseconds: 300),
-  backgroundColor: const Color(0xFF537F5C),
-  enableActiveFill: true,
-  onCompleted: (v) {
-    setState(() {
-      verificationCode = v;
-    });
+                  appContext: context,
+                  length: 4,
+                  obscureText: false,
+                  animationType: AnimationType.fade,
+                  pinTheme: PinTheme(
+                    shape: PinCodeFieldShape.box,
+                    borderRadius: BorderRadius.circular(20),
+                    fieldHeight: 60,
+                    fieldWidth: 60,
+                    activeFillColor: Colors.white54,
+                    inactiveFillColor: Colors.white30,
+                    selectedFillColor: Colors.white,
+                    activeColor: Colors.transparent,
+                    inactiveColor: Colors.transparent,
+                    selectedColor: Colors.transparent,
+                  ),
+                  animationDuration: const Duration(milliseconds: 300),
+                  backgroundColor: const Color(0xFF537F5C),
+                  enableActiveFill: true,
+                  onCompleted: (v) {
+                    setState(() {
+                      verificationCode = v;
+                    });
 
-    print("Entered Verification Code: $verificationCode");  // Debugging step
+                    print(
+                        "Entered Verification Code: $verificationCode"); // Debugging step
 
-    // Check if entered code matches your hardcoded code
-    
-  },
-  onChanged: (value) {
-    // Handle changes if necessary
-  },
-  beforeTextPaste: (text) {
-    return true;
-  },
-),
-                
+                    // Check if entered code matches your hardcoded code
+                  },
+                  onChanged: (value) {
+                    // Handle changes if necessary
+                  },
+                  beforeTextPaste: (text) {
+                    return true;
+                  },
+                ),
               ),
               const SizedBox(height: 10),
               TextButton(
