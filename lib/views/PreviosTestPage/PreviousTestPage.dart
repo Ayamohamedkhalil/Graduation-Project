@@ -19,7 +19,7 @@ class Test {
     return Test(
       date: json['date'],
       diseaseName: json['disease_name'],
-      testName: json['test_name'],
+      testName: json['testname'],
     );
   }
 }
@@ -28,7 +28,7 @@ class Test {
 Future<List<Test>> getTests() async {
   final String? token = await getToken(); // Your method to get the token
   final response = await http.get(
-    Uri.parse('https://backend-production-19d7.up.railway.app/api/tests'),
+    Uri.parse('https://backend-production-19d7.up.railway.app/api/previous_tests'),
     headers: {
       'Authorization': token ?? '',
     },

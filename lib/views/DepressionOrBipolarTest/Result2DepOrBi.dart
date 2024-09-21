@@ -53,13 +53,13 @@ class _Result2DepOrBiState extends State<Result2DepOrBi> {
 
     final response = await http.get(
       Uri.parse(
-          'https://backend-production-19d7.up.railway.app/api/test/GeneralTest/${widget.result}'),
+          'https://backend-production-19d7.up.railway.app/api/test/DepressionOrBipolarTest/${widget.result}'),
       headers: {
         'Authorization': token,
       },
     );
-    print('Response status: ${response.statusCode}'); // Add this for debugging
-    print('Response body: ${response.body}'); // Add this for debugging
+    print('Response status: ${response.statusCode}'); 
+    print('Response body: ${response.body}'); 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       setState(() {
