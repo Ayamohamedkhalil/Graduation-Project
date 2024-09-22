@@ -49,7 +49,7 @@ class _JournalPageDayState extends State<JournalPageDay> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => JournalPage()),
+                              builder: (context) => const JournalPage()),
                         );
                       },
                       iconSize: 25.0,
@@ -259,7 +259,7 @@ class _JournalPageDayState extends State<JournalPageDay> {
                       itemCount: 1,
                       padding: EdgeInsets.zero,
                       itemBuilder: (context, index) {
-                        return JournalData(title: "Day one", date: "14/1/2024");
+                        return const JournalData(title: "Day one", date: "14/1/2024");
                       },
                     ),
                   ),

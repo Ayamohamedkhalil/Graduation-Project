@@ -227,7 +227,7 @@ class BarButton extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => JournalPage()),
+                              builder: (context) => const JournalPage()),
                         );
                       });
                     },

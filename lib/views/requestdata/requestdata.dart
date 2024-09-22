@@ -21,12 +21,13 @@ class RequestdataPage extends StatelessWidget {
       );
 
       if (response.statusCode == 200) {
-        final Map<String, dynamic> responseData = json.decode(response.body);
-        _showAnswerAlert(context, responseData['message']);
-      } else {
-        // Handle error response
-        _showAnswerAlert(context, 'Failed to send request. Please try again.');
-      }
+  final Map<String, dynamic> responseData = json.decode(response.body);
+  _showAnswerAlert(context, responseData['message']);
+} else {
+  print('Error: ${response.statusCode} - ${response.body}');
+  _showAnswerAlert(context, 'Failed to send request. Please try again.');
+}
+
     } else {
       // Handle no token case
       _showAnswerAlert(context, 'No token found. Please log in again.');

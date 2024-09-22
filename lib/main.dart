@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/views/splashfile/splashview.dart';
 
 void main() {
-  runApp( test_app());
+  runApp( const test_app());
 }
 
 class test_app extends StatelessWidget {
