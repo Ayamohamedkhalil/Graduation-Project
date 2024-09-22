@@ -260,7 +260,7 @@ class _JournalPageState extends State<JournalPage> {
                   child: ListView.builder(
                     padding: const EdgeInsets.only(bottom: 80), // Add bottom padding here
                     itemBuilder: (context, index) {
-                      return JournalData(
+                      return const JournalData(
                           title: "I was wondering", date: "14/1/2024");
                     },
                   ),

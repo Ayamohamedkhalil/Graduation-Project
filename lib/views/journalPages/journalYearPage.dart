@@ -53,7 +53,7 @@ class _JournalyearpageState extends State<Journalyearpage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => JournalPage()),
+                                builder: (context) => const JournalPage()),
                           );
                         },
                         iconSize: 25.0,
@@ -148,7 +148,7 @@ class _JournalyearpageState extends State<Journalyearpage> {
                           child: ListView.builder(
                             padding: EdgeInsets.zero,
                             itemBuilder: (context, index) {
-                              return JournalYearData(
+                              return const JournalYearData(
                                 title: "Day one", 
                                 date: "12/3/2024"
                               );
