@@ -42,7 +42,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
         // Navigate to the NewPassword screen on success
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Newpassword()),
+          MaterialPageRoute(builder: (context) => const Newpassword()),
         );
       } else {
         // Show an error message if verification fails
@@ -87,7 +87,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Forgetpassword()),
+                MaterialPageRoute(builder: (context) => const Forgetpassword()),
               );
             },
             iconSize: 25.0,

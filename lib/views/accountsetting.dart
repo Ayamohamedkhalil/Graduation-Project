@@ -24,24 +24,24 @@ class _AccountsettingState extends State<Accountsetting> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          backgroundColor: Color(0xff537F5C).withOpacity(.88),
+          backgroundColor: const Color(0xff537F5C).withOpacity(.88),
           elevation: 20, // Add elevation for the shadow
           shadowColor: Colors.black.withOpacity(0.25), // Customize shadow color
-          content: Container(
+          content: SizedBox(
             height: 420,
             width: 320,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 // SizedBox(height: 60),
                 Image.asset('assets/deleteimage.png'),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   "Are you sure you want to delete your account?",
                   style: TextStyle(
                     color: Colors.white,
@@ -50,7 +50,7 @@ class _AccountsettingState extends State<Accountsetting> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   width: 240,
                   decoration: BoxDecoration(
@@ -69,18 +69,18 @@ class _AccountsettingState extends State<Accountsetting> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => DeleteAccountScreen()),
+                            builder: (context) => const DeleteAccountScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffA71C1C)
+                      backgroundColor: const Color(0xffA71C1C)
                           .withOpacity(.88),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Confirm",
                       style: TextStyle(
                         color: Colors.white,
@@ -90,10 +90,10 @@ class _AccountsettingState extends State<Accountsetting> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   width: 240,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       /* boxShadow: [
                       BoxShadow(
                         color: Colors.black
@@ -110,13 +110,13 @@ class _AccountsettingState extends State<Accountsetting> {
                     },
                     style: OutlinedButton.styleFrom(
                       //elevation: 1,
-                      side: BorderSide(color: Colors.white, width: 1),
+                      side: const BorderSide(color: Colors.white, width: 1),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Cancel",
                       style: TextStyle(
                         color: Colors.white,
@@ -142,17 +142,17 @@ class _AccountsettingState extends State<Accountsetting> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          backgroundColor: Color(0xff537F5C).withOpacity(.88),
+          backgroundColor: const Color(0xff537F5C).withOpacity(.88),
           elevation: 20, // Add elevation for the shadow
           shadowColor: Colors.black.withOpacity(0.25), // Customize shadow color
-          content: Container(
+          content: SizedBox(
             height: 320,
             width: 320,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(height: 60),
-                Text(
+                const SizedBox(height: 60),
+                const Text(
                   "Are you sure you want to logout?",
                   style: TextStyle(
                     color: Colors.white,
@@ -161,7 +161,7 @@ class _AccountsettingState extends State<Accountsetting> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   width: 240,
                   decoration: BoxDecoration(
@@ -184,14 +184,14 @@ class _AccountsettingState extends State<Accountsetting> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffA71C1C)
+                      backgroundColor: const Color(0xffA71C1C)
                           .withOpacity(.88),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
-                    child: Text(
+                    child: const Text(
                       "LOG OUT",
                       style: TextStyle(
                         color: Colors.white,
@@ -201,10 +201,10 @@ class _AccountsettingState extends State<Accountsetting> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   width: 240,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       /* boxShadow: [
                       BoxShadow(
                         color: Colors.black
@@ -221,13 +221,13 @@ class _AccountsettingState extends State<Accountsetting> {
                     },
                     style: OutlinedButton.styleFrom(
                       //elevation: 1,
-                      side: BorderSide(color: Colors.white, width: 1),
+                      side: const BorderSide(color: Colors.white, width: 1),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Cancel",
                       style: TextStyle(
                         color: Colors.white,
@@ -245,14 +245,15 @@ class _AccountsettingState extends State<Accountsetting> {
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF537F5C),
+      backgroundColor: const Color(0xFF537F5C),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 20),
+        title: const Padding(
+          padding: EdgeInsets.only(top: 20),
           child: Text(
             'Settings',
             style: TextStyle(
@@ -298,7 +299,7 @@ class _AccountsettingState extends State<Accountsetting> {
                       shape: BoxShape.circle,
                     ),
                     child: IconButton(
-                      icon: Icon(Icons.edit,
+                      icon: const Icon(Icons.edit,
                           color: Color(0xffCCCCCC), size: 20), // Edit icon
                       onPressed: () {
                         // Define the action for the edit button here
@@ -309,15 +310,15 @@ class _AccountsettingState extends State<Accountsetting> {
               ],
             )))),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
-          Text(
+          const Text(
             'User’s Name',
             style: TextStyle(
                 color: Colors.white, fontSize: 30, fontFamily: 'InriaSerif'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Container(
@@ -330,11 +331,11 @@ class _AccountsettingState extends State<Accountsetting> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ListTile(
-                  leading: Icon(Icons.edit, color: Colors.white),
-                  title: Text('Edit profile',
+                  leading: const Icon(Icons.edit, color: Colors.white),
+                  title: const Text('Edit profile',
                       style: TextStyle(
                           color: Colors.white, fontFamily: 'InriaSans')),
-                  trailing: Icon(Icons.arrow_forward, color: Colors.white),
+                  trailing: const Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
                    /* Navigator.push(
                       context,
@@ -344,36 +345,36 @@ class _AccountsettingState extends State<Accountsetting> {
                   },
                 ),
                 ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.lock,
                     color: Colors.white,
                   ),
-                  title: Text('Change Password',
+                  title: const Text('Change Password',
                       style: TextStyle(
                           color: Colors.white, fontFamily: 'InriaSans')),
-                  trailing: Icon(Icons.arrow_forward, color: Colors.white),
+                  trailing: const Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
                     // Add your onTap code here
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.logout, color: Colors.white),
-                  title: Text('Logout',
+                  leading: const Icon(Icons.logout, color: Colors.white),
+                  title: const Text('Logout',
                       style: TextStyle(
                           color: Colors.white, fontFamily: 'InriaSans')),
-                  trailing: Icon(Icons.arrow_forward, color: Colors.white),
+                  trailing: const Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
                     _logout();
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.delete, color: Color(0xffA71C1C).withOpacity(.80)),
+                  leading: Icon(Icons.delete, color: const Color(0xffA71C1C).withOpacity(.80)),
                   title: Text('Delete Account',
                       style: TextStyle(
-                          color: Color.fromARGB(255, 162, 16, 16).withOpacity(.88),
+                          color: const Color.fromARGB(255, 162, 16, 16).withOpacity(.88),
                           // fontSize: 20,
                           fontFamily: 'InriaSans-Bold')),
-                  trailing: Icon(Icons.arrow_forward, color: Color(0xffA71C1C).withOpacity(.80)),
+                  trailing: Icon(Icons.arrow_forward, color: const Color(0xffA71C1C).withOpacity(.80)),
                   onTap: () {
                     _Deleteaccount();
                   },
@@ -381,7 +382,7 @@ class _AccountsettingState extends State<Accountsetting> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 80,
           ),
           const BarButton()
