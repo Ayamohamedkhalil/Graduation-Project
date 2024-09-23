@@ -1,10 +1,7 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:splash_onboarding_test/views/InstructionScreen.dart';
 import 'package:splash_onboarding_test/views/splashfile/slidingtext.dart';
-
-
 
 class SplashViewbody extends StatefulWidget {
   const SplashViewbody({super.key});
@@ -40,7 +37,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Image.asset('assets/finallogo.png'),
-       //SizedBox(height: 0,),
+        //SizedBox(height: 0,),
         SlidingText(slidingAnimation: slidingAnimation),
       ],
     );
@@ -53,7 +50,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
     );
 
     slidingAnimation =
-        Tween<Offset>(begin: const Offset(0, 2), end: const Offset(0,-1))
+        Tween<Offset>(begin: const Offset(0, 2), end: const Offset(0, -1))
             .animate(animationController);
 
     animationController.forward();
@@ -68,8 +65,10 @@ class _SplashViewbodyState extends State<SplashViewbody>
         //     transition: Transition.fade,
         //     duration: kTranstionDuration);
 
-        Navigator.push(context,MaterialPageRoute 
-        (builder: (context) =>  IntroScreen()),);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => IntroScreen()),
+        );
       },
     );
   }
