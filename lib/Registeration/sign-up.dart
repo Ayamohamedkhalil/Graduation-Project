@@ -309,7 +309,6 @@ class _SignupState extends State<Signup> {
                           'https://backend-production-19d7.up.railway.app/api/register');
 
                       try {
-                        // Send the POST request
                         final response = await http.post(
                           url,
                           headers: {"Content-Type": "application/json"},
@@ -322,6 +321,7 @@ class _SignupState extends State<Signup> {
                           final message = responseData['message'];
                           final token = responseData['token'];
                           final user = responseData['user'];
+                          
 
                           print('Message: $message');
                           print('Token: $token');
