@@ -1,11 +1,13 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 //import 'package:splash_onboarding_test/home.dart';
 //import 'package:device_preview/device_preview.dart';
 import 'package:splash_onboarding_test/views/splashfile/splashview.dart';
 
 void main() {
   runApp(
-    /*DevicePreview(
+    /* DevicePreview(
     //enabled: true,
     builder: (context) => test_app(), // Wrap your app
   )*/
@@ -18,12 +20,18 @@ class test_app extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      /*locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,*/
-      // title: 'Aya',
-      debugShowCheckedModeBanner: false,
-      home: SplashView(),
-    );
+    return ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+           /* locale: DevicePreview.locale(context),
+            builder: DevicePreview.appBuilder,*/
+            // title: 'Aya',
+            debugShowCheckedModeBanner: false,
+            home: SplashView(),
+          );
+        });
   }
 }
