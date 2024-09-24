@@ -3,12 +3,26 @@ import 'package:splash_onboarding_test/Registeration/login.dart';
 import 'package:splash_onboarding_test/Registeration/verification.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:splash_onboarding_test/Registeration/auth_service.dart'; 
 
+Future<String?> getcookie() async {
+    final String? cookie = await AuthService.getSessionCookie();
+    if (cookie == null) {
+      print('No cookie found');
+    } else {
+      print('Retrieved cookie: $cookie');
+    }
+    return cookie;
+  }
+  
 Future<void> resetPassword(String password, String confirmPassword) async {
+  final cookie = await getcookie(); 
+  
   var url = Uri.parse('https://backend-production-19d7.up.railway.app/api/resetPassword');
+
   var response = await http.post(
     url,
-    headers: {'Content-Type': 'application/json'},
+    headers: {'Content-Type': 'application/json','Cookie': '$cookie',},
     body: jsonEncode({
       'password': password,
       'confirm_password': confirmPassword,
@@ -17,7 +31,7 @@ Future<void> resetPassword(String password, String confirmPassword) async {
   
   if (response.statusCode == 200) {
     var jsonResponse = jsonDecode(response.body);
-    print(jsonResponse['message']);  // Handle success message
+    print(jsonResponse['message']);  
   } else {
     print('Failed to reset password: ${response.body}');
   }
@@ -101,7 +115,7 @@ class _Newpassword extends State<Newpassword> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const VerifyEmailScreen()),
+                MaterialPageRoute(builder: (context) => const VerifyEmailScreen()),//this must be modified
               ); // Adjusted for a typical back operation
             },
             iconSize: 25.0,

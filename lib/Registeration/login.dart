@@ -78,8 +78,9 @@ Future<void> _login() async {
       url,
       headers: {
         "Content-Type": "application/json",
+        
       },
-      body: jsonEncode(requestBody), // Properly encode the request body with phone
+      body: jsonEncode(requestBody), 
     );
     
     print('Status code: ${response.statusCode}');
@@ -90,10 +91,12 @@ Future<void> _login() async {
       final message = responseData['message'];
       final token = responseData['token'];
       final user = responseData['user'];
+      
 
       print('Message: $message');
       print('Token: $token');
       print('User: ${user['username']}');
+       
 
       if (token != null && token.isNotEmpty) {
         await AuthService.saveLoginInfo(token, email!, user['username']);

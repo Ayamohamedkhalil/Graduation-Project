@@ -3,6 +3,7 @@ import 'package:splash_onboarding_test/Registeration/login.dart';
 import 'package:splash_onboarding_test/Registeration/verification.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:splash_onboarding_test/Registeration/auth_service.dart'; 
 
 class Forgetpassword extends StatefulWidget {
   const Forgetpassword({super.key});
@@ -165,7 +166,6 @@ class _ForgetpasswordState extends State<Forgetpassword> {
   if (formstate.currentState!.validate()) {
     formstate.currentState!.save();
     try {
-      // Call the API
       var response = await http.post(
         Uri.parse('https://backend-production-19d7.up.railway.app/api/verify'),
         headers: {
@@ -179,6 +179,33 @@ class _ForgetpasswordState extends State<Forgetpassword> {
 
       // Check if verification code was sent
       if (response.statusCode == 200 && responseBody['message'] == 'Verification code sent to your email') {
+        String? setCookie = response.headers['set-cookie'];
+        print(setCookie);
+        
+  if (setCookie != null) {
+          List<String> cookies = setCookie.split(',');
+
+          String? sessionValue;
+          String? emailValue = email; // Use the saved email value
+          for (var cookie in cookies) {
+            cookie = cookie.trim();
+            if (cookie.contains('session=')) {
+              sessionValue = cookie.split('session=')[1].split(';')[0];
+              break;
+            }
+          }
+
+          if (sessionValue != null) {
+            // Create the combined string
+            String combinedString = 'email=$emailValue; session=$sessionValue';
+            print('Combined String: $combinedString');
+            
+            await AuthService.saveSessionCookie(combinedString);
+          } else {
+            print('Session cookie not found');
+          }
+        }
+
         // Show success message
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Verification code sent to your email')),
@@ -187,7 +214,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
         // Navigate to the VerifyEmailScreen
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const VerifyEmailScreen()),
+          MaterialPageRoute(builder: (context) => const  VerifyEmailScreen()),
         );
       } else {
         // Handle other responses

@@ -1,29 +1,41 @@
+//import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:splash_onboarding_test/Registeration/forgetpassword.dart';
 import 'package:splash_onboarding_test/Registeration/newPassword.dart';
+import 'package:splash_onboarding_test/Registeration/auth_service.dart'; 
 
 class VerifyEmailScreen extends StatefulWidget {
-  const VerifyEmailScreen({super.key});
+  
+
+  const VerifyEmailScreen({super.key });
 
   @override
   _VerifyEmailScreenState createState() => _VerifyEmailScreenState();
 }
-
+Future<String?> getcookie() async {
+    final String? cookie = await AuthService.getSessionCookie();
+    if (cookie == null) {
+      print('No cookie found');
+    } else {
+      print('Retrieved cookie: $cookie');
+    }
+    return cookie;
+  }
 class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
   String verificationCode = "";
 
   void verifyCode() async {
-    // API call to verify the code
+    final cookie = await getcookie(); 
     try {
       var response = await http.post(
         Uri.parse(
             'https://backend-production-19d7.up.railway.app/api/resetPasswordInternal'),
         headers: {
           'Content-Type': 'application/json',
-         'Cookie': 'session=eyJlbWFpbCI6ImF5YWs3ODExOEBnbWFpbC5jb20ifQ.ZusXlQ.M91jNiCyvnr8Klr_02gQzHcJte0',
+          'Cookie': '$cookie',
 
         },
         body: jsonEncode({
@@ -39,13 +51,12 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
       if (response.statusCode == 200 &&
           responseBody['message'] ==
               'Verification successful, proceed to reset password.') {
-        // Navigate to the NewPassword screen on success
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const Newpassword()),
         );
       } else {
-        // Show an error message if verification fails
+       
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
               content: Text('Invalid verification code. Please try again.')),

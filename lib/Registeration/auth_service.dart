@@ -10,14 +10,29 @@ class AuthService {
     await prefs.setString('email', email);
     await prefs.setString('username', username);
     await prefs.setBool('isGuest', isGuest);
-    print('Token, email, username saved successfully, IsGuest: $isGuest');
+    print('Token, email, username, IsGuest: $isGuest');
   }
+
+ static Future<void> saveSessionCookie(String sessionCookie) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('sessionCookie', sessionCookie);
+    print('Session Cookie Saved: $sessionCookie');
+  }
+
+  // Get session cookie
+  static Future<String?> getSessionCookie() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('sessionCookie');
+  }
+
 
   // Get token
   static Future<String?> getToken() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('authToken');
   }
+
+  
 
   // Get email
   static Future<String?> getEmail() async {
