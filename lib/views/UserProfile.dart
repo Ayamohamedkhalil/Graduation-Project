@@ -339,7 +339,7 @@ class UserProfile extends StatelessWidget {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const FAQPage()),
+                                    builder: (context) =>  FAQPage()),
                               );
                             },
                             child: const Row(

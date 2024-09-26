@@ -7,18 +7,20 @@ import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
 import 'package:splash_onboarding_test/Registeration/auth_service.dart'; 
 
+// Declare the FAQPage class
 class FAQPage extends StatefulWidget {
-  const FAQPage({super.key});
-
   @override
   _FAQPageState createState() => _FAQPageState();
 }
 
 class _FAQPageState extends State<FAQPage> {
   List<Map<String, String>> faqList = [];
+  List<Map<String, String>> filteredFaqList = []; // This will hold filtered FAQs
   bool isLoading = true;
   String? errorMessage;
-    Future<String?> getToken() async {
+  TextEditingController searchController = TextEditingController(); // For handling search input
+
+  Future<String?> getToken() async {
     final String? token = await AuthService.getToken();
     if (token == null) {
       print('No token found');
@@ -45,21 +47,19 @@ class _FAQPageState extends State<FAQPage> {
       );
 
       if (response.statusCode == 200) {
-        // Parse the response body into a Map
         final Map<String, dynamic> responseData = json.decode(response.body);
 
-        // Check if "faq" key exists and it's a list
         if (responseData.containsKey('faq') && responseData['faq'] is List) {
           final List<dynamic> faqData = responseData['faq'];
 
           setState(() {
-            // Safely cast each element to Map<String, dynamic> and convert it to Map<String, String>
             faqList = faqData.map<Map<String, String>>((faq) {
               return {
-                "Q": faq["question"].toString(),  // Convert to string
-                "A": faq["answer"].toString(),    // Convert to string
+                "Q": faq["question"].toString(),
+                "A": faq["answer"].toString(),
               };
             }).toList();
+            filteredFaqList = faqList; // Initially, show all FAQs
             isLoading = false;
           });
         } else {
@@ -82,10 +82,23 @@ class _FAQPageState extends State<FAQPage> {
     }
   }
 
+  void filterFAQs(String query) {
+    setState(() {
+      filteredFaqList = faqList
+          .where((faq) => faq["Q"]!.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     fetchFAQs(); // Fetch the FAQ data when the page loads
+
+    // Add a listener to search controller to filter FAQs in real-time
+    searchController.addListener(() {
+      filterFAQs(searchController.text);
+    });
   }
 
   @override
@@ -94,13 +107,7 @@ class _FAQPageState extends State<FAQPage> {
       resizeToAvoidBottomInset: false,
       body: Column(
         children: [
-          //
-          //appBar
-          //
           Stack(children: [
-            //
-            //backIcon + Image + Text("How can we help you")
-            //
             SizedBox(
               height: 230,
               child: Column(
@@ -115,56 +122,41 @@ class _FAQPageState extends State<FAQPage> {
                             bottomRight: Radius.circular(23))),
                     child: Stack(
                       children: [
-                        //
-                        //BackButton
-                        //
                         Positioned(
                           top: 25,
                           left: 25,
                           child: Container(
                             margin: const EdgeInsets.only(right: 320),
-                            width: 35.0, // Adjust the width of the circle
-                            height: 35.0, // Adjust the height of the circle
+                            width: 35.0,
+                            height: 35.0,
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(
-                                  .80), // Background color (light green)
-                              shape: BoxShape.circle, // Circular shape
+                              color: Colors.white.withOpacity(.80),
+                              shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black
-                                      .withOpacity(0.15), // Shadow color
-                                  spreadRadius:
-                                      2, // How much the shadow should spread
-                                  blurRadius:
-                                      5, // The blur radius of the shadow
-                                  offset: const Offset(
-                                      0, 2), // Offset the shadow vertically
+                                  color: Colors.black.withOpacity(0.15),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(0, 2),
                                 ),
                               ],
                             ),
                             child: IconButton(
                               icon: const Icon(Icons.arrow_back_ios),
-                              color: const Color(
-                                  0xFF537F5C), // Set the color of the arrow icon
+                              color: const Color(0xFF537F5C),
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => const UserProfile(),
                                 ));
                               },
-                              iconSize: 25.0, // Adjust the size of the icon
+                              iconSize: 25.0,
                               padding: const EdgeInsets.symmetric(
-                                  vertical: 3,
-                                  horizontal:
-                                      9), // Adjust padding around the icon
-                              splashRadius:
-                                  25.0, // Adjust the splash radius on click
+                                  vertical: 3, horizontal: 9),
+                              splashRadius: 25.0,
                               tooltip: "Next",
                             ),
                           ),
                         ),
-                        //
-                        //
-                        //
                         SizedBox(
                           width: MediaQuery.of(context).size.width,
                           child: Column(
@@ -197,12 +189,6 @@ class _FAQPageState extends State<FAQPage> {
                 ],
               ),
             ),
-            //
-            //
-            //
-            //
-            //SearchBar
-            //
             Positioned(
               bottom: 10,
               left: MediaQuery.of(context).size.width * 0.1,
@@ -210,43 +196,40 @@ class _FAQPageState extends State<FAQPage> {
                 height: 40,
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: TextFormField(
+                  controller: searchController, // Attach the controller
                   cursorColor: Colors.white,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: const Color(
-                        0xffC4D3C7), // Background color similar to the image
+                    fillColor: const Color(0xffC4D3C7),
                     prefixIcon: const Icon(Icons.search,
-                        color: Color(0xFF537F5C)), // Left icon
+                        color: Color(0xFF537F5C)),
                     suffixIcon: const Icon(Icons.mic_none,
-                        color: Color(0xFF537F5C)), // Right icon
+                        color: Color(0xFF537F5C)),
                     hintText: 'Search for test',
                     hintStyle: const TextStyle(
                         color: Color(0xFF537F5C),
                         fontFamily: 'Ledger',
-                        fontSize: 18), // Text color similar to the image
+                        fontSize: 18),
                     contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                     border: OutlineInputBorder(
                       borderRadius:
-                          BorderRadius.circular(25.0), // Rounded corners
+                          BorderRadius.circular(25.0),
                       borderSide: const BorderSide(
-                        color: Color(
-                            0xFF52734D), // Border color similar to the image
+                        color: Color(0xFF52734D),
                         width: 1.2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: const BorderSide(
-                        color:
-                            Color(0xFF537F5C), // Border color for enabled state
+                        color: Color(0xFF537F5C),
                         width: 1.2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: const BorderSide(
-                        color:
-                            Color(0xFF537F5C), // Border color for focused state
+                        color: Color(0xFF537F5C),
                         width: 1.2,
                       ),
                     ),
@@ -254,13 +237,7 @@ class _FAQPageState extends State<FAQPage> {
                 ),
               ),
             ),
-            //
-            //
-            //
           ]),
-          //
-          //FAQ Cards with Padding
-          //
           Expanded(
             child: Stack(
               children: [
@@ -270,7 +247,7 @@ class _FAQPageState extends State<FAQPage> {
                   Center(child: Text(errorMessage!))
                 else
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 60.0), // Add bottom padding to avoid overlap with the button
+                    padding: const EdgeInsets.only(bottom: 60.0),
                     child: Scrollbar(
                       interactive: true,
                       radius: const Radius.circular(40),
@@ -278,17 +255,15 @@ class _FAQPageState extends State<FAQPage> {
                       thumbVisibility: true,
                       child: ListView.builder(
                         padding: const EdgeInsets.all(0),
-                        itemCount: faqList.length,
+                        itemCount: filteredFaqList.length, // Use filtered list
                         itemBuilder: (context, index) {
                           return FAQCard(
-                              Q: faqList[index]["Q"]!, A: faqList[index]["A"]!);
+                              Q: filteredFaqList[index]["Q"]!,
+                              A: filteredFaqList[index]["A"]!);
                         },
                       ),
                     ),
                   ),
-                //
-                //ButtonBar
-                //
                 Positioned(
                     bottom: 5,
                     left: MediaQuery.of(context).size.width * 0.15,
