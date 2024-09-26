@@ -367,9 +367,10 @@ class _Generaltest extends State<Generaltest> {
                             _selectAnswer("YES");
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: _selectedAnswer == "YES"
-                                ? const Color(0xff666556)
-                                : const Color(0xFFB7B597),
+                            backgroundColor:
+                                generLanswers[_currentQuestionIndex] == "YES"
+                                    ? const Color(0xff666556)
+                                    : const Color(0xFFB7B597),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
@@ -408,9 +409,10 @@ class _Generaltest extends State<Generaltest> {
                             _selectAnswer("NO");
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: _selectedAnswer == "NO"
-                                ? const Color(0xff666556)
-                                : const Color(0xFFB7B597),
+                            backgroundColor:
+                                generLanswers[_currentQuestionIndex] == "NO"
+                                    ? const Color(0xff666556)
+                                    : const Color(0xFFB7B597),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
