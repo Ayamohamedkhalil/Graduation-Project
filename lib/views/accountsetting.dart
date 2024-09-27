@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
-
-
-
 import 'package:splash_onboarding_test/views/reasonfordeleteaccount.dart';
+import 'package:http/http.dart' as http;
+import 'package:splash_onboarding_test/Registeration/auth_service.dart'; 
 
 class Accountsetting extends StatefulWidget {
   const Accountsetting({super.key});
@@ -14,6 +13,16 @@ class Accountsetting extends StatefulWidget {
 }
 
 class _AccountsettingState extends State<Accountsetting> {
+   Future<String?> getToken() async {
+    final String? token = await AuthService.getToken();
+    if (token == null) {
+      print('No token found');
+    } else {
+      print('Retrieved Token: $token');
+    }
+    return token;
+  }
+
   final String UserImage = "";
 
   void _Deleteaccount() {
@@ -135,115 +144,124 @@ class _AccountsettingState extends State<Accountsetting> {
   }
 
   void _logout() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          backgroundColor: const Color(0xff537F5C).withOpacity(.88),
-          elevation: 20, // Add elevation for the shadow
-          shadowColor: Colors.black.withOpacity(0.25), // Customize shadow color
-          content: SizedBox(
-            height: 320,
-            width: 320,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(height: 60),
-                const Text(
-                  "Are you sure you want to logout?",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontFamily: 'InriaSans-Regular',
-                  ),
-                  textAlign: TextAlign.center,
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        backgroundColor: const Color(0xff537F5C).withOpacity(.88),
+        elevation: 20, // Add elevation for the shadow
+        shadowColor: Colors.black.withOpacity(0.25), // Customize shadow color
+        content: SizedBox(
+          height: 320,
+          width: 320,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 60),
+              const Text(
+                "Are you sure you want to logout?",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontFamily: 'InriaSans-Regular',
                 ),
-                const SizedBox(height: 20),
-                Container(
-                  width: 240,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(.25),
-                        spreadRadius: 0,
-                        blurRadius: 4,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () {
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              Container(
+                width: 240,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.25),
+                      spreadRadius: 0,
+                      blurRadius: 4,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    // Send logout API request
+                    final response = await _sendLogoutRequest();
+
+                    if (response.statusCode == 200) {
+                      // Successfully logged out
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const Registeration()),
                       );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xffA71C1C)
-                          .withOpacity(.88),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                    } else {
+                      // Failed to logout, show error
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Failed to logout: ${response.body}")),
+                      );
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xffA71C1C).withOpacity(.88),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                    child: const Text(
-                      "LOG OUT",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontFamily: 'InriaSans-Bold',
-                      ),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                  ),
+                  child: const Text(
+                    "Confirm",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontFamily: 'InriaSans-Bold',
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
-                Container(
-                  width: 240,
-                  decoration: const BoxDecoration(
-                      /* boxShadow: [
-                      BoxShadow(
-                        color: Colors.black
-                            .withOpacity(0.25), // Shadow color with opacity
-                        spreadRadius: 2, // How much the shadow spreads
-                        blurRadius: 4, // How blurry the shadow is
-                        offset: Offset(2, 4), // Offset the shadow
-                      ),
-                    ],*/
-                      ),
-                  child: OutlinedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    style: OutlinedButton.styleFrom(
-                      //elevation: 1,
-                      side: const BorderSide(color: Colors.white, width: 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                width: 240,
+                child: OutlinedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: Colors.white, width: 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    child: const Text(
-                      "Cancel",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontFamily: 'InriaSans-Regular',
-                      ),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                  ),
+                  child: const Text(
+                    "Cancel",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontFamily: 'InriaSans-Regular',
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        );
-      },
-    );
-  }
+        ),
+      );
+    },
+  );
+}
+
+Future<http.Response> _sendLogoutRequest() async {
+  final token = await getToken();
+  final url = Uri.parse('https://backend-production-19d7.up.railway.app/api/logout');
+  final headers = {
+    'Authorization': '$token' 
+  };
+  
+  final response = await http.post(url, headers: headers);
+  return response;
+}
 
   @override
   Widget build(BuildContext context) {
