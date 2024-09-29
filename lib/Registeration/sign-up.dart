@@ -289,6 +289,7 @@ class _SignupState extends State<Signup> {
                   ),
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
+
                       // Gather form data
                       final String username = nameController.text.trim();
                       final String email = emailController.text.trim();
