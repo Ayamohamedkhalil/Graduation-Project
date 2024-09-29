@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:splash_onboarding_test/views/firebase_notifications/firebase_notifications.dart';
 import 'dart:convert';
 import 'auth_service.dart'; // Import your AuthService
 import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/Registeration/forgetpassword.dart';
 import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+ // Import the FirebaseNotifications class
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -19,12 +21,15 @@ class _LoginState extends State<Login> {
   String? password;
   GlobalKey<FormState> formstate = GlobalKey();
 
+  // FirebaseNotifications instance to get token
+  final FirebaseNotifications _firebaseNotifications = FirebaseNotifications();
+
   // Function to validate email
-   String? _validateEmail(String? value) {
+  String? _validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter your email';
     }
-    String pattern = r"(?:[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'"
+    String pattern =  r"(?:[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'"
         r'*+/=?^_{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
         r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
         r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
@@ -37,6 +42,7 @@ class _LoginState extends State<Login> {
     }
     return null;
   }
+
   // Function to validate password
   String? _validatePassword(String? value) {
     if (value == null || value.isEmpty) {
@@ -48,74 +54,81 @@ class _LoginState extends State<Login> {
     return null;
   }
 
-Future<void> _login() async {
-  final url = Uri.parse('https://backend-production-19d7.up.railway.app/api/login');
+  Future<void> _login() async {
+    final url = Uri.parse('https://backend-production-19d7.up.railway.app/api/login');
 
-  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-  String phoneType = '';
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    String phoneType = '';
 
-  if (Theme.of(context).platform == TargetPlatform.android) {
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    phoneType = androidInfo.model; // Get the phone model for Android
-  } else if (Theme.of(context).platform == TargetPlatform.iOS) {
-    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-    phoneType = iosInfo.utsname.machine; // Get the phone model for iOS
-  }
-
-  // Add phone type to the request body
-  final Map<String, String> requestBody = {
-    "email": email!,
-    "password": password!,
-    "phone": phoneType, // Include the phone type in the request body
-  };
-
-  print('Email: $email');
-  print('Password: $password');
-  print('Phone type: $phoneType');
-  
-  try {
-    final response = await http.post(
-      url,
-      headers: {
-        "Content-Type": "application/json",
-        
-      },
-      body: jsonEncode(requestBody), 
-    );
-    
-    print('Status code: ${response.statusCode}');
-    print('Response body: ${response.body}');
-
-    if (response.statusCode == 200) {
-      final responseData = jsonDecode(response.body);
-      final message = responseData['message'];
-      final token = responseData['token'];
-      final user = responseData['user'];
-      
-
-      print('Message: $message');
-      print('Token: $token');
-      print('User: ${user['username']}');
-       
-
-      if (token != null && token.isNotEmpty) {
-        await AuthService.saveLoginInfo(token, email!, user['username']);
-
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const homescreen()),
-        );
-      } else {
-        print('Error: Received an invalid token from the server');
-      }
-    } else {
-      print('Failed to login: ${response.statusCode}');
-      print('Response body: ${response.body}');
+    if (Theme.of(context).platform == TargetPlatform.android) {
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      phoneType = androidInfo.model; // Get the phone model for Android
+    } else if (Theme.of(context).platform == TargetPlatform.iOS) {
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      phoneType = iosInfo.utsname.machine; // Get the phone model for iOS
     }
-  } catch (e) {
-    print('An error occurred: $e');
+
+    // Retrieve Firebase token from SharedPreferences
+    String? fcm_token= await _firebaseNotifications.getTokenFromPreferences();
+
+    if (fcm_token == null) {
+      print('Error: Firebase token not available.');
+      return;
+    }
+
+    // Add phone type and Firebase token to the request body
+    final Map<String, String> requestBody = {
+      "email": email!,
+      "password": password!,
+      "phone": phoneType, // Include the phone type in the request body
+      "fcm_token": fcm_token, // Include Firebase token in the request body
+    };
+
+    print('Email: $email');
+    print('Password: $password');
+    print('Phone type: $phoneType');
+    print('fcm_token: $fcm_token');
+    
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: jsonEncode(requestBody), 
+      );
+      
+      print('Status code: ${response.statusCode}');
+      print('Response body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        final message = responseData['message'];
+        final token = responseData['token'];
+        final user = responseData['user'];
+
+        print('Message: $message');
+        print('Token: $token');
+        print('User: ${user['username']}');
+
+        if (token != null && token.isNotEmpty) {
+          await AuthService.saveLoginInfo(token, email!, user['username']);
+
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const homescreen()),
+          );
+        } else {
+          print('Error: Received an invalid token from the server');
+        }
+      } else {
+        print('Failed to login: ${response.statusCode}');
+        print('Response body: ${response.body}');
+      }
+    } catch (e) {
+      print('An error occurred: $e');
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -247,7 +260,7 @@ Future<void> _login() async {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) =>  const Forgetpassword(),
+                      builder: (context) => const Forgetpassword(),
                     ),
                   );
                 },

@@ -10,7 +10,7 @@ import 'package:splash_onboarding_test/views/splashfile/splashview.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await firebasenotifications().initnotifications();
+  await FirebaseNotifications().initNotifications();
   runApp(test_app());
 }
 
