@@ -17,13 +17,12 @@ class _confirmpasswordfordeleteaccount
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  
 
   @override
   void dispose() {
     passwordController.dispose();
-    confirmPasswordController.dispose();
+    
     super.dispose();
   }
 

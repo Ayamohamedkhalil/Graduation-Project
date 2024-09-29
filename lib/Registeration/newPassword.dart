@@ -3,35 +3,39 @@ import 'package:splash_onboarding_test/Registeration/login.dart';
 import 'package:splash_onboarding_test/Registeration/verification.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:splash_onboarding_test/Registeration/auth_service.dart'; 
+import 'package:splash_onboarding_test/Registeration/auth_service.dart';
 
 Future<String?> getcookie() async {
-    final String? cookie = await AuthService.getSessionCookie();
-    if (cookie == null) {
-      print('No cookie found');
-    } else {
-      print('Retrieved cookie: $cookie');
-    }
-    return cookie;
+  final String? cookie = await AuthService.getSessionCookie();
+  if (cookie == null) {
+    print('No cookie found');
+  } else {
+    print('Retrieved cookie: $cookie');
   }
-  
+  return cookie;
+}
+
 Future<void> resetPassword(String password, String confirmPassword) async {
-  final cookie = await getcookie(); 
-  
-  var url = Uri.parse('https://backend-production-19d7.up.railway.app/api/resetPassword');
+  final cookie = await getcookie();
+
+  var url = Uri.parse(
+      'https://backend-production-19d7.up.railway.app/api/resetPassword');
 
   var response = await http.post(
     url,
-    headers: {'Content-Type': 'application/json','Cookie': '$cookie',},
+    headers: {
+      'Content-Type': 'application/json',
+      'Cookie': '$cookie',
+    },
     body: jsonEncode({
       'password': password,
       'confirm_password': confirmPassword,
     }),
   );
-  
+
   if (response.statusCode == 200) {
     var jsonResponse = jsonDecode(response.body);
-    print(jsonResponse['message']);  
+    print(jsonResponse['message']);
   } else {
     print('Failed to reset password: ${response.body}');
   }
@@ -115,7 +119,9 @@ class _Newpassword extends State<Newpassword> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const VerifyEmailScreen()),//this must be modified
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const VerifyEmailScreen()), //this must be modified
               ); // Adjusted for a typical back operation
             },
             iconSize: 25.0,
@@ -185,7 +191,9 @@ class _Newpassword extends State<Newpassword> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: TextFormField(
@@ -239,15 +247,14 @@ class _Newpassword extends State<Newpassword> {
                     ),
                   ),
                   onPressed: () async {
-                    
                     if (formKey.currentState!.validate()) {
-  await resetPassword(passwordController.text, confirmPasswordController.text);
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => const Login()),
-  );
-}
-
+                      await resetPassword(passwordController.text,
+                          confirmPasswordController.text);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Login()),
+                      );
+                    }
                   },
                   child: const Text(
                     'Save',
