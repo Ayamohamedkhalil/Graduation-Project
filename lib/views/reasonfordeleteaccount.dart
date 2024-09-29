@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:splash_onboarding_test/Registeration/registeration.dart';
+
 import 'package:splash_onboarding_test/views/accountsetting.dart';
+import 'package:splash_onboarding_test/views/confirmpasswordfordeleteaccount.dart';
 
 class DeleteAccountScreen extends StatefulWidget {
   const DeleteAccountScreen({super.key});
@@ -115,7 +116,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Registeration()),
+                            builder: (context) =>  confirmpasswordfordeleteaccount()),
                       );
                   },
                   child: const Text(
