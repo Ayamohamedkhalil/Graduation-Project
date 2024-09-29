@@ -1,64 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:splash_onboarding_test/Registeration/login.dart';
-import 'package:splash_onboarding_test/Registeration/verification.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:splash_onboarding_test/Registeration/auth_service.dart';
 
-Future<String?> getcookie() async {
-  final String? cookie = await AuthService.getSessionCookie();
-  if (cookie == null) {
-    print('No cookie found');
-  } else {
-    print('Retrieved cookie: $cookie');
-  }
-  return cookie;
-}
+import 'package:splash_onboarding_test/Registeration/registeration.dart';
 
-Future<void> resetPassword(String password, String confirmPassword) async {
-  final cookie = await getcookie();
+import 'package:splash_onboarding_test/views/reasonfordeleteaccount.dart';
 
-  var url = Uri.parse(
-      'https://backend-production-19d7.up.railway.app/api/resetPassword');
-
-  var response = await http.post(
-    url,
-    headers: {
-      'Content-Type': 'application/json',
-      'Cookie': '$cookie',
-    },
-    body: jsonEncode({
-      'password': password,
-      'confirm_password': confirmPassword,
-    }),
-  );
-
-  if (response.statusCode == 200) {
-    var jsonResponse = jsonDecode(response.body);
-    print(jsonResponse['message']);
-  } else {
-    print('Failed to reset password: ${response.body}');
-  }
-}
-
-class Newpassword extends StatefulWidget {
-  const Newpassword({super.key});
+class confirmpasswordfordeleteaccount extends StatefulWidget {
+  confirmpasswordfordeleteaccount({super.key});
 
   @override
-  _Newpassword createState() => _Newpassword();
+  _confirmpasswordfordeleteaccount createState() =>
+      _confirmpasswordfordeleteaccount();
 }
 
-class _Newpassword extends State<Newpassword> {
+class _confirmpasswordfordeleteaccount
+    extends State<confirmpasswordfordeleteaccount> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  
 
   @override
   void dispose() {
     passwordController.dispose();
-    confirmPasswordController.dispose();
+    
     super.dispose();
   }
 
@@ -76,16 +40,6 @@ class _Newpassword extends State<Newpassword> {
       return 'Password must be at least 8 characters long,\n include uppercase and lowercase letters,\n a number, and a special character';
     }
 
-    return null;
-  }
-
-  String? _validateConfirmPassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please confirm your password';
-    }
-    if (value != passwordController.text) {
-      return 'Passwords do not match';
-    }
     return null;
   }
 
@@ -121,7 +75,7 @@ class _Newpassword extends State<Newpassword> {
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        const VerifyEmailScreen()), //this must be modified
+                        const DeleteAccountScreen()), //this must be modified
               ); // Adjusted for a typical back operation
             },
             iconSize: 25.0,
@@ -130,10 +84,10 @@ class _Newpassword extends State<Newpassword> {
           ),
         ),
         title: const Text(
-          'Create new password',
+          'Confirm password For deleting',
           style: TextStyle(
               color: Colors.white,
-              fontSize: 24,
+              fontSize: 17,
               fontWeight: FontWeight.w700,
               fontFamily: 'Inter'),
         ),
@@ -155,14 +109,14 @@ class _Newpassword extends State<Newpassword> {
               ),
               const SizedBox(height: 30),
               Text(
-                'Please enter your new password below',
+                'Please enter your password ',
                 style: TextStyle(
                     fontSize: 17,
                     color: Colors.white.withOpacity(.90),
                     fontFamily: 'Inter'),
               ),
               const SizedBox(
-                height: 40,
+                height: 50,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -194,33 +148,6 @@ class _Newpassword extends State<Newpassword> {
               const SizedBox(
                 height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: TextFormField(
-                  controller: confirmPasswordController,
-                  obscureText: true, // Hides password input
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: _validateConfirmPassword,
-                  cursorColor: Colors.white,
-                  decoration: const InputDecoration(
-                    hoverColor: Colors.white,
-                    prefix: SizedBox(width: 1),
-                    hintText: 'Confirm Password',
-                    hintStyle: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 16,
-                      fontFamily: 'InriaSans-Regular',
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color(0xffD9D9D9)), // Normal border color
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
               const SizedBox(height: 60),
               Container(
                 width: 270,
@@ -248,16 +175,15 @@ class _Newpassword extends State<Newpassword> {
                   ),
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
-                      await resetPassword(passwordController.text,
-                          confirmPasswordController.text);
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const Login()),
+                        MaterialPageRoute(
+                            builder: (context) => const Registeration()),
                       );
                     }
                   },
                   child: const Text(
-                    'Save',
+                    'Confirm',
                     style: TextStyle(
                       fontSize: 28,
                       color: Colors.white,
