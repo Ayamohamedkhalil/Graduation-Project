@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http; 
 import 'package:splash_onboarding_test/Registeration/registeration.dart';
-
+import 'dart:convert';
 import 'package:splash_onboarding_test/views/reasonfordeleteaccount.dart';
+import 'package:splash_onboarding_test/Registeration/auth_service.dart'; 
 
 class confirmpasswordfordeleteaccount extends StatefulWidget {
   confirmpasswordfordeleteaccount({super.key});
@@ -42,6 +43,52 @@ class _confirmpasswordfordeleteaccount
 
     return null;
   }
+   Future<String?> getToken() async {
+    final String? token = await AuthService.getToken();
+    if (token == null) {
+      print('No token found');
+    } else {
+      print('Retrieved Token: $token');
+    }
+    return token;
+  }
+   Future<void> _deleteAccount() async {
+  final token = await getToken();
+  const String apiUrl = 'https://backend-production-19d7.up.railway.app/api/delete-account';
+
+  try {
+    final response = await http.delete(
+      Uri.parse(apiUrl),
+      headers: {
+        'Authorization': '$token', // Ensure the token is correctly prefixed
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'password': passwordController.text, // Use user's input
+      }),
+    );
+    print(response.statusCode);
+   
+    if (response.statusCode == 200) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const Registeration()),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Failed to delete account. Please check your password.'),
+        ),
+      );
+    }
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Error occurred: $e'),
+      ),
+    );
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +122,8 @@ class _confirmpasswordfordeleteaccount
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        const DeleteAccountScreen()), //this must be modified
-              ); // Adjusted for a typical back operation
+                        const DeleteAccountScreen()), 
+              ); 
             },
             iconSize: 25.0,
             splashRadius: 25.0,
@@ -92,7 +139,7 @@ class _confirmpasswordfordeleteaccount
               fontFamily: 'Inter'),
         ),
         titleSpacing: 30,
-        centerTitle: true, // Ensure the title is centered
+        centerTitle: true, 
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -103,7 +150,7 @@ class _confirmpasswordfordeleteaccount
             children: [
               const SizedBox(height: 20),
               Image.asset(
-                'assets/New-password.png', // Replace with your image path
+                'assets/New-password.png', 
                 height: 270,
                 width: 270,
               ),
@@ -122,7 +169,7 @@ class _confirmpasswordfordeleteaccount
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: TextFormField(
                   controller: passwordController,
-                  obscureText: true, // Hides password input
+                  obscureText: true, 
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: _validatePassword,
                   cursorColor: Colors.white,
@@ -175,11 +222,7 @@ class _confirmpasswordfordeleteaccount
                   ),
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Registeration()),
-                      );
+                      await _deleteAccount();
                     }
                   },
                   child: const Text(

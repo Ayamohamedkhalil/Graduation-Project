@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+//import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
 import 'package:splash_onboarding_test/views/confirmpasswordfordeleteaccount.dart';
 
