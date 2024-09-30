@@ -4,7 +4,7 @@ import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'dart:convert';
 import 'package:splash_onboarding_test/home.dart';
 import 'auth_service.dart';
-
+import 'package:splash_onboarding_test/views/firebase_notifications/firebase_notifications.dart';
 class Signup extends StatefulWidget {
   const Signup({super.key});
 
@@ -20,7 +20,7 @@ class _SignupState extends State<Signup> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
-
+FirebaseNotifications _firebaseNotifications = FirebaseNotifications();
   @override
   void dispose() {
     nameController.dispose();
@@ -55,7 +55,7 @@ class _SignupState extends State<Signup> {
     return null;
   }
 
-   String? _validatePassword(String? value) {
+  String? _validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter your password';
     }
@@ -289,7 +289,15 @@ class _SignupState extends State<Signup> {
                   ),
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
+                      String? fcm_token = await _firebaseNotifications
+                          .getTokenFromPreferences();
 
+                      if (fcm_token == null) {
+                        await FirebaseNotifications().initNotifications();
+                        fcm_token = await _firebaseNotifications
+                            .getTokenFromPreferences();
+                        //print('Error: Firebase token not available.');
+                      }
                       // Gather form data
                       final String username = nameController.text.trim();
                       final String email = emailController.text.trim();
@@ -303,6 +311,7 @@ class _SignupState extends State<Signup> {
                         "email": email,
                         "password": password,
                         "confirm_password": confirmPassword,
+                        "fcm_token": fcm_token!,
                       };
 
                       // URL of the API
@@ -322,11 +331,11 @@ class _SignupState extends State<Signup> {
                           final message = responseData['message'];
                           final token = responseData['token'];
                           final user = responseData['user'];
-                          
 
                           print('Message: $message');
                           print('Token: $token');
                           print('User: ${user['username']}');
+                          print('fcm_token: $fcm_token');
 
                           if (token != null && token.isNotEmpty) {
                             // Save the token, email, and username using saveLoginInfo

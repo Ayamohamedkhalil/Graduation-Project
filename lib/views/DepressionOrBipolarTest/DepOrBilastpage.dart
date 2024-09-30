@@ -3,11 +3,16 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:splash_onboarding_test/views/DepressionOrBipolarTest/ResultDepOrBi.dart';
+//import 'package:splash_onboarding_test/views/firebase_notifications/firebase_notifications.dart';
+  // Import your FirebaseNotifications class
 
 class DepoRBiSubmitPage extends StatelessWidget {
   final List<String?> answers;
 
-  const DepoRBiSubmitPage({super.key, required this.answers});
+ DepoRBiSubmitPage({super.key, required this.answers});
+
+  // Initialize the FirebaseNotifications class
+  //final FirebaseNotifications _firebaseNotifications = FirebaseNotifications();
 
   Future<void> _submitAnswers(BuildContext context) async {
     final url = Uri.parse('https://ml-models-production-90be.up.railway.app/depressionPredict');
@@ -40,6 +45,12 @@ class DepoRBiSubmitPage extends StatelessWidget {
 
         if (responseData is Map<String, dynamic>) {
           final result = responseData.values.first ?? 'Unknown';
+
+          // Show notification after a successful submission
+         /* await _firebaseNotifications.showNotificationOnButtonPress(
+             'Submission Success',
+             'Your answers have been successfully submitted!',
+          );*/
 
           Navigator.pushReplacement(
             context,
@@ -90,7 +101,7 @@ class DepoRBiSubmitPage extends StatelessWidget {
             _buildButton(
               context,
               'Submit',
-              () => _submitAnswers(context),
+              () => _submitAnswers(context),  // Call the submit function
             ),
             const SizedBox(height: 15),
             _buildButton(

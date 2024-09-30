@@ -97,6 +97,7 @@ class _JournalPageState extends State<JournalPage> {
                           FontAwesomeIcons.penToSquare,
                           size: 30,
                           color: Color(0xffAFAC7F),
+                                      
                         )
                       ],
                     ),
