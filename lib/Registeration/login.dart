@@ -7,7 +7,7 @@ import 'package:splash_onboarding_test/home.dart';
 import 'package:splash_onboarding_test/Registeration/forgetpassword.dart';
 import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'package:device_info_plus/device_info_plus.dart';
- // Import the FirebaseNotifications class
+// Import the FirebaseNotifications class
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -29,7 +29,7 @@ class _LoginState extends State<Login> {
     if (value == null || value.isEmpty) {
       return 'Please enter your email';
     }
-    String pattern =  r"(?:[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'"
+    String pattern = r"(?:[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'"
         r'*+/=?^_{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
         r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
         r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
@@ -55,7 +55,8 @@ class _LoginState extends State<Login> {
   }
 
   Future<void> _login() async {
-    final url = Uri.parse('https://backend-production-19d7.up.railway.app/api/login');
+    final url =
+        Uri.parse('https://backend-production-19d7.up.railway.app/api/login');
 
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     String phoneType = '';
@@ -69,11 +70,12 @@ class _LoginState extends State<Login> {
     }
 
     // Retrieve Firebase token from SharedPreferences
-    String? fcm_token= await _firebaseNotifications.getTokenFromPreferences();
+    String? fcm_token = await _firebaseNotifications.getTokenFromPreferences();
 
     if (fcm_token == null) {
-      print('Error: Firebase token not available.');
-      return;
+      await FirebaseNotifications().initNotifications();
+      fcm_token = await _firebaseNotifications.getTokenFromPreferences();
+      //print('Error: Firebase token not available.');
     }
 
     // Add phone type and Firebase token to the request body
@@ -81,23 +83,23 @@ class _LoginState extends State<Login> {
       "email": email!,
       "password": password!,
       "phone": phoneType, // Include the phone type in the request body
-      "fcm_token": fcm_token, // Include Firebase token in the request body
+      "fcm_token": fcm_token!, // Include Firebase token in the request body
     };
 
     print('Email: $email');
     print('Password: $password');
     print('Phone type: $phoneType');
     print('fcm_token: $fcm_token');
-    
+
     try {
       final response = await http.post(
         url,
         headers: {
           "Content-Type": "application/json",
         },
-        body: jsonEncode(requestBody), 
+        body: jsonEncode(requestBody),
       );
-      
+
       print('Status code: ${response.statusCode}');
       print('Response body: ${response.body}');
 

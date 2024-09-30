@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
 import 'dart:convert';
 import 'package:splash_onboarding_test/views/result1.dart';
+ // Replace with your actual import path
 
 class SubmitPage extends StatelessWidget {
   final List<String?> answers;
@@ -49,6 +51,13 @@ class SubmitPage extends StatelessWidget {
               builder: (context) => Result1(result: result),
             ),
           );
+
+          // Show notification after successful submission
+         /* FirebaseNotifications notifications = FirebaseNotifications();
+          await notifications.showNotificationOnButtonPress(
+            'Submission Successful',
+            'Your answers have been submitted successfully!',
+          );*/
         } else {
           throw Exception('Unexpected response format or empty response');
         }
