@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
+import 'package:splash_onboarding_test/views/journalPages/journal1.dart';
 import 'package:splash_onboarding_test/views/journalPages/journalPageIfSelectedDay.dart';
 import 'package:splash_onboarding_test/views/journalPages/journalYearPage.dart';
 import 'package:splash_onboarding_test/views/journalPages/widgets/JournalData.dart';
@@ -28,7 +29,8 @@ class _JournalPageState extends State<JournalPage> {
         color: const Color(0xff537F5C),
         child: Stack(children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.only(bottom: 80),  // Extra padding at the bottom
+            padding: const EdgeInsets.only(
+                bottom: 80), // Extra padding at the bottom
             child: Column(
               children: [
                 const SizedBox(
@@ -81,7 +83,7 @@ class _JournalPageState extends State<JournalPage> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Column(
+                Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,12 +95,22 @@ class _JournalPageState extends State<JournalPage> {
                               fontSize: 29,
                               fontFamily: 'Ledger'),
                         ),
-                        Icon(
-                          FontAwesomeIcons.penToSquare,
-                          size: 30,
-                          color: Color(0xffAFAC7F),
-                                      
-                        )
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>NewJournalEntryPage(
+                                    currentDate: selectedDay),
+                              ),
+                            );
+                          },
+                          child: Icon(
+                            FontAwesomeIcons.penToSquare,
+                            size: 30,
+                            color: Color(0xffAFAC7F),
+                          ),
+                        ),
                       ],
                     ),
                     SizedBox(
@@ -237,8 +249,7 @@ class _JournalPageState extends State<JournalPage> {
                 // Month Journals
                 //
                 const Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                   child: Column(
                     children: [
                       Row(
@@ -259,7 +270,8 @@ class _JournalPageState extends State<JournalPage> {
                 SizedBox(
                   height: 250,
                   child: ListView.builder(
-                    padding: const EdgeInsets.only(bottom: 80), // Add bottom padding here
+                    padding: const EdgeInsets.only(
+                        bottom: 80), // Add bottom padding here
                     itemBuilder: (context, index) {
                       return const JournalData(
                           title: "I was wondering", date: "14/1/2024");
