@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/views/journalPages/journal1.dart';
-import 'package:splash_onboarding_test/views/journalPages/journalPageIfSelectedDay.dart';
+
 import 'package:splash_onboarding_test/views/journalPages/journalYearPage.dart';
 import 'package:splash_onboarding_test/views/journalPages/widgets/JournalData.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -220,13 +220,13 @@ class _JournalPageState extends State<JournalPage> {
                       this.selectedDay = selectedDay;
                       this.focusedDay = focusedDay;
                     });
-                    Navigator.push(
+                   /* Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
                             JournalPageDay(selectDay: selectedDay),
                       ),
-                    );
+                    );*/
                   },
                   onPageChanged: (focusedDay) {
                     this.focusedDay = focusedDay;
