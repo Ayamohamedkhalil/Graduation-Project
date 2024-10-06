@@ -34,10 +34,11 @@ class _JournalPageState extends State<JournalPage> {
   Future<void> _fetchJournals(
       {String? year, String? month, String? day}) async {
     final String? token = await getToken();
-    
+
     setState(() {
       errorMessage = ''; // Reset error message on every fetch attempt
     });
+
     try {
       final response = await http.post(
         Uri.parse(
@@ -55,10 +56,29 @@ class _JournalPageState extends State<JournalPage> {
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
+
         setState(() {
-          journals = data['journals'] ?? [];
-          if (journals.isEmpty) {
-            errorMessage = 'No journals found for the selected date.';
+          if (day != null) {
+            // When a specific day is provided, handle 'journals' response
+            journals = data['journals'] ?? [];
+            if (journals.isEmpty) {
+              errorMessage = 'No journals found for the selected date.';
+            }
+          } else {
+            // When 'day' is null, handle 'days' dictionary
+            final days = data['days'] ?? {};
+            journals = []; // Clear existing journals
+
+            days.forEach((key, value) {
+              // Combine entries for the month
+              for (var entry in value) {
+                journals.add(entry);
+              }
+            });
+
+            if (journals.isEmpty) {
+              errorMessage = 'No journals found for the selected month.';
+            }
           }
         });
       } else {
@@ -195,7 +215,8 @@ class _JournalPageState extends State<JournalPage> {
                     ),
                     selectedDecoration: const BoxDecoration(
                       color: Colors.white,
-                      shape: BoxShape.circle, // Circle shape does not need borderRadius
+                      shape: BoxShape
+                          .circle, // Circle shape does not need borderRadius
                     ),
                     defaultTextStyle: const TextStyle(color: Colors.white),
                   ),
@@ -230,14 +251,29 @@ class _JournalPageState extends State<JournalPage> {
                       day: selectedDay.day.toString().padLeft(2, '0'),
                     );
                   },
-                  onHeaderTapped: (date) {
-                    setState(() {
-                      selectedYear = date;
-                    });
-                    _fetchJournals(
-                      year: selectedYear.year.toString(),
-                      month: selectedYear.month.toString().padLeft(2, '0'),
-                    );
+                  onHeaderTapped: (date) async {
+                    int? result = await showYearMonthDialog(context);
+                    if (result != null) {
+                      if (result == 1) {
+                        print("Year tapped");
+
+                        // Handle the Year tap logic
+                      } else {
+                        print("Month tapped");
+                        setState(() {
+                          selectedYear = date;
+                        });
+                        await _fetchJournals(
+                          year: selectedYear.year.toString(),
+                          month: selectedYear.month.toString().padLeft(2, '0'),
+                        );
+                        setState(() {});
+                        print(selectedYear.year);
+                        print(selectedYear.month);
+
+                        /// Handle the Month tap logic
+                      }
+                    }
                   },
                   onPageChanged: (focusedDay) {
                     this.focusedDay = focusedDay;
@@ -275,15 +311,35 @@ class _JournalPageState extends State<JournalPage> {
                           ),
                         )
                       : ListView.builder(
-                          padding: const EdgeInsets.only(bottom: 80),
+                          //padding: const EdgeInsets.only(bottom: 80),
                           itemCount: journals.length,
                           itemBuilder: (context, index) {
                             final journal = journals[index];
-                            return JournalData(
-                              title:
-                                  journal['entries'][0]['title'] ?? 'No Title',
-                              date: journal['date'] ?? 'No Date',
-                            );
+
+                            // Handling multiple entries for a single day
+                            if (journal['entries'] != null &&
+                                journal['entries'].isNotEmpty) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: journal['entries'].length,
+                                    itemBuilder: (context, entryIndex) {
+                                      final entry =
+                                          journal['entries'][entryIndex];
+                                      return JournalData(
+                                        title: entry['title'] ?? 'No Title',
+                                        date: journal['date'] ?? 'No Date',
+                                      );
+                                    },
+                                  ),
+                                ],
+                              );
+                            } else {
+                              return Center(child: Text('No Entries Found'));
+                            }
                           },
                         ),
                 ),
@@ -299,6 +355,36 @@ class _JournalPageState extends State<JournalPage> {
           ),
         ]),
       ),
+    );
+  }
+
+  Future<int?> showYearMonthDialog(BuildContext context) async {
+    return showDialog<int>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Color(0xff537F5C),
+          title: Text('Select Year or Month',
+              style: TextStyle(color: Colors.white)),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(1); // Return 1 when Year is tapped
+              },
+              child: Text('Year', style: TextStyle(color: Colors.white)),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(0); // Return 0 when Month is tapped
+              },
+              child: Text(
+                'Month',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
