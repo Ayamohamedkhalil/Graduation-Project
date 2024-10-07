@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/views/ConatctUspage/contactUsPage.dart';
 import 'package:splash_onboarding_test/views/journalPages/journal1.dart';
+import 'package:splash_onboarding_test/views/journalPages/journalYearPage.dart';
 import 'package:splash_onboarding_test/views/journalPages/widgets/JournalData.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
@@ -28,9 +29,11 @@ class _JournalPageState extends State<JournalPage> {
   @override
   void initState() {
     super.initState();
-    _fetchJournals( year: "",
-                      month: "",
-                      day: "",); // Fetch all journals when the page loads
+    _fetchJournals(
+      year: "",
+      month: "",
+      day: "",
+    ); // Fetch all journals when the page loads
   }
 
   Future<void> _fetchJournals(
@@ -257,9 +260,19 @@ class _JournalPageState extends State<JournalPage> {
                     int? result = await showYearMonthDialog(context);
                     if (result != null) {
                       if (result == 1) {
+                        // "Year" was tapped
                         print("Year tapped");
 
-                        // Handle the Year tap logic
+                        // Navigate to the JournalYearPage and pass the selected year
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Journalyearpage(
+                              selectYear:
+                                  selectedYear.year, // Pass the selected year
+                            ),
+                          ),
+                        );
                       } else {
                         print("Month tapped");
                         setState(() {
@@ -272,8 +285,6 @@ class _JournalPageState extends State<JournalPage> {
                         setState(() {});
                         print(selectedYear.year);
                         print(selectedYear.month);
-
-                        /// Handle the Month tap logic
                       }
                     }
                   },

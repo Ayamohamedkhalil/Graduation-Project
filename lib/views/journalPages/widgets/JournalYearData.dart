@@ -12,10 +12,11 @@ class JournalYearData extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(color: PriamryColor)),
+        borderRadius: BorderRadius.circular(7),
         color: const Color(0xffD9D9D9),
       ),
       child: ListTile(
-        contentPadding: EdgeInsets.zero,
+        contentPadding: EdgeInsets.symmetric(horizontal: 10),
         title: Text(
           title,
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
