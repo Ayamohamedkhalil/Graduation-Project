@@ -18,7 +18,7 @@ class FirebaseNotifications {
 
     // Get the Firebase token
     String? fcmToken = await _firebaseMessaging.getToken();
-
+    print("fcmToken============================$fcmToken");
     // Save the token locally using SharedPreferences
     if (fcmToken != null) {
       await _saveToken(fcmToken);
@@ -34,7 +34,7 @@ class FirebaseNotifications {
   Future<void> _initializeLocalNotifications() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
-    
+
     final InitializationSettings initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid);
 
@@ -56,8 +56,11 @@ class FirebaseNotifications {
   }
 
   // Show notification when the app is in the foreground
-  Future<void> _showForegroundNotification(RemoteNotification? notification) async {
-    if (notification != null && notification.title != null && notification.body != null) {
+  Future<void> _showForegroundNotification(
+      RemoteNotification? notification) async {
+    if (notification != null &&
+        notification.title != null &&
+        notification.body != null) {
       const AndroidNotificationDetails androidPlatformChannelSpecifics =
           AndroidNotificationDetails(
         'your_channel_id',
@@ -66,10 +69,10 @@ class FirebaseNotifications {
         priority: Priority.high,
         showWhen: true, // Set to true to show timestamp
       );
-      
+
       const NotificationDetails platformChannelSpecifics =
           NotificationDetails(android: androidPlatformChannelSpecifics);
-      
+
       await flutterLocalNotificationsPlugin.show(
         notification.hashCode,
         notification.title,
@@ -89,10 +92,10 @@ class FirebaseNotifications {
       priority: Priority.high,
       showWhen: true,
     );
-    
+
     const NotificationDetails platformChannelSpecifics =
         NotificationDetails(android: androidPlatformChannelSpecifics);
-    
+
     await flutterLocalNotificationsPlugin.show(
       0,
       title,
@@ -111,6 +114,7 @@ class FirebaseNotifications {
   // Function to get token from SharedPreferences
   Future<String?> getTokenFromPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    
     return prefs.getString('fcm_token');
   }
 
