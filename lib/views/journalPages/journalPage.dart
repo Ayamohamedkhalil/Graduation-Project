@@ -28,7 +28,9 @@ class _JournalPageState extends State<JournalPage> {
   @override
   void initState() {
     super.initState();
-    _fetchJournals(); // Fetch all journals when the page loads
+    _fetchJournals( year: "",
+                      month: "",
+                      day: "",); // Fetch all journals when the page loads
   }
 
   Future<void> _fetchJournals(

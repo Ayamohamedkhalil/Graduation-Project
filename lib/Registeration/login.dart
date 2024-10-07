@@ -55,6 +55,7 @@ class _LoginState extends State<Login> {
   }
 
   Future<void> _login() async {
+    await FirebaseNotifications().logout();
     final url =
         Uri.parse('https://backend-production-19d7.up.railway.app/api/login');
 
