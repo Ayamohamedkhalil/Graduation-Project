@@ -344,7 +344,7 @@ class _JournalPageState extends State<JournalPage> {
                                           journal['entries'][entryIndex];
                                       return JournalData(
                                         title: entry['title'] ?? 'No Title',
-                                        date: journal['date'] ?? 'No Date',
+                                        date: journal['date'] ?? 'No Date', content: '',
                                       );
                                     },
                                   ),
