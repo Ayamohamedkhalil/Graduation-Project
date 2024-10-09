@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Updateandaskgemini extends StatefulWidget {
   final String title;
@@ -50,6 +50,26 @@ class _Updateandaskgemini extends State<Updateandaskgemini> {
         ),
         actions: [
           IconButton(
+            icon: const FaIcon(FontAwesomeIcons.star, color: Color(0xffD9D9D9)),
+            onPressed: () {
+              // Handle sparkle/star action
+            },
+          ),
+          IconButton(
+            icon:
+                const FaIcon(FontAwesomeIcons.smile, color: Color(0xffD9D9D9)),
+            onPressed: () {
+              // Handle smiley action
+            },
+          ),
+          IconButton(
+            icon:
+                const FaIcon(FontAwesomeIcons.frown, color: Color(0xffD9D9D9)),
+            onPressed: () {
+              // Handle frown action
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.check, color: Color(0xffD9D9D9)),
             onPressed: () {
               // Handle save action
@@ -71,7 +91,6 @@ class _Updateandaskgemini extends State<Updateandaskgemini> {
               ),
             ),
             const SizedBox(height: 10),
-            // Title input field
             TextField(
               controller: _titleController,
               style: const TextStyle(
@@ -90,7 +109,6 @@ class _Updateandaskgemini extends State<Updateandaskgemini> {
               ),
             ),
             const SizedBox(height: 20),
-            // Journal entry input field (multiline)
             Expanded(
               child: Container(
                 padding:
