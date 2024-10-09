@@ -1,18 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:splash_onboarding_test/views/journalPages/updateandaskgemini.dart';
 
 class JournalData extends StatelessWidget {
   final String title;
   final String date;
+  final String content;
 
-  const JournalData({super.key, required this.title, required this.date});
+  const JournalData({
+    super.key,
+    required this.title,
+    required this.date,
+    required this.content,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      
-      children: [
-        Container(
-            // padding: EdgeInsets.symmetric(vertical: 10),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Updateandaskgemini(
+              title: title,
+              content: content,
+              date: date,
+            ),
+          ),
+        );
+      },
+      child: Column(
+        children: [
+          Container(
             height: 50,
             width: 320,
             margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
@@ -24,7 +42,7 @@ class JournalData extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                     crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
@@ -38,8 +56,10 @@ class JournalData extends StatelessWidget {
                   ),
                 ],
               ),
-            )),
-      ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
