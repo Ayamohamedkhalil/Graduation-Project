@@ -39,10 +39,9 @@ class _Updateandaskgemini extends State<Updateandaskgemini> {
     super.dispose();
   }
 
-  Future<void> askGemini() async {
+    Future<void> askGemini() async {
     final String? token = await getToken();
     const String url = 'https://backend-production-19d7.up.railway.app/api/ask-gemini';
-    
 
     final response = await http.post(
       Uri.parse(url),
@@ -57,7 +56,9 @@ class _Updateandaskgemini extends State<Updateandaskgemini> {
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> responseData = jsonDecode(response.body);
-      showResponseDialog(responseData['response']);
+      String responseText = responseData['response'] ?? '';
+      responseText = responseText.replaceAll('*', '');  // Remove all asterisks
+      showResponseDialog(responseText);
     } else {
       showResponseDialog('Failed to get a response. Please try again.');
     }
@@ -68,18 +69,17 @@ class _Updateandaskgemini extends State<Updateandaskgemini> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Gemini Response'),
           content: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(response),
+                Text(response),  // Display the cleaned response
               ],
             ),
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('OK',style: TextStyle(color: Colors.black),),
+              child: Text('OK', style: TextStyle(color: Colors.black)),
               onPressed: () {
                 Navigator.of(context).pop();
               },
