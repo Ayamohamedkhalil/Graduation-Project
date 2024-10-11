@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
+import 'package:splash_onboarding_test/views/journalPages/updateandaskgemini.dart';
+// Import the page where details are shown
 
 class JournalYearData extends StatelessWidget {
   final String title;
   final String date;
+  final String content; // Add content field
 
-  const JournalYearData({super.key, required this.title, required this.date});
+  const JournalYearData({
+    super.key,
+    required this.title,
+    required this.date,
+    required this.content, // Add content field as required
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +32,17 @@ class JournalYearData extends StatelessWidget {
         visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
         subtitle: Text(date),
         onTap: () {
-          // Handle journal entry tap
+          // Navigate to the Updateandaskgemini page
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Updateandaskgemini(
+                title: title,
+                content: content, // Pass content to the page
+                date: date,
+              ),
+            ),
+          );
         },
       ),
     );
