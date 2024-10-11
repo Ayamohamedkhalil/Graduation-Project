@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'package:splash_onboarding_test/views/ConatctUspage/contactUsPage.dart'; // For jsonDecode
 
 class Updateandaskgemini extends StatefulWidget {
   final String title;
@@ -35,6 +39,57 @@ class _Updateandaskgemini extends State<Updateandaskgemini> {
     super.dispose();
   }
 
+  Future<void> askGemini() async {
+    final String? token = await getToken();
+    const String url = 'https://backend-production-19d7.up.railway.app/api/ask-gemini';
+    
+
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Authorization': token ?? '',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'prompt': _contentController.text,  // Using content as the prompt
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseData = jsonDecode(response.body);
+      showResponseDialog(responseData['response']);
+    } else {
+      showResponseDialog('Failed to get a response. Please try again.');
+    }
+  }
+
+  void showResponseDialog(String response) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Gemini Response'),
+          content: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(response),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK',style: TextStyle(color: Colors.black),),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,26 +108,14 @@ class _Updateandaskgemini extends State<Updateandaskgemini> {
             icon: const FaIcon(FontAwesomeIcons.star, color: Color(0xffD9D9D9)),
             onPressed: () {
               // Handle sparkle/star action
+               askGemini(); 
             },
           ),
-          IconButton(
-            icon:
-                const FaIcon(FontAwesomeIcons.smile, color: Color(0xffD9D9D9)),
-            onPressed: () {
-              // Handle smiley action
-            },
-          ),
-          IconButton(
-            icon:
-                const FaIcon(FontAwesomeIcons.frown, color: Color(0xffD9D9D9)),
-            onPressed: () {
-              // Handle frown action
-            },
-          ),
+          
           IconButton(
             icon: const Icon(Icons.check, color: Color(0xffD9D9D9)),
             onPressed: () {
-              // Handle save action
+             // Trigger the API call when check is pressed
             },
           ),
         ],
