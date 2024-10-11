@@ -17,11 +17,9 @@ class Journalyearpage extends StatefulWidget {
 }
 
 class _JournalyearpageState extends State<Journalyearpage> {
-  // To store the state of expanded tiles
   final Map<int, bool> _isOpen = {};
-  Map<int, List<Map<String, dynamic>>> _journalsByMonth =
-      {}; // Store journals grouped by month
-  bool _isLoading = true; // Add a loading state
+  Map<int, List<Map<String, dynamic>>> _journalsByMonth = {};
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -31,113 +29,83 @@ class _JournalyearpageState extends State<Journalyearpage> {
 
   Future<Map<String, dynamic>> fetchJournalsByYear(int year) async {
     final String? token = await getToken();
+
     final response = await http.post(
-      Uri.parse(
-          'https://backend-production-19d7.up.railway.app/api/get-journals'),
+      Uri.parse('https://backend-production-19d7.up.railway.app/api/get-journals'),
       headers: {
-        'Authorization': token ?? '', // Use your authorization token
+        'Authorization': token ?? '', // Token should not be null here
         'Content-Type': 'application/json',
       },
       body: jsonEncode({
         'year': year.toString(),
-        'month':
-            null, // Sending month as null to fetch all entries for the year
-        'day': null, // Setting day to null as well
       }),
     );
 
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      final decodedResponse = jsonDecode(response.body);
+      print('Response: $decodedResponse'); // Log the full response
+      return decodedResponse;
     } else {
+      print('Failed to load journals: ${response.statusCode} - ${response.body}');
       throw Exception('Failed to load journals');
     }
   }
 
- void _loadJournals() async {
-  try {
-    final data = await fetchJournalsByYear(widget.selectYear);
-    print("API response: $data"); // Debug: Print raw API response
-
-    // Check if 'months' key exists and is a Map
-    if (data.containsKey('months') && data['months'] is Map) {
-      if (data['months'].isEmpty) {
-        print("The 'months' map is empty.");
-      } else {
-        _groupJournalsByMonth(data['months']);
-      }
-    } else {
-      print("No journals found or invalid format.");
-    }
-
-    setState(() {
-      _isLoading = false;
-    });
-  } catch (e) {
-    print('Error loading journals: $e');
-  }
-}
-
-void _groupJournalsByMonth(Map<String, dynamic> monthsData) {
-  monthsData.forEach((month, journals) {
-    print('Month: $month, Journals: $journals'); // Debug: Print each month
-
+  void _loadJournals() async {
     try {
-      int monthInt = int.parse(month); // Parse month as an integer
+      final data = await fetchJournalsByYear(widget.selectYear);
 
-      if (!_journalsByMonth.containsKey(monthInt)) {
-        _journalsByMonth[monthInt] = [];
+      if (data.containsKey('months') && data['months'] is Map) {
+        _groupJournalsByMonth(data['months']);
+      } else {
+        print("No journals found or invalid format.");
       }
 
-      // Iterate over each journal entry for the month
-      for (var journalEntry in journals) {
-        // Extract the journal details and add it to the corresponding month
-        if (journalEntry['entries'] != null && journalEntry['entries'] is List) {
-          for (var entry in journalEntry['entries']) {
-            _journalsByMonth[monthInt]!.add({
-              'title': entry['title'],
-              'date': journalEntry['date'], // Use the outer 'date'
-            });
-          }
-        }
-      }
+      setState(() {
+        _isLoading = false;
+      });
     } catch (e) {
-      print("Error processing journals for month $month - Error: $e");
+      print('Error loading journals: $e');
     }
-  });
+  }
 
-  print('Journals by month: $_journalsByMonth'); // Debug: Final grouped data
-}
-
+  void _groupJournalsByMonth(Map<String, dynamic> months) {
+    _journalsByMonth = {};
+    months.forEach((month, entries) {
+      _journalsByMonth[int.parse(month)] = List<Map<String, dynamic>>.from(entries);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: _isLoading
-            ? Center(child: CircularProgressIndicator())
-            : Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                color: PriamryColor,
-                child: Stack(
-                  children: [
-                    Column(
-                      children: [
-                        const SizedBox(height: 40),
-                        _buildHeader(context),
-                        const SizedBox(height: 15),
-                        _buildSearchBar(),
-                        const SizedBox(height: 30),
-                        _buildJournalList(),
-                      ],
-                    ),
-                    Positioned(
-                      bottom: 5,
-                      right: MediaQuery.of(context).size.width * 0.15,
-                      left: MediaQuery.of(context).size.width * 0.15,
-                      child: const BarButton(),
-                    ),
-                  ],
-                ),
-              ));
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          : Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              color: PriamryColor,
+              child: Stack(
+                children: [
+                  Column(
+                    children: [
+                      const SizedBox(height: 40),
+                      _buildHeader(context),
+                      const SizedBox(height: 15),
+                      _buildSearchBar(),
+                      const SizedBox(height: 30),
+                      _buildJournalList(),
+                    ],
+                  ),
+                  Positioned(
+                    bottom: 5,
+                    right: MediaQuery.of(context).size.width * 0.15,
+                    left: MediaQuery.of(context).size.width * 0.15,
+                    child: const BarButton(),
+                  ),
+                ],
+              ),
+            ),
+    );
   }
 
   Widget _buildJournalList() {
@@ -156,21 +124,39 @@ void _groupJournalsByMonth(Map<String, dynamic> monthsData) {
     );
   }
 
-  List<Widget> _buildJournalEntriesForMonth(int month) {
-    List<Map<String, dynamic>>? journals = _journalsByMonth[month];
-    if (journals == null || journals.isEmpty) {
-      return [
-        Text("No journals available", style: TextStyle(color: Colors.white))
-      ];
-    }
+ List<Widget> _buildJournalEntriesForMonth(int month) {
+  List<Map<String, dynamic>>? journals = _journalsByMonth[month];
 
-    return journals.map((journal) {
-      return JournalYearData(
-        title: journal['title'],
-        date: journal['date'],
-      );
-    }).toList();
+  if (journals == null || journals.isEmpty) {
+    return [
+      Text("No journals available", style: TextStyle(color: Colors.white))
+    ];
   }
+
+  List<Widget> journalWidgets = [];
+  for (var journal in journals) {
+    // Assuming journal contains 'entries' as well
+    if (journal.containsKey('entries') && journal['entries'] is List) {
+      for (var entry in journal['entries']) {
+        // Accessing each entry's title and content
+        String title = entry['title'] ?? 'Untitled';
+        String date = journal['date'] ?? 'Unknown date'; // Assuming the date is from the parent journal
+        String content = entry['content'] ?? 'No content available';
+
+        // Add to the list of journal widgets
+        journalWidgets.add(JournalYearData(
+          title: title,
+          date: date,
+          content: content,
+        ));
+      }
+    } else {
+      print("Invalid journal entry structure: $journal");
+    }
+  }
+
+  return journalWidgets;
+}
 
   Widget _buildHeader(BuildContext context) {
     return Row(
@@ -189,13 +175,11 @@ void _groupJournalsByMonth(Map<String, dynamic> monthsData) {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const JournalPage()),
+                      MaterialPageRoute(builder: (context) => const JournalPage()),
                     );
                   },
                   iconSize: 25.0,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 3, horizontal: 9),
+                  padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 9),
                   splashRadius: 25.0,
                   tooltip: "Back",
                 ),
@@ -261,7 +245,6 @@ void _groupJournalsByMonth(Map<String, dynamic> monthsData) {
     );
   }
 
-  // Method to create a custom ExpansionTile
   Widget _customExpansionTile({
     required String title,
     required int index,
@@ -278,7 +261,6 @@ void _groupJournalsByMonth(Map<String, dynamic> monthsData) {
           fontSize: 30,
         ),
       ),
-      // Custom icon changes based on expansion state
       trailing: Icon(
         _isOpen[index] ?? false ? Icons.expand_more : Icons.chevron_right,
         color: Colors.white,
@@ -292,7 +274,6 @@ void _groupJournalsByMonth(Map<String, dynamic> monthsData) {
     );
   }
 
-  // Helper method to get the name of the month
   String _getMonthName(int monthNumber) {
     List<String> months = [
       "January",
