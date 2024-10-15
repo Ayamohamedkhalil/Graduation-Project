@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -39,7 +39,7 @@ class _Updateandaskgemini extends State<Updateandaskgemini> {
     super.dispose();
   }
 
-    Future<void> askGemini() async {
+  Future<void> askGemini() async {
     final String? token = await getToken();
     const String url = 'https://backend-production-19d7.up.railway.app/api/ask-gemini';
 
@@ -58,33 +58,64 @@ class _Updateandaskgemini extends State<Updateandaskgemini> {
       final Map<String, dynamic> responseData = jsonDecode(response.body);
       String responseText = responseData['response'] ?? '';
       responseText = responseText.replaceAll('*', '');  // Remove all asterisks
-      showResponseDialog(responseText);
+      showResponseBottomSheet(responseText);
     } else {
-      showResponseDialog('Failed to get a response. Please try again.');
+      showResponseBottomSheet('Failed to get a response. Please try again.');
     }
   }
 
-  void showResponseDialog(String response) {
-    showDialog(
+  void showResponseBottomSheet(String response) {
+    showModalBottomSheet(
       context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+      ),
+      isScrollControlled: true,
       builder: (BuildContext context) {
-        return AlertDialog(
-          content: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(response),  // Display the cleaned response
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: Text('OK', style: TextStyle(color: Colors.black)),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
+        return DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.4,  // Start at 40% of screen height
+          minChildSize: 0.2,  // Min height 20%
+          maxChildSize: 0.8,  // Max height 80%
+          builder: (BuildContext context, ScrollController scrollController) {
+            return Container(
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+              ),
+              child: SingleChildScrollView(
+                controller: scrollController,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                    child: Image.asset(
+                      'assets/geminilogo.png',  // Ensure this path is correct for your image
+                     
+                    ),
+                  ),
+                   // Center(child: Image.asset('assets/geminilogo.png')),
+                   /* Text(
+                      'Response:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),*/
+                    SizedBox(height: 20),
+                    Text(
+                      response,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
         );
       },
     );
@@ -104,18 +135,25 @@ class _Updateandaskgemini extends State<Updateandaskgemini> {
           },
         ),
         actions: [
-          IconButton(
-            icon: const FaIcon(FontAwesomeIcons.star, color: Color(0xffD9D9D9)),
-            onPressed: () {
-              // Handle sparkle/star action
-               askGemini(); 
-            },
+          Padding(
+            padding: const EdgeInsets.only(left: 50),
+            child: IconButton(
+              icon: Image.asset(
+                'assets/gemini.png',  // Use the Gemini icon instead of star
+                width: 25,
+                height: 25,
+              ),
+              onPressed: () {
+                askGemini(); 
+              },
+            ),
           ),
-          
+        
           IconButton(
             icon: const Icon(Icons.check, color: Color(0xffD9D9D9)),
             onPressed: () {
              // Trigger the API call when check is pressed
+              
             },
           ),
         ],
