@@ -310,54 +310,55 @@ class _JournalPageState extends State<JournalPage> {
                   ),
                 ),
                 SizedBox(
-                  height: 250,
-                  child: journals.isEmpty
-                      ? Center(
-                          child: Text(
-                            errorMessage.isNotEmpty
-                                ? errorMessage
-                                : 'No journals available.',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
+                    height: 250,
+                    child: journals.isEmpty
+                        ? Center(
+                            child: Text(
+                              errorMessage.isNotEmpty
+                                  ? errorMessage
+                                  : 'No journals available.',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
                             ),
-                          ),
-                        )
-                      : ListView.builder(
-                          //padding: const EdgeInsets.only(bottom: 80),
-                          itemCount: journals.length,
-                          itemBuilder: (context, index) {
-                            final journal = journals[index];
+                          )
+                        : ListView.builder(
+                            itemCount: journals.length,
+                            itemBuilder: (context, index) {
+                              final journal = journals[index];
+                              // Generate a unique ID for each journal entry, assuming 'id' is available
+                              final String id = journal['id']
+                                  .toString(); // Extract ID from journal
 
-                            // Handling multiple entries for a single day
-                            if (journal['entries'] != null &&
-                                journal['entries'].isNotEmpty) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemCount: journal['entries'].length,
-                                    itemBuilder: (context, entryIndex) {
-                                      final entry =
-                                          journal['entries'][entryIndex];
-                                      return JournalData(
-                                        title: entry['title'] ?? 'No Title',
-                                        date: journal['date'] ?? 'No Date',
-                                        content: entry['content'] ??
-                                            'No Content', // Updated this line
-                                      );
-                                    },
-                                  ),
-                                ],
-                              );
-                            } else {
-                              return Center(child: Text('No Entries Found'));
-                            }
-                          },
-                        ),
-                ),
+                              if (journal['entries'] != null &&
+                                  journal['entries'].isNotEmpty) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: journal['entries'].length,
+                                      itemBuilder: (context, entryIndex) {
+                                        final entry =
+                                            journal['entries'][entryIndex];
+                                        return JournalData(
+                                          id: id, // Pass id here
+                                          title: entry['title'] ?? 'No Title',
+                                          date: journal['date'] ?? 'No Date',
+                                          content:
+                                              entry['content'] ?? 'No Content',
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                );
+                              } else {
+                                return Center(child: Text('No Entries Found'));
+                              }
+                            },
+                          )),
                 const SizedBox(height: 5),
               ],
             ),

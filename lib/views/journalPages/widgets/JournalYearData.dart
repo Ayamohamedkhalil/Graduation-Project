@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
-import 'package:splash_onboarding_test/views/journalPages/updateandaskgemini.dart';
+
 // Import the page where details are shown
 
 class JournalYearData extends StatelessWidget {
@@ -33,7 +33,7 @@ class JournalYearData extends StatelessWidget {
         subtitle: Text(date),
         onTap: () {
           // Navigate to the Updateandaskgemini page
-          Navigator.push(
+          /*Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => Updateandaskgemini(
@@ -42,7 +42,7 @@ class JournalYearData extends StatelessWidget {
                 date: date,
               ),
             ),
-          );
+          );*/
         },
       ),
     );
