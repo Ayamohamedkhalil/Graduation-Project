@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
-import 'package:splash_onboarding_test/views/journalPages/updateandaskgemini.dart';
+
 // Import the page where details are shown
 
 class JournalYearData extends StatelessWidget {

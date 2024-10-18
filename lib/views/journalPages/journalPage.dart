@@ -329,7 +329,7 @@ class _JournalPageState extends State<JournalPage> {
                               final journal = journals[index];
                               // Generate a unique ID for each journal entry, assuming 'id' is available
                               final String id = journal['id']
-                                  .toString(); // Adjust this based on your API response
+                                  .toString(); // Extract ID from journal
 
                               if (journal['entries'] != null &&
                                   journal['entries'].isNotEmpty) {
