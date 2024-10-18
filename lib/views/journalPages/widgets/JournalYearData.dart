@@ -33,7 +33,7 @@ class JournalYearData extends StatelessWidget {
         subtitle: Text(date),
         onTap: () {
           // Navigate to the Updateandaskgemini page
-          Navigator.push(
+          /*Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => Updateandaskgemini(
@@ -42,7 +42,7 @@ class JournalYearData extends StatelessWidget {
                 date: date,
               ),
             ),
-          );
+          );*/
         },
       ),
     );

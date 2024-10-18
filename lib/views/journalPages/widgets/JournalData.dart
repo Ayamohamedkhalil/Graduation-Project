@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/views/journalPages/updateandaskgemini.dart';
 
 class JournalData extends StatelessWidget {
+  final String id; // Add id field
   final String title;
   final String date;
   final String content;
 
   const JournalData({
     super.key,
+    required this.id,
     required this.title,
     required this.date,
     required this.content,
@@ -21,6 +23,7 @@ class JournalData extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => Updateandaskgemini(
+              id: id, // Pass id to Updateandaskgemini
               title: title,
               content: content,
               date: date,
@@ -52,7 +55,8 @@ class JournalData extends StatelessWidget {
                   Text(
                     date,
                     style: const TextStyle(
-                        fontSize: 13, color: Color.fromARGB(255, 51, 51, 51)),
+                        fontSize: 13,
+                        color: Color.fromARGB(255, 51, 51, 51)),
                   ),
                 ],
               ),
