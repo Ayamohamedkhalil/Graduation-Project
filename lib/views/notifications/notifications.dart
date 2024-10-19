@@ -101,13 +101,11 @@ class _NotificationSettingsScreenState
                   testReminder = value;
                 });
               }),
-            
               buildToggleSwitch('Progress update', progressUpdate, (value) {
                 setState(() {
                   progressUpdate = value;
                 });
               }),
-              
               buildToggleSwitch('News and updates', newsAndUpdates, (value) {
                 setState(() {
                   newsAndUpdates = value;
@@ -132,13 +130,16 @@ class _NotificationSettingsScreenState
             // Sound & Vibration section
             Container(
               decoration: BoxDecoration(
-                color: const Color(0xFFD9D9D9).withOpacity(.58),
-                // Background color
                 borderRadius: BorderRadius.circular(17.0),
+                border: Border.all(
+                  color: Colors.white.withOpacity(0.4), // Border color
+                  width: 1.0, // Border width
+                ),
               ),
               child: ExpansionTile(
-                initiallyExpanded: true,
-                backgroundColor: Colors.transparent,
+                // Ensures the tile is initially collapsed, can be toggled via this value
+                initiallyExpanded: false,
+                backgroundColor: const Color(0xff3B5D44).withOpacity(.28),
                 collapsedBackgroundColor: Colors.transparent,
                 title: const Text(
                   'Sound & Vibration',
@@ -148,35 +149,61 @@ class _NotificationSettingsScreenState
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                iconColor: Colors.white, // Color of the expanding arrow icon
+                collapsedIconColor:
+                    Colors.white, // Color of arrow when collapsed
                 children: [
+                  // Vibration Switch
                   SwitchListTile(
-                    title: const Text('Vibration',
-                        style: TextStyle(color: Colors.white)),
+                    title: const Text(
+                      'Vibration',
+                      style: TextStyle(color: Colors.white),
+                    ),
                     value: vibrationEnabled,
                     onChanged: (bool value) {
                       setState(() {
                         vibrationEnabled = value;
                       });
                     },
+                    activeColor: Colors.white,
+                    inactiveThumbColor: Colors.white.withOpacity(0.5),
+                    inactiveTrackColor:
+                        const Color(0xff3B5D44).withOpacity(.64),
                   ),
+
+                  // Slider for Volume of Notification
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Volume of notification',
-                            style: TextStyle(color: Colors.white)),
-                        Slider(
-                          value: notificationVolume,
-                          min: 0,
-                          max: 10,
-                          divisions: 10,
-                          label: notificationVolume.round().toString(),
-                          onChanged: (double value) {
-                            setState(() {
-                              notificationVolume = value;
-                            });
-                          },
+                        const Text(
+                          'Volume of notification',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SliderTheme(
+                          data: SliderTheme.of(context).copyWith(
+                            activeTrackColor: Colors.white,
+                            inactiveTrackColor: Colors.white.withOpacity(0.4),
+                            thumbColor: Colors.white,
+                            overlayColor: Colors.white.withOpacity(0.2),
+                            thumbShape: const RoundSliderThumbShape(
+                              enabledThumbRadius: 12.0,
+                            ),
+                            trackHeight: 2.5, // Slim track for slider
+                          ),
+                          child: Slider(
+                            value: notificationVolume,
+                            min: 0,
+                            max: 10,
+                            divisions: 10,
+                            label: notificationVolume.round().toString(),
+                            onChanged: (double value) {
+                              setState(() {
+                                notificationVolume = value;
+                              });
+                            },
+                          ),
                         ),
                       ],
                     ),
@@ -184,7 +211,10 @@ class _NotificationSettingsScreenState
                 ],
               ),
             ),
-            SizedBox(height: 140,),
+
+            SizedBox(
+              height: 140,
+            ),
             const BarButton()
           ],
         ),
@@ -199,10 +229,7 @@ class _NotificationSettingsScreenState
       child: Text(
         title,
         style: const TextStyle(
-          color: Colors.white,
-          fontSize: 20,
-          fontFamily: 'InriaSans-Bold'
-        ),
+            color: Colors.white, fontSize: 20, fontFamily: 'InriaSans-Bold'),
       ),
     );
   }
@@ -211,14 +238,16 @@ class _NotificationSettingsScreenState
   Widget buildToggleSwitch(
       String title, bool currentValue, ValueChanged<bool> onChanged) {
     return SwitchListTile(
-      title: Text(title, style: const TextStyle(color: Colors.white,fontFamily: 'InriaSans-Bold',fontSize: 18)),
+      title: Text(title,
+          style: const TextStyle(
+              color: Colors.white, fontFamily: 'InriaSans-Bold', fontSize: 18)),
       value: currentValue,
       onChanged: onChanged,
       activeColor: Colors.white, // Thumb color when active
-    inactiveThumbColor: Colors.white, // Thumb color when inactive
-    activeTrackColor: Colors.white.withOpacity(0.3), // Track color when active (simulates a border)
-    inactiveTrackColor: const Color(0xff3B5D44).withOpacity(0.64), 
-      
+      inactiveThumbColor: Colors.white, // Thumb color when inactive
+      activeTrackColor: Colors.white
+          .withOpacity(0.3), // Track color when active (simulates a border)
+      inactiveTrackColor: const Color(0xff3B5D44).withOpacity(0.64),
     );
   }
 
