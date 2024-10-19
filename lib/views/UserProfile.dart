@@ -1,13 +1,14 @@
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/constant/Colors.dart';
 import 'package:splash_onboarding_test/views/ConatctUspage/contactUsPage.dart';
-
 import 'package:splash_onboarding_test/views/FAQPage.dart';
 import 'package:splash_onboarding_test/views/PreviosTestPage/PreviousTestPage.dart';
 import 'package:splash_onboarding_test/views/PrivacySettingPage/PrivacySettingPage.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
+import 'package:splash_onboarding_test/views/notifications/notifications.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({super.key});
@@ -250,7 +251,14 @@ class UserProfile extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 5.0, vertical: 3),
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                               Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>  NotificationSettingsScreen(),
+                                ),
+                              );
+                            },
                             child: const Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
