@@ -328,8 +328,8 @@ class _JournalPageState extends State<JournalPage> {
                             itemBuilder: (context, index) {
                               final journal = journals[index];
                               // Generate a unique ID for each journal entry, assuming 'id' is available
-                              final String id = journal['id']
-                                  .toString(); // Extract ID from journal
+                           //   final String id = journal['_id']
+                                //  .toString(); // Extract ID from journal
 
                               if (journal['entries'] != null &&
                                   journal['entries'].isNotEmpty) {
@@ -344,7 +344,7 @@ class _JournalPageState extends State<JournalPage> {
                                         final entry =
                                             journal['entries'][entryIndex];
                                         return JournalData(
-                                          id: id, // Pass id here
+                                          id: entry['_id'] ?? 'No Id', // Pass id here
                                           title: entry['title'] ?? 'No Title',
                                           date: journal['date'] ?? 'No Date',
                                           content:

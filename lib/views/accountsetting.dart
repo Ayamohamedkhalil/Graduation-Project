@@ -2,6 +2,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
+import 'package:splash_onboarding_test/views/changepassword.dart';
 import 'package:splash_onboarding_test/views/firebase_notifications/firebase_notifications.dart';
 import 'package:splash_onboarding_test/views/reasonfordeleteaccount.dart';
 import 'package:http/http.dart' as http;
@@ -382,7 +383,10 @@ class _AccountsettingState extends State<Accountsetting> {
                   trailing:
                       const Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
-                    // Add your onTap code here
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ChangePassword()),
+                      );
                   },
                 ),
                 ListTile(

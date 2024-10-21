@@ -19,6 +19,7 @@ class JournalData extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        print("ID=================================================$id ");
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -55,8 +56,7 @@ class JournalData extends StatelessWidget {
                   Text(
                     date,
                     style: const TextStyle(
-                        fontSize: 13,
-                        color: Color.fromARGB(255, 51, 51, 51)),
+                        fontSize: 13, color: Color.fromARGB(255, 51, 51, 51)),
                   ),
                 ],
               ),

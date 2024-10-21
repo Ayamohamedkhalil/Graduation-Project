@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
+import 'package:splash_onboarding_test/views/ConatctUspage/contactUsPage.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
+import 'package:splash_onboarding_test/views/firebase_notifications/firebase_notifications.dart';
+import 'package:firebase_messaging/firebase_messaging.dart'; // Import Firebase Messaging
+
+import 'package:http/http.dart' as http; // For making HTTP requests
 
 class NotificationSettingsScreen extends StatefulWidget {
   @override
@@ -10,6 +15,7 @@ class NotificationSettingsScreen extends StatefulWidget {
 
 class _NotificationSettingsScreenState
     extends State<NotificationSettingsScreen> {
+  final FirebaseNotifications _firebaseNotifications = FirebaseNotifications();
   bool testReminder = false;
   bool progressUpdate = true;
   bool newsAndUpdates = false;
@@ -18,13 +24,73 @@ class _NotificationSettingsScreenState
   double notificationVolume = 5.0;
 
   @override
+  void initState() {
+    super.initState();
+    _loadInitialSettings();
+  }
+
+  // Load initial state of reminderNotification
+  Future<void> _loadInitialSettings() async {
+    reminderNotification =
+        await _firebaseNotifications.getTokenFromPreferences() != null;
+    setState(() {});
+  }
+
+  Future<void> _handleNotificationToggle(bool value) async {
+    setState(() {
+      reminderNotification = value;
+    });
+    print(
+        'reminderNotification====================================================$reminderNotification');
+    if (reminderNotification) {
+      // Re-initiate FCM token when enabled
+      await _firebaseNotifications.initNotifications();
+      String? fcmToken =
+          await FirebaseMessaging.instance.getToken(); // Get the new FCM token
+      if (fcmToken != null) {
+        // Make the PUT request to update the FCM token in the backend
+        await _updateFCMToken(fcmToken);
+      }
+    } else {
+      // Delete FCM token from shared preferences and Firebase when disabled
+      await _firebaseNotifications
+          .logout(); // Remove token from shared preferences
+           await FirebaseMessaging.instance.deleteToken();
+      print("FCM token deleted.");
+    }
+  }
+
+  // Function to update FCM token in the backend
+  Future<void> _updateFCMToken(String fcmToken) async {
+    final String? token = await getToken();
+    const url =
+        'https://backend-production-19d7.up.railway.app/api/update_fcm_token';
+
+    final response = await http.put(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token ?? '',
+      },
+      body: {
+        'fcm_token': fcmToken,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      print('FCM token updated successfully');
+    } else {
+      print('Failed to update FCM token: ${response.body}');
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF537F5C), // Background color
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: Container(
-          // Use leading for the icon on the left
           width: 35.0,
           height: 35.0,
           decoration: BoxDecoration(
@@ -39,8 +105,7 @@ class _NotificationSettingsScreenState
               ),
             ],
           ),
-          margin: const EdgeInsets.only(
-              left: 22), // Properly position the icon within the AppBar
+          margin: const EdgeInsets.only(left: 22),
           child: IconButton(
             icon: const Icon(Icons.arrow_back_ios),
             color: const Color(0xFF537F5C),
@@ -48,7 +113,7 @@ class _NotificationSettingsScreenState
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const UserProfile()),
-              ); // Adjusted for a typical back operation
+              );
             },
             iconSize: 25.0,
             splashRadius: 25.0,
@@ -63,18 +128,15 @@ class _NotificationSettingsScreenState
               fontWeight: FontWeight.w700,
               fontFamily: 'InriaSans-Bold'),
         ),
-        centerTitle: true, // Ensure the title is centered
+        centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 27),
         child: ListView(
           children: [
-            SizedBox(
-              height: 5,
-            ),
+            const SizedBox(height: 5),
             const Text(
               'Select the kind of notification you get about your activities and recommendations',
               style: TextStyle(
@@ -82,16 +144,10 @@ class _NotificationSettingsScreenState
                   fontSize: 15,
                   fontFamily: 'InriaSans-Light'),
             ),
-            //const SizedBox(height: 20),
-            Container(
-              width: double.infinity, // Ensures the Divider takes full width
-              margin: EdgeInsets.symmetric(
-                  horizontal: 0), // Ensure full-width divider
-              child: Divider(
-                color: Colors.white.withOpacity(.18),
-                thickness: 1, // Optional: Adjust the thickness
-                height: 20, // Optional: Adjust height between elements
-              ),
+            Divider(
+              color: Colors.white.withOpacity(.18),
+              thickness: 1,
+              height: 20,
             ),
             // Email section
             buildSectionHeader('Email'),
@@ -112,117 +168,26 @@ class _NotificationSettingsScreenState
                 });
               }),
             ]),
-
             const SizedBox(height: 30),
-
-            // Push Notification section
             buildSectionHeader('Push Notification'),
             buildRoundedContainer([
-              buildToggleSwitch('Reminder', reminderNotification, (value) {
-                setState(() {
-                  reminderNotification = value;
-                });
-              }),
+              buildToggleSwitch(
+                'Reminder',
+                reminderNotification,
+                _handleNotificationToggle,
+              ),
             ]),
-
             const SizedBox(height: 20),
-
-            // Sound & Vibration section
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(17.0),
-                border: Border.all(
-                  color: Colors.white.withOpacity(0.4), // Border color
-                  width: 1.0, // Border width
-                ),
-              ),
-              child: ExpansionTile(
-                // Ensures the tile is initially collapsed, can be toggled via this value
-                initiallyExpanded: false,
-                backgroundColor: const Color(0xff3B5D44).withOpacity(.28),
-                collapsedBackgroundColor: Colors.transparent,
-                title: const Text(
-                  'Sound & Vibration',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                iconColor: Colors.white, // Color of the expanding arrow icon
-                collapsedIconColor:
-                    Colors.white, // Color of arrow when collapsed
-                children: [
-                  // Vibration Switch
-                  SwitchListTile(
-                    title: const Text(
-                      'Vibration',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    value: vibrationEnabled,
-                    onChanged: (bool value) {
-                      setState(() {
-                        vibrationEnabled = value;
-                      });
-                    },
-                    activeColor: Colors.white,
-                    inactiveThumbColor: Colors.white.withOpacity(0.5),
-                    inactiveTrackColor:
-                        const Color(0xff3B5D44).withOpacity(.64),
-                  ),
-
-                  // Slider for Volume of Notification
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Volume of notification',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        SliderTheme(
-                          data: SliderTheme.of(context).copyWith(
-                            activeTrackColor: Colors.white,
-                            inactiveTrackColor: Colors.white.withOpacity(0.4),
-                            thumbColor: Colors.white,
-                            overlayColor: Colors.white.withOpacity(0.2),
-                            thumbShape: const RoundSliderThumbShape(
-                              enabledThumbRadius: 12.0,
-                            ),
-                            trackHeight: 2.5, // Slim track for slider
-                          ),
-                          child: Slider(
-                            value: notificationVolume,
-                            min: 0,
-                            max: 10,
-                            divisions: 10,
-                            label: notificationVolume.round().toString(),
-                            onChanged: (double value) {
-                              setState(() {
-                                notificationVolume = value;
-                              });
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            SizedBox(
-              height: 140,
-            ),
-            const BarButton()
+            buildSoundVibrationSection(),
+            const SizedBox(height: 140),
+            const BarButton(),
           ],
         ),
       ),
     );
   }
 
-  // Helper method to create a section header
+  // Helper methods (same as before)
   Widget buildSectionHeader(String title) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -234,7 +199,6 @@ class _NotificationSettingsScreenState
     );
   }
 
-  // Helper method to create a toggle switch
   Widget buildToggleSwitch(
       String title, bool currentValue, ValueChanged<bool> onChanged) {
     return SwitchListTile(
@@ -243,15 +207,13 @@ class _NotificationSettingsScreenState
               color: Colors.white, fontFamily: 'InriaSans-Bold', fontSize: 18)),
       value: currentValue,
       onChanged: onChanged,
-      activeColor: Colors.white, // Thumb color when active
-      inactiveThumbColor: Colors.white, // Thumb color when inactive
-      activeTrackColor: Colors.white
-          .withOpacity(0.3), // Track color when active (simulates a border)
+      activeColor: Colors.white,
+      inactiveThumbColor: Colors.white,
+      activeTrackColor: Colors.white.withOpacity(0.3),
       inactiveTrackColor: const Color(0xff3B5D44).withOpacity(0.64),
     );
   }
 
-  // Helper method to wrap switches in a rounded container
   Widget buildRoundedContainer(List<Widget> children) {
     return Container(
       decoration: BoxDecoration(
@@ -261,6 +223,76 @@ class _NotificationSettingsScreenState
       ),
       child: Column(
         children: children,
+      ),
+    );
+  }
+
+  Widget buildSoundVibrationSection() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(17.0),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.4),
+          width: 1.0,
+        ),
+      ),
+      child: ExpansionTile(
+        initiallyExpanded: false,
+        backgroundColor: const Color(0xff3B5D44).withOpacity(.28),
+        collapsedBackgroundColor: Colors.transparent,
+        title: const Text(
+          'Sound & Vibration',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        iconColor: Colors.white,
+        collapsedIconColor: Colors.white,
+        children: [
+          SwitchListTile(
+            title: const Text(
+              'Vibration',
+              style: TextStyle(color: Colors.white),
+            ),
+            value: vibrationEnabled,
+            onChanged: (bool value) {
+              setState(() {
+                vibrationEnabled = value;
+              });
+            },
+            activeColor: Colors.white,
+            inactiveThumbColor: Colors.white.withOpacity(0.5),
+            inactiveTrackColor: const Color(0xff3B5D44).withOpacity(.64),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              children: [
+                const Text(
+                  'Notification Volume',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
+                ),
+                Slider(
+                  value: notificationVolume,
+                  onChanged: (double newValue) {
+                    setState(() {
+                      notificationVolume = newValue;
+                    });
+                  },
+                  min: 0.0,
+                  max: 10.0,
+                  activeColor: Colors.white,
+                  inactiveColor: Colors.white.withOpacity(0.5),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
