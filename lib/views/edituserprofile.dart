@@ -14,14 +14,19 @@ class _EditUserProfile extends State<EditUserProfile> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController bioController = TextEditingController();
 
-  File? _image; // To store the selected image
-  final ImagePicker _picker = ImagePicker(); // Instance of ImagePicker
+  File? _image;
+  final ImagePicker _picker = ImagePicker();
+
+  String _selectedGender = 'Female'; // Default selected gender
+  List<String> genderOptions = ['Female', 'Male', 'Other'];
 
   @override
   void dispose() {
     nameController.dispose();
     emailController.dispose();
+    bioController.dispose();
     super.dispose();
   }
 
@@ -30,8 +35,6 @@ class _EditUserProfile extends State<EditUserProfile> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-         // backgroundColor: Color(0xff537F5C),
-          //title: const Text('Choose an option'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -74,17 +77,23 @@ class _EditUserProfile extends State<EditUserProfile> {
     return null;
   }
 
+  String? _validateBio(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a bio';
+    }
+    return null;
+  }
+
   String? _validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter your email';
     }
-    String pattern =  r"(?:[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'"
-        r'*+/=?^_{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
-        r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
-        r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
-        r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
-        r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
-        r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
+    String pattern =
+        r"(?:[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_{|}~-]+)*|"
+        r'"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")'
+        r'@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(25[0-5]|'
+        r'[0-4][0-9]|1[0-9][0-9])|[1-9]?[0-9]))\.){3}(?:(25[0-5]|[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])|'
+        r'[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
     RegExp regex = RegExp(pattern);
     if (!regex.hasMatch(value)) {
       return 'Enter a valid email address';
@@ -159,7 +168,7 @@ class _EditUserProfile extends State<EditUserProfile> {
                       "Name",
                       style: TextStyle(
                         color: Colors.white70,
-                         fontSize: 16,
+                        fontSize: 16,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w500,
                       ),
@@ -228,7 +237,93 @@ class _EditUserProfile extends State<EditUserProfile> {
                   ],
                 ),
               ),
-              const SizedBox(height: 390),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: Row(
+                  children: [
+                    const Text(
+                      "Gender",
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 18,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    Expanded(
+                      child: DropdownButton<String>(
+                        value: _selectedGender,
+                        dropdownColor: const Color(0xFF537F5C),
+                        icon: const Icon(Icons.arrow_drop_down,
+                            color: Colors.white),
+                        underline: Container(
+                            height: 1, color: const Color(0xffD9D9D9)),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _selectedGender = newValue!;
+                          });
+                        },
+                        items: genderOptions.map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Bio",
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 16,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(width: 48),
+                    Expanded(
+                      child: TextFormField(
+                        controller: bioController,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: _validateBio,
+                        maxLines: null,
+                        minLines: 3,
+                        keyboardType: TextInputType.multiline,
+                        cursorColor: Colors.white,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                        decoration: const InputDecoration(
+                          hoverColor: Colors.white,
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xffD9D9D9)),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 220),
               const BarButton(),
             ],
           ),
