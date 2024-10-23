@@ -1,5 +1,8 @@
+import 'dart:convert'; // For jsonEncode and jsonDecode
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http; // Import the http package
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
+import 'package:splash_onboarding_test/views/ConatctUspage/contactUsPage.dart';
 import 'package:splash_onboarding_test/views/UserProfile.dart';
 
 class Getintouch extends StatefulWidget {
@@ -15,7 +18,8 @@ class _Getintouch extends State<Getintouch> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController messageController = TextEditingController(); // New controller for message
+  final TextEditingController messageController =
+      TextEditingController(); // New controller for message
 
   @override
   void dispose() {
@@ -67,6 +71,40 @@ class _Getintouch extends State<Getintouch> {
       return 'Please enter your message';
     }
     return null;
+  }
+
+  // Function to send contact form
+  Future<void> _sendContactForm() async {
+    const url = 'https://backend-production-19d7.up.railway.app/api/contactUS';
+    final String? token = await getToken();
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'Authorization': token ?? '',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'firstname': firstNameController.text,
+          'lastname': lastNameController.text,
+          'email': emailController.text,
+          'message': messageController.text,
+        }),
+      );
+
+      final Map<String, dynamic> responseBody = jsonDecode(response.body);
+
+      // Show snackbar with response message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Text(responseBody['message'] ?? 'Something went wrong')),
+      );
+    } catch (e) {
+      // Show error snackbar
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to send message. Please try again.')),
+      );
+    }
   }
 
   @override
@@ -122,7 +160,7 @@ class _Getintouch extends State<Getintouch> {
           key: formKey,
           child: Column(
             children: [
-             const SizedBox(height: 50,),
+              const SizedBox(height: 50),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: TextFormField(
@@ -197,32 +235,29 @@ class _Getintouch extends State<Getintouch> {
                   ),
                 ),
               ),
-              const SizedBox(height: 40),
-              
+              const SizedBox(height: 20),
+
               // Message Label
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 32), 
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Message',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 16,
-                      fontFamily: 'InriaSans-Regular',
-                    ),
-                  ),
-                ),
+                  padding: EdgeInsets.symmetric(horizontal: 32),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Message',
+                        style: TextStyle(color: Colors.white70, fontSize: 16),
+                      ))),
+              const SizedBox(
+                height: 20,
               ),
-              const SizedBox(height: 20), // Space between the label and the text field
-              
+              // Message TextFormField
+
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32), 
+                padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: TextFormField(
                   controller: messageController,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: _validateMessage,
-                  maxLines: 6, 
+                  maxLines: 6,
                   decoration: const InputDecoration(
                     hoverColor: Colors.white,
                     enabledBorder: OutlineInputBorder(
@@ -237,6 +272,7 @@ class _Getintouch extends State<Getintouch> {
                   cursorColor: Colors.white,
                 ),
               ),
+
               const SizedBox(height: 40),
               Container(
                 width: 200,
@@ -264,7 +300,7 @@ class _Getintouch extends State<Getintouch> {
                   ),
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
-                      // Handle form submission
+                      await _sendContactForm(); // Call the API request function
                     }
                   },
                   child: const Text(
@@ -277,7 +313,9 @@ class _Getintouch extends State<Getintouch> {
                   ),
                 ),
               ),
-              SizedBox(height: 70,),
+              const SizedBox(
+                height: 80,
+              ),
               const BarButton(),
             ],
           ),
