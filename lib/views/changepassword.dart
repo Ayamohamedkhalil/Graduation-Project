@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:splash_onboarding_test/Registeration/login.dart';
+import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/views/ConatctUspage/contactUsPage.dart';
 import 'package:splash_onboarding_test/views/accountsetting.dart';
 
@@ -208,6 +209,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                   _validateConfirmPassword),
               const SizedBox(height: 60),
               _buildSaveButton(),
+              SizedBox(height: 330,),
+               const BarButton(),
             ],
           ),
         ),
