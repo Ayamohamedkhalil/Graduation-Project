@@ -1,27 +1,70 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:splash_onboarding_test/components/ButtonBar.dart';
 
-//import 'package:splash_onboarding_test/Registeration/registeration.dart';
-import 'package:splash_onboarding_test/views/accountsetting.dart';
-
-class Edituserprofile extends StatefulWidget {
-  const Edituserprofile({super.key});
+class EditUserProfile extends StatefulWidget {
+  const EditUserProfile({super.key});
 
   @override
-  _Edituserprofile createState() => _Edituserprofile();
+  _EditUserProfile createState() => _EditUserProfile();
 }
 
-class _Edituserprofile extends State<Edituserprofile> {
+class _EditUserProfile extends State<EditUserProfile> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+
+  File? _image; // To store the selected image
+  final ImagePicker _picker = ImagePicker(); // Instance of ImagePicker
 
   @override
   void dispose() {
     nameController.dispose();
     emailController.dispose();
-
     super.dispose();
+  }
+
+  Future<void> _showImagePickerDialog() async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+         // backgroundColor: Color(0xff537F5C),
+          //title: const Text('Choose an option'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.camera_alt),
+                title: const Text('Camera'),
+                onTap: () {
+                  _pickImage(ImageSource.camera);
+                  Navigator.of(context).pop();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_library),
+                title: const Text('Gallery'),
+                onTap: () {
+                  _pickImage(ImageSource.gallery);
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _pickImage(ImageSource source) async {
+    final pickedFile = await _picker.pickImage(source: source);
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
   }
 
   String? _validateName(String? value) {
@@ -35,8 +78,8 @@ class _Edituserprofile extends State<Edituserprofile> {
     if (value == null || value.isEmpty) {
       return 'Please enter your email';
     }
-    String pattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
-        r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
+    String pattern =  r"(?:[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'"
+        r'*+/=?^_{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
         r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
         r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
         r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
@@ -60,34 +103,30 @@ class _Edituserprofile extends State<Edituserprofile> {
         actions: [
           Container(
             margin: const EdgeInsets.only(right: 320),
-            width: 35.0, // Adjust the width of the circle
-            height: 35.0, // Adjust the height of the circle
+            width: 35.0,
+            height: 35.0,
             decoration: BoxDecoration(
-              color: Colors.white
-                  .withOpacity(.80), // Background color (light green)
-              shape: BoxShape.circle, // Circular shape
+              color: Colors.white.withOpacity(.80),
+              shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.15), // Shadow color
-                  spreadRadius: 2, // How much the shadow should spread
-                  blurRadius: 5, // The blur radius of the shadow
-                  offset: const Offset(0, 2), // Offset the shadow vertically
+                  color: Colors.black.withOpacity(0.15),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: const Offset(0, 2),
                 ),
               ],
             ),
             child: IconButton(
               icon: const Icon(Icons.arrow_back_ios),
-              color: const Color(0xFF537F5C), // Set the color of the arrow icon
+              color: const Color(0xFF537F5C),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const Accountsetting(),
-                ));
+                Navigator.of(context).pop();
               },
-              iconSize: 25.0, // Adjust the size of the icon
-              padding: const EdgeInsets.symmetric(
-                  vertical: 3, horizontal: 9), // Adjust padding around the icon
-              splashRadius: 25.0, // Adjust the splash radius on click
-              tooltip: "Next",
+              iconSize: 25.0,
+              padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 9),
+              splashRadius: 25.0,
+              tooltip: "Back",
             ),
           ),
         ],
@@ -97,103 +136,100 @@ class _Edituserprofile extends State<Edituserprofile> {
           key: formKey,
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: TextFormField(
-                  controller: nameController,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: _validateName,
-                  cursorColor: Colors.white,
-                  decoration: const InputDecoration(
-                    hoverColor: Colors.white,
-                    prefix: SizedBox(width: 1),
-                    // labelText: 'Email',
-                    hintText: 'Name',
-                    hintStyle: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 16,
-                      fontFamily: 'InriaSans-Regular',
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color(0xffD9D9D9)), // Normal border color
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
+              const SizedBox(height: 20),
+              Center(
+                child: GestureDetector(
+                  onTap: _showImagePickerDialog,
+                  child: CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.grey[300],
+                    backgroundImage: _image != null ? FileImage(_image!) : null,
+                    child: _image == null
+                        ? const Icon(Icons.camera_alt, size: 40)
+                        : null,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: TextFormField(
-                  controller: emailController,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: _validateEmail,
-                  cursorColor: Colors.white,
-                  decoration: const InputDecoration(
-                    hoverColor: Colors.white,
-                    prefix: SizedBox(width: 1),
-                    // labelText: 'Email',
-                    hintText: 'Email',
-                    hintStyle: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 16,
-                      fontFamily: 'InriaSans-Regular',
+                child: Row(
+                  children: [
+                    const Text(
+                      "Name",
+                      style: TextStyle(
+                        color: Colors.white70,
+                         fontSize: 16,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color(0xffD9D9D9)), // Normal border color
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 60),
-              Container(
-                width: 270,
-                height: 44,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.white),
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(.25),
-                      spreadRadius: 0,
-                      blurRadius: 4,
-                      offset: const Offset(0, 4),
+                    const SizedBox(width: 30),
+                    Expanded(
+                      child: TextFormField(
+                        controller: nameController,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: _validateName,
+                        cursorColor: Colors.white,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                        decoration: const InputDecoration(
+                          hoverColor: Colors.white,
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xffD9D9D9)),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff537F5C),
-                    shadowColor: const Color(0xff537F5C),
-                    alignment: Alignment.center,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+              ),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: Row(
+                  children: [
+                    const Text(
+                      "Email",
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 18,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                  onPressed: () async {
-                    if (formKey.currentState!.validate()) {
-                      // Gather form data
-                    }
-                  },
-                  child: const Text(
-                    'Sign-up',
-                    style: TextStyle(
-                      fontSize: 28,
-                      color: Colors.white,
-                      fontFamily: 'InriaSans-Bold',
+                    const SizedBox(width: 28),
+                    Expanded(
+                      child: TextFormField(
+                        controller: emailController,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: _validateEmail,
+                        cursorColor: Colors.white,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                        decoration: const InputDecoration(
+                          hoverColor: Colors.white,
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xffD9D9D9)),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
+              const SizedBox(height: 390),
+              const BarButton(),
             ],
           ),
         ),
