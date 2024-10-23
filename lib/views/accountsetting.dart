@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:splash_onboarding_test/Registeration/registeration.dart';
 import 'package:splash_onboarding_test/components/ButtonBar.dart';
 import 'package:splash_onboarding_test/views/changepassword.dart';
+import 'package:splash_onboarding_test/views/edituserprofile.dart';
 import 'package:splash_onboarding_test/views/firebase_notifications/firebase_notifications.dart';
 import 'package:splash_onboarding_test/views/reasonfordeleteaccount.dart';
 import 'package:http/http.dart' as http;
@@ -365,11 +366,11 @@ class _AccountsettingState extends State<Accountsetting> {
                   trailing:
                       const Icon(Icons.arrow_forward, color: Colors.white),
                   onTap: () {
-                    /* Navigator.push(
+                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Edituserprofile()),
-                    );*/
+                          builder: (context) =>  EditUserProfile()),
+                    );
                   },
                 ),
                 ListTile(
